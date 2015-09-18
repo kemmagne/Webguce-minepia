@@ -1,0 +1,23 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    xmlns:ct="http://java.sun.com/jsf/composite/components/ct"
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"  
+    >
+
+    <p:tab  title="#{vt2.InformationsGenerales}">
+        <ct:ctGeneralInformation value="#{vt2InitController.current.generalInformation}"
+                                 renderedBoolean="false"
+                                 readOnly="#{!vt2InitController.requestForm}"
+                                 renderedList="#{vt2InitController.requestForm ? '' : 'signatory'},expertiseCertificate,businessContrat,transport,exportingPlace,loadingPlace,transhippingPlace,clearingPlace,
+                                 licence,licence.issuer.name,licence.issuer.address1,licence.issuer.address2,licence.issuer.postofficebox,licence.issuer.country,licence.issuer.city,licence.issuer.email,licence.issuer.website,licence.issuer.phone,licence.issuer.mobile,licence.issuer.fax,
+                                 signatory,transportLetter,originCountry,destinationCountry,countryOfOrigin,transitCountry,condition,incoterm,entryPoint,agreement,operatingLicence,
+                                 consigne,consigne.name,consigne.address1,consigne.address2,consigne.postofficebox,consigne.country,consigne.city,consigne.email,consigne.website,consigne.phone,consigne.mobile,consigne.fax,deliveryPlace" />
+
+    </p:tab>
+</ui:composition>
+

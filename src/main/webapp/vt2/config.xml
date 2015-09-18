@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Process xsi:noNamespaceSchemaLocation="process.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Code>vt2</Code>
+    <Name>vt2Name</Name>
+    <Version>1.0.1</Version>
+    <Description>VISA TECHNIQUE MINEPDED</Description>
+    <ProcessingClass>Vt2Traitement</ProcessingClass>
+    <ServiceName>vt2</ServiceName>
+    <Author>Steve Anyam</Author>
+    <LanguageFile>Bundle</LanguageFile>
+    <Forms>
+        <Form>
+            <Code>VT201</Code>
+            <Name>InitiationDossier</Name>
+            <Version>1.0.0</Version>
+            <Description>Initiation du dossier de demande de visa technique</Description>
+            <Path>VT201</Path>
+            <Type>0</Type>
+            <Processing>VT201</Processing>
+        </Form>
+        <Form>
+            <Code>VT2</Code>
+            <Name>ConsultationVisaTechnique</Name>
+            <Version>1.0.0</Version>
+            <Description>ConsultationVisaTechnique</Description>
+            <Path>VT2</Path>
+            <Type>3</Type>
+            <Processing>VT2</Processing>
+        </Form> 
+    </Forms>
+    <!--ICI -->
+    <Processings>
+        <Processing>
+            <Code>VT201</Code>
+            <Name>VT201PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>VT202</Code>
+            <Name>VT202PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>VT203</Code>
+            <Name>VT203PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>VT204</Code>
+            <Name>VT204PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>VT211</Code>
+            <Name>VT211PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>VT2</Code>
+            <Name>VT2PROCESSING</Name>
+        </Processing>
+    </Processings>
+    <Attachments>
+        <Attachment>
+            <Code>FTP</Code>
+            <Name>Fiche Technique Produit</Name>
+        </Attachment>
+    </Attachments>
+    <Messages>
+        <Message>
+            <Code>VT201</Code>
+            <Name>VT201MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>VT202</Code>
+            <Name>VT202MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>VT203</Code>
+            <Name>VT203MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>VT204</Code>
+            <Name>VT204MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>VT211</Code>
+            <Name>VT211MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>VT2</Code>
+            <Name>VT2MESSAGE</Name>
+        </Message>        
+    </Messages>
+</Process>

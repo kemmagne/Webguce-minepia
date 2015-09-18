@@ -1,0 +1,20 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
+    >
+
+    <p:fieldset legend="#{vt2.Facture}">
+        <g:invoice
+            value="#{vt2InitController.current.invoice}" 
+            readOnly="#{!vt2InitController.requestForm}"
+            renderedBoolean="false"
+            renderedList="taxReferenceNumber,taxsenddate"
+            />
+    </p:fieldset>
+</ui:composition>
+

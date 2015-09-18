@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-deploy-process</actionName>
+        <displayName>deploy-process</displayName>
+        <goals>
+            <goal>install</goal>
+            <goal>com.github.goldin:copy-maven-plugin:0.2.5:copy</goal>
+        </goals>
+    </action>
+    <action>
+            <actionName>CUSTOM-deploy</actionName>
+            <displayName>deploy</displayName>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>install</goal>
+                <goal>com.github.goldin:copy-maven-plugin:0.2.5:copy</goal>
+            </goals>
+        </action>
+</actions>

@@ -1,0 +1,88 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    >
+
+    <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
+    <h:form id="formContenu"   >    
+        <h:panelGrid columns="4" cellspacing="8"  >        
+            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true" action="#{userControllerSite.goToAccueil()}" ajax="false" />
+        </h:panelGrid>
+        <p:messages autoUpdate="true" />
+        <p:fieldset id="filtres" legend="#{vt2.Fitres}" collapsed="true" toggleable="true" toggleSpeed="250">
+            <h:panelGrid columns="3" id="filtre"  style="width:95%;margin:auto;" cellspacing="5">
+                <h:panelGrid columns="2" cellspacing="5">
+                    <h:outputLabel value="#{principal.NumeroDossier}"/>
+                    <p:inputText style="width: 100px" value="#{vt2ControllerList.filter.recordId}"/>
+                    <h:outputLabel value="#{principal.Etat}"/>
+                    <p:selectOneMenu value="#{vt2ControllerList.filter.fileState}">
+                        <f:selectItem itemLabel="#{principal.All}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{principal.Clos}" itemValue="CLOS"/>
+                        <f:selectItem itemLabel="#{principal.Open}" itemValue="IN_PROCESS"/>
+                        <f:selectItem itemLabel="#{principal.Error}" itemValue="ERROR"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:fieldset legend="#{vt2.DateDemande}">
+                    <h:panelGrid columns="4">
+                        <h:outputLabel value="#{principal.Start} :"/>
+                        <p:calendar size="10" pattern="dd/MM/yyyy" style="width: 120px" 
+                                    value="#{vt2ControllerList.filter.dateEnvoiStart}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                        <h:outputLabel value="#{principal.End} :"/>
+                        <p:calendar size="10"  pattern="dd/MM/yyyy" style="width: 120px" 
+                                    value="#{vt2ControllerList.filter.dateEnvoiEnd}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                    </h:panelGrid>
+                </p:fieldset>
+                <h:panelGrid columns="1">
+                    <p:commandButton style="" value="#{principal.Search}" action="#{vt2ControllerList.search()}" ajax="true" update=":formContenu:table" process=":formContenu:filtres"/>
+                    <p:commandButton style="" value="#{principal.EffacerTous}" action="#{vt2ControllerList.resetsearch()}" ajax="true" update=":formContenu:table"/>
+                </h:panelGrid>
+            </h:panelGrid>
+        </p:fieldset>
+        <br />
+
+        <p:dataTable  rows="10" paginator="true"  lazy="true" id="table"
+                      sortBy="#{file.processing.procstartdate}"
+                      sortOrder="descending"
+                      emptyMessage="#{vt2.NoFile}"
+                      value="#{vt2ControllerList.models}" var="file" >
+            <f:facet name="header">
+                #{vt2.ListAutorisationImportation} (#{vt2ControllerList.models.rowCount})
+
+            </f:facet>
+
+            <ui:include    src="../fragments/list.xhtml" />
+            <p:column>
+                <p:commandLink title="#{vt2.View}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
+                    <f:param name="page" value="view" />
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="processingid" value="#{file.processing.processingid}"/>
+                    <f:param name="type" value="view" />
+                    <f:param name="formCode" value="VT2" />
+                    <p:graphicImage value="/ImageFolder/choose.jpeg" width="25" height="25" />
+                </p:commandLink>
+                 <p:commandLink  title="#{principal.Historic}" action="#{userControllerSite.goToNewPageForm()}" ajax="false">
+                    <p:graphicImage value="/ImageFolder/archive.jpeg" width="20" height="20" />
+                    <f:param name="formCode" value="core" />
+                    <f:param name="page" value="historic" />
+                    <f:param name="recordId" value="#{file.file.recordId}" />
+                </p:commandLink>
+            </p:column>
+            <f:facet name="footer">
+                #{vt2.ListAutorisationImportation} (#{vt2ControllerList.models.rowCount})
+            </f:facet>
+        </p:dataTable>
+    </h:form>
+    <style>
+        .ui-outputlabel{            
+            float: right;    
+        }
+    </style>
+</ui:composition>

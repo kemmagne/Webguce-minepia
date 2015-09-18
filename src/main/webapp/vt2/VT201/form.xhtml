@@ -1,0 +1,51 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"        
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
+    <h:form id="formContenu">
+        <p:messages id="messages" closable="true"   />
+        <c:if test="#{vt2InitController.complement}">
+            <p:fieldset legend="#{vt2.Observation}">
+                <h:panelGrid>
+                    <h:outputText value="#{vt2InitController.current.observation}" />
+                </h:panelGrid>
+            </p:fieldset>
+            <br />
+        </c:if>
+        <p:toolbar>
+            <f:facet name="right">
+                <p:commandButton rendered="false" icon="ui-icon-document" id="savedemande" update="messages tabVT:idDemande"    value="#{vt2.SAVE}"  
+                                 action="#{vt2InitController.saveFile()}">
+                </p:commandButton>
+                <p:commandButton rendered="false" icon="ui-icon-document" id="saveexitdemande" ajax="false" value="#{vt2.SAVEEXIT}"  
+                                 action="#{vt2InitController.saveFileExit()}">
+                </p:commandButton>
+                <p:commandButton  icon="ui-icon-mail-closed"  value="#{vt2.Envoyer}" action="#{vt2InitController.saveAndSend()}" ajax="false"  >
+                </p:commandButton>
+                <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true"
+                                 action="#{vt2InitController.goToPreviows()}" ajax="false" >
+                    <f:param name="back" value="back" />
+                </p:commandButton>
+            </f:facet>
+        </p:toolbar>
+        <ui:include    src="../fragments/decision.xhtml" />
+        <p:tabView id="allcontent" effect="slide" >
+            <ui:include    src="../fragments/importateur.xhtml" />
+            <ui:include    src="../fragments/transitaire.xhtml" />           
+            <ui:include    src="../fragments/demandeVT.xhtml" />            
+            <ui:include    src="../fragments/piecesJointes.xhtml" />
+        </p:tabView>
+    </h:form>    
+    <style>
+        .ui-outputlabel{            
+            float: right;    
+        }
+    </style>
+</ui:composition>

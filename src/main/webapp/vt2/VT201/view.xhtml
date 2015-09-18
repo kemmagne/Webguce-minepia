@@ -1,0 +1,24 @@
+<ui:composition 
+    xmlns:p="http://primefaces.org/ui" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="../fragments/default_view.xhtml">
+    <ui:define name="action">
+        <h:panelGrid columns="2" cellspacing="5"  >
+            <p:commandButton icon="ui-icon-document" value="#{vt2.Copy}" immediate="true"
+                             action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
+                <f:param name="back" value="back" />
+                <f:param name="page" value="form" />
+                <f:param name="recordId" value="#{vt2InitController.current.recordId}"/>
+                <f:param name="type" value="copy" />
+                <f:param name="formCode" value="VT201" />
+            </p:commandButton>
+            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true"
+                             action="#{vt2InitController.goToPreviows()}" ajax="false" >
+                <f:param name="back" value="back" />
+            </p:commandButton>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

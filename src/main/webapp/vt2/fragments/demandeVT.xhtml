@@ -1,0 +1,45 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    xmlns:wgc="http://java.sun.com/jsf/composite/components/ct"    
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
+    >
+
+    <p:tab  title="Demande Visa Technique">
+        <h:panelGrid columns="2">
+            <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/> 
+            <p:inputText id="idBureau" readonly="#{!vt2InitController.requestForm}"
+                         maxlength="50" value="#{vt2InitController.current.office}" />
+        </h:panelGrid>
+        <br/>
+        <p:fieldset legend="#{vt2.Produit}">
+            <wgc:ctGoodList id="good_list" value="#{vt2InitController.current.goodList}" 
+                            readOnly="#{!vt2InitController.requestForm}"
+                            renderedBoolean="false"
+                            requiredList="lineNumber,hSCode,goodCode,tradeName,"
+                            renderedList="lineNumber,hSCode,tradeName,scientificalName,chimicalFormula,technicalSpecification,quantite,importQuantity,purpose,packagingCode,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry"                                                
+                            itemType="org.guce.process.ct.entities.CTGood"
+                            dialogAppendTo="@(#content)"
+                            required="false"
+                            dataTableRenderedBoolean="true" 
+                            dataTableRenderedList="goodCode,scientificalName,chimicalFormula,technicalSpecification,importQuantity,weight,unit,volume,purpose,denominationDCI,doseTreatment,form,presentation,labelling,decision,observation,activeIngredient,concentration,formulationType,speciality,inspectionPlace,placeStore,validity,packagingCode,modeEmballage,sponsor,manufacturer,originCountry,destinationCountry"
+                            parentRecordValue="#{vt2InitController.current}"
+                            parentRecordField="recordId"/>
+        </p:fieldset>
+        <br/>        
+        <ui:include    src="../fragments/demandeVT/fournisseur.xhtml" />                
+        <p:spacer/>
+        <ui:include    src="../fragments/demandeVT/detenteur.xhtml" />                
+        <p:spacer/>
+        <ui:include    src="../fragments/demandeVT/provenance.xhtml" /> 
+        <p:spacer/>
+        <ui:include    src="../fragments/demandeVT/facture.xhtml" />                    
+        <p:spacer/>
+        <ui:include    src="../fragments/demandeVT/comObservation.xhtml" />                    
+    </p:tab>
+</ui:composition>
+

@@ -1,0 +1,24 @@
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:g="http://java.sun.com/jsf/composite/components"
+    template="../fragments/default_view.xhtml"
+    >    
+
+    <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
+    <ui:define name="action">
+        <h:panelGrid columns="4" cellspacing="8"  >
+            <p:commandButton disabled="true" value="Imprimer" ajax="false">               
+            </p:commandButton>            
+            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true" action="#{vt2InitController.goToPreviows()}" ajax="false" />
+        </h:panelGrid>        
+    </ui:define>
+    <style>
+        .ui-outputlabel{            
+            float: right;    
+        }
+    </style>
+</ui:composition>
