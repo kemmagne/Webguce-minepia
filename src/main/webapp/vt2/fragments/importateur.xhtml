@@ -8,10 +8,10 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"    
     >
    
-   <p:tab  title="Importateur/Exportateur">
+   <p:tab  title="#{vt2.ImportExport}">
        
                 <g:charger   required="true"
-                             readOnly="#{!vt2InitController.requestForm}" 
+                             readOnly="#{!vt2InitController.requestForm or vt2InitController.complement }" 
                              renderedList="Address3,dateDelivrance,dateExpiration"  
                              value="#{vt2InitController.current.chargerid}"  styleClass="alias"  
                              chargerLabel="#{vt2.Assure}"  id="exporter" />             

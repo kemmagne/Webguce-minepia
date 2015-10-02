@@ -10,18 +10,25 @@
 
     <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
     <h:form id="formContenu">
-        <p:messages id="messages" closable="true"   />
-        <c:if test="#{vt2InitController.complement}">
-            <p:fieldset legend="#{vt2.Observation}">
-                <h:panelGrid>
-                    <h:outputText value="#{vt2InitController.current.observation}" />
-                </h:panelGrid>
-            </p:fieldset>
-            <br />
-        </c:if>
+         <p:messages id="messages" closable="true"   />
+        <p:outputPanel rendered="#{vt2InitController.complement}">
+            <h3  class="webguce-sub-block-title">#{vt2.Observation}</h3>
+            <h:panelGrid>
+                <h:outputText value="#{vt2InitController.current.observation}" />
+            </h:panelGrid>            
+        </p:outputPanel>
+        <br />
         <p:toolbar>
+            <f:facet name="left">
+                <h:panelGroup id="displayFileNumber" >
+                    <h:panelGrid columns="2" rendered="#{!((empty vt2InitController.current.recordId) or (vt2InitController.current.recordId.equalsIgnoreCase('')))}">
+                        <p:outputLabel value="#{vt2.NumeroFiche}"/>
+                        <p:inputText id="codeDossier" readonly="true" value="#{vt2InitController.current.recordId}"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+            </f:facet>
             <f:facet name="right">
-                <p:commandButton rendered="false" icon="ui-icon-document" id="savedemande" update="messages tabVT:idDemande"    value="#{vt2.SAVE}"  
+                <p:commandButton rendered="false" icon="ui-icon-document" id="savedemande" update="messages tabAH:idDemande"    value="#{vt2.SAVE}"  
                                  action="#{vt2InitController.saveFile()}">
                 </p:commandButton>
                 <p:commandButton rendered="false" icon="ui-icon-document" id="saveexitdemande" ajax="false" value="#{vt2.SAVEEXIT}"  

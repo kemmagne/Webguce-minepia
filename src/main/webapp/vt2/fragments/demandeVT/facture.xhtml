@@ -8,13 +8,12 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
 
-    <p:fieldset legend="#{vt2.Facture}">
+    <h3 class="webguce-block-title">#{vt2.Facture}</h3>
         <g:invoice
             value="#{vt2InitController.current.invoice}" 
             readOnly="#{!vt2InitController.requestForm}"
             renderedBoolean="false"
             renderedList="taxReferenceNumber,taxsenddate"
-            />
-    </p:fieldset>
+            />    
 </ui:composition>
 

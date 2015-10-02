@@ -10,11 +10,21 @@
 
     <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
     <ui:define name="action">
-        <h:panelGrid columns="4" cellspacing="8"  >
-            <p:commandButton disabled="true" value="Imprimer" ajax="false">               
-            </p:commandButton>            
-            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true" action="#{vt2InitController.goToPreviows()}" ajax="false" />
-        </h:panelGrid>        
+        <p:toolbar>
+            <f:facet name="left">
+                <h:panelGroup id="displayFileNumber" >
+                    <h:panelGrid columns="2" rendered="#{!((empty vt2InitController.current.recordId) or (vt2InitController.current.recordId.equalsIgnoreCase('')))}">
+                        <p:outputLabel value="#{vt2.NumeroFiche}"/>
+                        <p:inputText id="codeDossier" value="#{vt2InitController.current.recordId}" readonly="true"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="right">
+                <p:commandButton rendered="false" value="Imprimer" ajax="false">               
+                </p:commandButton>            
+                <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true" action="#{vt2InitController.goToPreviows()}" ajax="false" />
+            </f:facet>   
+        </p:toolbar>     
     </ui:define>
     <style>
         .ui-outputlabel{            

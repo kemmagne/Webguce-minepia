@@ -9,18 +9,18 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
 
-    <p:tab  title="Demande Visa Technique">
+    <p:tab  title="#{vt2.VisaTechnique}">
         <h:panelGrid columns="2">
             <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/> 
-            <p:inputText id="idBureau" readonly="#{!vt2InitController.requestForm}"
+            <p:inputText id="idBureau" readonly="#{!vt2InitController.requestForm or vt2InitController.complement }"
                          maxlength="50" value="#{vt2InitController.current.office}" />
         </h:panelGrid>
         <br/>
-        <p:fieldset legend="#{vt2.Produit}">
+        <h3 class="webguce-block-title">#{vt2.Produit}</h3>
             <wgc:ctGoodList id="good_list" value="#{vt2InitController.current.goodList}" 
                             readOnly="#{!vt2InitController.requestForm}"
                             renderedBoolean="false"
-                            requiredList="lineNumber,hSCode,goodCode,tradeName,"
+                            requiredList="lineNumber,hSCode,tradeName,scientificalName,chimicalFormula,technicalSpecification,quantite,importQuantity,purpose,packagingCode,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry"
                             renderedList="lineNumber,hSCode,tradeName,scientificalName,chimicalFormula,technicalSpecification,quantite,importQuantity,purpose,packagingCode,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry"                                                
                             itemType="org.guce.process.ct.entities.CTGood"
                             dialogAppendTo="@(#content)"
@@ -28,8 +28,7 @@
                             dataTableRenderedBoolean="true" 
                             dataTableRenderedList="goodCode,scientificalName,chimicalFormula,technicalSpecification,importQuantity,weight,unit,volume,purpose,denominationDCI,doseTreatment,form,presentation,labelling,decision,observation,activeIngredient,concentration,formulationType,speciality,inspectionPlace,placeStore,validity,packagingCode,modeEmballage,sponsor,manufacturer,originCountry,destinationCountry"
                             parentRecordValue="#{vt2InitController.current}"
-                            parentRecordField="recordId"/>
-        </p:fieldset>
+                            parentRecordField="recordId"/>        
         <br/>        
         <ui:include    src="../fragments/demandeVT/fournisseur.xhtml" />                
         <p:spacer/>

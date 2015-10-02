@@ -52,7 +52,8 @@
                       sortBy="#{file.processing.procstartdate}"
                       sortOrder="descending"
                       emptyMessage="#{vt2.NoFile}"
-                      value="#{vt2ControllerList.models}" var="file" >
+                      value="#{vt2ControllerList.models}" var="file" 
+                      rowStyleClass="#{file.processing.procState eq 'traiter' ? 'see' : 'nossee'}">
             <f:facet name="header">
                 #{vt2.ListAutorisationImportation} (#{vt2ControllerList.models.rowCount})
 
@@ -81,6 +82,11 @@
         </p:dataTable>
     </h:form>
     <style>
+        #formContenu .nossee{
+            background: greenyellow;
+        }
+    </style>
+    <style>        
         .ui-outputlabel{            
             float: right;    
         }

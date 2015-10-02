@@ -6,19 +6,29 @@
     xmlns:h="http://java.sun.com/jsf/html"
     template="../fragments/default_view.xhtml">
     <ui:define name="action">
-        <h:panelGrid columns="2" cellspacing="5"  >
-            <p:commandButton icon="ui-icon-document" value="#{vt2.Copy}" immediate="true"
-                             action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
-                <f:param name="back" value="back" />
-                <f:param name="page" value="form" />
-                <f:param name="recordId" value="#{vt2InitController.current.recordId}"/>
-                <f:param name="type" value="copy" />
-                <f:param name="formCode" value="VT201" />
-            </p:commandButton>
-            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true"
-                             action="#{vt2InitController.goToPreviows()}" ajax="false" >
-                <f:param name="back" value="back" />
-            </p:commandButton>
-        </h:panelGrid>
+       <p:toolbar>
+            <f:facet name="left">
+                <h:panelGroup id="displayFileNumber" >
+                    <h:panelGrid columns="2" rendered="#{!((empty vt2InitController.current.recordId) or (vt2InitController.current.recordId.equalsIgnoreCase('')))}">
+                        <p:outputLabel value="#{vt2.NumeroFiche}"/>
+                        <p:inputText id="codeDossier" value="#{vt2InitController.current.recordId}" readonly="true"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="right">
+                <p:commandButton icon="ui-icon-document" value="#{vt2.Copy}" immediate="true"
+                                 action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
+                    <f:param name="back" value="back" />
+                    <f:param name="page" value="form" />
+                    <f:param name="recordId" value="#{vt2InitController.current.recordId}"/>
+                    <f:param name="type" value="copy" />
+                    <f:param name="formCode" value="VT101" />
+                </p:commandButton>
+                <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true"
+                                 action="#{vt2InitController.goToPreviows()}" ajax="false" >
+                    <f:param name="back" value="back" />
+                </p:commandButton>
+            </f:facet>
+        </p:toolbar>  
     </ui:define>
 </ui:composition>

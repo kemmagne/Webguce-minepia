@@ -10,10 +10,11 @@
 
     <p:tab  title="#{vt2.PiecesJointes}">
         <g:attachments  
-                       id="att" type="form" 
+                       id="att" 
                        value="#{vt2InitController.current.coreAttachmentList}" 
                        avaibleAttachmentType="#{vt2InitController.attachmentTypeList}" 
-                       styleClass="pm2"  parentClass="#{vt2InitController.current}" />
+                       styleClass="pm2"  parentClass="#{vt2InitController.current}"
+                       type="#{vt2InitController.requestForm ? 'form':'other' }"/>
     </p:tab>
 </ui:composition>
 

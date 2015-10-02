@@ -13,14 +13,14 @@
     </properties>
     <distributionManagement>
         <repository>
-            <id>guce-repository-deploy</id>
+            <id>guce-repository</id>
             <name>Depot Maven du GUCE</name>
-            <url>scp://srvdev/maven/repositories/releases</url>
+            <url>https://srvdev.guce.local/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>guce-repository-deploy</id>
+            <id>guce-repository</id>
             <name>Depot Maven du GUCE</name>
-            <url>scp://srvdev/maven/repositories/snapshots</url>
+            <url>https://srvdev.guce.local/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     
@@ -37,14 +37,14 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>webguce-ct</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.guce.web</groupId>
             <artifactId>webguce-core</artifactId>
             <version>2.0.3-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>webguce-ct</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

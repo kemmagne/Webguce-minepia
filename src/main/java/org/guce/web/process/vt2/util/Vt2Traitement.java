@@ -140,6 +140,9 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
             if(document.getContenu().getSignatory()!=null){
                 fiche.setSignatory(document.getContenu().getSignatory());
             }
+             if(document.getContenu().getCtDecision()!=null){
+                fiche.setCtDecision(document.getContenu().getCtDecision());
+            }
             fiche.setReocordConversationid(ebxml.getConversationId()); //Code du WF provenant d'orchestra
             service.save(fiche);
             Method method = this.getClass().getDeclaredMethod(CoreProcessingState.TRAITER + ebxml.getAction().toUpperCase());

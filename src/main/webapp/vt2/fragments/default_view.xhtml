@@ -10,20 +10,13 @@
     <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle" />
     <h:form id="formContenu" >   
         <ui:insert name="action" />
-        <p:messages  id="messages"   />        
-        <c:if test="#{vt2InitController.complement}">
-            <p:fieldset legend="#{vt2.Observation}">
-                <h:panelGrid>
-                    <h:outputText value="#{vt2InitController.current.observation}" />
-                </h:panelGrid>
-            </p:fieldset>
-            <br />
-        </c:if>
+        <p:messages  id="messages"   />                
         <ui:include    src="../fragments/decision.xhtml" />
         <p:tabView id="allcontent" effect="slide" >
-            <ui:include    src="importateur.xhtml" />
-            <ui:include    src="demandeVT.xhtml" />            
-            <ui:include    src="piecesJointes.xhtml" />
+            <ui:include    src="../fragments/importateur.xhtml" />
+            <ui:include    src="../fragments/transitaire.xhtml" />           
+            <ui:include    src="../fragments/demandeVT.xhtml" />            
+            <ui:include    src="../fragments/piecesJointes.xhtml" />
         </p:tabView>
     </h:form>    
     <style>

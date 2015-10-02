@@ -8,10 +8,9 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
    
-    <p:fieldset legend="#{vt2.DetenteurMarque}">
+    <h3 class="webguce-block-title">#{vt2.DetenteurMarque}</h3>
         <g:stakeholder rendered="true"
             renderedList="address3,taxPayerNumber"
-            value="#{vt2InitController.current.brandHolder}" readOnly="#{!vt2InitController.requestForm}"/>
-    </p:fieldset>
+            value="#{vt2InitController.current.brandHolder}" readOnly="#{!vt2InitController.requestForm}"/>    
 </ui:composition>
 

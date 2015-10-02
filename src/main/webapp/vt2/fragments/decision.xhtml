@@ -5,33 +5,63 @@
     xmlns:="http://www.w3.org/1999/xhtml"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets">
-    <p:fieldset legend="#{vt2.decision}" collapsed="false" toggleable="true" rendered="#{! empty vt2InitController.current.decision}">
-		
-		<h:panelGrid columns="4" class="webguce-sub-block">
-			
-			<h:outputLabel value="#{vt2.decisionCode}" />
-			<p:inputText value="#{vt2InitController.current.decision.code}" readonly="true"
-						 style="width: 240px;" />
-			<h:outputLabel value="#{vt2.label}" /> 
-			<p:inputText value="#{vt2InitController.current.decision.label}" readonly="true"
-						 style="width: 240px;" />
-		</h:panelGrid>
-		<h3 class="codename blockTitle">#{vt2.singatory}</h3>
-		<h:panelGrid columns="4" class="webguce-sub-block" rendered="#{! empty vt2InitController.current.signatory}">
-			<h:outputLabel value="#{vt2.name}"/>
-			<p:inputText value="#{vt2InitController.current.signatory.name}" readonly="true"
-						 style="width: 240px;" />
-			<h:outputLabel value="#{vt2.quality}"/>
-			<p:inputText value="#{vt2InitController.current.signatory.quality}" readonly="true"
-						 style="width: 240px;" />
-			<h:outputLabel value="#{vt2.place}"/>
-			<p:inputText value="#{vt2InitController.current.signatory.place}" readonly="true"
-						 style="width: 240px;" />
-			<h:outputLabel value="#{vt2.date}"/>
-                        <p:calendar value="#{vt2InitController.current.signatory.date}" disabled="true"
-						 style="width: 240px;">				
-			</p:calendar>
-		</h:panelGrid>
-	</p:fieldset>
-	
+    <h:panelGroup rendered="#{(!empty vt2InitController.current.decision) or (!empty vt2InitController.current.ctDecision) }" >
+        <h3  class="webguce-block-title">#{vt2.decisionOrganisme}</h3>
+        <p:outputPanel rendered="#{!empty vt2InitController.current.decision}">            
+            <h:panelGrid columns="4" class="webguce-sub-block" >
+                <h:outputLabel value="#{vt2.decisionCode}" />
+                <p:inputText value="#{vt2InitController.current.decision.code}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.label}" /> 
+                <p:inputText value="#{vt2InitController.current.decision.label}" readonly="true"
+                             style="width: 240px;" />
+            </h:panelGrid>
+        </p:outputPanel>
+        <p:outputPanel rendered="#{! empty vt2InitController.current.signatory}">
+            <h3 class="webguce-sub-block-title">#{vt2.signatory}</h3>
+            <h:panelGrid columns="4" class="webguce-sub-block"  >
+                <h:outputLabel value="#{vt2.nom}"/>
+                <p:inputText value="#{vt2InitController.current.signatory.name}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.Qualite}"/>
+                <p:inputText value="#{vt2InitController.current.signatory.quality}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.Lieu}"/>
+                <p:inputText value="#{vt2InitController.current.signatory.place}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.Date}"/>
+                <p:calendar value="#{vt2InitController.current.signatory.date}" disabled="true"
+                            style="width: 240px;">				
+                </p:calendar>
+            </h:panelGrid>
+        </p:outputPanel>
+        <p:outputPanel rendered="#{! empty vt2InitController.current.ctDecision}" >
+            <h3 class="webguce-sub-block-title">#{vt2.decision}</h3>
+            <h:panelGrid columns="4" class="webguce-sub-block" >
+                <h:outputLabel value="#{vt2.generalDecision}"/>
+                <p:inputText value="#{vt2InitController.current.ctDecision.generalDecision}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.technicalSpecification}"/>
+                <p:inputText value="#{vt2InitController.current.ctDecision.technicalSpecification}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.conditions}"/>
+                <p:inputText value="#{vt2InitController.current.ctDecision.conditions}" readonly="true"
+                             style="width: 240px;" />   
+                <h:outputLabel value="#{vt2.consigne}"/>
+                <p:inputText value="#{vt2InitController.current.ctDecision.consigne}" readonly="true"
+                             style="width: 240px;"/>	
+
+                <h:outputLabel value="#{vt2.grantedQuantity}"/>
+                <p:inputText value="#{vt2InitController.current.ctDecision.grantedQuantity}" readonly="true"
+                             style="width: 240px;" />
+                <h:outputLabel value="#{vt2.validityDate}"/>
+                <p:calendar value="#{vt2InitController.current.ctDecision.validityDate}" disabled="true"
+                            style="width: 240px;">	
+                </p:calendar>
+                <h:outputLabel value="#{vt2.Observation}"/>
+                <p:inputTextarea value="#{vt2InitController.current.ctDecision.observations}" readonly="true"
+                                 style="width: 240px;" />
+            </h:panelGrid>            
+        </p:outputPanel>        
+    </h:panelGroup>  
 </ui:composition>

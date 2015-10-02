@@ -10,9 +10,9 @@
     <p:tab  title="#{vt2.Transitaire}">            
         <g:cad 
             value="#{vt2InitController.current.transitaire}"             
-            cadSelectionEnable="true"
+            cadSelectionEnable="#{vt2InitController.requestForm and !vt2InitController.complement }"
             readOnly="true"
-            
+            requiredList="niu,nomDeposant"
             />
     </p:tab>
 </ui:composition>

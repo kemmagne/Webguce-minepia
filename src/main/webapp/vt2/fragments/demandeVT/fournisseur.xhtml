@@ -8,10 +8,9 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
    
-    <p:fieldset legend="#{vt2.Fournisseur}">
+    <h3 class="webguce-block-title">#{vt2.Fournisseur}</h3>
         <g:stakeholder  rendered="true"
             renderedList="address3,taxPayerNumber,aortic"
-            value="#{vt2InitController.current.fournisseur}" readOnly="#{!vt2InitController.requestForm}"/>
-    </p:fieldset>
+            value="#{vt2InitController.current.fournisseur}" readOnly="#{!vt2InitController.requestForm}"/>    
 </ui:composition>
 

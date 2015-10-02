@@ -7,12 +7,13 @@
     xmlns:g="http://java.sun.com/jsf/composite/components"
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
-
-    <h:panelGrid columns="2" styleClass="webguce-sub-block">
-            <p:outputLabel for="idCommentaire" value="#{vt2.Commentaire}"/>
-            <p:inputTextarea id="idCommentaire"  autoResize="true" value="#{vt2InitController.current.comment}"/>
-             <p:outputLabel for="idObservation" value="#{vt2.Observation}"/>
-             <p:inputTextarea id="idObservation" autoResize="true"  value="#{vt2InitController.current.observation}"/>
-        </h:panelGrid>
+    <h:panelGroup rendered="#{vt2InitController.current.comment != null or !empty vt2InitController.current.comment }" >
+        <h3 class="webguce-block-title">#{vt2.Commentaire}</h3>
+        <p:inputTextarea id="idCommentaire" readonly="true" style="width: 100%" value="#{vt2InitController.current.comment}"/>
+        <h:panelGroup rendered="false">
+            <h3 class="webguce-block-title">#{vt2.Observation}</h3>
+            <p:inputTextarea id="idObservation" style="width: 100%"  value="#{vt2InitController.current.observation}"/>        
+        </h:panelGroup>
+    </h:panelGroup>
 </ui:composition>
 
