@@ -280,7 +280,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         prepareView();
     }
 
-    public synchronized void saveAndSend() {
+    public synchronized void saveAndSend() {try {if (current.getGoodList().isEmpty()) {JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));return;}} catch (Exception ex) {JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");Logger.getLogger("InitController").log(Level.SEVERE, null, ex);}
 
         try {
             save();

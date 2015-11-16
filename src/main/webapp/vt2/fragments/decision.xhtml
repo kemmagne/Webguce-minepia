@@ -15,6 +15,9 @@
                 <h:outputLabel value="#{vt2.label}" /> 
                 <p:inputText value="#{vt2InitController.current.decision.label}" readonly="true"
                              style="width: 240px;" />
+                <h:outputLabel value="#{vt2.Observation}"/>
+                <p:inputTextarea value="#{vt2InitController.current.observation}" readonly="true"
+                                 style="width: 240px;" />
             </h:panelGrid>
         </p:outputPanel>
         <p:outputPanel rendered="#{! empty vt2InitController.current.signatory}">
