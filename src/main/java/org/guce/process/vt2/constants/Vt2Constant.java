@@ -10,17 +10,20 @@ package org.guce.process.vt2.constants;
  * @author guce
  */
 public interface Vt2Constant {
-	
-	public static final String FORM_INITIATION ="VT201";
-	public static final String FORM_VALIDATION ="VT204";
-	public static final String FORM_CONSULTATION ="VT2";		
-	
-	public static final String PROCESSING_INITIATION ="VT201";
-	public static final String PROCESSING_COMPLEMENT_INFORMATION ="VT202";
-	public static final String PROCESSING_REJET ="VT203";
-	public static final String PROCESSING_VALIDATION ="VT204";
-        public static final String PROCESSING_ENVOIE_COMPLEMENT_INFORMATION ="VT211";
-	public static final String PROCESSING_CONSULTATION ="VT2";
-        
-        public static final String ENTITIES_RECORD_NAME = "VTMINEPDEDRegistration";
+
+    public static final String FORM_INITIATION = "VT201";
+    public static final String FORM_VALIDATION = "VT204";
+    public static final String FORM_CONSULTATION = "VT2";
+
+    public static final String PROCESSING_INITIATION = "VT201";
+    public static final String PROCESSING_COMPLEMENT_INFORMATION = "VT202";
+    public static final String PROCESSING_REJET = "VT203";
+    public static final String PROCESSING_VALIDATION = "VT204";
+    public static final String PROCESSING_ENVOIE_COMPLEMENT_INFORMATION = "VT211";
+    public static final String PROCESSING_CONSULTATION = "VT2";
+
+    public static final String ENTITIES_RECORD_NAME = "VTMINEPDEDRegistration";
+
+    public static final String PROCESS_PARAM_REQUIRED_ATTACHMENT = "required.attachments.id";
+    public static final String PROCESS_PARAM_CODE_OFFICE = "siat.offices.codes";
 }

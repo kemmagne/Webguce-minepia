@@ -12,8 +12,9 @@
     <p:tab  title="#{vt2.VisaTechnique}">
         <h:panelGrid columns="2">
             <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/> 
-            <p:inputText id="idBureau" readonly="#{!vt2InitController.requestForm or vt2InitController.complement }"
-                         maxlength="50" value="#{vt2InitController.current.office}" />
+            <wgc:ctOffices id="idBureau"  value="#{vt2InitController.current.office}" required="true" 
+                           readOnly="#{!vt2InitController.requestForm or vt2InitController.complement }" processAlias="#{vt2InitController.process.processAlias}"/>            
+                             
         </h:panelGrid>
         <br/>
         <h3 class="webguce-block-title">#{vt2.Produit}</h3>

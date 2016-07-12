@@ -55,11 +55,35 @@
             <Name>VT2PROCESSING</Name>
         </Processing>
     </Processings>
-    <Attachments>
+    <Attachments>        
         <Attachment>
-            <Code>FTP</Code>
-            <Name>Fiche Technique Produit</Name>
+            <Code>FACTUREPRO</Code>
+            <Name>FACTURE PRO FORMA</Name>
         </Attachment>
+        <Attachment>
+            <Code>ATTES_INSC</Code>
+            <Name>Attestation d’inscription au registre de commerce</Name>
+        </Attachment>   
+        <Attachment>
+            <Code>NOTETECH</Code>
+            <Name>Note technique</Name>
+        </Attachment>    
+        <Attachment>
+            <Code>QUITTANCE</Code>
+            <Name>Quittance de versement </Name>
+        </Attachment>  
+        <Attachment>
+            <Code>ACCORD_STRUCT</Code>
+            <Name>Accord délivré par une structure ayant un permis environnemental</Name>
+        </Attachment>                                   
+        <Attachment>
+            <Code>CCT</Code>
+            <Name>Certificat de controle technique</Name>
+        </Attachment>                
+        <Attachment>
+            <Code>AUTRE</Code>
+            <Name>Autres Pieces</Name>
+        </Attachment>                          
     </Attachments>
     <Messages>
         <Message>

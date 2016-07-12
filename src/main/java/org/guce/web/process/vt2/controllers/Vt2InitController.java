@@ -6,14 +6,19 @@
 package org.guce.web.process.vt2.controllers;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.apache.commons.lang.StringUtils;
 import org.guce.core.documents.WebguceDocument;
 import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreDocumentFacadeLocal;
@@ -32,6 +37,10 @@ import org.guce.core.entities.CoreStakeHolder;
 import org.guce.core.entities.CoreTaxandinvoice;
 import org.guce.core.entities.util.CoreProcessingState;
 import org.guce.core.services.GuceCalendarUtil;
+import org.guce.process.ct.ejb.interfaces.VTMINEPDEDRegistrationFacadeLocal;
+import org.guce.process.ct.entities.CTGeneralInformation;
+import org.guce.process.ct.entities.CTGood;
+import org.guce.process.ct.entities.VTMINEPDEDRegistration;
 import org.guce.process.vt2.constants.Vt2Constant;
 import static org.guce.process.vt2.constants.Vt2Constant.FORM_CONSULTATION;
 import static org.guce.process.vt2.constants.Vt2Constant.FORM_INITIATION;
@@ -39,18 +48,16 @@ import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_COMPLEMENT_I
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_ENVOIE_COMPLEMENT_INFORMATION;
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_INITIATION;
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_REJET;
+import static org.guce.process.vt2.constants.Vt2Constant.PROCESS_PARAM_CODE_OFFICE;
 import org.guce.process.vt2.services.Vt2DocumentServiceLocal;
 import org.guce.process.vt2.services.Vt2ServiceLocal;
-import org.guce.process.ct.ejb.interfaces.VTMINEPDEDRegistrationFacadeLocal;
-import org.guce.process.ct.entities.CTGood;
-import org.guce.process.ct.entities.VTMINEPDEDRegistration;
-import org.guce.process.ct.entities.CTGeneralInformation;
 import org.guce.rep.ejb.facade.interfaces.CarteContribuableFacadeLocal;
 import org.guce.rep.entities.CarteContribuable;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.core.util.PieceJointeManager;
+import org.guce.web.process.vt2.util.Office;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -102,7 +109,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         }
         type = application.getStringParam("type");
 
-        if (formCode != null && formCode.equalsIgnoreCase(FORM_INITIATION)) {   
+        if (formCode != null && formCode.equalsIgnoreCase(FORM_INITIATION)) {
             if (page != null && page.equalsIgnoreCase("form")) {
                 if (type != null && type.equalsIgnoreCase("copy")) {
                     current = service.findByRecordId(recordId);
@@ -133,7 +140,7 @@ public class Vt2InitController extends WebGuceDefaultController {
                     JsfUtil.addErrorMessage(bundle("AccesInterdit"));
                     goToPreviows();
                 }
-                 if (type != null && type.equalsIgnoreCase("viewreject")) {
+                if (type != null && type.equalsIgnoreCase("viewreject")) {
                     updateProcessing(PROCESSING_REJET, CoreProcessingState.TRAITER);
                     complement = true;
                 }
@@ -190,11 +197,11 @@ public class Vt2InitController extends WebGuceDefaultController {
         current.setChargerid(new CoreCharger());  //Importateur   
         current.setTransitaire(new CoreCAD());
         current.setBrandHolder(new CoreStakeHolder());
-        current.setFournisseur(new CoreStakeHolder());       
+        current.setFournisseur(new CoreStakeHolder());
         current.setSignatory(null); //Signataire 
         current.setDecision(null);
         current.setInvoice(new CoreTaxandinvoice());
-       
+
         //currentGood = new CTGood(); //Marchandises
     }
 
@@ -207,25 +214,25 @@ public class Vt2InitController extends WebGuceDefaultController {
         current.setDecision(null);
         current.setCtDecision(null);
 
-         if(current.getInvoice()!=null){
+        if (current.getInvoice() != null) {
             current.getInvoice().setTaxandinvoiceid(null);
-        }else{
-             current.setInvoice(new CoreTaxandinvoice());
-        }        
-        if(current.getBrandHolder()!=null){
+        } else {
+            current.setInvoice(new CoreTaxandinvoice());
+        }
+        if (current.getBrandHolder() != null) {
             current.getBrandHolder().setStakeholderId(null);
-        }else{
-             current.setBrandHolder(new CoreStakeHolder());
+        } else {
+            current.setBrandHolder(new CoreStakeHolder());
         }
-         if(current.getFournisseur()!=null){
+        if (current.getFournisseur() != null) {
             current.getFournisseur().setStakeholderId(null);
-        }else{
-             current.setBrandHolder(new CoreStakeHolder());
+        } else {
+            current.setBrandHolder(new CoreStakeHolder());
         }
-          if(current.getTransitaire()!=null){
+        if (current.getTransitaire() != null) {
             //current.getTransitaire().setId(null);
-        }else{
-             current.setTransitaire(new CoreCAD());
+        } else {
+            current.setTransitaire(new CoreCAD());
         }
 
         List<CoreGood> gds = current.getGoodList();
@@ -238,13 +245,21 @@ public class Vt2InitController extends WebGuceDefaultController {
         }
 
         List<CoreAttachment> atts = current.getCoreAttachmentList();
+        List<CoreAttachment> removeAtts = new ArrayList<CoreAttachment>();
+
         if (atts != null && atts.size() > 0) {
             for (CoreAttachment att : atts) {
                 att.setPjId(null);
+                if (att.getPjType() != null && att.getPjType().getAttachementtypeid().equalsIgnoreCase(getProcess().getProcessAlias())) {
+                    removeAtts.add(att);
+                }
+            }
+            if (removeAtts.size() > 0) {
+                atts.removeAll(removeAtts);
             }
         } else {
             current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
-        }       
+        }
         prepareView();
     }
 
@@ -280,7 +295,62 @@ public class Vt2InitController extends WebGuceDefaultController {
         prepareView();
     }
 
-    public synchronized void saveAndSend() {try {if (current.getGoodList().isEmpty()) {JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));return;}} catch (Exception ex) {JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");Logger.getLogger("InitController").log(Level.SEVERE, null, ex);}
+    public boolean validRequiredAttachements(String paramRequiredAttachement) {
+        String[] requiredAttachements = StringUtils.split(paramRequiredAttachement, ",");
+        Map<String, String> availableRequiredAttachements = new HashMap<String, String>();
+        String attachementsNotAdded = "";
+        String attachementsNotFound = "";
+        boolean error;
+        for (String id : requiredAttachements) {
+            error = true;
+            for (CoreAttachmenttype attType : this.getAvaibleAttachmentType()) {
+                if (attType.getAttachementtypeid().equals(id)) {
+                    availableRequiredAttachements.put(id, attType.getAttachementtypename());
+                    error = false;
+                    break;
+                }
+            }
+            if (error) {
+                attachementsNotFound = attachementsNotFound.equals("") ? id : attachementsNotFound + ", " + id;
+            }
+        }
+        if (!attachementsNotFound.equals("")) {
+            JsfUtil.addErrorMessage(bundle("NotFoundAttachements") + ": " + attachementsNotFound);
+            return false;
+        }
+        for (CoreAttachment attachement : current.getCoreAttachmentList()) {
+            if (availableRequiredAttachements.containsKey(attachement.getPjType().getAttachementtypeid())) {
+                availableRequiredAttachements.remove(attachement.getPjType().getAttachementtypeid());
+            }
+        }
+        for (String absentAttachement : availableRequiredAttachements.values()) {
+            attachementsNotAdded = attachementsNotAdded.equals("") ? absentAttachement : attachementsNotAdded + ", " + absentAttachement;
+        }
+        if (attachementsNotAdded.equals("")) {
+            return true;
+        } else {
+            JsfUtil.addErrorMessage(bundle("AddAttachements") + ": " + attachementsNotAdded);
+            return false;
+        }
+
+    }
+
+    public synchronized void saveAndSend() {
+        try {
+            if (current.getGoodList().isEmpty()) {
+                JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));
+                return;
+            }
+
+            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,NOTETECH,QUITTANCE,ACCORD_STRUCT,CCT"))) {
+                return;
+            }
+
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");
+            Logger.getLogger("InitController").log(Level.SEVERE, null, ex);
+            return;
+        }
 
         try {
             save();
@@ -322,11 +392,11 @@ public class Vt2InitController extends WebGuceDefaultController {
 
     //Methode incomprise pour l'instant
     private void send() {
-       // CoreProcessing processing = createProcessing(FORM_INITIATION, CoreProcessingState.ATTENTE);
+        // CoreProcessing processing = createProcessing(FORM_INITIATION, CoreProcessingState.ATTENTE);
         CoreMessage message = new CoreMessage();
         //message.setMessageProcessing(processing);
-        message.setMessageSender(userController.getUserConnecte().getPartnerid());                
-        String action = complement ? PROCESSING_ENVOIE_COMPLEMENT_INFORMATION : PROCESSING_INITIATION;        
+        message.setMessageSender(userController.getUserConnecte().getPartnerid());
+        String action = complement ? PROCESSING_ENVOIE_COMPLEMENT_INFORMATION : PROCESSING_INITIATION;
         message.setMessageType(new CoreMessageType(action));
         WebguceDocument docs = documentService.createVt2InitMessage(current, message);
         EbxmlCreator ebxmlCreator = new EbxmlCreator();
@@ -340,8 +410,8 @@ public class Vt2InitController extends WebGuceDefaultController {
                 "GUCE",
                 docs.getClass(),
                 current.getClass(), CTGood.class);//CTGood est ajouté afin d'être connu dans le context.
-        CoreProcessing processing=null;
-         if (complement) {
+        CoreProcessing processing = null;
+        if (complement) {
             processing = createProcessing(action, CoreProcessingState.ATTENTE, 1);
             message.setMessageProcessing(processing);
             CoreProcessing pro = getProcessing(PROCESSING_COMPLEMENT_INFORMATION, CoreProcessingState.ATTENTE);
@@ -360,15 +430,15 @@ public class Vt2InitController extends WebGuceDefaultController {
         }
         //message.setMessageProcessing(processing);
         //Ajout voir ulrich
-       
+
         //Fin ajout
         current.setRecordSendate(GuceCalendarUtil.getCalendar().getTime());
         current.setRecordState(CoreRecord.IN_PROCESS);
         service.save(current);
-        serviceMail.send(message);        
+        serviceMail.send(message);
     }
 
-    public StreamedContent printDI() {
+        public StreamedContent printDI() {
         CoreDocument d = dFacade.find(current.getRecordId());
         String name = "VTMINEPDED_" + current.getRecordId() + ".pdf";
         DefaultStreamedContent sc = new DefaultStreamedContent(new ByteArrayInputStream(d.getDocumentcontent()), "application/pdf", name);

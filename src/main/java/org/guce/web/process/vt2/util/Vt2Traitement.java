@@ -6,6 +6,7 @@
 package org.guce.web.process.vt2.util;
 
 import hk.hku.cecid.ebms.pkg.MessageHeader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -16,8 +17,12 @@ import javax.ejb.Stateless;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.AttachmentPart;
+import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
+import org.apache.commons.io.IOUtils;
 import org.guce.core.documents.WebguceDocument;
+import org.guce.core.ejb.facade.interfaces.CoreAttachmentFacadeLocal;
+import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreChargerFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreMessageFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CorePaysFacadeLocal;
@@ -27,6 +32,8 @@ import org.guce.core.ejb.facade.interfaces.CoreRecordFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreTaxandinvoiceFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreUserFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.DocumentUtilityLocal;
+import org.guce.core.entities.CoreAttachment;
+import org.guce.core.entities.CoreAttachmenttype;
 import org.guce.core.entities.CoreForm;
 import org.guce.core.entities.CoreMessage;
 import org.guce.core.entities.CoreMessageType;
@@ -92,6 +99,11 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
     private DocumentUtilityLocal doc;
     @EJB
     private CoreTaxandinvoiceFacadeLocal tFacade;
+    @EJB
+    private CoreAttachmentFacadeLocal attachmentFacade;
+    @EJB
+    private CoreAttachmenttypeFacadeLocal attachmentTypeFacade;
+public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
 
     @Override
     public Integer processWait(CoreForm f, CoreUser user) {
@@ -111,7 +123,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
             message = messageFacade.find(ebxml.getAcknowledgment().getRefToMessageId());
             if (message == null) {
                 message = messageFacade.find(ebxml.getRefToMessageId());
-            } 
+            }
             if (message != null) {
                 gererAperak();
             }
@@ -119,7 +131,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
             SOAPMessage soapMessage = ebxml.getSOAPMessage();
             Iterator iterator = soapMessage.getAttachments();
             InputStream dd = ((AttachmentPart) iterator.next()).getDataHandler().getInputStream();
-            context = JAXBContext.newInstance(WebguceDocument.class, VTMINEPDEDRegistration.class,CTGood.class);
+            context = JAXBContext.newInstance(WebguceDocument.class, VTMINEPDEDRegistration.class, CTGood.class);
             Unmarshaller m = context.createUnmarshaller();
             document = (WebguceDocument) m.unmarshal(dd);
             if (document == null || document.getReference() == null || document.getReference().getNumeroDossier() == null) {
@@ -133,18 +145,19 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
                 return;
             }
 //                     
-            if(document.getContenu().getDecision()!=null){
+            if (document.getContenu().getDecision() != null) {
                 fiche.setDecision(document.getContenu().getDecision());
-                fiche.setObservation(document.getContenu().getDecision().getObservation());                              
+                fiche.setObservation(document.getContenu().getDecision().getObservation());
             }
-            if(document.getContenu().getSignatory()!=null){
+            if (document.getContenu().getSignatory() != null) {
                 fiche.setSignatory(document.getContenu().getSignatory());
             }
-             if(document.getContenu().getCtDecision()!=null){
+            if (document.getContenu().getCtDecision() != null) {
                 fiche.setCtDecision(document.getContenu().getCtDecision());
             }
             fiche.setReocordConversationid(ebxml.getConversationId()); //Code du WF provenant d'orchestra
             service.save(fiche);
+            saveAttachments(ebxml, fiche);           
             Method method = this.getClass().getDeclaredMethod(CoreProcessingState.TRAITER + ebxml.getAction().toUpperCase());
             method.invoke(this);
             dd.close();
@@ -213,7 +226,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
             message.getMessageProcessing().setProcState(TRAITER);
             processingFacade.edit(message.getMessageProcessing());
         }
-    } 
+    }
 
     public void traiterVT201() {
         CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_VALIDATION, ATTENTE);
@@ -232,7 +245,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
     }
 
     public void traiterVT202() {
-        CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_COMPLEMENT_INFORMATION, ATTENTE);        
+        CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_COMPLEMENT_INFORMATION, ATTENTE);
         AperakCreator ac = new AperakCreator();
         org.guce.web.core.mail.util.Aperak a = ac.createAperak(createMessage(p), CoreMessage.APERAK_K);
         ebxmlCreator = new EbxmlCreator();
@@ -250,7 +263,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
     public void traiterVT203() {
         CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_REJET, ATTENTE);
         fiche.setRecordState(CoreRecord.CLOS);
-        fiche.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());                
+        fiche.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         ficheFacade.edit(fiche);
         AperakCreator ac = new AperakCreator();
         org.guce.web.core.mail.util.Aperak a = ac.createAperak(createMessage(p), CoreMessage.APERAK_K);
@@ -285,6 +298,6 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
         mes.setMessageProcessing(p);
 
         serviceMail.send(mes);
-            
-    }
+
+    }    
 }
