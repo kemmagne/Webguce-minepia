@@ -53,7 +53,11 @@ public class Vt2Service implements Vt2ServiceLocal {
         current.setRecordLastCreateDate(GuceCalendarUtil.getCalendar().getTime());
         if (current.getRecordId() == null) {                            
             current.setRecordId(generator.getIdentifiant("VT2_SEQ", "VMD"));
-            chargerFacade.create(current.getChargerid());
+            if (current.getChargerid().getChargerid() == null){
+				chargerFacade.create(current.getChargerid());
+			} else {
+				chargerFacade.edit(current.getChargerid());
+			}
             /*
             if (current.getAieGoods().size() > 0) {
                 for (int i = 0; i < current.getAieGoods().size(); i++) {
