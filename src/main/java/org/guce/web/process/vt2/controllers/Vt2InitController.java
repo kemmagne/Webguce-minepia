@@ -101,7 +101,7 @@ public class Vt2InitController extends WebGuceDefaultController {
 
     @PostConstruct
     public void init() {
-        System.out.println("AES--------------->Passage dans le post construct");
+//        System.out.println("AES--------------->Passage dans le post construct");
 
         RequestContext context = RequestContext.getCurrentInstance();
         if ((context != null && context.isAjaxRequest() == true) || JsfUtil.getRequestParameter("back") != null) {
@@ -345,6 +345,10 @@ public class Vt2InitController extends WebGuceDefaultController {
             if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,NOTETECH,QUITTANCE,ACCORD_STRUCT,CCT"))) {
                 return;
             }
+			if (current.getTransitaire() == null || current.getTransitaire().getId() == null){
+				JsfUtil.addErrorMessage(bundle("PleaseSelectCAD"));
+				return ;
+			}
 
         } catch (Exception ex) {
             JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");
