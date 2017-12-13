@@ -1,4 +1,4 @@
-<ui:composition 
+<ui:composition
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -9,13 +9,13 @@
     >
 
     <h3 class="webguce-block-title">#{vt2.Provenance}</h3>
-        <h:panelGrid columns="4" styleClass="webguce-sub-block">
-            <p:outputLabel for="idPaysOrigine" value="#{vt2.PaysOrigine}"/>
-            <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysOrigine"
-                         value="#{vt2InitController.current.provenance.originCountry}" />
-            <p:outputLabel for="idPaysProvenance" value="#{vt2.PaysProvenance}"/>
-            <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysProvenance"
-                         value="#{vt2InitController.current.provenance.provenanceCountry}"/>     
-        </h:panelGrid>    
+    <h:panelGrid columns="4" styleClass="webguce-sub-block">
+        <p:outputLabel for="idPaysOrigine" value="#{vt2.PaysOrigine}"/>
+        <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysOrigine"
+                     value="#{vt2InitController.current.provenance.originCountry}" required="true" />
+        <p:outputLabel for="idPaysProvenance" value="#{vt2.PaysProvenance}"/>
+        <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysProvenance"
+                     value="#{vt2InitController.current.provenance.provenanceCountry}" required="true" />
+    </h:panelGrid>
 </ui:composition>
 

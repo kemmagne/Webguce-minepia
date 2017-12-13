@@ -1,5 +1,5 @@
-<ui:composition 
-     xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition
+    xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
@@ -7,10 +7,10 @@
     xmlns:g="http://java.sun.com/jsf/composite/components"
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
-   
+
     <h3 class="webguce-block-title">#{vt2.Fournisseur}</h3>
-        <g:stakeholder  rendered="true"
-            renderedList="address3,taxPayerNumber,aortic"
-            value="#{vt2InitController.current.fournisseur}" readOnly="#{!vt2InitController.requestForm}"/>    
+    <g:stakeholder  rendered="true" renderedList="address3,taxPayerNumber,aortic"
+                    required="false" requiredList="name"
+                    value="#{vt2InitController.current.fournisseur}" readOnly="#{!vt2InitController.requestForm}"/>
 </ui:composition>
 
