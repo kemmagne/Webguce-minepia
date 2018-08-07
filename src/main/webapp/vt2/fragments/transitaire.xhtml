@@ -1,19 +1,15 @@
 <ui:composition 
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:="http://www.w3.org/1999/xhtml"
-    xmlns:g="http://java.sun.com/jsf/composite/components"
-    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
-    >
+    xmlns:g="http://java.sun.com/jsf/composite/components">
     <p:tab  title="#{vt2.Transitaire}">            
-        <g:cad 
-            value="#{vt2InitController.current.transitaire}"             
-            cadSelectionEnable="#{vt2InitController.requestForm and !vt2InitController.complement }"
-            readOnly="true"
-            requiredList="niu,nomDeposant"
-            />
+        <g:cad      readOnly="true" styleClass="alias"
+                    cadSelectionEnable="#{vt2InitController.cadSelectionEnable}"
+                    value="#{vt2InitController.current.transitaire}"
+                    renderedBoolean='false'
+                    renderedList='niu,nomDeposant,adress,adress1,address2,poBox,country,town,email'
+                    id="cad" />
     </p:tab>
 </ui:composition>
 

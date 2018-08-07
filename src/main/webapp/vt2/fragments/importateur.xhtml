@@ -1,20 +1,28 @@
 <ui:composition 
-     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:="http://www.w3.org/1999/xhtml"
     xmlns:g="http://java.sun.com/jsf/composite/components"
-    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"    
-    >
-   
-   <p:tab  title="#{vt2.ImportExport}">
-       
-                <g:charger   required="true"
-                             readOnly="#{!vt2InitController.requestForm or vt2InitController.complement }" 
-                             renderedList="Address3,dateDelivrance,dateExpiration"  
-                             value="#{vt2InitController.current.chargerid}"  styleClass="alias"  
-                             chargerLabel="#{vt2.Assure}"  id="exporter" />             
-            </p:tab>
-</ui:composition>
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements">
 
+    <p:tab  title="#{vt2.ImportExport}">
+        <g:charger   required="true"
+                     readOnly="#{!vt2InitController.requestForm or vt2InitController.complement }" 
+                     renderedList="Address3,dateDelivrance,dateExpiration"  
+                     value="#{vt2InitController.current.chargerid}"  styleClass="alias"  
+                     chargerLabel="#{vt2.Assure}"  id="exporter" />
+        <p:outputPanel id="importerProfessionBlock">
+            <h3 class="webguce-sub-block-title" >#{vt2.importerProfession}</h3>
+            <p:inputText id="importerProfession"
+                             maxlength="35"
+                             validatorMessage="#{i.importerProfession} #{i.invalide}"
+                             readonly="#{!vt2InitController.requestForm or vt2InitController.complement}"
+                             required="true"
+                             value="#{vt2InitController.current.chargerOtherProperties.profession}">
+                <f:validateLength maximum="35" />
+            </p:inputText>
+        </p:outputPanel>
+    </p:tab>
+</ui:composition>

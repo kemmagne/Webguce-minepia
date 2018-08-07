@@ -5,11 +5,8 @@
  */
 package org.guce.web.process.vt2.controllers;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,25 +18,24 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 import org.guce.core.documents.WebguceDocument;
 import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
+import org.guce.core.ejb.facade.interfaces.CoreCADFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreDocumentFacadeLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
 import org.guce.core.entities.CoreCAD;
 import org.guce.core.entities.CoreCharger;
-import org.guce.core.entities.CoreDocument;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreMessage;
 import org.guce.core.entities.CoreMessageType;
 import org.guce.core.entities.CoreProcessing;
 import org.guce.core.entities.CoreRecord;
-import org.guce.core.entities.CoreSignatory;
 import org.guce.core.entities.CoreStakeHolder;
 import org.guce.core.entities.CoreTaxandinvoice;
 import org.guce.core.entities.util.CoreProcessingState;
 import org.guce.core.services.GuceCalendarUtil;
 import org.guce.process.ct.ejb.interfaces.VTMINEPDEDRegistrationFacadeLocal;
-import org.guce.process.ct.entities.CTGeneralInformation;
 import org.guce.process.ct.entities.CTGood;
+import org.guce.process.ct.entities.ChargerOtherPropreties;
 import org.guce.process.ct.entities.VTMINEPDEDRegistration;
 import org.guce.process.vt2.constants.Vt2Constant;
 import static org.guce.process.vt2.constants.Vt2Constant.FORM_CONSULTATION;
@@ -48,7 +44,6 @@ import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_COMPLEMENT_I
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_ENVOIE_COMPLEMENT_INFORMATION;
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_INITIATION;
 import static org.guce.process.vt2.constants.Vt2Constant.PROCESSING_REJET;
-import static org.guce.process.vt2.constants.Vt2Constant.PROCESS_PARAM_CODE_OFFICE;
 import org.guce.process.vt2.services.Vt2DocumentServiceLocal;
 import org.guce.process.vt2.services.Vt2ServiceLocal;
 import org.guce.rep.ejb.facade.interfaces.CarteContribuableFacadeLocal;
@@ -56,11 +51,7 @@ import org.guce.rep.entities.CarteContribuable;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
 import org.guce.web.core.util.JsfUtil;
-import org.guce.web.core.util.PieceJointeManager;
-import org.guce.web.process.vt2.util.Office;
 import org.primefaces.context.RequestContext;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -88,10 +79,12 @@ public class Vt2InitController extends WebGuceDefaultController {
     private CoreAttachmenttypeFacadeLocal attachmenttypeFacade;
     @EJB
     private VTMINEPDEDRegistrationFacadeLocal aieRegistrationFacade;
-
-    private List<PieceJointeManager> listPiece;
+    @EJB
+    private CoreCADFacadeLocal cadFacade;
+    
     private boolean envoyer;
     private boolean complement;
+    private boolean cadSelectionEnable;
 
     /**
      * Creates a new instance of Vt2InitController
@@ -101,7 +94,6 @@ public class Vt2InitController extends WebGuceDefaultController {
 
     @PostConstruct
     public void init() {
-//        System.out.println("AES--------------->Passage dans le post construct");
 
         RequestContext context = RequestContext.getCurrentInstance();
         if ((context != null && context.isAjaxRequest() == true) || JsfUtil.getRequestParameter("back") != null) {
@@ -177,7 +169,6 @@ public class Vt2InitController extends WebGuceDefaultController {
                 prepareView();
             }
         }
-
     }
 
     @Override
@@ -191,18 +182,23 @@ public class Vt2InitController extends WebGuceDefaultController {
     }
 
     private void prepareInitForm() {
-        current = new VTMINEPDEDRegistration(); // Dossier 
-        current.setCoreAttachmentList(new ArrayList<CoreAttachment>()); //Pièces jointes
-        current.setGoodList(new ArrayList<CoreGood>());//Marchandise
-        current.setChargerid(new CoreCharger());  //Importateur   
-        current.setTransitaire(new CoreCAD());
+        current = new VTMINEPDEDRegistration();
+        current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
+        current.setGoodList(new ArrayList<CoreGood>());
+        current.setChargerid(new CoreCharger());
+        CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
+        if (cad != null) {
+            current.setTransitaire(cad);
+            cadSelectionEnable = false;
+        } else {
+            current.setTransitaire(new CoreCAD());
+            cadSelectionEnable = true;
+        }
         current.setBrandHolder(new CoreStakeHolder());
         current.setFournisseur(new CoreStakeHolder());
-        current.setSignatory(null); //Signataire 
+        current.setSignatory(null);
         current.setDecision(null);
         current.setInvoice(new CoreTaxandinvoice());
-
-        //currentGood = new CTGood(); //Marchandises
     }
 
     private void prepareCopy() {
@@ -229,10 +225,13 @@ public class Vt2InitController extends WebGuceDefaultController {
         } else {
             current.setBrandHolder(new CoreStakeHolder());
         }
-        if (current.getTransitaire() != null) {
-            //current.getTransitaire().setId(null);
+        CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
+        if (cad != null) {
+            current.setTransitaire(cad);
+            cadSelectionEnable = false;
         } else {
             current.setTransitaire(new CoreCAD());
+            cadSelectionEnable = true;
         }
 
         List<CoreGood> gds = current.getGoodList();
@@ -287,7 +286,6 @@ public class Vt2InitController extends WebGuceDefaultController {
             goToPreviows();
         }
         prepareView();
-        listPiece = new ArrayList<PieceJointeManager>();
         complement = true;
     }
 
@@ -341,43 +339,42 @@ public class Vt2InitController extends WebGuceDefaultController {
                 JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));
                 return;
             }
-
-            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,NOTETECH,QUITTANCE,ACCORD_STRUCT,CCT"))) {
+            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,QUITTANCE,ACCORD_STRUCT,CCT"))) {
                 return;
             }
-			if (current.getTransitaire() == null || current.getTransitaire().getId() == null){
-				JsfUtil.addErrorMessage(bundle("PleaseSelectCAD"));
-				return ;
-			}
-
+            if (current.getTransitaire() == null || current.getTransitaire().getId() == null){
+                    JsfUtil.addErrorMessage(bundle("PleaseSelectCAD"));
+                    return ;
+            }
         } catch (Exception ex) {
-            JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");
-            Logger.getLogger("InitController").log(Level.SEVERE, null, ex);
+            JsfUtil.addErrorMessage(bundle("UnableToSendFile"));
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
             return;
         }
-
+        if (envoyer) {
+            return;
+        }
+        envoyer = true;
         try {
             save();
             send();
             goToPreviows();
         } catch (Exception ex) {
-            JsfUtil.addErrorMessage("IMPOSSIBLE D ENVOYER LE DOSSIER");
+            envoyer = false;
+            JsfUtil.addErrorMessage(bundle("UnableToSendFile"));
             Logger.getLogger(Vt2InitController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /*
-     A voir en detail
-     */
-    public void saveFile() {
+    public synchronized void saveFile() {
         try {
             save();
         } catch (Exception ex) {
-            JsfUtil.addErrorMessage(bundle("IMPOSSIBLE_ENREGISTRER_DOSSIER"));
+            JsfUtil.addErrorMessage(bundle("UnableToSaveFile"));
         }
     }
 
-    public void saveFileExit() {
+    public synchronized void saveFileExit() {
         saveFile();
         goToPreviows();
     }
@@ -391,14 +388,10 @@ public class Vt2InitController extends WebGuceDefaultController {
         } else {
             JsfUtil.addSuccessMessage(bundle("DOSSIERSAUVEGARDE") + "/ N° DOSSIER : " + current.getRecordId());
         }
-
     }
-
-    //Methode incomprise pour l'instant
+    
     private void send() {
-        // CoreProcessing processing = createProcessing(FORM_INITIATION, CoreProcessingState.ATTENTE);
         CoreMessage message = new CoreMessage();
-        //message.setMessageProcessing(processing);
         message.setMessageSender(userController.getUserConnecte().getPartnerid());
         String action = complement ? PROCESSING_ENVOIE_COMPLEMENT_INFORMATION : PROCESSING_INITIATION;
         message.setMessageType(new CoreMessageType(action));
@@ -413,7 +406,7 @@ public class Vt2InitController extends WebGuceDefaultController {
                 userController.getUserConnecte().getPartnerid().getPartnerid(),
                 "GUCE",
                 docs.getClass(),
-                current.getClass(), CTGood.class);//CTGood est ajouté afin d'être connu dans le context.
+                current.getClass(), CTGood.class);
         CoreProcessing processing = null;
         if (complement) {
             processing = createProcessing(action, CoreProcessingState.ATTENTE, 1);
@@ -432,28 +425,18 @@ public class Vt2InitController extends WebGuceDefaultController {
             message.setMessageProcessing(processing);
             JsfUtil.addSuccessMessage(bundle("DemandeVt2Envoye"));
         }
-        //message.setMessageProcessing(processing);
-        //Ajout voir ulrich
-
-        //Fin ajout
         current.setRecordSendate(GuceCalendarUtil.getCalendar().getTime());
         current.setRecordState(CoreRecord.IN_PROCESS);
         service.save(current);
         serviceMail.send(message);
     }
-
-        public StreamedContent printDI() {
-        CoreDocument d = dFacade.find(current.getRecordId());
-        String name = "VTMINEPDED_" + current.getRecordId() + ".pdf";
-        DefaultStreamedContent sc = new DefaultStreamedContent(new ByteArrayInputStream(d.getDocumentcontent()), "application/pdf", name);
-        return sc;
-    }
-    /*
-     Getter and Setter 
-     */
-
+    
     public boolean isRequestForm() {
         return (page.equalsIgnoreCase("form") && formCode.equals(FORM_INITIATION)) || page.equals("forms");
+    }
+    
+    public boolean isViewForm() {
+        return (page.equalsIgnoreCase("view") && formCode.equals(FORM_CONSULTATION));
     }
 
     public List<CoreAttachmenttype> getAttachmentTypeList() {
@@ -473,4 +456,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         this.complement = complement;
     }
 
+    public boolean isCadSelectionEnable() {
+        return cadSelectionEnable;
+    }
 }

@@ -58,9 +58,8 @@
                 #{vt2.ListAutorisationImportation} (#{vt2ControllerList.models.rowCount})
 
             </f:facet>
-
             <ui:include    src="../fragments/list.xhtml" />
-            <p:column>
+            <p:column width="6%">
                 <p:commandLink title="#{vt2.View}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
                     <f:param name="page" value="view" />
                     <f:param name="recordId" value="#{file.file.recordId}"/>

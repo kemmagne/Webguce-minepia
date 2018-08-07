@@ -28,13 +28,13 @@
                 </h:panelGroup>
             </f:facet>
             <f:facet name="right">
-                <p:commandButton rendered="false" icon="ui-icon-document" id="savedemande" update="messages tabAH:idDemande"    value="#{vt2.SAVE}"  
+                <p:commandButton rendered="false" icon="ui-icon-document" id="savedemande" update="messages" value="#{vt2.SAVE}"
                                  action="#{vt2InitController.saveFile()}">
                 </p:commandButton>
-                <p:commandButton rendered="false" icon="ui-icon-document" id="saveexitdemande" ajax="false" value="#{vt2.SAVEEXIT}"  
+                <p:commandButton rendered="false" icon="ui-icon-document" id="saveexitdemande" ajax="false" value="#{vt2.SAVEEXIT}"
                                  action="#{vt2InitController.saveFileExit()}">
                 </p:commandButton>
-                <p:commandButton  icon="ui-icon-mail-closed"  value="#{vt2.Envoyer}" action="#{vt2InitController.saveAndSend()}" ajax="false"  >
+                <p:commandButton  icon="ui-icon-mail-closed"  value="#{vt2.Envoyer}" action="#{vt2InitController.saveAndSend()}" ajax="false">
                 </p:commandButton>
                 <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true"
                                  action="#{vt2InitController.goToPreviows()}" ajax="false" >

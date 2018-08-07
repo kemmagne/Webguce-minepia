@@ -54,32 +54,8 @@
             <f:facet name="header">
                 #{vt2.RequestListDH} (#{vt2ControllerList.models.rowCount})
             </f:facet>
-            <p:column headerText="#{vt2.NumeroFiche}" >
-                #{file.file.recordId}
-            </p:column>
-            <p:column headerText="#{vt2.DateDemande}" sortBy="#{file.processing.procstartdate}"
-                      >
-                <h:outputText value="#{file.processing.procstartdate}">
-                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-                </h:outputText>	
-            </p:column>
-            <p:column headerText="#{vt2.Nom}">
-                #{file.file.chargerid.chargername}
-            </p:column>
-            <p:column rendered="false" headerText="#{vt2.NumeroDeclaration}" >
-                #{file.file.declaration.cusdecNumero}
-            </p:column>
-            <p:column rendered="false" headerText="#{vt2.MontantGarantie}" >
-                <h:outputText value="#{file.file.declaration.cusdecGuaranteedAmount}">
-                    <f:convertNumber maxFractionDigits="0" />
-                </h:outputText>
-            </p:column>
-            <p:column rendered="false" headerText="#{vt2.MontantCaution}" >
-                <h:outputText value="#{file.file.montantCaution}">
-                    <f:convertNumber maxFractionDigits="0" />
-                </h:outputText>
-            </p:column>
-            <p:column>
+            <ui:include    src="../fragments/list.xhtml" />
+            <p:column width="6%">
                 <p:commandLink title="#{vt2.Copy}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
                     <f:param name="page" value="form" />
                     <f:param name="recordId" value="#{file.file.recordId}"/>
@@ -106,6 +82,4 @@
             </f:facet>
         </p:dataTable>
     </h:form>
-
-
 </ui:composition>

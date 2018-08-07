@@ -6,40 +6,42 @@
     xmlns:="http://www.w3.org/1999/xhtml"
     xmlns:g="http://java.sun.com/jsf/composite/components"
     xmlns:wgc="http://java.sun.com/jsf/composite/components/ct"    
-    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
-    >
+    xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements">
 
     <p:tab  title="#{vt2.VisaTechnique}">
         <h:panelGrid columns="2">
-            <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/> 
-            <wgc:ctOffices id="idBureau"  value="#{vt2InitController.current.office}" required="true" 
-                           readOnly="#{!vt2InitController.requestForm or vt2InitController.complement }" processAlias="#{vt2InitController.process.processAlias}"/>            
-                             
+            <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/>
+            <wgc:ctOffices id="idBureau"
+                           value="#{vt2InitController.current.office}"
+                           required="true"
+                           readOnly="#{!vt2InitController.requestForm or vt2InitController.complement}"
+                           processAlias="#{vt2InitController.process.processAlias}"
+                           />
         </h:panelGrid>
         <br/>
         <h3 class="webguce-block-title">#{vt2.Produit}</h3>
-            <wgc:ctGoodList id="good_list" value="#{vt2InitController.current.goodList}" 
+            <wgc:ctGoodList id="good_list" value="#{vt2InitController.current.goodList}"
                             readOnly="#{!vt2InitController.requestForm}"
                             renderedBoolean="false"
                             requiredList="hSCode,tradeName,technicalSpecification,quantite,modeEmballage,unit,weight,fobValueInCurrency"
-                            renderedList="lineNumber,hSCode,tradeName,scientificalName,chimicalFormula,technicalSpecification,quantite,importQuantity,purpose,packagingCode,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry"                                                
+                            renderedList="lineNumber,hSCode,tradeName,chimicalFormula,technicalSpecification,quantite,purpose,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry#{vt2InitController.viewForm ? ',importQuantity' : ''}"
                             itemType="org.guce.process.ct.entities.CTGood"
                             dialogAppendTo="@(#content)"
                             required="false"
                             dataTableRenderedBoolean="false" 
                             dataTableRenderedList="lineNumber,hSCode,tradeName,quantite,fobValueInCurrency"
                             parentRecordValue="#{vt2InitController.current}"
-                            parentRecordField="recordId"/>        
-        <br/>        
-        <ui:include    src="../fragments/demandeVT/fournisseur.xhtml" />                
+                            parentRecordField="recordId"/>
+        <br/>
+        <ui:include    src="../fragments/demandeVT/fournisseur.xhtml" />
         <p:spacer/>
-        <ui:include    src="../fragments/demandeVT/detenteur.xhtml" />                
+        <ui:include    src="../fragments/demandeVT/detenteur.xhtml" />
         <p:spacer/>
-        <ui:include    src="../fragments/demandeVT/provenance.xhtml" /> 
+        <ui:include    src="../fragments/demandeVT/provenance.xhtml" />
         <p:spacer/>
-        <ui:include    src="../fragments/demandeVT/facture.xhtml" />                    
+        <ui:include    src="../fragments/demandeVT/facture.xhtml" />
         <p:spacer/>
-        <ui:include    src="../fragments/demandeVT/comObservation.xhtml" />                    
+        <ui:include    src="../fragments/demandeVT/comObservation.xhtml" />
     </p:tab>
 </ui:composition>
 

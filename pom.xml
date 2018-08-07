@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.guce.web.process</groupId>
     <artifactId>webguce-vt2</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
     <name>webguce-vt2</name>
 
@@ -15,12 +15,12 @@
         <repository>
             <id>guce-repository</id>
             <name>Depot Maven du GUCE</name>
-            <url>https://srvdev.guce.local/nexus/content/repositories/releases</url>
+            <url>https://repo.guce.local/maven/repository/releases/</url>
         </repository>
         <snapshotRepository>
             <id>guce-repository</id>
             <name>Depot Maven du GUCE</name>
-            <url>https://srvdev.guce.local/nexus/content/repositories/snapshots</url>
+            <url>https://repo.guce.local/maven/repository/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
     
@@ -43,7 +43,7 @@
       <dependency>
          <groupId>org.guce.web.process</groupId>
          <artifactId>webguce-ct</artifactId>
-         <version>1.0.13</version>
+         <version>1.0.22</version>
       </dependency>
       <dependency>
             <groupId>javax</groupId>
