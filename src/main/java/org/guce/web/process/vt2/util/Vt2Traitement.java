@@ -6,7 +6,6 @@
 package org.guce.web.process.vt2.util;
 
 import hk.hku.cecid.ebms.pkg.MessageHeader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -17,21 +16,12 @@ import javax.ejb.Stateless;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.AttachmentPart;
-import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import org.apache.commons.io.IOUtils;
 import org.guce.core.documents.WebguceDocument;
-import org.guce.core.ejb.facade.interfaces.CoreAttachmentFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreChargerFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreMessageFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CorePaysFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreProcessFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreProcessingFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreRecordFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreTaxandinvoiceFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreUserFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.DocumentUtilityLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
 import org.guce.core.entities.CoreForm;
@@ -41,7 +31,6 @@ import org.guce.core.entities.CorePartner;
 import org.guce.core.entities.CoreProcessing;
 import org.guce.core.entities.CoreProcessingtype;
 import org.guce.core.entities.CoreRecord;
-import org.guce.core.entities.CoreSignatory;
 import org.guce.core.entities.CoreUser;
 import org.guce.core.entities.util.CoreProcessingState;
 import static org.guce.core.entities.util.CoreProcessingState.ATTENTE;
@@ -52,15 +41,12 @@ import org.guce.process.vt2.constants.Vt2Constant;
 import org.guce.process.vt2.services.Vt2ServiceLocal;
 import org.guce.process.ct.entities.CTGood;
 import org.guce.process.ct.entities.VTMINEPDEDRegistration;
-import org.guce.rep.ejb.facade.interfaces.RepCustomsOfficeFacadeLocal;
-import org.guce.rep.entities.RepDomiciliation;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.mail.ServiceMailSenderLocal;
 import org.guce.web.core.mail.util.AperakCreator;
 import org.guce.web.core.transformation.DefaultTraitement;
 import org.guce.web.core.transformation.ITraitement;
 import org.guce.web.core.transformation.WebguceTransformer;
-import org.milyn.edi.unedifact.d95b.APERAK.Aperak;
 
 /**
  *
@@ -82,28 +68,11 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
     private CoreMessageFacadeLocal messageFacade;
     @EJB
     private ServiceMailSenderLocal serviceMail;
-    @EJB
-    private CoreUserFacadeLocal userFacadeLocal;
 
     private EbxmlCreator ebxmlCreator;
-    @EJB
-    private CoreChargerFacadeLocal chargerFacade;
     private CoreMessage message;
-    @EJB
-    private CoreProcessFacadeLocal processFacade;
-    @EJB
-    private CorePaysFacadeLocal paysFacade;
-    @EJB
-    private RepCustomsOfficeFacadeLocal customFacade;
-    @EJB
-    private DocumentUtilityLocal doc;
-    @EJB
-    private CoreTaxandinvoiceFacadeLocal tFacade;
-    @EJB
-    private CoreAttachmentFacadeLocal attachmentFacade;
-    @EJB
-    private CoreAttachmenttypeFacadeLocal attachmentTypeFacade;
-public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
+    
+    public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
 
     @Override
     public Integer processWait(CoreForm f, CoreUser user) {
@@ -120,9 +89,9 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
         ebxml = (OrchestraEbxmlMessage) object;
         JAXBContext context;
         if (ebxml.getAction().startsWith(CoreMessage.APERAK)) {
-            message = messageFacade.find(ebxml.getAcknowledgment().getRefToMessageId());
+            message = ebxml.getAcknowledgment().getRefToMessageId() == null ? null : messageFacade.find(ebxml.getAcknowledgment().getRefToMessageId());
             if (message == null) {
-                message = messageFacade.find(ebxml.getRefToMessageId());
+                message = ebxml.getRefToMessageId() == null ? null : messageFacade.find(ebxml.getRefToMessageId());
             }
             if (message != null) {
                 gererAperak();
@@ -144,7 +113,6 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
                 Logger.getLogger(WebguceTransformer.class.getName()).log(Level.INFO, "Numero fiche non trouve   {0}", new Object[]{document.getReference().getNumeroDossier()});
                 return;
             }
-//                     
             if (document.getContenu().getDecision() != null) {
                 fiche.setDecision(document.getContenu().getDecision());
                 fiche.setObservation(document.getContenu().getDecision().getObservation());
@@ -155,9 +123,8 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
             if (document.getContenu().getCtDecision() != null) {
                 fiche.setCtDecision(document.getContenu().getCtDecision());
             }
-            fiche.setReocordConversationid(ebxml.getConversationId()); //Code du WF provenant d'orchestra
+            fiche.setReocordConversationid(ebxml.getConversationId());
             service.save(fiche);
-            saveAttachments(ebxml, fiche);           
             Method method = this.getClass().getDeclaredMethod(CoreProcessingState.TRAITER + ebxml.getAction().toUpperCase());
             method.invoke(this);
             dd.close();
@@ -177,9 +144,7 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
             MessageHeader.PartyId t = (MessageHeader.PartyId) i.next();
             to = t.getId();
         }
-        if (to != null && !to.equalsIgnoreCase("GUCE")) {
-            processing.setProcPartner(new CorePartner(to));
-        }
+        processing.setProcPartner(new CorePartner(to));
         processingFacade.create(processing);
         return processing;
     }
@@ -202,12 +167,8 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
             MessageHeader.PartyId t = (MessageHeader.PartyId) i.next();
             to = t.getId();
         }
-        if (!to.equalsIgnoreCase("GUCE")) {
-            mes.setMessageReceiver(new CorePartner(to));
-        }
-        if (!from.equalsIgnoreCase("GUCE")) {
-            mes.setMessageSender(new CorePartner(from));
-        }
+        mes.setMessageReceiver(new CorePartner(to));
+        mes.setMessageSender(new CorePartner(from));
         mes.setMessageState(1);
         mes.setMessageTimestamp(GuceCalendarUtil.getCalendar().getTime());
         mes.setMessageType(new CoreMessageType(ebxml.getAction()));
@@ -225,6 +186,11 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
             message.getMessageProcessing().setProcenddate(GuceCalendarUtil.getCalendar().getTime());
             message.getMessageProcessing().setProcState(TRAITER);
             processingFacade.edit(message.getMessageProcessing());
+            if (ebxml.getAction().toUpperCase().equals("APERAK_D")) {
+                if (processingFacade.findLastProcessing(fiche.getRecordId(), Vt2Constant.PROCESSING_VALIDATION, null) == null) {
+                    createProcessing(Vt2Constant.PROCESSING_VALIDATION, ATTENTE);
+                }
+            }
         }
     }
 
@@ -262,7 +228,7 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
 
     public void traiterVT203() {
         CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_REJET, ATTENTE);
-        fiche.setRecordState(CoreRecord.CLOS);
+        fiche.setRecordState(CoreRecord.ERROR);
         fiche.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         ficheFacade.edit(fiche);
         AperakCreator ac = new AperakCreator();
@@ -279,14 +245,25 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
         serviceMail.send(mes);
     }
 
-    public void traiterVT204() {
-        System.out.println("TRAITER VT204----------------------------->");
-        fiche.setRecordState(CoreRecord.CLOS);//Cloture du dossier
-        fiche.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());//Date de cloture       
+    public void traiterVT204() throws Exception {
+        fiche.setRecordState(CoreRecord.CLOS);
+        fiche.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
+        saveAttachments(ebxml, fiche);
         ficheFacade.edit(fiche);
-        CoreProcessing p = createProcessing(Vt2Constant.PROCESSING_CONSULTATION, ATTENTE);//Création d'un processing de consultation pour permettre l'affichage du resultat.
+        CoreProcessing waiting = processingFacade.findLastProcessing(fiche.getRecordId(), Vt2Constant.PROCESSING_VALIDATION, null);
+        if (waiting == null) {
+            waiting = createProcessing(Vt2Constant.PROCESSING_VALIDATION, TRAITER);
+        } else {
+            waiting.setProcState(CoreProcessingState.TRAITER);
+            waiting.setProcenddate(GuceCalendarUtil.getCalendar().getTime());
+            processingFacade.edit(waiting);
+        }
+        CoreProcessing p = processingFacade.findLastProcessing(fiche.getRecordId(), Vt2Constant.PROCESSING_CONSULTATION, null);
+        if (p == null) {
+            createProcessing(Vt2Constant.PROCESSING_CONSULTATION, ATTENTE);
+        }
         AperakCreator ac = new AperakCreator();
-        org.guce.web.core.mail.util.Aperak a = ac.createAperak(createMessage(p), CoreMessage.APERAK_K);
+        org.guce.web.core.mail.util.Aperak a = ac.createAperak(createMessage(waiting), CoreMessage.APERAK_K);
         ebxmlCreator = new EbxmlCreator();
         ebxmlCreator.setRefMessageId(a.getNumeroMessage());
         CoreMessage mes = ebxmlCreator.generer(a, a.getTypeDocument(),
@@ -298,6 +275,33 @@ public static final String PRINCIPAL_ATTACHMENT_TYPE = "VT2";
         mes.setMessageProcessing(p);
 
         serviceMail.send(mes);
-
-    }    
+    }
+    
+    @Override
+    public void saveAttachments(OrchestraEbxmlMessage ebxml, CoreRecord record) throws Exception {
+        Iterator iterator = ebxml.getSOAPMessage().getAttachments();
+        if (iterator.hasNext()) {
+            iterator.next();
+        }
+        while (iterator.hasNext()) {
+            AttachmentPart attachmentPart = (AttachmentPart) iterator.next();
+            InputStream pj = attachmentPart.getDataHandler().getInputStream();
+            CoreAttachment attachment = new CoreAttachment();
+            attachment.setPjFichier(IOUtils.toByteArray(pj));
+            attachment.setPjRecord(record);
+            attachment.setPjLibelle(record.getRecordId() + ".pdf");
+            attachment.setPjIdentifiant(record.getRecordId() + ".pdf");
+            String attachmentType = PRINCIPAL_ATTACHMENT_TYPE;
+            CoreAttachmenttype attachtmentType = attachmentTypeFacade.find(attachmentType);
+            if (attachtmentType == null) {
+                attachtmentType = new CoreAttachmenttype(attachmentType);
+                attachtmentType.setAttachementtypename(record.getRecordProcess().getProcessName().toUpperCase());
+                attachmentTypeFacade.create(attachtmentType);
+            }
+            attachment.setPjType(attachtmentType);
+            attachment.setPjCreatedate(java.util.Calendar.getInstance().getTime());
+            attachmentFacade.create(attachment);
+            break;
+        }
+    }
 }

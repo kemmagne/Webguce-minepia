@@ -2,11 +2,11 @@
 <Process xsi:noNamespaceSchemaLocation="process.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Code>vt2</Code>
     <Name>vt2Name</Name>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <Description>VISA TECHNIQUE MINEPDED</Description>
     <ProcessingClass>Vt2Traitement</ProcessingClass>
     <ServiceName>vt2</ServiceName>
-    <Author>Steve Anyam</Author>
+    <Author>Ulrich ETEME</Author>
     <LanguageFile>Bundle</LanguageFile>
     <Forms>
         <Form>
@@ -22,7 +22,7 @@
             <Code>VT2</Code>
             <Name>ConsultationVisaTechnique</Name>
             <Version>1.0.0</Version>
-            <Description>ConsultationVisaTechnique</Description>
+            <Description>Consultation des visas techniques</Description>
             <Path>VT2</Path>
             <Type>3</Type>
             <Processing>VT2</Processing>
@@ -83,7 +83,11 @@
         <Attachment>
             <Code>AUTRE</Code>
             <Name>Autres Pieces</Name>
-        </Attachment>                          
+        </Attachment>
+        <Attachment>
+            <Code>VT2</Code>
+            <Name>Visa technique MINEPDED</Name>
+        </Attachment>
     </Attachments>
     <Messages>
         <Message>
