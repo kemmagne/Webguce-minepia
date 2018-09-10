@@ -10,10 +10,14 @@
 
     <h3 class="webguce-block-title">#{vt2.Provenance}</h3>
     <h:panelGrid columns="4" styleClass="webguce-sub-block">
-        <p:outputLabel for="idPaysOrigine" value="#{vt2.PaysOrigine}"/>
+        <p:outputLabel for="idPaysOrigine" value="#{vt2.PaysOrigine}">
+            <span>*</span>
+        </p:outputLabel>
         <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysOrigine"
                      value="#{vt2InitController.current.provenance.originCountry}" required="true" />
-        <p:outputLabel for="idPaysProvenance" value="#{vt2.PaysProvenance}"/>
+        <p:outputLabel for="idPaysProvenance" value="#{vt2.PaysProvenance}">
+            <span>*</span>
+        </p:outputLabel>
         <rep:country readOnly="#{!vt2InitController.requestForm}" id="idPaysProvenance"
                      value="#{vt2InitController.current.provenance.provenanceCountry}" required="true" />
     </h:panelGrid>

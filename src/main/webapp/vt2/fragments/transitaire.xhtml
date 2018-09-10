@@ -3,8 +3,9 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:="http://www.w3.org/1999/xhtml"
     xmlns:g="http://java.sun.com/jsf/composite/components">
-    <p:tab  title="#{vt2.Transitaire}">            
-        <g:cad      readOnly="true" styleClass="alias"
+    <p:tab  title="#{vt2.Transitaire}" rendered="false">
+        <g:cad      rendered="false"
+                    readOnly="true" styleClass="alias"
                     cadSelectionEnable="#{vt2InitController.cadSelectionEnable}"
                     value="#{vt2InitController.current.transitaire}"
                     renderedBoolean='false'

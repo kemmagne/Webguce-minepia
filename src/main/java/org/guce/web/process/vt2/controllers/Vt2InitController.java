@@ -19,7 +19,6 @@ import org.apache.commons.lang.StringUtils;
 import org.guce.core.documents.WebguceDocument;
 import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreCADFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreDocumentFacadeLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
 import org.guce.core.entities.CoreCAD;
@@ -35,7 +34,6 @@ import org.guce.core.entities.util.CoreProcessingState;
 import org.guce.core.services.GuceCalendarUtil;
 import org.guce.process.ct.ejb.interfaces.VTMINEPDEDRegistrationFacadeLocal;
 import org.guce.process.ct.entities.CTGood;
-import org.guce.process.ct.entities.ChargerOtherPropreties;
 import org.guce.process.ct.entities.VTMINEPDEDRegistration;
 import org.guce.process.vt2.constants.Vt2Constant;
 import static org.guce.process.vt2.constants.Vt2Constant.FORM_CONSULTATION;
@@ -48,6 +46,7 @@ import org.guce.process.vt2.services.Vt2DocumentServiceLocal;
 import org.guce.process.vt2.services.Vt2ServiceLocal;
 import org.guce.rep.ejb.facade.interfaces.CarteContribuableFacadeLocal;
 import org.guce.rep.entities.CarteContribuable;
+import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
 import org.guce.web.core.util.JsfUtil;
@@ -56,16 +55,15 @@ import org.primefaces.context.RequestContext;
 /**
  *
  * @author Steve Anyam
+ * @author Ulrich ETEME
  */
 @ManagedBean
 @ViewScoped
 public class Vt2InitController extends WebGuceDefaultController {
 
     private VTMINEPDEDRegistration current;
-    private CTGood currentGood;
     private CarteContribuable carte = new CarteContribuable();
     private String type;
-    //private final String FORM_INITIATION = "VT201";
 
     @EJB
     private Vt2ServiceLocal service;
@@ -73,8 +71,6 @@ public class Vt2InitController extends WebGuceDefaultController {
     private Vt2DocumentServiceLocal documentService;
     @EJB
     private CarteContribuableFacadeLocal cFacade;
-    @EJB
-    private CoreDocumentFacadeLocal dFacade;
     @EJB
     private CoreAttachmenttypeFacadeLocal attachmenttypeFacade;
     @EJB
@@ -84,7 +80,7 @@ public class Vt2InitController extends WebGuceDefaultController {
     
     private boolean envoyer;
     private boolean complement;
-    private boolean cadSelectionEnable;
+    private boolean cadSelectionEnable = false;
 
     /**
      * Creates a new instance of Vt2InitController
@@ -186,15 +182,9 @@ public class Vt2InitController extends WebGuceDefaultController {
         current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
         current.setGoodList(new ArrayList<CoreGood>());
         current.setChargerid(new CoreCharger());
+        cadSelectionEnable = false;
         CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
-        if (cad != null) {
-            current.setTransitaire(cad);
-            cadSelectionEnable = false;
-        } else {
-            current.setTransitaire(new CoreCAD());
-            cadSelectionEnable = true;
-        }
-        current.setBrandHolder(new CoreStakeHolder());
+        current.setTransitaire(cad);
         current.setFournisseur(new CoreStakeHolder());
         current.setSignatory(null);
         current.setDecision(null);
@@ -216,23 +206,16 @@ public class Vt2InitController extends WebGuceDefaultController {
             current.setInvoice(new CoreTaxandinvoice());
         }
         if (current.getBrandHolder() != null) {
-            current.getBrandHolder().setStakeholderId(null);
-        } else {
-            current.setBrandHolder(new CoreStakeHolder());
+            current.setBrandHolder(null);
         }
         if (current.getFournisseur() != null) {
             current.getFournisseur().setStakeholderId(null);
         } else {
-            current.setBrandHolder(new CoreStakeHolder());
+            current.setFournisseur(new CoreStakeHolder());
         }
         CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
-        if (cad != null) {
-            current.setTransitaire(cad);
-            cadSelectionEnable = false;
-        } else {
-            current.setTransitaire(new CoreCAD());
-            cadSelectionEnable = true;
-        }
+        cadSelectionEnable = false;
+        current.setTransitaire(cad);
 
         List<CoreGood> gds = current.getGoodList();
         if (gds != null && gds.size() > 0) {
@@ -354,11 +337,13 @@ public class Vt2InitController extends WebGuceDefaultController {
         if (envoyer) {
             return;
         }
-        envoyer = true;
         try {
-            save();
-            send();
-            goToPreviows();
+            int res = save();
+            if (res == 0) {
+                send();
+                goToPreviows();
+                envoyer = true;
+            }
         } catch (Exception ex) {
             envoyer = false;
             JsfUtil.addErrorMessage(bundle("UnableToSendFile"));
@@ -379,15 +364,26 @@ public class Vt2InitController extends WebGuceDefaultController {
         goToPreviows();
     }
 
-    private void save() {
+    private int save() {
         current.setRecordUserlogin(userController.getUserConnecte());
         current.setRecordProcess(getProcess());
         current.setRecordState(CoreRecord.NO_START);
-        if (service.save(current) == 1) {
-            JsfUtil.addSuccessMessage(bundle("DOSSIERMODIFIE") + "/ N° DOSSIER : " + current.getRecordId());
+        List<RepPositionTarifaire> unsupportedNsh = service.verifySupportedNsh(current);
+        if (unsupportedNsh != null) {
+            List<String> elts = new java.util.ArrayList<String>();
+            for (RepPositionTarifaire nsh : unsupportedNsh) {
+                elts.add(nsh.getCode());
+            }
+            JsfUtil.addSuccessMessage(bundle("PositionsTarifairesNonSupportees") + String.join(", ", elts));
+            return 1;
         } else {
-            JsfUtil.addSuccessMessage(bundle("DOSSIERSAUVEGARDE") + "/ N° DOSSIER : " + current.getRecordId());
+            if (service.save(current) == 1) {
+                JsfUtil.addSuccessMessage(bundle("DOSSIERMODIFIE") + "/ N° DOSSIER : " + current.getRecordId());
+            } else {
+                JsfUtil.addSuccessMessage(bundle("DOSSIERSAUVEGARDE") + "/ N° DOSSIER : " + current.getRecordId());
+            }
         }
+        return 0;
     }
     
     private void send() {
@@ -458,5 +454,8 @@ public class Vt2InitController extends WebGuceDefaultController {
 
     public boolean isCadSelectionEnable() {
         return cadSelectionEnable;
+    }
+    
+    public void goodCurrencyChanged() {
     }
 }

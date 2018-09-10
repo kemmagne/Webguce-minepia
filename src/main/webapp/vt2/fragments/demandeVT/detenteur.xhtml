@@ -7,10 +7,11 @@
     xmlns:g="http://java.sun.com/jsf/composite/components"
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements"
     >
-   
+    <ui:remove>
     <h3 class="webguce-block-title">#{vt2.DetenteurMarque}</h3>
-        <g:stakeholder rendered="true"
-            renderedList="address2,mobile,address3,taxPayerNumber,aortic"
-            value="#{vt2InitController.current.brandHolder}" readOnly="#{!vt2InitController.requestForm}"/>
+    </ui:remove>
+        <g:stakeholder rendered="false"
+                       renderedList="address2,mobile,address3,taxPayerNumber,aortic"
+                       value="#{vt2InitController.current.brandHolder}" readOnly="#{!vt2InitController.requestForm}"/>
 </ui:composition>
 

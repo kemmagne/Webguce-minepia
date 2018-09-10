@@ -9,7 +9,7 @@
     xmlns:rep="http://java.sun.com/jsf/composite/components/rep/elements">
 
     <p:tab  title="#{vt2.VisaTechnique}">
-        <h:panelGrid columns="2">
+        <h:panelGrid columns="2" rendered="false">
             <p:outputLabel value="#{vt2.Bureau}" for="idBureau"/>
             <wgc:ctOffices id="idBureau"
                            value="#{vt2InitController.current.office}"
@@ -23,13 +23,14 @@
             <wgc:ctGoodList id="good_list" value="#{vt2InitController.current.goodList}"
                             readOnly="#{!vt2InitController.requestForm}"
                             renderedBoolean="false"
-                            requiredList="hSCode,tradeName,technicalSpecification,quantite,modeEmballage,unit,weight,fobValueInCurrency"
-                            renderedList="lineNumber,hSCode,tradeName,chimicalFormula,technicalSpecification,quantite,purpose,modeEmballage,unit,weight,volume,fobValueInCurrency,originCountry#{vt2InitController.viewForm ? ',importQuantity' : ''}"
+                            requiredList="hSCode,tradeName,technicalSpecification,quantite,modeEmballage,unit,weight,fobValueInCurrency,currency"
+                            renderedList="lineNumber,hSCode,tradeName,technicalSpecification,quantite,modeEmballage,unit,weight,volume,fobValueInCurrency,currency#{vt2InitController.viewForm ? ',importQuantity' : ''}"
                             itemType="org.guce.process.ct.entities.CTGood"
                             dialogAppendTo="@(#content)"
                             required="false"
                             dataTableRenderedBoolean="false" 
                             dataTableRenderedList="lineNumber,hSCode,tradeName,quantite,fobValueInCurrency"
+                            currencyListener="#{vt2InitController.goodCurrencyChanged()}"
                             parentRecordValue="#{vt2InitController.current}"
                             parentRecordField="recordId"/>
         <br/>

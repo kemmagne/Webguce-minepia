@@ -5,28 +5,28 @@
  */
 package org.guce.process.vt2.services;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import org.guce.core.ejb.facade.interfaces.CoreChargerFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreProcessingFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreSignatoryFacadeLocal;
-import org.guce.core.ejb.facade.interfaces.CoreStakeHolderFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.IdentifiantGeneratorLocal;
+import org.guce.core.entities.CoreGood;
+import org.guce.core.entities.CoreProcess;
 import org.guce.core.entities.CoreProcessing;
 import org.guce.core.entities.CoreProcessingtype;
 import org.guce.core.entities.CoreRecord;
 import org.guce.core.services.GuceCalendarUtil;
 import org.guce.core.services.UserSessionBeanLocal;
-import org.guce.process.ct.ejb.interfaces.CTGoodFacadeLocal;
 import org.guce.process.ct.ejb.interfaces.VTMINEPDEDRegistrationFacadeLocal;
-import org.guce.process.ct.entities.CTGood;
 import org.guce.process.ct.entities.VTMINEPDEDRegistration;
+import org.guce.rep.entities.RepPositionTarifaire;
 
 /**
  *
  * @author Koufana Crepin Sosthene
  * @author Steve Anyam
+ * @author Ulrih ETEME
  */
 @Stateless
 public class Vt2Service implements Vt2ServiceLocal {
@@ -35,12 +35,6 @@ public class Vt2Service implements Vt2ServiceLocal {
     private IdentifiantGeneratorLocal generator;
     @EJB
     private CoreChargerFacadeLocal chargerFacade;
-    @EJB
-    private CoreStakeHolderFacadeLocal stakeHolderFacade;
-    @EJB
-    private CTGoodFacadeLocal aieGoodFacade;
-    @EJB
-    private CoreSignatoryFacadeLocal signatoryFacade;
     @EJB
     private VTMINEPDEDRegistrationFacadeLocal facade;
     @EJB
@@ -54,34 +48,15 @@ public class Vt2Service implements Vt2ServiceLocal {
         if (current.getRecordId() == null) {                            
             current.setRecordId(generator.getIdentifiant("VT2_SEQ", "VMD"));
             if (current.getChargerid().getChargerid() == null){
-				chargerFacade.create(current.getChargerid());
-			} else {
-				chargerFacade.edit(current.getChargerid());
-			}
-            /*
-            if (current.getAieGoods().size() > 0) {
-                for (int i = 0; i < current.getAieGoods().size(); i++) {
-                    try {
-                        current.getAieGoods().get(i).setRegistration(current);
-                        if (current.getAieGoods().get(i).getsFCode().getId() == null) {
-                            current.getAieGoods().get(i).setsFCode(null);
-                        }
-                    } catch (Exception ex) {
-
-                    }
-                }
-            }*/
+                chargerFacade.create(current.getChargerid());
+            } else {
+                chargerFacade.edit(current.getChargerid());
+            }
             current.setRecordCreatedate(GuceCalendarUtil.getCalendar().getTime());
             facade.create(current);
             return 0;
         } else {
-
             chargerFacade.edit(current.getChargerid());
-            /*stakeHolderFacade.edit(current.getSponsor());
-            stakeHolderFacade.edit(current.getFormulator());
-            stakeHolderFacade.edit(current.getLocalRepresentative());
-            stakeHolderFacade.edit(current.getMaterialManufacturer());
-            signatoryFacade.edit(current.getSignatory());            */
             facade.edit(current);            
             return 1;
         }
@@ -113,6 +88,18 @@ public class Vt2Service implements Vt2ServiceLocal {
         processing.setProcPartner(userFacade.getUserConnecte().getPartnerid());
         processingFacade.create(processing);
         return processing;
+    }
+    
+    public List<RepPositionTarifaire> verifySupportedNsh(VTMINEPDEDRegistration current) {
+        CoreProcess process = current.getRecordProcess();
+        List<RepPositionTarifaire> unsupportedNsh = new java.util.ArrayList<RepPositionTarifaire>();
+        for (CoreGood good : current.getGoodList()) {
+            java.util.List<CoreProcess> list = good.gethSCode().getProcessList();
+            if (!list.contains(process)) {
+                unsupportedNsh.add(good.gethSCode());
+            }
+        }
+        return unsupportedNsh.isEmpty() ? null : unsupportedNsh;
     }
 
 }
