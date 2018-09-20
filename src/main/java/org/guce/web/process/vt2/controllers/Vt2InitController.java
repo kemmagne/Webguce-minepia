@@ -21,7 +21,6 @@ import org.guce.core.ejb.facade.interfaces.CoreAttachmenttypeFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreCADFacadeLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
-import org.guce.core.entities.CoreCAD;
 import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreMessage;
@@ -80,7 +79,6 @@ public class Vt2InitController extends WebGuceDefaultController {
     
     private boolean envoyer;
     private boolean complement;
-    private boolean cadSelectionEnable = false;
 
     /**
      * Creates a new instance of Vt2InitController
@@ -182,9 +180,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
         current.setGoodList(new ArrayList<CoreGood>());
         current.setChargerid(new CoreCharger());
-        cadSelectionEnable = false;
-        CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
-        current.setTransitaire(cad);
+        current.setTransitaire(null);
         current.setFournisseur(new CoreStakeHolder());
         current.setSignatory(null);
         current.setDecision(null);
@@ -213,10 +209,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         } else {
             current.setFournisseur(new CoreStakeHolder());
         }
-        CoreCAD cad = cadFacade.findCadOf(userController.getUserConnecte().getPartnerid());
-        cadSelectionEnable = false;
-        current.setTransitaire(cad);
-
+        current.setTransitaire(null);
         List<CoreGood> gds = current.getGoodList();
         if (gds != null && gds.size() > 0) {
             for (CoreGood gd : gds) {
@@ -325,10 +318,6 @@ public class Vt2InitController extends WebGuceDefaultController {
             if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,QUITTANCE,ACCORD_STRUCT,CCT"))) {
                 return;
             }
-            if (current.getTransitaire() == null || current.getTransitaire().getId() == null){
-                    JsfUtil.addErrorMessage(bundle("PleaseSelectCAD"));
-                    return ;
-            }
         } catch (Exception ex) {
             JsfUtil.addErrorMessage(bundle("UnableToSendFile"));
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -374,7 +363,7 @@ public class Vt2InitController extends WebGuceDefaultController {
             for (RepPositionTarifaire nsh : unsupportedNsh) {
                 elts.add(nsh.getCode());
             }
-            JsfUtil.addSuccessMessage(bundle("PositionsTarifairesNonSupportees") + String.join(", ", elts));
+            JsfUtil.addSuccessMessage(bundle("PositionsTarifairesNonSupportees") + StringUtils.join(elts, ", "));
             return 1;
         } else {
             if (service.save(current) == 1) {
@@ -450,10 +439,6 @@ public class Vt2InitController extends WebGuceDefaultController {
 
     public void setComplement(boolean complement) {
         this.complement = complement;
-    }
-
-    public boolean isCadSelectionEnable() {
-        return cadSelectionEnable;
     }
     
     public void goodCurrencyChanged() {

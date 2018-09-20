@@ -45,8 +45,10 @@
         <ui:include    src="../fragments/decision.xhtml" />
         <p:tabView id="allcontent" effect="slide" >
             <ui:include    src="../fragments/importateur.xhtml" />
-            <ui:include    src="../fragments/transitaire.xhtml" />           
-            <ui:include    src="../fragments/demandeVT.xhtml" />            
+            <ui:remove>
+                <ui:include    src="../fragments/transitaire.xhtml" />
+            </ui:remove>
+            <ui:include    src="../fragments/demandeVT.xhtml" />
             <ui:include    src="../fragments/piecesJointes.xhtml" />
         </p:tabView>
     </h:form>    
