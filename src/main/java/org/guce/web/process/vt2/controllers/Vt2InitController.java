@@ -5,6 +5,7 @@
  */
 package org.guce.web.process.vt2.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +50,10 @@ import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
 import org.guce.web.core.util.JsfUtil;
+import org.guce.web.process.vt2.util.Vt2Traitement;
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -442,5 +446,19 @@ public class Vt2InitController extends WebGuceDefaultController {
     }
     
     public void goodCurrencyChanged() {
+    }
+    
+    public StreamedContent downloadReport() {
+        byte[] bytes = null;
+        String attachmentType = Vt2Traitement.PRINCIPAL_ATTACHMENT_TYPE;
+        final String name = current.getRecordId() + ".PDF";
+        for (CoreAttachment attachment : current.getCoreAttachmentList()) {
+            if (attachment.getPjType().getAttachementtypeid().equals(attachmentType)) {
+                bytes = attachment.getPjFichier();
+                break;
+            }
+        }
+        DefaultStreamedContent sc = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "application/pdf", name);
+        return sc;
     }
 }

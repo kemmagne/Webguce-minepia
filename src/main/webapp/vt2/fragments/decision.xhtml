@@ -38,33 +38,5 @@
                 </p:calendar>
             </h:panelGrid>
         </p:outputPanel>
-        <p:outputPanel rendered="#{! empty vt2InitController.current.ctDecision}" >
-            <h3 class="webguce-sub-block-title">#{vt2.decision}</h3>
-            <h:panelGrid columns="4" class="webguce-sub-block" >
-                <h:outputLabel value="#{vt2.generalDecision}"/>
-                <p:inputText value="#{vt2InitController.current.ctDecision.generalDecision}" readonly="true"
-                             style="width: 240px;" />
-                <h:outputLabel value="#{vt2.technicalSpecification}"/>
-                <p:inputText value="#{vt2InitController.current.ctDecision.technicalSpecification}" readonly="true"
-                             style="width: 240px;" />
-                <h:outputLabel value="#{vt2.conditions}"/>
-                <p:inputText value="#{vt2InitController.current.ctDecision.conditions}" readonly="true"
-                             style="width: 240px;" />   
-                <h:outputLabel value="#{vt2.consigne}"/>
-                <p:inputText value="#{vt2InitController.current.ctDecision.consigne}" readonly="true"
-                             style="width: 240px;"/>	
-
-                <h:outputLabel value="#{vt2.grantedQuantity}"/>
-                <p:inputText value="#{vt2InitController.current.ctDecision.grantedQuantity}" readonly="true"
-                             style="width: 240px;" />
-                <h:outputLabel value="#{vt2.validityDate}"/>
-                <p:calendar value="#{vt2InitController.current.ctDecision.validityDate}" disabled="true"
-                            style="width: 240px;">	
-                </p:calendar>
-                <h:outputLabel value="#{vt2.Observation}"/>
-                <p:inputTextarea value="#{vt2InitController.current.ctDecision.observations}" readonly="true"
-                                 style="width: 240px;" />
-            </h:panelGrid>            
-        </p:outputPanel>        
     </h:panelGroup>  
 </ui:composition>

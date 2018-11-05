@@ -50,7 +50,7 @@ import org.guce.web.core.transformation.WebguceTransformer;
 
 /**
  *
- * @author Administrateur
+ * @author Ulrich ETEME
  */
 @Stateless
 public class Vt2Traitement extends DefaultTraitement implements ITraitement {
@@ -255,9 +255,9 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
             waiting = createProcessing(Vt2Constant.PROCESSING_VALIDATION, TRAITER);
         } else {
             waiting.setProcState(CoreProcessingState.TRAITER);
-            waiting.setProcenddate(GuceCalendarUtil.getCalendar().getTime());
-            processingFacade.edit(waiting);
         }
+        waiting.setProcenddate(GuceCalendarUtil.getCalendar().getTime());
+        processingFacade.edit(waiting);
         CoreProcessing p = processingFacade.findLastProcessing(fiche.getRecordId(), Vt2Constant.PROCESSING_CONSULTATION, null);
         if (p == null) {
             createProcessing(Vt2Constant.PROCESSING_CONSULTATION, ATTENTE);
@@ -272,7 +272,7 @@ public class Vt2Traitement extends DefaultTraitement implements ITraitement {
                 a.getEmetteur(),
                 a.getDestinataire());
         mes.setMessageState(02);
-        mes.setMessageProcessing(p);
+        mes.setMessageProcessing(waiting);
 
         serviceMail.send(mes);
     }
