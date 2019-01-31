@@ -43,7 +43,7 @@
       <dependency>
          <groupId>org.guce.web.process</groupId>
          <artifactId>webguce-ct</artifactId>
-         <version>1.0.22</version>
+         <version>1.1.11</version>
       </dependency>
       <dependency>
             <groupId>javax</groupId>

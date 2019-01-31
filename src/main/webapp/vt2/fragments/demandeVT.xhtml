@@ -32,6 +32,7 @@
                             dataTableRenderedList="lineNumber,hSCode,tradeName,quantite,fobValueInCurrency"
                             currencyListener="#{vt2InitController.goodCurrencyChanged()}"
                             parentRecordValue="#{vt2InitController.current}"
+							hsList="#{vt2InitController.hsCodeList}"
                             parentRecordField="recordId"/>
         <br/>
         <ui:include    src="../fragments/demandeVT/fournisseur.xhtml" />

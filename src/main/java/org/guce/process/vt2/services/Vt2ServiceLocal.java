@@ -7,6 +7,7 @@ package org.guce.process.vt2.services;
 
 import java.util.List;
 import javax.ejb.Local;
+import org.guce.core.entities.CoreProcess;
 import org.guce.process.ct.entities.VTMINEPDEDRegistration;
 import org.guce.rep.entities.RepPositionTarifaire;
 
@@ -20,5 +21,6 @@ public interface Vt2ServiceLocal {
     public int save(VTMINEPDEDRegistration registration);
     public VTMINEPDEDRegistration findByRecordId(String recordId);
     public List<RepPositionTarifaire> verifySupportedNsh(VTMINEPDEDRegistration registration);
+	public List<RepPositionTarifaire> searchNshByProcess(CoreProcess process);
     
 }

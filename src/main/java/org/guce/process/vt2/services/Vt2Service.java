@@ -8,6 +8,9 @@ package org.guce.process.vt2.services;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.guce.core.ejb.facade.interfaces.CoreChargerFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreProcessingFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.IdentifiantGeneratorLocal;
@@ -41,6 +44,15 @@ public class Vt2Service implements Vt2ServiceLocal {
     private UserSessionBeanLocal userFacade;
     @EJB
     private CoreProcessingFacadeLocal processingFacade;
+	
+	
+	
+	@PersistenceContext(unitName = "Partner-ejb-unity")
+    private EntityManager em;
+
+    public EntityManager getEntityManager() {
+        return em;
+    }
 
     @Override
     public int save(VTMINEPDEDRegistration current) {
@@ -101,5 +113,13 @@ public class Vt2Service implements Vt2ServiceLocal {
         }
         return unsupportedNsh.isEmpty() ? null : unsupportedNsh;
     }
+	
+	@Override
+	public List<RepPositionTarifaire> searchNshByProcess(CoreProcess process) {
+		Query query = em.createQuery("SELECT nsh FROM RepPositionTarifaire nsh WHERE nsh.active = :active and :process MEMBER OF nsh.processList");
+		query.setParameter("active", true);
+		query.setParameter("process", process);
+		return query.getResultList();
+	}
 
 }

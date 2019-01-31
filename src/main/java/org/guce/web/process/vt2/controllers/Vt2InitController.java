@@ -26,6 +26,7 @@ import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreMessage;
 import org.guce.core.entities.CoreMessageType;
+import org.guce.core.entities.CoreProcess;
 import org.guce.core.entities.CoreProcessing;
 import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.CoreStakeHolder;
@@ -49,6 +50,7 @@ import org.guce.rep.entities.CarteContribuable;
 import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
+import org.guce.web.core.util.DefaultLazyDataModel;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.vt2.util.Vt2Traitement;
 import org.primefaces.context.RequestContext;
@@ -80,6 +82,7 @@ public class Vt2InitController extends WebGuceDefaultController {
     private VTMINEPDEDRegistrationFacadeLocal aieRegistrationFacade;
     @EJB
     private CoreCADFacadeLocal cadFacade;
+	private DefaultLazyDataModel<RepPositionTarifaire> hsCodeList;
     
     private boolean envoyer;
     private boolean complement;
@@ -178,7 +181,7 @@ public class Vt2InitController extends WebGuceDefaultController {
     public String getProcessingType() {
         return "VT201";
     }
-
+	
     private void prepareInitForm() {
         current = new VTMINEPDEDRegistration();
         current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
@@ -319,7 +322,7 @@ public class Vt2InitController extends WebGuceDefaultController {
                 JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));
                 return;
             }
-            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,QUITTANCE,ACCORD_STRUCT,CCT"))) {
+            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,QUITTANCE,DEMANDE_TIMBRE,NOTETECH"))) {
                 return;
             }
         } catch (Exception ex) {
@@ -460,5 +463,12 @@ public class Vt2InitController extends WebGuceDefaultController {
         }
         DefaultStreamedContent sc = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "application/pdf", name);
         return sc;
+    }
+	
+	public DefaultLazyDataModel<RepPositionTarifaire> getHsCodeList() {
+        if (hsCodeList == null) {
+				hsCodeList = new DefaultLazyDataModel<RepPositionTarifaire>(service.searchNshByProcess(getProcess()));
+			} 
+        return hsCodeList;
     }
 }

@@ -60,19 +60,27 @@
             <Code>FACTUREPRO</Code>
             <Name>FACTURE PRO FORMA</Name>
         </Attachment>
+		<Attachment>
+            <Code>DEMANDE_TIMBRE</Code>
+            <Name>DEMANDE TIMBREE</Name>
+        </Attachment>
         <Attachment>
             <Code>ATTES_INSC</Code>
-            <Name>Attestation d’inscription au registre de commerce</Name>
+            <Name>ATTESTATION INSCRIPTION AU REGISTRE DE COMMERCE</Name>
         </Attachment>   
         <Attachment>
             <Code>NOTETECH</Code>
-            <Name>Note technique</Name>
+            <Name>NOTE TECHNIQUE</Name>
         </Attachment>    
         <Attachment>
             <Code>QUITTANCE</Code>
-            <Name>Quittance de versement </Name>
-        </Attachment>  
-        <Attachment>
+            <Name>QUITTANCE DE VERSEMENT</Name>
+        </Attachment> 
+<!--		<Attachment>
+            <Code>AUTRE</Code>
+            <Name>Autres Pieces</Name>
+        </Attachment> -->
+<!--        <Attachment>
             <Code>ACCORD_STRUCT</Code>
             <Name>Accord délivré par une structure ayant un permis environnemental</Name>
         </Attachment>                                   
@@ -87,7 +95,7 @@
         <Attachment>
             <Code>VT2</Code>
             <Name>Visa technique MINEPDED</Name>
-        </Attachment>
+        </Attachment>-->
     </Attachments>
     <Messages>
         <Message>
