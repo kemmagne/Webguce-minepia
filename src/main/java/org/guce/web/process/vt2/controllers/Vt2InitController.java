@@ -322,7 +322,7 @@ public class Vt2InitController extends WebGuceDefaultController {
                 JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));
                 return;
             }
-            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTUREPRO,ATTES_INSC,QUITTANCE,DEMANDE_TIMBRE,NOTETECH"))) {
+            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTURE_PROFORMA,DEMANDE_TIMBRE,ATTESTATION_INSCRIPTION_RC,NOTE_TECHNIQUE,QUITTANCE"))) {
                 return;
             }
         } catch (Exception ex) {
@@ -370,7 +370,7 @@ public class Vt2InitController extends WebGuceDefaultController {
             for (RepPositionTarifaire nsh : unsupportedNsh) {
                 elts.add(nsh.getCode());
             }
-            JsfUtil.addSuccessMessage(bundle("PositionsTarifairesNonSupportees") + StringUtils.join(elts, ", "));
+            JsfUtil.addErrorMessage(bundle("PositionsTarifairesNonSupportees") + StringUtils.join(elts, ", "));
             return 1;
         } else {
             if (service.save(current) == 1) {
