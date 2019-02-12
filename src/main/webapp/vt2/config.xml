@@ -2,7 +2,7 @@
 <Process xsi:noNamespaceSchemaLocation="process.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Code>vt2</Code>
     <Name>vt2Name</Name>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <Description>VISA TECHNIQUE MINEPDED</Description>
     <ProcessingClass>Vt2Traitement</ProcessingClass>
     <ServiceName>vt2</ServiceName>
@@ -65,7 +65,7 @@
             <Name>DEMANDE TIMBREE</Name>
         </Attachment>
         <Attachment>
-            <Code>ATTESTATION_INSCRIPTION_RC</Code>
+            <Code>ATTESTATION_INSCRIPTION</Code>
             <Name>ATTESTATION INSCRIPTION AU REGISTRE DE COMMERCE</Name>
         </Attachment>   
         <Attachment>
@@ -124,6 +124,6 @@
         </Message>        
     </Messages>
 	<Params>
-        required.attachments.id=FACTURE_PROFORMA,DEMANDE_TIMBRE,ATTESTATION_INSCRIPTION_RC,NOTE_TECHNIQUE,QUITTANCE
+        required.attachments.id=FACTURE_PROFORMA,DEMANDE_TIMBRE,ATTESTATION_INSCRIPTION,NOTE_TECHNIQUE,QUITTANCE
     </Params>
 </Process>

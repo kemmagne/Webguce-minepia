@@ -322,7 +322,7 @@ public class Vt2InitController extends WebGuceDefaultController {
                 JsfUtil.addErrorMessage(bundle("PleaseAddOneGood"));
                 return;
             }
-            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTURE_PROFORMA,DEMANDE_TIMBRE,ATTESTATION_INSCRIPTION_RC,NOTE_TECHNIQUE,QUITTANCE"))) {
+            if (!validRequiredAttachements(getProcessParam(Vt2Constant.PROCESS_PARAM_REQUIRED_ATTACHMENT, "FACTURE_PROFORMA,DEMANDE_TIMBRE,ATTESTATION_INSCRIPTION,NOTE_TECHNIQUE,QUITTANCE"))) {
                 return;
             }
         } catch (Exception ex) {
