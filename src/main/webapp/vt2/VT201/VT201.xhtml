@@ -9,12 +9,17 @@
 
     <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
     <h:form id="formContenu"   >    
-        <h:panelGrid columns="4" cellspacing="8"  >
+        <h:panelGrid columns="5" cellspacing="8"  >
             <p:commandButton icon="ui-icon-document" id="newdemande" ajax="false" value="#{vt2.Initier}"  
                              action="#{userControllerSite.goToNewPageForm()}">
                 <f:param value="VT201" name="formCode"/>
                 <f:param value="form" name="page"/>
                 <f:param value="form" name="type"/>
+            </p:commandButton>
+            <p:commandButton icon="ui-icon-document" id="savefiles" ajax="false" value="#{vt2.SavedFiles}"  
+                             action="#{userControllerSite.goToNewPageForm()}">
+                <f:param value="VT201" name="formCode"/>
+                <f:param value="save" name="page"/>
             </p:commandButton>
             <p:commandButton icon="ui-icon-document" id="complementinfo" ajax="false" value="#{vt2.DossierInitier}"  
                              action="#{userControllerSite.goToNewPageForm()}">

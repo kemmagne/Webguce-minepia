@@ -202,6 +202,7 @@ public class Vt2InitController extends WebGuceDefaultController {
         current.setSignatory(null);
         current.setDecision(null);
         current.setCtDecision(null);
+        current.setRecordSendate(null);
 
         if (current.getInvoice() != null) {
             current.getInvoice().setTaxandinvoiceid(null);

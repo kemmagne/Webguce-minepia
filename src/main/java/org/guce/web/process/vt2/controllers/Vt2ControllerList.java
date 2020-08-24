@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.util.CoreProcessingState;
 import org.guce.core.services.CoreServiceLocal;
 import org.guce.core.services.SearchFilter;
@@ -92,6 +93,11 @@ public class Vt2ControllerList extends SimpleController implements Serializable 
             models = new WebguceSimpleListModel(service, filter, Vt2Constant.ENTITIES_RECORD_NAME);
         } else if (page != null && page.equalsIgnoreCase("C")) {
 
+        }else if (page != null && page.equalsIgnoreCase("save")) {
+            filter = new SearchFilter();
+            filter.setFileState(CoreRecord.NO_START);
+            filter.setParthnerId(userController.getUserConnecte().getPartnerid().getPartnerid());            
+            models = new WebguceSimpleListModel(service, filter, Vt2Constant.ENTITIES_RECORD_NAME);
         }
 
     }
