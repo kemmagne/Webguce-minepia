@@ -8,23 +8,12 @@
     xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
     <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2"/>
     <p:tooltip for=":formContenu"/>
-    <ui:param name="vt2Controller" value="#{vT2RequestController}"/>
+    <ui:param name="vt2Controller" value="#{vT2RequestCIController}"/>
     <h:form id="formContenu">
         <p:confirmDialog header="#{vt2.Send}"
             message="#{vt2.ConfirmeSend}" widgetVar="confirmSendDialog">
             <p:messages id="dialogMessages"/>
-            <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
-                <h:outputLabel
-                    rendered="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC != null}" value="#{vt2.AmountToPay}"/>
-                <p:inputText readonly="true"
-                    rendered="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC != null}"
-                    style="width:90%;padding:10px;margin:auto;display: block;;font-size:1.1em;" value="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC} FCFA">
-                    <f:validateDoubleRange minimum="0"/>
-                    <f:convertNumber maxFractionDigits="4"/>
-                </p:inputText>
-            </h:panelGrid>
-            <p:commandButton
-                action="#{vt2Controller.validateAndSaveAndSend()}"
+            <p:commandButton action="#{vt2Controller.send()}"
                 ajax="false" value="#{vt2.Yes}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
@@ -33,14 +22,8 @@
                 type="button" value="#{vt2.No}"/>
         </p:confirmDialog>
         <h:panelGrid cellspacing="5" columns="3">
-            <p:commandButton action="#{vt2Controller.validateAndSave()}"
-                ajax="false" value="#{vt2.Save}">
-                <f:param name="back" value="back"/>
-            </p:commandButton>
-            <p:commandButton action="#{vt2Controller.prepareSend()}"
-                oncomplete="PF('confirmSendDialog').show()"
-                process="@this"
-                update=":formContenu:dialogMessages, :formContenu:confirmSend" value="#{vt2.Send}">
+            <p:commandButton oncomplete="PF('confirmSendDialog').show()"
+                process="@this" update=":formContenu:dialogMessages" value="#{vt2.Send}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
             <p:commandButton action="#{vt2Controller.goToPreviows()}"
@@ -49,7 +32,7 @@
             </p:commandButton>
         </h:panelGrid>
         <p:messages id="messages"/>
-        <p:tabView effect="slide" id="allcontent" rendered="#{vt2Controller.current.recordParent != null}">
+        <p:tabView effect="slide" id="allcontent" rendered="#{vt2Controller.current != null}">
             <p:tab title="#{vt2.stakeholder}">
                 <h3 class="webguce-block-title">#{vt2.charger}</h3>
                 <wgc:charger id="charger" readOnly="true"
@@ -99,6 +82,10 @@
                     requiredList="Volume,Poids" styleClass="pm" value="#{vt2Controller.current.goodList}"/>
                 <p:spacer height="20px"/>
             </p:tab>
+            <p:tab id="decisionBlock"
+                rendered="#{vt2Controller.processing != null}" title="#{vt2.decision}">
+                <vt2:decision id="decision" readonly="true" value="#{vt2Controller.processing}"/>
+            </p:tab>
             <p:tab id="attachmentBlock" title="#{vt2.attachments}">
                 <wgc:attachments
                     avaibleAttachmentType="#{vt2Controller.avaibleAttachmentType}"
@@ -107,25 +94,6 @@
                     readonly="false" styleClass="pm2" type="form" value="#{vt2Controller.current.coreAttachmentList}"/>
             </p:tab>
         </p:tabView>
-    </h:form>
-    <h:form id="dialogsForm">
-        <p:dialog closable="false" draggable="false"
-            header="#{vt2.loadCircuit}" hideEffect="explose"
-            id="loadDialog" modal="true" showEffect="fade"
-            style="height: 240px;background: #EEE;" styleClass="top"
-            visible="#{vt2Controller.current.recordParent == null}" widgetVar="loadDialog">
-            <h:panelGrid cellspacing="8" columns="2" id="gridP">
-                <h:outputLabel for="parentId"
-                    title="#{vt2.EnterCircuitNumber}" value="#{vt2.CircuitNumber}"/>
-                <p:inputText id="parentId" required="true" size="35" value="#{vt2Controller.parentId}"/>
-                <p:commandButton action="#{vt2Controller.loadRecord()}"
-                    update=":dialogsForm:gridP :dialogsForm:myGrowl" value="#{vt2.LoadRecord}"/>
-                <p:commandButton
-                    action="#{vt2Controller.goToPreviows()}"
-                    ajax="false" icon="ui-icon-cancel" immediate="true" value="#{vt2.Back}"/>
-            </h:panelGrid>
-            <p:growl id="myGrowl"/>
-        </p:dialog>
     </h:form>
     <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
     <script>

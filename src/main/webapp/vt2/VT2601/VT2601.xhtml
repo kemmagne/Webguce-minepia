@@ -4,33 +4,39 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2">
     <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2"/>
-    <ui:param name="listTilte" value="#{vt2.vt2ValidatedFiles}"/>
+    <ui:param name="listTilte" value="#{(vT2ListController.page eq 'paid') ? vt2.paidFiles : vt2.fileWaitingPayment}"/>
     <h:form id="formContenu">
         <h:panelGrid cellspacing="8" columns="6">
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest"
+                rendered="#{!(vT2ListController.page eq 'paid')}" value="#{vt2.paidFiles}">
+                <f:param name="formCode" value="VT2601"/>
+                <f:param name="page" value="paid"/>
+            </p:commandButton>
             <p:commandButton
                 action="#{vT2ListController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{vt2.Back}"/>
         </h:panelGrid>
         <p:messages autoUpdate="true"/>
         <vt2:filter cleanAction="#{vT2ListController.resetsearch()}"
-            renderedList="procEndDate"
+            renderedList="#{(vT2ListController.page eq 'paid') ? 'procStartDate' : ''}"
             searchAction="#{vT2ListController.search()}"
             update=":formContenu:table" value="#{vT2ListController.filter}"/>
         <br/>
         <p:dataTable emptyMessage="#{vt2.NoFile}" id="table" lazy="true"
-            paginator="true"
-            rowStyleClass="#{file.processing.procState eq 'traiter' ? 'see' : 'nossee'}"
-            rows="10" sortOrder="descending"
+            paginator="true" rows="10" sortOrder="descending"
             value="#{vT2ListController.models}" var="file">
             <ui:include src="../part/list.xhtml"/>
             <p:column style="width: 10%">
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
-                    ajax="false" title="#{vt2.view}">
+                    ajax="false"
+                    rendered="#{file.processing.procstartdate != null}" title="#{vt2.view}">
                     <f:param name="page" value="view"/>
-                    <f:param name="processingid" value="#{file.processing.processingid}"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
                     <f:param name="type" value="view"/>
-                    <f:param name="formCode" value="VT2"/>
+                    <f:param name="formCode" value="VT201"/>
                     <p:graphicImage height="20"
                         value="/ImageFolder/detail.jpeg" width="20"/>
                 </p:commandLink>

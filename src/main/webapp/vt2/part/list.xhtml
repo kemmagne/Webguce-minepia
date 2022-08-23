@@ -1,0 +1,51 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:facet name="header">
+        <span style="text-align: right;width: 100%;display: block;margin-top: 0px;">
+            <p:commandLink ajax="false" immediate="true" title="#{vt2.PrintExcelList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/excel.png" width="30"/>
+                <p:fileDownload value="#{vT2ListController.printExcel(listTilte)}"/>
+            </p:commandLink>
+            <p:spacer width="5px"/>
+            <p:commandLink ajax="false" immediate="true" title="#{vt2.PrintPdfList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/pdf.jpeg" width="30"/>
+                <p:fileDownload value="#{vT2ListController.printPdf(listTilte)}"/>
+            </p:commandLink>
+        </span>
+    </f:facet>
+    <f:facet name="header">
+        #{listTilte}(#{vT2ListController.models.rowCount})
+    </f:facet>
+    <f:facet name="footer">
+        #{listTilte}(#{vT2ListController.models.rowCount})
+    </f:facet>
+    <p:column headerText="#{vt2.recordId}">
+        #{file.file.recordId}
+    </p:column>
+    <p:column headerText="#{vt2.CircuitReference}">
+        #{file.file.recordParent.recordId}
+    </p:column>
+    <p:column headerText="#{vt2.CreateDate}" sortBy="#{file.file.recordCreatedate}">
+        <h:outputText value="#{file.file.recordCreatedate}">
+            <f:convertDateTime pattern="#{vt2.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{vt2.SendDate}" sortBy="#{file.processing.procstartdate}">
+        <h:outputText value="#{file.processing.procstartdate}">
+            <f:convertDateTime pattern="#{vt2.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{vt2.Charger}">
+        #{file.file.chargerid.chargername}
+    </p:column>
+    <p:column headerText="#{vt2.Supplier}" sortBy="#{file.file.supplier.chargername}">
+    #{file.file.supplier.chargername}
+</p:column>
+    <p:column headerText="#{vt2.loadingPlaceLabel}" sortBy="#{file.file.transport.loadingPlace.custOffLibelle}">
+    #{file.file.transport.loadingPlace.custOffLibelle}
+</p:column>
+</ui:composition>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <composite:attribute name="value" required="true" type="java.lang.Object" />
+        <composite:attribute name="requiredList" type="java.lang.String"  />
+        <composite:attribute name="readOnlyList" type="java.lang.String"  />
+        <composite:attribute name="renderedList" type="java.lang.String"  />
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="searchAction" required="true" />
+        <composite:attribute name="cleanAction" required="true" />
+        <composite:attribute name="renderedBoolean" required="false" default="true"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="updateAfterChange" type="java.lang.String"  default=""  />
+        <composite:attribute name="registerType" type="java.lang.String"  default="1"  />
+        <composite:attribute name="returnSame" default="true" type="java.lang.String"  />
+        <composite:attribute name="ignoreRequiredButtonId" default="" type="java.lang.String"  />
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="vt2Bundle" basename="org/guce/web/process/vt2/util/Bundle" />
+        <p:fieldset id="filtres" legend="#{vt2Bundle.Filtre}" collapsed="true" toggleable="true" toggleSpeed="250">
+            <h:panelGrid id="filterBlock" columns="4" cellpadding="10" style="width: 100%;" >
+                    <vt2:input value="#{cc.attrs.value.recordId}" 
+                               label="#{vt2Bundle.recordId}" 
+                               id="recordId" 
+                               rendered="#{cc.isRendered('recordId',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+
+                    <vt2:input value="#{cc.attrs.value.numeroContribuable}" 
+                               label="#{vt2Bundle.numeroContribuable}" 
+                               id="numeroContribuable" 
+                               rendered="#{cc.isRendered('numeroContribuable',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+
+                    <vt2:input value="#{cc.attrs.value.nom}" 
+                               label="#{vt2Bundle.nom}" 
+                               id="nom" 
+                               rendered="#{cc.isRendered('nom',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+
+                    <vt2:input value="#{cc.attrs.value.recordParent}" 
+                               label="#{vt2Bundle.CircuitReference}" 
+                               id="circuit" 
+                               rendered="#{cc.isRendered('circuit',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+                               
+                    <vt2:dateRange start="#{cc.attrs.value.dateEnvoiStart}"  end="#{cc.attrs.value.dateEnvoiEnd}" 
+                                   label="#{vt2Bundle.dateEnvoi}" 
+                                   id="dateEnvoi" 
+                                   rendered="#{cc.isRendered('dateEnvoi',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+
+                    <vt2:dateRange start="#{cc.attrs.value.proStartDateStart}"  end="#{cc.attrs.value.procStartDateEnd}" 
+                                   label="#{vt2Bundle.procStartDate}" 
+                                   id="proStartDate" 
+                                   rendered="#{cc.isRendered('procStartDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+
+                    <vt2:dateRange start="#{cc.attrs.value.procEndDateStart}"  end="#{cc.attrs.value.procEndDateEnd}" 
+                                   label="#{vt2Bundle.procEndDate}" 
+                                   id="procEndDate" 
+                                   rendered="#{cc.isRendered('procEndDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+                    
+                    <composite:insertChildren />
+            </h:panelGrid>
+            <p style="text-align: right;">
+                <p:commandButton id="first" value="#{vt2Bundle.Search}" title="#{vt2Bundle.Search}" icon="ui-icon-search"
+                                 action="#{cc.attrs.searchAction}" process="filterBlock" update="#{cc.attrs.update}" />
+                <p:spacer width="10px"/>
+                <p:commandButton  id="second" value="#{vt2Bundle.Clean}" rendered="false" title="#{vt2Bundle.Clean}" icon="ui-icon-remove"
+                                  action="#{cc.attrs.searchAction}" process="filterBlock" update="#{cc.attrs.update}" />
+            </p>
+        </p:fieldset>
+
+    </composite:implementation>
+</html>
+

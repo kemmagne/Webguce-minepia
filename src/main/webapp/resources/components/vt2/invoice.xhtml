@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements" xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2Bundle"/>
+        <composite:attribute name="value" required="true" type="java.lang.Object"/>
+        <composite:attribute name="requiredList" type="java.lang.String"/>
+        <composite:attribute name="readOnlyList" type="java.lang.String"/>
+        <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute default="true" name="renderedBoolean" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute default="false" name="returnSame"/>
+        <composite:attribute name="fieldChange"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2Bundle"/>
+        <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} invoiceBlock">
+            <h:outputLabel for="invoiceNumber" rendered="#{cc.isRendered('invoiceNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{vt2Bundle.invoiceNumberLabel} <span>#{cc.isRequiredString('invoiceNumber',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('invoiceNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:inputText
+                    converterMessage="#{vt2Bundle.invoiceNumber} #{vt2Bundle.invalid}"
+                    id="invoiceNumber" maxlength="35"
+                    readonly="#{cc.isReadOnly('invoiceNumber',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    rendered="#{cc.isRendered('invoiceNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('invoiceNumber',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{vt2Bundle.invoiceNumber} #{vt2Bundle.required}"
+                    size="35" style="width: 140px"
+                    validatorMessage="#{vt2Bundle.invoiceNumber} #{vt2Bundle.invalid}" value="#{cc.attrs.value.invoiceNumber}"/>
+                <p:message for="invoiceNumber"/>
+            </h:panelGroup>
+            <h:outputLabel for="invoiceDate" rendered="#{cc.isRendered('invoiceDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{vt2Bundle.invoiceDateLabel} <span>#{cc.isRequiredString('invoiceDate',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('invoiceDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:calendar
+                    converterMessage="#{vt2Bundle.invoiceDate} #{vt2Bundle.invalide}"
+                    id="invoiceDate" mask="true" maxlength="17"
+                    pattern="#{vt2Bundle.dateFormat}"
+                    readonly="#{cc.isReadOnly('invoiceDate',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    required="#{cc.isRequired('invoiceDate',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{vt2Bundle.invoiceDate} #{vt2Bundle.required}"
+                    size="17"
+                    validatorMessage="#{vt2Bundle.invoiceDate} #{vt2Bundle.invalide}" value="#{cc.attrs.value.invoiceDate}">
+                    <f:convertDateTime pattern="#{vt2Bundle.dateFormat}"/>
+                </p:calendar>
+                <p:message for="invoiceDate"/>
+            </h:panelGroup>
+            <h:outputLabel for="invoiceAmount" rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{vt2Bundle.invoiceAmountLabel} <span>#{cc.isRequiredString('invoiceAmount',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:inputText
+                    converterMessage="#{vt2Bundle.invoiceAmount} #{vt2Bundle.invalid}"
+                    id="invoiceAmount" maxlength="35"
+                    readonly="#{cc.isReadOnly('invoiceAmount',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('invoiceAmount',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{vt2Bundle.invoiceAmount} #{vt2Bundle.required}"
+                    size="35" style="width: 140px"
+                    validatorMessage="#{vt2Bundle.invoiceAmount} #{vt2Bundle.invalid}" value="#{cc.attrs.value.invoiceAmount}">
+                    <f:validateDoubleRange/>
+                    <f:convertNumber/>
+                </p:inputText>
+                <p:message for="invoiceAmount"/>
+            </h:panelGroup>
+            <h:outputLabel for="currency" rendered="#{cc.isRendered('currency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{vt2Bundle.currencyLabel} <span>#{cc.isRequiredString('currency',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <r:currency id="currency"
+                readOnly="#{cc.isReadOnly('currency',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                rendered="#{cc.isRendered('currency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                required="#{cc.isRequired('currency',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.currency}"/>
+        </h:panelGrid>
+        <p:outputPanel>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('table.invoiceBlock tr').each(function (index) {
+                        jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                        jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                    });
+                });
+            </script>
+        </p:outputPanel>
+        <style>
+            table.invoiceBlock {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .invoiceBlock label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .invoiceBlock select{
+                padding:5px;
+            }
+            .invoiceBlock label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .invoiceBlock .ui-selectonemenu-label{
+                display:block;
+            }
+            .invoiceBlock .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .invoiceBlock.ui-inputtext[readonly="readonly"],
+            .invoiceBlock .hasDatepicker[readonly="readonly"],
+            .invoiceBlock .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>

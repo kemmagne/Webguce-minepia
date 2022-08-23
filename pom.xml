@@ -10,6 +10,8 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <distributionManagement>
         <repository>
@@ -28,28 +30,78 @@
         <dependency>
             <groupId>org.guce.web</groupId>
             <artifactId>webguce-transformation</artifactId>
-            <version>2.2.13</version>
+            <version>2.2.22</version>
         </dependency>
         <dependency>
             <groupId>org.guce.web</groupId>
             <artifactId>webguce-web</artifactId>
-            <version>2.4.6-jar</version>
+            <version>2.4.26</version>
+            <classifier>classes</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.guce.web</groupId>
+                    <artifactId>webguce-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.guce.web</groupId>
             <artifactId>webguce-core</artifactId>
-            <version>2.2.12</version>
+            <version>2.2.47</version>
         </dependency>
       <dependency>
          <groupId>org.guce.web.process</groupId>
          <artifactId>webguce-ct</artifactId>
-         <version>1.1.28</version>
+         <version>1.1.38</version>
       </dependency>
-      <dependency>
+        <dependency>
+            <groupId>org.guce.web</groupId>
+            <artifactId>webguce-transport</artifactId>
+            <version>2.2.10</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.guce.util</groupId>
+            <artifactId>guce-utils-exporter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>6.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.guce.web.process</groupId>
+            <artifactId>webguce-pred</artifactId>
+            <version>1.4.9</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
+        </dependency><dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
@@ -107,6 +159,46 @@
                             </includes>
                         </resource>
                     </resources>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.guce.web</groupId>
+                <artifactId>webguce-project-generator-maven-plugin</artifactId>
+                <version>0.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-class</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <design>src/main/resources/vt2.drawio</design>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>schemagen</id>
+                        <goals>
+                            <goal>schemagen</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>
+                        <source>src/main/java/org/guce/process/vt2/entities</source>
+                    </sources>
+                    <transformSchemas>
+                        <transformSchema>
+                            <uri>https://guichetunique.org/process</uri>
+                            <toFile>vt2</toFile>
+                        </transformSchema>
+                    </transformSchemas>
                 </configuration>
             </plugin>
         </plugins>

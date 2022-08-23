@@ -1,103 +1,95 @@
-<ui:composition 
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:="http://www.w3.org/1999/xhtml"
-    xmlns:g="http://java.sun.com/jsf/composite/components"
-    >
-
-    <f:loadBundle var="vt2" basename="org/guce/web/process/vt2/util/Bundle"/>
-    <h:form id="formContenu"   >    
-        <h:panelGrid columns="5" cellspacing="8"  >
-            <p:commandButton icon="ui-icon-document" id="newdemande" ajax="false" value="#{vt2.Initier}"  
-                             action="#{userControllerSite.goToNewPageForm()}">
-                <f:param value="VT201" name="formCode"/>
-                <f:param value="form" name="page"/>
-                <f:param value="form" name="type"/>
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2">
+    <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2"/>
+    <ui:param name="listTilte" value="#{(vT2ListController.page eq 'sent') ? vt2.sendRequest : vt2.registeredRequest}"/>
+    <h:form id="formContenu">
+        <h:panelGrid cellspacing="8" columns="6">
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="newRequest" value="#{vt2.Init}">
+                <f:param name="formCode" value="VT201"/>
+                <f:param name="page" value="form"/>
+                <f:param name="type" value="form"/>
             </p:commandButton>
-            <p:commandButton icon="ui-icon-document" id="savefiles" ajax="false" value="#{vt2.SavedFiles}"  
-                             action="#{userControllerSite.goToNewPageForm()}">
-                <f:param value="VT201" name="formCode"/>
-                <f:param value="save" name="page"/>
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest"
+                rendered="#{!(vT2ListController.page eq 'sent')}" value="#{vt2.sentRequest}">
+                <f:param name="formCode" value="VT201"/>
+                <f:param name="page" value="sent"/>
             </p:commandButton>
-            <p:commandButton icon="ui-icon-document" id="complementinfo" ajax="false" value="#{vt2.DossierInitier}"  
-                             action="#{userControllerSite.goToNewPageForm()}">
-                <f:param value="VT201" name="formCode"/>
-                <f:param value="comp" name="page"/>
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest2"
+                rendered="#{(vT2ListController.page eq 'sent')}" value="#{vt2.SaveFiles}">
+                <f:param name="formCode" value="VT201"/>
+                <f:param name="page" value="VT201"/>
             </p:commandButton>
-            <p:commandButton icon="ui-icon-document" id="rejet" ajax="false" value="#{vt2.DossierRejeter} (#{vt2ControllerList.rejectNumber()})"  
-                             action="#{userControllerSite.goToNewPageForm()}">
-                <f:param value="VT201" name="formCode"/>
-                <f:param value="reject" name="page"/>
-            </p:commandButton>
-            <p:commandButton icon="ui-icon-cancel" value="#{vt2.Retour}" immediate="true" action="#{userControllerSite.goToAccueil()}" ajax="false" />
-
+            <p:commandButton
+                action="#{vT2ListController.goToPreviows()}"
+                ajax="false" icon="ui-icon-cancel" immediate="true" value="#{vt2.Back}"/>
         </h:panelGrid>
-        <p:messages autoUpdate="true" />
-        <p:fieldset id="filtres" legend="#{vt2.Fitres}" collapsed="true" toggleable="true" toggleSpeed="250">
-            <h:panelGrid columns="3" id="filtre"  style="width:95%;margin:auto;" cellspacing="5">
-                <h:panelGrid columns="2" cellspacing="5">
-                    <h:outputLabel value="#{principal.NumeroDossier}"/>
-                    <p:inputText style="width: 100px" value="#{vt2ControllerList.filter.recordId}"/>
-                    <h:outputLabel value="#{principal.Etat}"/>
-                    <p:selectOneMenu value="#{vt2ControllerList.filter.fileState}">
-                        <f:selectItem itemLabel="#{principal.All}" itemValue="#{null}"/>
-                        <f:selectItem itemLabel="#{principal.Clos}" itemValue="CLOS"/>
-                        <f:selectItem itemLabel="#{principal.Open}" itemValue="IN_PROCESS"/>
-                        <f:selectItem itemLabel="#{principal.Error}" itemValue="ERROR"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
-                <p:fieldset legend="#{vt2.DateDemande}">
-                    <h:panelGrid columns="4">
-                        <h:outputLabel value="#{principal.Start} :"/>
-                        <p:calendar size="10" pattern="dd/MM/yyyy" style="width: 120px" 
-                                    value="#{vt2ControllerList.filter.dateEnvoiStart}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                        </p:calendar>
-                        <h:outputLabel value="#{principal.End} :"/>
-                        <p:calendar size="10"  pattern="dd/MM/yyyy" style="width: 120px" 
-                                    value="#{vt2ControllerList.filter.dateEnvoiEnd}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                        </p:calendar>
-                    </h:panelGrid>
-                </p:fieldset>
-                <h:panelGrid columns="1">
-                    <p:commandButton style="" value="#{principal.Search}" action="#{vt2ControllerList.search()}" ajax="true" update=":formContenu:table" process=":formContenu:filtres"/>
-                    <p:commandButton style="" value="#{principal.EffacerTous}" action="#{vt2ControllerList.resetsearch()}" ajax="true" update=":formContenu:table"/>
-                </h:panelGrid>
-            </h:panelGrid>
-        </p:fieldset>
-        <br />
-
-        <p:dataTable  rows="10" paginator="true"  lazy="true" id="table"
-                      sortBy="#{file.processing.procstartdate}"
-                      sortOrder="descending"
-                      emptyMessage="#{vt2.NoFile}"
-                      value="#{vt2ControllerList.models}" var="file" 
-                      rowStyleClass="#{file.processing.procState eq 'traiter' ? 'see' : 'nossee'}">
-            <f:facet name="header">
-                #{vt2.ListComplementAttente} (#{vt2ControllerList.models.rowCount})
-            </f:facet>
-            <ui:include    src="../fragments/list.xhtml" />
-            <p:column width="6%">
-                <p:commandLink title="#{vt2.View}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
-                    <f:param name="page" value="form" />
+        <p:messages autoUpdate="true"/>
+        <vt2:filter cleanAction="#{vT2ListController.resetsearch()}"
+            renderedList="procEndDate,procStartDate"
+            searchAction="#{vT2ListController.search()}"
+            update=":formContenu:table" value="#{vT2ListController.filter}"/>
+        <br/>
+        <p:dataTable emptyMessage="#{vt2.NoFile}" id="table" lazy="true"
+            paginator="true" rows="10" sortOrder="descending"
+            value="#{vT2ListController.models}" var="file">
+            <ui:include src="../part/list.xhtml"/>
+            <p:column style="width: 10%">
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false"
+                    rendered="#{file.processing.procstartdate == null}" title="#{vt2.edit}">
+                    <f:param name="page" value="form"/>
                     <f:param name="recordId" value="#{file.file.recordId}"/>
-                    <f:param name="processingid" value="#{file.processing.processingid}"/>
-                    <f:param name="type" value="comp" />
-                    <f:param name="formCode" value="VT201" />
-                    <p:graphicImage value="/ImageFolder/choose.jpeg" width="25" height="25" />
+                    <f:param name="type" value="form"/>
+                    <f:param name="formCode" value="VT201"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/choose.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false"
+                    rendered="#{file.processing.procstartdate != null}" title="#{vt2.view}">
+                    <f:param name="page" value="view"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="type" value="view"/>
+                    <f:param name="formCode" value="VT201"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/detail.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" rendered="false" title="#{vt2.Copy}">
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="VT201"/>
+                    <f:param name="page" value="form"/>
+                    <f:param name="type" value="copy"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/execute.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" title="#{vt2.History}">
+                    <f:param name="page" value="historic"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="core"/>
+                    <p:graphicImage alt="#{vt2.History}" height="20"
+                        value="/ImageFolder/archive.jpeg" width="20"/>
                 </p:commandLink>
             </p:column>
-            <f:facet name="footer">
-                #{vt2.ListComplementAttente}
-            </f:facet>
         </p:dataTable>
     </h:form>
     <style>
-        .ui-outputlabel{            
-            float: right;    
+        #formContenu .nossee{
+            background: greenyellow;
         }
     </style>
 </ui:composition>
