@@ -162,7 +162,7 @@
                 </configuration>
             </plugin>
             
-            <plugin>
+<!--            <plugin>
                 <groupId>org.guce.web</groupId>
                 <artifactId>webguce-project-generator-maven-plugin</artifactId>
                 <version>0.1-SNAPSHOT</version>
@@ -176,7 +176,7 @@
                 <configuration>
                     <design>src/main/resources/vt2.drawio</design>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
