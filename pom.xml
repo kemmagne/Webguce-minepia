@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.guce.web.process</groupId>
     <artifactId>webguce-vt2</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.11-beta.2</version>
     <packaging>jar</packaging>
     <name>webguce-vt2</name>
 
@@ -47,12 +47,12 @@
         <dependency>
             <groupId>org.guce.web</groupId>
             <artifactId>webguce-core</artifactId>
-            <version>2.2.47</version>
+            <version>2.3.1-beta.1</version>
         </dependency>
       <dependency>
          <groupId>org.guce.web.process</groupId>
          <artifactId>webguce-ct</artifactId>
-         <version>1.1.38</version>
+         <version>1.1.44</version>
       </dependency>
         <dependency>
             <groupId>org.guce.web</groupId>
@@ -81,7 +81,13 @@
         <dependency>
             <groupId>org.guce.web.process</groupId>
             <artifactId>webguce-pred</artifactId>
-            <version>1.4.9</version>
+            <version>1.5.6-vt2-beta.5</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.guce.web.process</groupId>
+            <artifactId>webguce-carg</artifactId>
+            <version>1.5.0-vt2-beta.2</version>
             <type>jar</type>
         </dependency>
         <dependency>

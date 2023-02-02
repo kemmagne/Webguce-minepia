@@ -9,20 +9,32 @@
         </goals>
     </action>
     <action>
-            <actionName>CUSTOM-deploy</actionName>
-            <displayName>deploy</displayName>
-            <goals>
-                <goal>deploy</goal>
-            </goals>
-        </action>
+        <actionName>CUSTOM-deploy</actionName>
+        <displayName>deploy</displayName>
+        <goals>
+            <goal>deploy</goal>
+        </goals>
+    </action>
     <action>
-            <actionName>run</actionName>
-            <packagings>
-                <packaging>jar</packaging>
-            </packagings>
-            <goals>
-                <goal>install</goal>
-                <goal>com.github.goldin:copy-maven-plugin:0.2.5:copy</goal>
-            </goals>
-        </action>
+        <actionName>run</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>install</goal>
+            <goal>com.github.goldin:copy-maven-plugin:0.2.5:copy</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-skip-test-build</actionName>
+        <displayName>skip-test-build</displayName>
+
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+        </goals>
+        <properties>
+            <skipTests>true</skipTests>
+        </properties>
+    </action>
 </actions>

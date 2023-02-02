@@ -1,19 +1,26 @@
 package org.guce.web.process.vt2.controllers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import org.apache.commons.collections.CollectionUtils;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreCAD;
 import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
+import org.guce.process.carg.CargConstants;
+import org.guce.process.vt2.entities.PaymentDocument;
 import org.guce.process.vt2.entities.VT2Registration;
+import org.guce.rep.entities.RepProductCategory;
 import org.guce.web.core.util.JsfUtil;
 import org.primefaces.context.RequestContext;
 
 public class VT2RequestController extends VT2Controller {
+
     @PostConstruct
     public void init() {
         if ("form".equals(type) && recordId == null) {
@@ -49,7 +56,7 @@ public class VT2RequestController extends VT2Controller {
             JsfUtil.addErrorMessage(bundle("AccessDenied"));
             return;
         }
-        if(loadParentData(parent)) {
+        if (loadParentData(parent)) {
             current.setRecordParent(parent);
             prepareEdit();
             context.execute("PF('loadDialog').hide()");
@@ -62,7 +69,7 @@ public class VT2RequestController extends VT2Controller {
     }
 
     public void prepareSend() {
-        if(checkRequestConformity()) {
+        if (checkRequestConformity()) {
             save();
         }
     }
@@ -76,34 +83,40 @@ public class VT2RequestController extends VT2Controller {
         current.setRecordState(null);
         current.setReocordConversationid(null);
         current.getChargerid().setChargerid(null);
-        if(current.getGoodList() != null) {
-            for(CoreGood g : current.getGoodList()) {
+        if (current.getGoodList() != null) {
+            for (CoreGood g : current.getGoodList()) {
                 g.setID(null);
             }
         }
-        if(current.getCoreAttachmentList() != null) {
-            for(CoreAttachment a : current.getCoreAttachmentList()) {
+        if (current.getCoreAttachmentList() != null) {
+            for (CoreAttachment a : current.getCoreAttachmentList()) {
                 a.setPjId(null);
             }
         }
         current.getSupplier().setChargerid(null);
+        selectGoodProductCategories();
     }
 
     protected void prepareView() {
     }
 
     protected void send() {
-        serviceMessage.send(serviceMessage.sendRequest(current,userController.getUserConnecte()));
+        serviceMessage.send(serviceMessage.sendRequest(current, userController.getUserConnecte()));
     }
 
     public void validateAndSaveAndSend() {
-        if(!fileSent && checkRequestConformity()) {
+        if (!fileSent && checkRequestConformity()) {
             fileSent = true;
             try {
                 send();
+                current.setFeesAmount(vtMinepdedAmountFees);
+                if(vtMinepdedAmountFees.compareTo(BigDecimal.ZERO) > 0){
+                    current.setTotalFeesAmount(current.getTotalFeesAmount() != null ? current.getTotalFeesAmount().add(vtMinepdedAmountFees) : vtMinepdedAmountFees);
+                }
+                current = service.save(current);
                 JsfUtil.addSuccessMessage(bundle("RequestSend") + " " + current.getRecordId());
                 goToPreviows();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 fileSent = false;
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
                 JsfUtil.addErrorMessage(bundle("CannotSendRecord") + " " + current.getRecordId());
@@ -112,19 +125,22 @@ public class VT2RequestController extends VT2Controller {
     }
 
     public void validateAndSave() {
-        if(checkRequestConformity()) {
+        if (checkRequestConformity()) {
+            restoreSelectedNshProductCategories();
+            calculateVtMinepdedFees();
             save();
         }
     }
 
     protected boolean loadParentData(CoreRecord parent) {
         current.setChargerid(parent.getChargerid());
-        if(parent.getGoodList() != null) {
-            for(CoreGood g : parent.getGoodList()) {
+        if (parent.getGoodList() != null) {
+            for (CoreGood g : parent.getGoodList()) {
                 g.setID(null);
                 current.getGoodList().add(g);
             }
         }
+        selectGoodProductCategories();
         return true;
-    }
+    } 
 }

@@ -9,4 +9,13 @@ import org.guce.web.process.vt2.controllers.VT2ModificationRequestController;
 )
 @ViewScoped
 public class VT2ModificationRequestControllerImpl extends VT2ModificationRequestController {
+    
+    @Override
+    public void prepareSend() {
+        if (checkModificationRequestConformity()) {
+            restoreSelectedNshProductCategories();
+            calculateVtMinepdedFees();
+            generatePaymentData();
+        }
+    }
 }

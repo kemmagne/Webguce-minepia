@@ -1,5 +1,6 @@
 package org.guce.web.process.vt2.controllers;
 
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ public class VT2RequestCIController extends VT2Controller {
     @PostConstruct
     public void init() {
         checkProcessingAccessRight();
+        calculateVtMinepdedFees();
     }
 
     public void send() {
@@ -16,6 +18,11 @@ public class VT2RequestCIController extends VT2Controller {
             fileSent = true;
             try {
                 serviceMessage.send(serviceMessage.sendCIResponse(current,userController.getUserConnecte(),processing));
+                current.setFeesAmount(vtMinepdedAmountFees);
+                if(vtMinepdedAmountFees.compareTo(BigDecimal.ZERO) > 0){
+                    current.setTotalFeesAmount(current.getTotalFeesAmount() != null ? current.getTotalFeesAmount().add(vtMinepdedAmountFees) : vtMinepdedAmountFees);
+                }
+                current = service.save(current);
                 JsfUtil.addSuccessMessage(bundle("CIResponseSend") + " " + current.getRecordId());
                 goToPreviows();
             } catch(Exception ex) {

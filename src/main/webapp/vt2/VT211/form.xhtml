@@ -17,13 +17,23 @@
                 ajax="false" value="#{vt2.Yes}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
+            <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
+                <h:outputLabel
+                    rendered="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC != null}" value="#{vt2.AmountToPay}"/>
+                <p:inputText readonly="true"
+                    rendered="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC != null}"
+                    style="width:90%;padding:10px;margin:auto;display: block;;font-size:1.1em;" value="#{vt2Controller.current.paiement.FACTURE.MONTANTTTC} FCFA">
+                    <f:validateDoubleRange minimum="0"/>
+                    <f:convertNumber maxFractionDigits="4"/>
+                </p:inputText>
+            </h:panelGrid>
             <p:commandButton id="decline"
                 onclick="PF('confirmSendDialog').hide()" process="@this"
                 type="button" value="#{vt2.No}"/>
         </p:confirmDialog>
         <h:panelGrid cellspacing="5" columns="3">
-            <p:commandButton oncomplete="PF('confirmSendDialog').show()"
-                process="@this" update=":formContenu:dialogMessages" value="#{vt2.Send}">
+            <p:commandButton oncomplete="PF('confirmSendDialog').show()" action="#{vt2Controller.prepareSend()}"
+                update=":formContenu:dialogMessages, :formContenu:confirmSend" value="#{vt2.Send}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
             <p:commandButton action="#{vt2Controller.goToPreviows()}"

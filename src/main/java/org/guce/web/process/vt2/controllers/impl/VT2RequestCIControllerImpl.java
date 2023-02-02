@@ -9,4 +9,9 @@ import org.guce.web.process.vt2.controllers.VT2RequestCIController;
 )
 @ViewScoped
 public class VT2RequestCIControllerImpl extends VT2RequestCIController {
+    @Override
+    public void prepareSend() {
+        restoreSelectedNshProductCategories();
+        super.prepareSend();
+    }
 }

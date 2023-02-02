@@ -1,6 +1,7 @@
 package org.guce.process.vt2.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,6 +23,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.guce.core.documents.GuceDateAdapter;
@@ -30,6 +34,7 @@ import org.guce.core.entities.CoreDecisionType;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.CoreSignatory;
+import org.guce.rep.entities.RepProductCategory;
 
 @DiscriminatorValue("VT_MINEPDED")
 @SequenceGenerator(
@@ -109,6 +114,21 @@ public class VT2Registration extends CoreRecord implements Serializable {
 
     @Embedded
     private Invoice invoice;
+    
+    @Column(name = "VT_MINEPDED_FEES_AMOUNT")
+    private BigDecimal feesAmount;
+    
+    @Column(name = "VT_MINEPDED_TOTAL_FEES_AMOUNT")
+    private BigDecimal totalFeesAmount;
+    
+    @JoinTable(name = "EXPEDITION_PRODUCT_CATEGORY",
+            joinColumns = {
+                @JoinColumn(name = "RECORD_ID", referencedColumnName = "RECORD_ID")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "CAT_CODE", referencedColumnName = "CODE")
+            })
+    @ManyToMany
+    private List<RepProductCategory> productCategoryList;
 
     @XmlElement(
             name = "CODE_BUREAU"
@@ -272,5 +292,32 @@ public class VT2Registration extends CoreRecord implements Serializable {
     @Override
     public void setGoodList(List<CoreGood> goodList) {
         super.setGoodList(goodList);
+    }
+
+    @XmlTransient
+    public BigDecimal getFeesAmount() {
+        return feesAmount;
+    }
+
+    public void setFeesAmount(BigDecimal feesAmount) {
+        this.feesAmount = feesAmount;
+    }
+
+    @XmlTransient
+    public List<RepProductCategory> getProductCategoryList() {
+        return productCategoryList;
+    }
+
+    public void setProductCategoryList(List<RepProductCategory> productCategoryList) {
+        this.productCategoryList = productCategoryList;
+    }
+
+    @XmlTransient
+    public BigDecimal getTotalFeesAmount() {
+        return totalFeesAmount;
+    }
+
+    public void setTotalFeesAmount(BigDecimal totalFeesAmount) {
+        this.totalFeesAmount = totalFeesAmount;
     }
 }

@@ -2,10 +2,8 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.06.17 à 02:10:07 PM WAT 
+// Généré le : 2023.01.29 à 04:38:11 AM WAT 
 //
-
-
 package org.guce.process.vt2.entities;
 
 import java.io.Serializable;
@@ -17,12 +15,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Classe Java pour anonymous complex type.
- * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ * <p>
+ * Classe Java pour anonymous complex type.
+ *
+ * <p>
+ * Le fragment de schéma suivant indique le contenu attendu figurant dans cette
+ * classe.
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -233,6 +233,13 @@ import javax.xml.bind.annotation.XmlType;
  *                                           &lt;/restriction>
  *                                         &lt;/simpleType>
  *                                       &lt;/element>
+ *                                       &lt;element name="DATE_FACTURATION" minOccurs="0">
+ *                                         &lt;simpleType>
+ *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                             &lt;maxLength value="35"/>
+ *                                           &lt;/restriction>
+ *                                         &lt;/simpleType>
+ *                                       &lt;/element>
  *                                       &lt;element name="DETAIL_FACTURES" minOccurs="0">
  *                                         &lt;complexType>
  *                                           &lt;complexContent>
@@ -427,54 +434,6 @@ import javax.xml.bind.annotation.XmlType;
  *                                           &lt;/restriction>
  *                                         &lt;/simpleType>
  *                                       &lt;/element>
- *                                       &lt;element name="BANQUE" minOccurs="0">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence>
- *                                                 &lt;element name="CODE" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="100"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="LIBELLE" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="100"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="AGENCE" minOccurs="0">
- *                                                   &lt;complexType>
- *                                                     &lt;complexContent>
- *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                                         &lt;sequence>
- *                                                           &lt;element name="CODE" minOccurs="0">
- *                                                             &lt;simpleType>
- *                                                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                                 &lt;maxLength value="100"/>
- *                                                               &lt;/restriction>
- *                                                             &lt;/simpleType>
- *                                                           &lt;/element>
- *                                                           &lt;element name="LIBELLE" minOccurs="0">
- *                                                             &lt;simpleType>
- *                                                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                                 &lt;maxLength value="100"/>
- *                                                               &lt;/restriction>
- *                                                             &lt;/simpleType>
- *                                                           &lt;/element>
- *                                                         &lt;/sequence>
- *                                                       &lt;/restriction>
- *                                                     &lt;/complexContent>
- *                                                   &lt;/complexType>
- *                                                 &lt;/element>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -543,154 +502,6 @@ import javax.xml.bind.annotation.XmlType;
  *                                             &lt;maxLength value="50"/>
  *                                           &lt;/restriction>
  *                                         &lt;/simpleType>
- *                                       &lt;/element>
- *                                       &lt;element name="ADRESSE" minOccurs="0">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence>
- *                                                 &lt;element name="ADRESSE1" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="255"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="ADRESSE2" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="255"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="BP" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="10"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="PAYS_ADRESSE" minOccurs="0">
- *                                                   &lt;complexType>
- *                                                     &lt;complexContent>
- *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                                         &lt;sequence>
- *                                                           &lt;element name="CODE_PAYS" minOccurs="0">
- *                                                             &lt;simpleType>
- *                                                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                                 &lt;maxLength value="3"/>
- *                                                               &lt;/restriction>
- *                                                             &lt;/simpleType>
- *                                                           &lt;/element>
- *                                                           &lt;element name="NOM_PAYS" minOccurs="0">
- *                                                             &lt;simpleType>
- *                                                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                                 &lt;maxLength value="35"/>
- *                                                               &lt;/restriction>
- *                                                             &lt;/simpleType>
- *                                                           &lt;/element>
- *                                                         &lt;/sequence>
- *                                                       &lt;/restriction>
- *                                                     &lt;/complexContent>
- *                                                   &lt;/complexType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="VILLE" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="35"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="EMAIL" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="50"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="SITE_WEB" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="50"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
- *                                       &lt;element name="TELEPHONE_FIXE" minOccurs="0">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence>
- *                                                 &lt;element name="INDICATIF_PAYS" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="5"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="NUMERO" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
- *                                       &lt;element name="TELEPHONE_MOBILE" minOccurs="0">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence>
- *                                                 &lt;element name="INDICATIF_PAYS" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="5"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="NUMERO" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
- *                                       &lt;element name="FAX" minOccurs="0">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence>
- *                                                 &lt;element name="INDICATIF_PAYS" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="5"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="NUMERO" minOccurs="0">
- *                                                   &lt;simpleType>
- *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
- *                                                     &lt;/restriction>
- *                                                   &lt;/simpleType>
- *                                                 &lt;/element>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
  *                                       &lt;/element>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
@@ -807,7 +618,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                                 &lt;element name="NUMERO" minOccurs="0">
  *                                                   &lt;simpleType>
  *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
+ *                                                       &lt;maxLength value="50"/>
  *                                                     &lt;/restriction>
  *                                                   &lt;/simpleType>
  *                                                 &lt;/element>
@@ -831,7 +642,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                                 &lt;element name="NUMERO" minOccurs="0">
  *                                                   &lt;simpleType>
  *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
+ *                                                       &lt;maxLength value="50"/>
  *                                                     &lt;/restriction>
  *                                                   &lt;/simpleType>
  *                                                 &lt;/element>
@@ -855,7 +666,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                                 &lt;element name="NUMERO" minOccurs="0">
  *                                                   &lt;simpleType>
  *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                                       &lt;maxLength value="15"/>
+ *                                                       &lt;maxLength value="50"/>
  *                                                     &lt;/restriction>
  *                                                   &lt;/simpleType>
  *                                                 &lt;/element>
@@ -893,6 +704,42 @@ import javax.xml.bind.annotation.XmlType;
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
+ *                             &lt;element name="REPARTITIONS" minOccurs="0">
+ *                               &lt;complexType>
+ *                                 &lt;complexContent>
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;sequence>
+ *                                       &lt;element name="REPARTITION" maxOccurs="unbounded" minOccurs="0">
+ *                                         &lt;complexType>
+ *                                           &lt;complexContent>
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                               &lt;sequence>
+ *                                                 &lt;element name="CODE_BENIF" minOccurs="0">
+ *                                                   &lt;simpleType>
+ *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                                       &lt;maxLength value="35"/>
+ *                                                     &lt;/restriction>
+ *                                                   &lt;/simpleType>
+ *                                                 &lt;/element>
+ *                                                 &lt;element name="TYPE_DOSSIER" minOccurs="0">
+ *                                                   &lt;simpleType>
+ *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                                       &lt;maxLength value="50"/>
+ *                                                     &lt;/restriction>
+ *                                                   &lt;/simpleType>
+ *                                                 &lt;/element>
+ *                                                 &lt;element name="MONTANT" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
+ *                                                 &lt;element name="MONTANT_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                               &lt;/sequence>
+ *                                             &lt;/restriction>
+ *                                           &lt;/complexContent>
+ *                                         &lt;/complexType>
+ *                                       &lt;/element>
+ *                                     &lt;/sequence>
+ *                                   &lt;/restriction>
+ *                                 &lt;/complexContent>
+ *                               &lt;/complexType>
+ *                             &lt;/element>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -908,8 +755,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -922,8 +769,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlRootElement(name = "DOCUMENT")
 public class PaymentDocument
-    implements Serializable
-{
+        implements Serializable {
 
     @XmlElement(name = "TYPE_DOCUMENT", required = true)
     protected String typedocument;
@@ -940,11 +786,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété typedocument.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getTYPEDOCUMENT() {
         return typedocument;
@@ -952,11 +796,9 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété typedocument.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setTYPEDOCUMENT(String value) {
         this.typedocument = value;
@@ -964,11 +806,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété message.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DOCUMENT.MESSAGE }
-     *     
+     *
+     * @return possible object is {@link PaymentDocument.MESSAGE }
+     *
      */
     public PaymentDocument.MESSAGE getMESSAGE() {
         return message;
@@ -976,11 +816,9 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété message.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DOCUMENT.MESSAGE }
-     *     
+     *
+     * @param value allowed object is {@link PaymentDocument.MESSAGE }
+     *
      */
     public void setMESSAGE(PaymentDocument.MESSAGE value) {
         this.message = value;
@@ -988,11 +826,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété referencedossier.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DOCUMENT.REFERENCEDOSSIER }
-     *     
+     *
+     * @return possible object is {@link PaymentDocument.REFERENCEDOSSIER }
+     *
      */
     public PaymentDocument.REFERENCEDOSSIER getREFERENCEDOSSIER() {
         return referencedossier;
@@ -1000,11 +836,9 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété referencedossier.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DOCUMENT.REFERENCEDOSSIER }
-     *     
+     *
+     * @param value allowed object is {@link PaymentDocument.REFERENCEDOSSIER }
+     *
      */
     public void setREFERENCEDOSSIER(PaymentDocument.REFERENCEDOSSIER value) {
         this.referencedossier = value;
@@ -1012,11 +846,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété routage.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DOCUMENT.ROUTAGE }
-     *     
+     *
+     * @return possible object is {@link PaymentDocument.ROUTAGE }
+     *
      */
     public PaymentDocument.ROUTAGE getROUTAGE() {
         return routage;
@@ -1024,11 +856,9 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété routage.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DOCUMENT.ROUTAGE }
-     *     
+     *
+     * @param value allowed object is {@link PaymentDocument.ROUTAGE }
+     *
      */
     public void setROUTAGE(PaymentDocument.ROUTAGE value) {
         this.routage = value;
@@ -1036,11 +866,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété erreurs.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DOCUMENT.ERREURS }
-     *     
+     *
+     * @return possible object is {@link PaymentDocument.ERREURS }
+     *
      */
     public PaymentDocument.ERREURS getERREURS() {
         return erreurs;
@@ -1048,11 +876,9 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété erreurs.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DOCUMENT.ERREURS }
-     *     
+     *
+     * @param value allowed object is {@link PaymentDocument.ERREURS }
+     *
      */
     public void setERREURS(PaymentDocument.ERREURS value) {
         this.erreurs = value;
@@ -1060,11 +886,9 @@ public class PaymentDocument
 
     /**
      * Obtient la valeur de la propriété content.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DOCUMENT.CONTENT }
-     *     
+     *
+     * @return possible object is {@link PaymentDocument.CONTENT }
+     *
      */
     public PaymentDocument.CONTENT getCONTENT() {
         return content;
@@ -1072,22 +896,22 @@ public class PaymentDocument
 
     /**
      * Définit la valeur de la propriété content.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DOCUMENT.CONTENT }
-     *     
+     *
+     * @param value allowed object is {@link PaymentDocument.CONTENT }
+     *
      */
     public void setCONTENT(PaymentDocument.CONTENT value) {
         this.content = value;
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
+     * <p>
+     * Classe Java pour anonymous complex type.
+     *
+     * <p>
+     * Le fragment de schéma suivant indique le contenu attendu figurant dans
+     * cette classe.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -1104,6 +928,13 @@ public class PaymentDocument
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                           &lt;sequence>
      *                             &lt;element name="REFERENCE_FACTURE" minOccurs="0">
+     *                               &lt;simpleType>
+     *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                                   &lt;maxLength value="35"/>
+     *                                 &lt;/restriction>
+     *                               &lt;/simpleType>
+     *                             &lt;/element>
+     *                             &lt;element name="DATE_FACTURATION" minOccurs="0">
      *                               &lt;simpleType>
      *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
      *                                   &lt;maxLength value="35"/>
@@ -1304,54 +1135,6 @@ public class PaymentDocument
      *                                 &lt;/restriction>
      *                               &lt;/simpleType>
      *                             &lt;/element>
-     *                             &lt;element name="BANQUE" minOccurs="0">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence>
-     *                                       &lt;element name="CODE" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="100"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="LIBELLE" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="100"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="AGENCE" minOccurs="0">
-     *                                         &lt;complexType>
-     *                                           &lt;complexContent>
-     *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                               &lt;sequence>
-     *                                                 &lt;element name="CODE" minOccurs="0">
-     *                                                   &lt;simpleType>
-     *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                                       &lt;maxLength value="100"/>
-     *                                                     &lt;/restriction>
-     *                                                   &lt;/simpleType>
-     *                                                 &lt;/element>
-     *                                                 &lt;element name="LIBELLE" minOccurs="0">
-     *                                                   &lt;simpleType>
-     *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                                       &lt;maxLength value="100"/>
-     *                                                     &lt;/restriction>
-     *                                                   &lt;/simpleType>
-     *                                                 &lt;/element>
-     *                                               &lt;/sequence>
-     *                                             &lt;/restriction>
-     *                                           &lt;/complexContent>
-     *                                         &lt;/complexType>
-     *                                       &lt;/element>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
@@ -1420,154 +1203,6 @@ public class PaymentDocument
      *                                   &lt;maxLength value="50"/>
      *                                 &lt;/restriction>
      *                               &lt;/simpleType>
-     *                             &lt;/element>
-     *                             &lt;element name="ADRESSE" minOccurs="0">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence>
-     *                                       &lt;element name="ADRESSE1" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="255"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="ADRESSE2" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="255"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="BP" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="10"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="PAYS_ADRESSE" minOccurs="0">
-     *                                         &lt;complexType>
-     *                                           &lt;complexContent>
-     *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                               &lt;sequence>
-     *                                                 &lt;element name="CODE_PAYS" minOccurs="0">
-     *                                                   &lt;simpleType>
-     *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                                       &lt;maxLength value="3"/>
-     *                                                     &lt;/restriction>
-     *                                                   &lt;/simpleType>
-     *                                                 &lt;/element>
-     *                                                 &lt;element name="NOM_PAYS" minOccurs="0">
-     *                                                   &lt;simpleType>
-     *                                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                                       &lt;maxLength value="35"/>
-     *                                                     &lt;/restriction>
-     *                                                   &lt;/simpleType>
-     *                                                 &lt;/element>
-     *                                               &lt;/sequence>
-     *                                             &lt;/restriction>
-     *                                           &lt;/complexContent>
-     *                                         &lt;/complexType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="VILLE" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="35"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="EMAIL" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="50"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="SITE_WEB" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="50"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
-     *                             &lt;element name="TELEPHONE_FIXE" minOccurs="0">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence>
-     *                                       &lt;element name="INDICATIF_PAYS" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="5"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="NUMERO" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
-     *                             &lt;element name="TELEPHONE_MOBILE" minOccurs="0">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence>
-     *                                       &lt;element name="INDICATIF_PAYS" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="5"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="NUMERO" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
-     *                             &lt;element name="FAX" minOccurs="0">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence>
-     *                                       &lt;element name="INDICATIF_PAYS" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="5"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="NUMERO" minOccurs="0">
-     *                                         &lt;simpleType>
-     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
-     *                                           &lt;/restriction>
-     *                                         &lt;/simpleType>
-     *                                       &lt;/element>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
      *                             &lt;/element>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
@@ -1684,7 +1319,7 @@ public class PaymentDocument
      *                                       &lt;element name="NUMERO" minOccurs="0">
      *                                         &lt;simpleType>
      *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
+     *                                             &lt;maxLength value="50"/>
      *                                           &lt;/restriction>
      *                                         &lt;/simpleType>
      *                                       &lt;/element>
@@ -1708,7 +1343,7 @@ public class PaymentDocument
      *                                       &lt;element name="NUMERO" minOccurs="0">
      *                                         &lt;simpleType>
      *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
+     *                                             &lt;maxLength value="50"/>
      *                                           &lt;/restriction>
      *                                         &lt;/simpleType>
      *                                       &lt;/element>
@@ -1732,7 +1367,7 @@ public class PaymentDocument
      *                                       &lt;element name="NUMERO" minOccurs="0">
      *                                         &lt;simpleType>
      *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                                             &lt;maxLength value="15"/>
+     *                                             &lt;maxLength value="50"/>
      *                                           &lt;/restriction>
      *                                         &lt;/simpleType>
      *                                       &lt;/element>
@@ -1770,6 +1405,42 @@ public class PaymentDocument
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
+     *                   &lt;element name="REPARTITIONS" minOccurs="0">
+     *                     &lt;complexType>
+     *                       &lt;complexContent>
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;sequence>
+     *                             &lt;element name="REPARTITION" maxOccurs="unbounded" minOccurs="0">
+     *                               &lt;complexType>
+     *                                 &lt;complexContent>
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                                     &lt;sequence>
+     *                                       &lt;element name="CODE_BENIF" minOccurs="0">
+     *                                         &lt;simpleType>
+     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                                             &lt;maxLength value="35"/>
+     *                                           &lt;/restriction>
+     *                                         &lt;/simpleType>
+     *                                       &lt;/element>
+     *                                       &lt;element name="TYPE_DOSSIER" minOccurs="0">
+     *                                         &lt;simpleType>
+     *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                                             &lt;maxLength value="50"/>
+     *                                           &lt;/restriction>
+     *                                         &lt;/simpleType>
+     *                                       &lt;/element>
+     *                                       &lt;element name="MONTANT" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
+     *                                       &lt;element name="MONTANT_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                                     &lt;/sequence>
+     *                                   &lt;/restriction>
+     *                                 &lt;/complexContent>
+     *                               &lt;/complexType>
+     *                             &lt;/element>
+     *                           &lt;/sequence>
+     *                         &lt;/restriction>
+     *                       &lt;/complexContent>
+     *                     &lt;/complexType>
+     *                   &lt;/element>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -1780,27 +1451,23 @@ public class PaymentDocument
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "paiement"
     })
-    public static class CONTENT
-        implements Serializable
-    {
+    public static class CONTENT {
 
         @XmlElement(name = "PAIEMENT")
         protected PaymentDocument.CONTENT.PAIEMENT paiement;
 
         /**
          * Obtient la valeur de la propriété paiement.
-         * 
-         * @return
-         *     possible object is
-         *     {@link DOCUMENT.CONTENT.PAIEMENT }
-         *     
+         *
+         * @return possible object is {@link PaymentDocument.CONTENT.PAIEMENT }
+         *
          */
         public PaymentDocument.CONTENT.PAIEMENT getPAIEMENT() {
             return paiement;
@@ -1808,22 +1475,23 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété paiement.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link DOCUMENT.CONTENT.PAIEMENT }
-         *     
+         *
+         * @param value allowed object is
+         *     {@link PaymentDocument.CONTENT.PAIEMENT }
+         *
          */
         public void setPAIEMENT(PaymentDocument.CONTENT.PAIEMENT value) {
             this.paiement = value;
         }
 
-
         /**
-         * <p>Classe Java pour anonymous complex type.
-         * 
-         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-         * 
+         * <p>
+         * Classe Java pour anonymous complex type.
+         *
+         * <p>
+         * Le fragment de schéma suivant indique le contenu attendu figurant
+         * dans cette classe.
+         *
          * <pre>
          * &lt;complexType>
          *   &lt;complexContent>
@@ -1835,6 +1503,13 @@ public class PaymentDocument
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;sequence>
          *                   &lt;element name="REFERENCE_FACTURE" minOccurs="0">
+         *                     &lt;simpleType>
+         *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *                         &lt;maxLength value="35"/>
+         *                       &lt;/restriction>
+         *                     &lt;/simpleType>
+         *                   &lt;/element>
+         *                   &lt;element name="DATE_FACTURATION" minOccurs="0">
          *                     &lt;simpleType>
          *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
          *                         &lt;maxLength value="35"/>
@@ -2035,54 +1710,6 @@ public class PaymentDocument
          *                       &lt;/restriction>
          *                     &lt;/simpleType>
          *                   &lt;/element>
-         *                   &lt;element name="BANQUE" minOccurs="0">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence>
-         *                             &lt;element name="CODE" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="100"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="LIBELLE" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="100"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="AGENCE" minOccurs="0">
-         *                               &lt;complexType>
-         *                                 &lt;complexContent>
-         *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                                     &lt;sequence>
-         *                                       &lt;element name="CODE" minOccurs="0">
-         *                                         &lt;simpleType>
-         *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                             &lt;maxLength value="100"/>
-         *                                           &lt;/restriction>
-         *                                         &lt;/simpleType>
-         *                                       &lt;/element>
-         *                                       &lt;element name="LIBELLE" minOccurs="0">
-         *                                         &lt;simpleType>
-         *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                             &lt;maxLength value="100"/>
-         *                                           &lt;/restriction>
-         *                                         &lt;/simpleType>
-         *                                       &lt;/element>
-         *                                     &lt;/sequence>
-         *                                   &lt;/restriction>
-         *                                 &lt;/complexContent>
-         *                               &lt;/complexType>
-         *                             &lt;/element>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
@@ -2151,154 +1778,6 @@ public class PaymentDocument
          *                         &lt;maxLength value="50"/>
          *                       &lt;/restriction>
          *                     &lt;/simpleType>
-         *                   &lt;/element>
-         *                   &lt;element name="ADRESSE" minOccurs="0">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence>
-         *                             &lt;element name="ADRESSE1" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="255"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="ADRESSE2" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="255"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="BP" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="10"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="PAYS_ADRESSE" minOccurs="0">
-         *                               &lt;complexType>
-         *                                 &lt;complexContent>
-         *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                                     &lt;sequence>
-         *                                       &lt;element name="CODE_PAYS" minOccurs="0">
-         *                                         &lt;simpleType>
-         *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                             &lt;maxLength value="3"/>
-         *                                           &lt;/restriction>
-         *                                         &lt;/simpleType>
-         *                                       &lt;/element>
-         *                                       &lt;element name="NOM_PAYS" minOccurs="0">
-         *                                         &lt;simpleType>
-         *                                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                             &lt;maxLength value="35"/>
-         *                                           &lt;/restriction>
-         *                                         &lt;/simpleType>
-         *                                       &lt;/element>
-         *                                     &lt;/sequence>
-         *                                   &lt;/restriction>
-         *                                 &lt;/complexContent>
-         *                               &lt;/complexType>
-         *                             &lt;/element>
-         *                             &lt;element name="VILLE" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="35"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="EMAIL" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="50"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="SITE_WEB" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="50"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
-         *                   &lt;element name="TELEPHONE_FIXE" minOccurs="0">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence>
-         *                             &lt;element name="INDICATIF_PAYS" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="5"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="NUMERO" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
-         *                   &lt;element name="TELEPHONE_MOBILE" minOccurs="0">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence>
-         *                             &lt;element name="INDICATIF_PAYS" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="5"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="NUMERO" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
-         *                   &lt;element name="FAX" minOccurs="0">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence>
-         *                             &lt;element name="INDICATIF_PAYS" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="5"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                             &lt;element name="NUMERO" minOccurs="0">
-         *                               &lt;simpleType>
-         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
-         *                                 &lt;/restriction>
-         *                               &lt;/simpleType>
-         *                             &lt;/element>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
          *                   &lt;/element>
          *                 &lt;/sequence>
          *               &lt;/restriction>
@@ -2415,7 +1894,7 @@ public class PaymentDocument
          *                             &lt;element name="NUMERO" minOccurs="0">
          *                               &lt;simpleType>
          *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
+         *                                   &lt;maxLength value="50"/>
          *                                 &lt;/restriction>
          *                               &lt;/simpleType>
          *                             &lt;/element>
@@ -2439,7 +1918,7 @@ public class PaymentDocument
          *                             &lt;element name="NUMERO" minOccurs="0">
          *                               &lt;simpleType>
          *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
+         *                                   &lt;maxLength value="50"/>
          *                                 &lt;/restriction>
          *                               &lt;/simpleType>
          *                             &lt;/element>
@@ -2463,7 +1942,7 @@ public class PaymentDocument
          *                             &lt;element name="NUMERO" minOccurs="0">
          *                               &lt;simpleType>
          *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *                                   &lt;maxLength value="15"/>
+         *                                   &lt;maxLength value="50"/>
          *                                 &lt;/restriction>
          *                               &lt;/simpleType>
          *                             &lt;/element>
@@ -2501,13 +1980,49 @@ public class PaymentDocument
          *             &lt;/complexContent>
          *           &lt;/complexType>
          *         &lt;/element>
+         *         &lt;element name="REPARTITIONS" minOccurs="0">
+         *           &lt;complexType>
+         *             &lt;complexContent>
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;sequence>
+         *                   &lt;element name="REPARTITION" maxOccurs="unbounded" minOccurs="0">
+         *                     &lt;complexType>
+         *                       &lt;complexContent>
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                           &lt;sequence>
+         *                             &lt;element name="CODE_BENIF" minOccurs="0">
+         *                               &lt;simpleType>
+         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *                                   &lt;maxLength value="35"/>
+         *                                 &lt;/restriction>
+         *                               &lt;/simpleType>
+         *                             &lt;/element>
+         *                             &lt;element name="TYPE_DOSSIER" minOccurs="0">
+         *                               &lt;simpleType>
+         *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *                                   &lt;maxLength value="50"/>
+         *                                 &lt;/restriction>
+         *                               &lt;/simpleType>
+         *                             &lt;/element>
+         *                             &lt;element name="MONTANT" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
+         *                             &lt;element name="MONTANT_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                           &lt;/sequence>
+         *                         &lt;/restriction>
+         *                       &lt;/complexContent>
+         *                     &lt;/complexType>
+         *                   &lt;/element>
+         *                 &lt;/sequence>
+         *               &lt;/restriction>
+         *             &lt;/complexContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -2517,11 +2032,10 @@ public class PaymentDocument
             "ficherecette",
             "partieversante",
             "chargeur",
-            "beneficiaire"
+            "beneficiaire",
+            "repartitions"
         })
-        public static class PAIEMENT
-            implements Serializable
-        {
+        public static class PAIEMENT {
 
             @XmlElement(name = "FACTURE")
             protected PaymentDocument.CONTENT.PAIEMENT.FACTURE facture;
@@ -2537,14 +2051,15 @@ public class PaymentDocument
             protected PaymentDocument.CONTENT.PAIEMENT.CHARGEUR chargeur;
             @XmlElement(name = "BENEFICIAIRE")
             protected PaymentDocument.CONTENT.PAIEMENT.BENEFICIAIRE beneficiaire;
+            @XmlElement(name = "REPARTITIONS")
+            protected PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS repartitions;
 
             /**
              * Obtient la valeur de la propriété facture.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.FACTURE }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.FACTURE }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.FACTURE getFACTURE() {
                 return facture;
@@ -2552,11 +2067,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété facture.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.FACTURE }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.FACTURE }
+             *
              */
             public void setFACTURE(PaymentDocument.CONTENT.PAIEMENT.FACTURE value) {
                 this.facture = value;
@@ -2564,11 +2078,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété signataire.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.SIGNATAIRE }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.SIGNATAIRE }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.SIGNATAIRE getSIGNATAIRE() {
                 return signataire;
@@ -2576,11 +2089,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété signataire.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.SIGNATAIRE }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.SIGNATAIRE }
+             *
              */
             public void setSIGNATAIRE(PaymentDocument.CONTENT.PAIEMENT.SIGNATAIRE value) {
                 this.signataire = value;
@@ -2588,11 +2100,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété encaissement.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT getENCAISSEMENT() {
                 return encaissement;
@@ -2600,11 +2111,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété encaissement.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT }
+             *
              */
             public void setENCAISSEMENT(PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT value) {
                 this.encaissement = value;
@@ -2612,11 +2122,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété ficherecette.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.FICHERECETTE }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.FICHERECETTE }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.FICHERECETTE getFICHERECETTE() {
                 return ficherecette;
@@ -2624,11 +2133,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété ficherecette.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.FICHERECETTE }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.FICHERECETTE }
+             *
              */
             public void setFICHERECETTE(PaymentDocument.CONTENT.PAIEMENT.FICHERECETTE value) {
                 this.ficherecette = value;
@@ -2636,11 +2144,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété partieversante.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE getPARTIEVERSANTE() {
                 return partieversante;
@@ -2648,11 +2155,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété partieversante.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE }
+             *
              */
             public void setPARTIEVERSANTE(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE value) {
                 this.partieversante = value;
@@ -2660,11 +2166,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété chargeur.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR getCHARGEUR() {
                 return chargeur;
@@ -2672,11 +2177,10 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété chargeur.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR }
+             *
              */
             public void setCHARGEUR(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR value) {
                 this.chargeur = value;
@@ -2684,11 +2188,10 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété beneficiaire.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.BENEFICIAIRE }
-             *     
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.BENEFICIAIRE }
+             *
              */
             public PaymentDocument.CONTENT.PAIEMENT.BENEFICIAIRE getBENEFICIAIRE() {
                 return beneficiaire;
@@ -2696,22 +2199,45 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété beneficiaire.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DOCUMENT.CONTENT.PAIEMENT.BENEFICIAIRE }
-             *     
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.BENEFICIAIRE }
+             *
              */
             public void setBENEFICIAIRE(PaymentDocument.CONTENT.PAIEMENT.BENEFICIAIRE value) {
                 this.beneficiaire = value;
             }
 
+            /**
+             * Obtient la valeur de la propriété repartitions.
+             *
+             * @return possible object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS }
+             *
+             */
+            public PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS getREPARTITIONS() {
+                return repartitions;
+            }
 
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * Définit la valeur de la propriété repartitions.
+             *
+             * @param value allowed object is
+             *     {@link PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS }
+             *
+             */
+            public void setREPARTITIONS(PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS value) {
+                this.repartitions = value;
+            }
+
+            /**
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -2736,17 +2262,15 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
                 "code",
                 "libelle"
             })
-            public static class BENEFICIAIRE
-                implements Serializable
-            {
+            public static class BENEFICIAIRE {
 
                 @XmlElement(name = "CODE")
                 protected String code;
@@ -2755,11 +2279,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété code.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getCODE() {
                     return code;
@@ -2767,11 +2289,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété code.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setCODE(String value) {
                     this.code = value;
@@ -2779,11 +2299,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété libelle.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getLIBELLE() {
                     return libelle;
@@ -2791,11 +2309,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété libelle.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setLIBELLE(String value) {
                     this.libelle = value;
@@ -2803,12 +2319,14 @@ public class PaymentDocument
 
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -2919,7 +2437,7 @@ public class PaymentDocument
              *                   &lt;element name="NUMERO" minOccurs="0">
              *                     &lt;simpleType>
              *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
+             *                         &lt;maxLength value="50"/>
              *                       &lt;/restriction>
              *                     &lt;/simpleType>
              *                   &lt;/element>
@@ -2943,7 +2461,7 @@ public class PaymentDocument
              *                   &lt;element name="NUMERO" minOccurs="0">
              *                     &lt;simpleType>
              *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
+             *                         &lt;maxLength value="50"/>
              *                       &lt;/restriction>
              *                     &lt;/simpleType>
              *                   &lt;/element>
@@ -2967,7 +2485,7 @@ public class PaymentDocument
              *                   &lt;element name="NUMERO" minOccurs="0">
              *                     &lt;simpleType>
              *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
+             *                         &lt;maxLength value="50"/>
              *                       &lt;/restriction>
              *                     &lt;/simpleType>
              *                   &lt;/element>
@@ -2981,8 +2499,8 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -2993,9 +2511,7 @@ public class PaymentDocument
                 "telephonemobile",
                 "fax"
             })
-            public static class CHARGEUR
-                implements Serializable
-            {
+            public static class CHARGEUR {
 
                 @XmlElement(name = "NUMERO_CONTRIBUABLE")
                 protected String numerocontribuable;
@@ -3012,11 +2528,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété numerocontribuable.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNUMEROCONTRIBUABLE() {
                     return numerocontribuable;
@@ -3024,11 +2538,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété numerocontribuable.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNUMEROCONTRIBUABLE(String value) {
                     this.numerocontribuable = value;
@@ -3036,11 +2548,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété raisonsociale.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getRAISONSOCIALE() {
                     return raisonsociale;
@@ -3048,11 +2558,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété raisonsociale.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setRAISONSOCIALE(String value) {
                     this.raisonsociale = value;
@@ -3060,11 +2568,10 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété adresse.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.ADRESSE }
-                 *     
+                 *
+                 * @return possible object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE }
+                 *
                  */
                 public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE getADRESSE() {
                     return adresse;
@@ -3072,11 +2579,10 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété adresse.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.ADRESSE }
-                 *     
+                 *
+                 * @param value allowed object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE }
+                 *
                  */
                 public void setADRESSE(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE value) {
                     this.adresse = value;
@@ -3084,11 +2590,10 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété telephonefixe.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE }
-                 *     
+                 *
+                 * @return possible object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE }
+                 *
                  */
                 public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE getTELEPHONEFIXE() {
                     return telephonefixe;
@@ -3096,11 +2601,10 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété telephonefixe.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE }
-                 *     
+                 *
+                 * @param value allowed object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE }
+                 *
                  */
                 public void setTELEPHONEFIXE(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEFIXE value) {
                     this.telephonefixe = value;
@@ -3108,11 +2612,10 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété telephonemobile.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE }
-                 *     
+                 *
+                 * @return possible object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE }
+                 *
                  */
                 public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE getTELEPHONEMOBILE() {
                     return telephonemobile;
@@ -3120,11 +2623,10 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété telephonemobile.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE }
-                 *     
+                 *
+                 * @param value allowed object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE }
+                 *
                  */
                 public void setTELEPHONEMOBILE(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.TELEPHONEMOBILE value) {
                     this.telephonemobile = value;
@@ -3132,11 +2634,10 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété fax.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.FAX }
-                 *     
+                 *
+                 * @return possible object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.FAX }
+                 *
                  */
                 public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.FAX getFAX() {
                     return fax;
@@ -3144,22 +2645,23 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété fax.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.FAX }
-                 *     
+                 *
+                 * @param value allowed object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.FAX }
+                 *
                  */
                 public void setFAX(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.FAX value) {
                     this.fax = value;
                 }
 
-
                 /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
@@ -3236,8 +2738,8 @@ public class PaymentDocument
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
@@ -3249,9 +2751,7 @@ public class PaymentDocument
                     "email",
                     "siteweb"
                 })
-                public static class ADRESSE
-                    implements Serializable
-                {
+                public static class ADRESSE {
 
                     @XmlElement(name = "ADRESSE1")
                     protected String adresse1;
@@ -3270,11 +2770,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété adresse1.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getADRESSE1() {
                         return adresse1;
@@ -3282,11 +2780,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété adresse1.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setADRESSE1(String value) {
                         this.adresse1 = value;
@@ -3294,11 +2790,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété adresse2.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getADRESSE2() {
                         return adresse2;
@@ -3306,11 +2800,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété adresse2.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setADRESSE2(String value) {
                         this.adresse2 = value;
@@ -3318,11 +2810,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété bp.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getBP() {
                         return bp;
@@ -3330,11 +2820,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété bp.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setBP(String value) {
                         this.bp = value;
@@ -3342,11 +2830,10 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété paysadresse.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE }
-                     *     
+                     *
+                     * @return possible object is
+                     *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE }
+                     *
                      */
                     public PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE getPAYSADRESSE() {
                         return paysadresse;
@@ -3354,11 +2841,10 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété paysadresse.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE }
-                     *     
+                     *
+                     * @param value allowed object is
+                     *     {@link PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE }
+                     *
                      */
                     public void setPAYSADRESSE(PaymentDocument.CONTENT.PAIEMENT.CHARGEUR.ADRESSE.PAYSADRESSE value) {
                         this.paysadresse = value;
@@ -3366,11 +2852,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété ville.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getVILLE() {
                         return ville;
@@ -3378,11 +2862,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété ville.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setVILLE(String value) {
                         this.ville = value;
@@ -3390,11 +2872,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété email.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getEMAIL() {
                         return email;
@@ -3402,11 +2882,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété email.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setEMAIL(String value) {
                         this.email = value;
@@ -3414,11 +2892,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété siteweb.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getSITEWEB() {
                         return siteweb;
@@ -3426,22 +2902,22 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété siteweb.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setSITEWEB(String value) {
                         this.siteweb = value;
                     }
 
-
                     /**
-                     * <p>Classe Java pour anonymous complex type.
-                     * 
-                     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                     * 
+                     * <p>
+                     * Classe Java pour anonymous complex type.
+                     *
+                     * <p>
+                     * Le fragment de schéma suivant indique le contenu attendu
+                     * figurant dans cette classe.
+                     *
                      * <pre>
                      * &lt;complexType>
                      *   &lt;complexContent>
@@ -3466,17 +2942,15 @@ public class PaymentDocument
                      *   &lt;/complexContent>
                      * &lt;/complexType>
                      * </pre>
-                     * 
-                     * 
+                     *
+                     *
                      */
                     @XmlAccessorType(XmlAccessType.FIELD)
                     @XmlType(name = "", propOrder = {
                         "codepays",
                         "nompays"
                     })
-                    public static class PAYSADRESSE
-                        implements Serializable
-                    {
+                    public static class PAYSADRESSE {
 
                         @XmlElement(name = "CODE_PAYS")
                         protected String codepays;
@@ -3485,11 +2959,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété codepays.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getCODEPAYS() {
                             return codepays;
@@ -3497,11 +2969,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété codepays.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setCODEPAYS(String value) {
                             this.codepays = value;
@@ -3509,11 +2979,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété nompays.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getNOMPAYS() {
                             return nompays;
@@ -3521,11 +2989,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété nompays.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setNOMPAYS(String value) {
                             this.nompays = value;
@@ -3535,12 +3001,14 @@ public class PaymentDocument
 
                 }
 
-
                 /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
@@ -3556,7 +3024,7 @@ public class PaymentDocument
                  *         &lt;element name="NUMERO" minOccurs="0">
                  *           &lt;simpleType>
                  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
+                 *               &lt;maxLength value="50"/>
                  *             &lt;/restriction>
                  *           &lt;/simpleType>
                  *         &lt;/element>
@@ -3565,17 +3033,15 @@ public class PaymentDocument
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
                     "indicatifpays",
                     "numero"
                 })
-                public static class FAX
-                    implements Serializable
-                {
+                public static class FAX {
 
                     @XmlElement(name = "INDICATIF_PAYS")
                     protected String indicatifpays;
@@ -3584,11 +3050,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getINDICATIFPAYS() {
                         return indicatifpays;
@@ -3596,11 +3060,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setINDICATIFPAYS(String value) {
                         this.indicatifpays = value;
@@ -3608,11 +3070,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getNUMERO() {
                         return numero;
@@ -3620,11 +3080,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setNUMERO(String value) {
                         this.numero = value;
@@ -3632,12 +3090,14 @@ public class PaymentDocument
 
                 }
 
-
                 /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
@@ -3653,7 +3113,7 @@ public class PaymentDocument
                  *         &lt;element name="NUMERO" minOccurs="0">
                  *           &lt;simpleType>
                  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
+                 *               &lt;maxLength value="50"/>
                  *             &lt;/restriction>
                  *           &lt;/simpleType>
                  *         &lt;/element>
@@ -3662,17 +3122,15 @@ public class PaymentDocument
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
                     "indicatifpays",
                     "numero"
                 })
-                public static class TELEPHONEFIXE
-                    implements Serializable
-                {
+                public static class TELEPHONEFIXE {
 
                     @XmlElement(name = "INDICATIF_PAYS")
                     protected String indicatifpays;
@@ -3681,11 +3139,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getINDICATIFPAYS() {
                         return indicatifpays;
@@ -3693,11 +3149,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setINDICATIFPAYS(String value) {
                         this.indicatifpays = value;
@@ -3705,11 +3159,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getNUMERO() {
                         return numero;
@@ -3717,11 +3169,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setNUMERO(String value) {
                         this.numero = value;
@@ -3729,12 +3179,14 @@ public class PaymentDocument
 
                 }
 
-
                 /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
@@ -3750,7 +3202,7 @@ public class PaymentDocument
                  *         &lt;element name="NUMERO" minOccurs="0">
                  *           &lt;simpleType>
                  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
+                 *               &lt;maxLength value="50"/>
                  *             &lt;/restriction>
                  *           &lt;/simpleType>
                  *         &lt;/element>
@@ -3759,17 +3211,15 @@ public class PaymentDocument
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
                     "indicatifpays",
                     "numero"
                 })
-                public static class TELEPHONEMOBILE
-                    implements Serializable
-                {
+                public static class TELEPHONEMOBILE {
 
                     @XmlElement(name = "INDICATIF_PAYS")
                     protected String indicatifpays;
@@ -3778,11 +3228,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getINDICATIFPAYS() {
                         return indicatifpays;
@@ -3790,11 +3238,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setINDICATIFPAYS(String value) {
                         this.indicatifpays = value;
@@ -3802,11 +3248,9 @@ public class PaymentDocument
 
                     /**
                      * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
                     public String getNUMERO() {
                         return numero;
@@ -3814,11 +3258,9 @@ public class PaymentDocument
 
                     /**
                      * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
                     public void setNUMERO(String value) {
                         this.numero = value;
@@ -3828,12 +3270,14 @@ public class PaymentDocument
 
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -3881,61 +3325,13 @@ public class PaymentDocument
              *             &lt;/restriction>
              *           &lt;/simpleType>
              *         &lt;/element>
-             *         &lt;element name="BANQUE" minOccurs="0">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence>
-             *                   &lt;element name="CODE" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="100"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="LIBELLE" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="100"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="AGENCE" minOccurs="0">
-             *                     &lt;complexType>
-             *                       &lt;complexContent>
-             *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                           &lt;sequence>
-             *                             &lt;element name="CODE" minOccurs="0">
-             *                               &lt;simpleType>
-             *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                                   &lt;maxLength value="100"/>
-             *                                 &lt;/restriction>
-             *                               &lt;/simpleType>
-             *                             &lt;/element>
-             *                             &lt;element name="LIBELLE" minOccurs="0">
-             *                               &lt;simpleType>
-             *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                                   &lt;maxLength value="100"/>
-             *                                 &lt;/restriction>
-             *                               &lt;/simpleType>
-             *                             &lt;/element>
-             *                           &lt;/sequence>
-             *                         &lt;/restriction>
-             *                       &lt;/complexContent>
-             *                     &lt;/complexType>
-             *                   &lt;/element>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -3944,12 +3340,9 @@ public class PaymentDocument
                 "dateencaissement",
                 "montant",
                 "observations",
-                "canalencaissement",
-                "banque"
+                "canalencaissement"
             })
-            public static class ENCAISSEMENT
-                implements Serializable
-            {
+            public static class ENCAISSEMENT {
 
                 @XmlElement(name = "NUMERO_RECU")
                 protected String numerorecu;
@@ -3963,16 +3356,12 @@ public class PaymentDocument
                 protected String observations;
                 @XmlElement(name = "CANAL_ENCAISSEMENT")
                 protected String canalencaissement;
-                @XmlElement(name = "BANQUE")
-                protected PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE banque;
 
                 /**
                  * Obtient la valeur de la propriété numerorecu.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNUMERORECU() {
                     return numerorecu;
@@ -3980,11 +3369,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété numerorecu.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNUMERORECU(String value) {
                     this.numerorecu = value;
@@ -3992,11 +3379,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété nature.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNATURE() {
                     return nature;
@@ -4004,11 +3389,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété nature.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNATURE(String value) {
                     this.nature = value;
@@ -4016,11 +3399,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété dateencaissement.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getDATEENCAISSEMENT() {
                     return dateencaissement;
@@ -4028,11 +3409,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété dateencaissement.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setDATEENCAISSEMENT(String value) {
                     this.dateencaissement = value;
@@ -4040,11 +3419,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété montant.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getMONTANT() {
                     return montant;
@@ -4052,11 +3429,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété montant.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setMONTANT(String value) {
                     this.montant = value;
@@ -4064,11 +3439,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété observations.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getOBSERVATIONS() {
                     return observations;
@@ -4076,11 +3449,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété observations.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setOBSERVATIONS(String value) {
                     this.observations = value;
@@ -4088,11 +3459,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété canalencaissement.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getCANALENCAISSEMENT() {
                     return canalencaissement;
@@ -4100,299 +3469,37 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété canalencaissement.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setCANALENCAISSEMENT(String value) {
                     this.canalencaissement = value;
                 }
 
-                /**
-                 * Obtient la valeur de la propriété banque.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE }
-                 *     
-                 */
-                public PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE getBANQUE() {
-                    return banque;
-                }
-
-                /**
-                 * Définit la valeur de la propriété banque.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE }
-                 *     
-                 */
-                public void setBANQUE(PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE value) {
-                    this.banque = value;
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence>
-                 *         &lt;element name="CODE" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="100"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="LIBELLE" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="100"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="AGENCE" minOccurs="0">
-                 *           &lt;complexType>
-                 *             &lt;complexContent>
-                 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *                 &lt;sequence>
-                 *                   &lt;element name="CODE" minOccurs="0">
-                 *                     &lt;simpleType>
-                 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *                         &lt;maxLength value="100"/>
-                 *                       &lt;/restriction>
-                 *                     &lt;/simpleType>
-                 *                   &lt;/element>
-                 *                   &lt;element name="LIBELLE" minOccurs="0">
-                 *                     &lt;simpleType>
-                 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *                         &lt;maxLength value="100"/>
-                 *                       &lt;/restriction>
-                 *                     &lt;/simpleType>
-                 *                   &lt;/element>
-                 *                 &lt;/sequence>
-                 *               &lt;/restriction>
-                 *             &lt;/complexContent>
-                 *           &lt;/complexType>
-                 *         &lt;/element>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "code",
-                    "libelle",
-                    "agence"
-                })
-                public static class BANQUE
-                    implements Serializable
-                {
-
-                    @XmlElement(name = "CODE")
-                    protected String code;
-                    @XmlElement(name = "LIBELLE")
-                    protected String libelle;
-                    @XmlElement(name = "AGENCE")
-                    protected PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE.AGENCE agence;
-
-                    /**
-                     * Obtient la valeur de la propriété code.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getCODE() {
-                        return code;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété code.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setCODE(String value) {
-                        this.code = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété libelle.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getLIBELLE() {
-                        return libelle;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété libelle.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setLIBELLE(String value) {
-                        this.libelle = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété agence.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE.AGENCE }
-                     *     
-                     */
-                    public PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE.AGENCE getAGENCE() {
-                        return agence;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété agence.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE.AGENCE }
-                     *     
-                     */
-                    public void setAGENCE(PaymentDocument.CONTENT.PAIEMENT.ENCAISSEMENT.BANQUE.AGENCE value) {
-                        this.agence = value;
-                    }
-
-
-                    /**
-                     * <p>Classe Java pour anonymous complex type.
-                     * 
-                     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                     * 
-                     * <pre>
-                     * &lt;complexType>
-                     *   &lt;complexContent>
-                     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                     *       &lt;sequence>
-                     *         &lt;element name="CODE" minOccurs="0">
-                     *           &lt;simpleType>
-                     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                     *               &lt;maxLength value="100"/>
-                     *             &lt;/restriction>
-                     *           &lt;/simpleType>
-                     *         &lt;/element>
-                     *         &lt;element name="LIBELLE" minOccurs="0">
-                     *           &lt;simpleType>
-                     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                     *               &lt;maxLength value="100"/>
-                     *             &lt;/restriction>
-                     *           &lt;/simpleType>
-                     *         &lt;/element>
-                     *       &lt;/sequence>
-                     *     &lt;/restriction>
-                     *   &lt;/complexContent>
-                     * &lt;/complexType>
-                     * </pre>
-                     * 
-                     * 
-                     */
-                    @XmlAccessorType(XmlAccessType.FIELD)
-                    @XmlType(name = "", propOrder = {
-                        "code",
-                        "libelle"
-                    })
-                    public static class AGENCE
-                        implements Serializable
-                    {
-
-                        @XmlElement(name = "CODE")
-                        protected String code;
-                        @XmlElement(name = "LIBELLE")
-                        protected String libelle;
-
-                        /**
-                         * Obtient la valeur de la propriété code.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getCODE() {
-                            return code;
-                        }
-
-                        /**
-                         * Définit la valeur de la propriété code.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setCODE(String value) {
-                            this.code = value;
-                        }
-
-                        /**
-                         * Obtient la valeur de la propriété libelle.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getLIBELLE() {
-                            return libelle;
-                        }
-
-                        /**
-                         * Définit la valeur de la propriété libelle.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setLIBELLE(String value) {
-                            this.libelle = value;
-                        }
-
-                    }
-
-                }
-
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;sequence>
              *         &lt;element name="REFERENCE_FACTURE" minOccurs="0">
+             *           &lt;simpleType>
+             *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+             *               &lt;maxLength value="35"/>
+             *             &lt;/restriction>
+             *           &lt;/simpleType>
+             *         &lt;/element>
+             *         &lt;element name="DATE_FACTURATION" minOccurs="0">
              *           &lt;simpleType>
              *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
              *               &lt;maxLength value="35"/>
@@ -4501,12 +3608,13 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
                 "referencefacture",
+                "datefacturation",
                 "detailfactures",
                 "montantht",
                 "montanttva",
@@ -4514,12 +3622,12 @@ public class PaymentDocument
                 "autremontant",
                 "typefacture"
             })
-            public static class FACTURE
-                implements Serializable
-            {
+            public static class FACTURE {
 
                 @XmlElement(name = "REFERENCE_FACTURE")
                 protected String referencefacture;
+                @XmlElement(name = "DATE_FACTURATION")
+                protected String datefacturation;
                 @XmlElement(name = "DETAIL_FACTURES")
                 protected PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES detailfactures;
                 @XmlElement(name = "MONTANT_HT")
@@ -4535,11 +3643,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété referencefacture.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getREFERENCEFACTURE() {
                     return referencefacture;
@@ -4547,23 +3653,40 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété referencefacture.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setREFERENCEFACTURE(String value) {
                     this.referencefacture = value;
                 }
 
                 /**
+                 * Obtient la valeur de la propriété datefacturation.
+                 *
+                 * @return possible object is {@link String }
+                 *
+                 */
+                public String getDATEFACTURATION() {
+                    return datefacturation;
+                }
+
+                /**
+                 * Définit la valeur de la propriété datefacturation.
+                 *
+                 * @param value allowed object is {@link String }
+                 *
+                 */
+                public void setDATEFACTURATION(String value) {
+                    this.datefacturation = value;
+                }
+
+                /**
                  * Obtient la valeur de la propriété detailfactures.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES }
-                 *     
+                 *
+                 * @return possible object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES }
+                 *
                  */
                 public PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES getDETAILFACTURES() {
                     return detailfactures;
@@ -4571,11 +3694,10 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété detailfactures.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES }
-                 *     
+                 *
+                 * @param value allowed object is
+                 *     {@link PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES }
+                 *
                  */
                 public void setDETAILFACTURES(PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES value) {
                     this.detailfactures = value;
@@ -4583,11 +3705,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété montantht.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getMONTANTHT() {
                     return montantht;
@@ -4595,11 +3715,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété montantht.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setMONTANTHT(String value) {
                     this.montantht = value;
@@ -4607,11 +3725,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété montanttva.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getMONTANTTVA() {
                     return montanttva;
@@ -4619,11 +3735,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété montanttva.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setMONTANTTVA(String value) {
                     this.montanttva = value;
@@ -4631,11 +3745,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété montantttc.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getMONTANTTTC() {
                     return montantttc;
@@ -4643,11 +3755,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété montantttc.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setMONTANTTTC(String value) {
                     this.montantttc = value;
@@ -4655,11 +3765,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété autremontant.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getAUTREMONTANT() {
                     return autremontant;
@@ -4667,11 +3775,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété autremontant.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setAUTREMONTANT(String value) {
                     this.autremontant = value;
@@ -4679,11 +3785,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété typefacture.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getTYPEFACTURE() {
                     return typefacture;
@@ -4691,22 +3795,22 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété typefacture.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setTYPEFACTURE(String value) {
                     this.typefacture = value;
                 }
 
-
                 /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
@@ -4769,41 +3873,40 @@ public class PaymentDocument
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
                     "detailfacture"
                 })
-                public static class DETAILFACTURES
-                    implements Serializable
-                {
+                public static class DETAILFACTURES {
 
                     @XmlElement(name = "DETAIL_FACTURE")
                     protected List<PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES.DETAILFACTURE> detailfacture;
 
                     /**
                      * Gets the value of the detailfacture property.
-                     * 
+                     *
                      * <p>
-                     * This accessor method returns a reference to the live list,
-                     * not a snapshot. Therefore any modification you make to the
-                     * returned list will be present inside the JAXB object.
-                     * This is why there is not a <CODE>set</CODE> method for the detailfacture property.
-                     * 
+                     * This accessor method returns a reference to the live
+                     * list, not a snapshot. Therefore any modification you make
+                     * to the returned list will be present inside the JAXB
+                     * object. This is why there is not a <CODE>set</CODE>
+                     * method for the detailfacture property.
+                     *
                      * <p>
                      * For example, to add a new item, do as follows:
                      * <pre>
                      *    getDETAILFACTURE().add(newItem);
                      * </pre>
-                     * 
-                     * 
+                     *
+                     *
                      * <p>
                      * Objects of the following type(s) are allowed in the list
-                     * {@link DOCUMENT.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES.DETAILFACTURE }
-                     * 
-                     * 
+                     * {@link PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES.DETAILFACTURE }
+                     *
+                     *
                      */
                     public List<PaymentDocument.CONTENT.PAIEMENT.FACTURE.DETAILFACTURES.DETAILFACTURE> getDETAILFACTURE() {
                         if (detailfacture == null) {
@@ -4812,12 +3915,14 @@ public class PaymentDocument
                         return this.detailfacture;
                     }
 
-
                     /**
-                     * <p>Classe Java pour anonymous complex type.
-                     * 
-                     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                     * 
+                     * <p>
+                     * Classe Java pour anonymous complex type.
+                     *
+                     * <p>
+                     * Le fragment de schéma suivant indique le contenu attendu
+                     * figurant dans cette classe.
+                     *
                      * <pre>
                      * &lt;complexType>
                      *   &lt;complexContent>
@@ -4870,8 +3975,8 @@ public class PaymentDocument
                      *   &lt;/complexContent>
                      * &lt;/complexType>
                      * </pre>
-                     * 
-                     * 
+                     *
+                     *
                      */
                     @XmlAccessorType(XmlAccessType.FIELD)
                     @XmlType(name = "", propOrder = {
@@ -4882,9 +3987,7 @@ public class PaymentDocument
                         "montanttva",
                         "montantttc"
                     })
-                    public static class DETAILFACTURE
-                        implements Serializable
-                    {
+                    public static class DETAILFACTURE {
 
                         @XmlElement(name = "NUMERO_LIGNE")
                         protected String numeroligne;
@@ -4901,11 +4004,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété numeroligne.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getNUMEROLIGNE() {
                             return numeroligne;
@@ -4913,11 +4014,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété numeroligne.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setNUMEROLIGNE(String value) {
                             this.numeroligne = value;
@@ -4925,11 +4024,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété codearticle.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getCODEARTICLE() {
                             return codearticle;
@@ -4937,11 +4034,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété codearticle.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setCODEARTICLE(String value) {
                             this.codearticle = value;
@@ -4949,11 +4044,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété libellearticle.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getLIBELLEARTICLE() {
                             return libellearticle;
@@ -4961,11 +4054,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété libellearticle.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setLIBELLEARTICLE(String value) {
                             this.libellearticle = value;
@@ -4973,11 +4064,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété montantht.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getMONTANTHT() {
                             return montantht;
@@ -4985,11 +4074,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété montantht.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setMONTANTHT(String value) {
                             this.montantht = value;
@@ -4997,11 +4084,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété montanttva.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getMONTANTTVA() {
                             return montanttva;
@@ -5009,11 +4094,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété montanttva.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setMONTANTTVA(String value) {
                             this.montanttva = value;
@@ -5021,11 +4104,9 @@ public class PaymentDocument
 
                         /**
                          * Obtient la valeur de la propriété montantttc.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @return possible object is {@link String }
+                         *
                          */
                         public String getMONTANTTTC() {
                             return montantttc;
@@ -5033,11 +4114,9 @@ public class PaymentDocument
 
                         /**
                          * Définit la valeur de la propriété montantttc.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
+                         *
+                         * @param value allowed object is {@link String }
+                         *
                          */
                         public void setMONTANTTTC(String value) {
                             this.montantttc = value;
@@ -5049,12 +4128,14 @@ public class PaymentDocument
 
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -5100,8 +4181,8 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -5111,9 +4192,7 @@ public class PaymentDocument
                 "numeroquittance",
                 "naturerecetterubrique"
             })
-            public static class FICHERECETTE
-                implements Serializable
-            {
+            public static class FICHERECETTE {
 
                 @XmlElement(name = "NUMERO_ROLE")
                 protected String numerorole;
@@ -5128,11 +4207,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété numerorole.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNUMEROROLE() {
                     return numerorole;
@@ -5140,11 +4217,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété numerorole.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNUMEROROLE(String value) {
                     this.numerorole = value;
@@ -5152,11 +4227,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété imputation.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getIMPUTATION() {
                     return imputation;
@@ -5164,11 +4237,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété imputation.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setIMPUTATION(String value) {
                     this.imputation = value;
@@ -5176,11 +4247,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété article.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getARTICLE() {
                     return article;
@@ -5188,11 +4257,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété article.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setARTICLE(String value) {
                     this.article = value;
@@ -5200,11 +4267,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété numeroquittance.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNUMEROQUITTANCE() {
                     return numeroquittance;
@@ -5212,11 +4277,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété numeroquittance.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNUMEROQUITTANCE(String value) {
                     this.numeroquittance = value;
@@ -5224,11 +4287,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété naturerecetterubrique.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNATURERECETTERUBRIQUE() {
                     return naturerecetterubrique;
@@ -5236,11 +4297,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété naturerecetterubrique.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNATURERECETTERUBRIQUE(String value) {
                     this.naturerecetterubrique = value;
@@ -5248,12 +4307,14 @@ public class PaymentDocument
 
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -5273,149 +4334,102 @@ public class PaymentDocument
              *             &lt;/restriction>
              *           &lt;/simpleType>
              *         &lt;/element>
-             *         &lt;element name="ADRESSE" minOccurs="0">
+             *       &lt;/sequence>
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             *
+             *
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "numerocontribuable",
+                "raisonsociale"
+            })
+            public static class PARTIEVERSANTE {
+
+                @XmlElement(name = "NUMERO_CONTRIBUABLE")
+                protected String numerocontribuable;
+                @XmlElement(name = "RAISON_SOCIALE")
+                protected String raisonsociale;
+
+                /**
+                 * Obtient la valeur de la propriété numerocontribuable.
+                 *
+                 * @return possible object is {@link String }
+                 *
+                 */
+                public String getNUMEROCONTRIBUABLE() {
+                    return numerocontribuable;
+                }
+
+                /**
+                 * Définit la valeur de la propriété numerocontribuable.
+                 *
+                 * @param value allowed object is {@link String }
+                 *
+                 */
+                public void setNUMEROCONTRIBUABLE(String value) {
+                    this.numerocontribuable = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété raisonsociale.
+                 *
+                 * @return possible object is {@link String }
+                 *
+                 */
+                public String getRAISONSOCIALE() {
+                    return raisonsociale;
+                }
+
+                /**
+                 * Définit la valeur de la propriété raisonsociale.
+                 *
+                 * @param value allowed object is {@link String }
+                 *
+                 */
+                public void setRAISONSOCIALE(String value) {
+                    this.raisonsociale = value;
+                }
+
+            }
+
+            /**
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *       &lt;sequence>
+             *         &lt;element name="REPARTITION" maxOccurs="unbounded" minOccurs="0">
              *           &lt;complexType>
              *             &lt;complexContent>
              *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *                 &lt;sequence>
-             *                   &lt;element name="ADRESSE1" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="255"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="ADRESSE2" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="255"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="BP" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="10"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="PAYS_ADRESSE" minOccurs="0">
-             *                     &lt;complexType>
-             *                       &lt;complexContent>
-             *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                           &lt;sequence>
-             *                             &lt;element name="CODE_PAYS" minOccurs="0">
-             *                               &lt;simpleType>
-             *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                                   &lt;maxLength value="3"/>
-             *                                 &lt;/restriction>
-             *                               &lt;/simpleType>
-             *                             &lt;/element>
-             *                             &lt;element name="NOM_PAYS" minOccurs="0">
-             *                               &lt;simpleType>
-             *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                                   &lt;maxLength value="35"/>
-             *                                 &lt;/restriction>
-             *                               &lt;/simpleType>
-             *                             &lt;/element>
-             *                           &lt;/sequence>
-             *                         &lt;/restriction>
-             *                       &lt;/complexContent>
-             *                     &lt;/complexType>
-             *                   &lt;/element>
-             *                   &lt;element name="VILLE" minOccurs="0">
+             *                   &lt;element name="CODE_BENIF" minOccurs="0">
              *                     &lt;simpleType>
              *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
              *                         &lt;maxLength value="35"/>
              *                       &lt;/restriction>
              *                     &lt;/simpleType>
              *                   &lt;/element>
-             *                   &lt;element name="EMAIL" minOccurs="0">
+             *                   &lt;element name="TYPE_DOSSIER" minOccurs="0">
              *                     &lt;simpleType>
              *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
              *                         &lt;maxLength value="50"/>
              *                       &lt;/restriction>
              *                     &lt;/simpleType>
              *                   &lt;/element>
-             *                   &lt;element name="SITE_WEB" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="50"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
-             *         &lt;element name="TELEPHONE_FIXE" minOccurs="0">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence>
-             *                   &lt;element name="INDICATIF_PAYS" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="5"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="NUMERO" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
-             *         &lt;element name="TELEPHONE_MOBILE" minOccurs="0">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence>
-             *                   &lt;element name="INDICATIF_PAYS" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="5"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="NUMERO" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
-             *         &lt;element name="FAX" minOccurs="0">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence>
-             *                   &lt;element name="INDICATIF_PAYS" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="5"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
-             *                   &lt;element name="NUMERO" minOccurs="0">
-             *                     &lt;simpleType>
-             *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-             *                         &lt;maxLength value="15"/>
-             *                       &lt;/restriction>
-             *                     &lt;/simpleType>
-             *                   &lt;/element>
+             *                   &lt;element name="MONTANT" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
+             *                   &lt;element name="MONTANT_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
              *                 &lt;/sequence>
              *               &lt;/restriction>
              *             &lt;/complexContent>
@@ -5426,859 +4440,195 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "numerocontribuable",
-                "raisonsociale",
-                "adresse",
-                "telephonefixe",
-                "telephonemobile",
-                "fax"
+                "repartition"
             })
-            public static class PARTIEVERSANTE
-                implements Serializable
-            {
+            public static class REPARTITIONS {
 
-                @XmlElement(name = "NUMERO_CONTRIBUABLE")
-                protected String numerocontribuable;
-                @XmlElement(name = "RAISON_SOCIALE")
-                protected String raisonsociale;
-                @XmlElement(name = "ADRESSE")
-                protected PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE adresse;
-                @XmlElement(name = "TELEPHONE_FIXE")
-                protected PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEFIXE telephonefixe;
-                @XmlElement(name = "TELEPHONE_MOBILE")
-                protected PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEMOBILE telephonemobile;
-                @XmlElement(name = "FAX")
-                protected PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.FAX fax;
+                @XmlElement(name = "REPARTITION")
+                protected List<PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS.REPARTITION> repartition;
 
                 /**
-                 * Obtient la valeur de la propriété numerocontribuable.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 * Gets the value of the repartition property.
+                 *
+                 * <p>
+                 * This accessor method returns a reference to the live list,
+                 * not a snapshot. Therefore any modification you make to the
+                 * returned list will be present inside the JAXB object. This is
+                 * why there is not a <CODE>set</CODE> method for the
+                 * repartition property.
+                 *
+                 * <p>
+                 * For example, to add a new item, do as follows:
+                 * <pre>
+                 *    getREPARTITION().add(newItem);
+                 * </pre>
+                 *
+                 *
+                 * <p>
+                 * Objects of the following type(s) are allowed in the list
+                 * {@link PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS.REPARTITION }
+                 *
+                 *
                  */
-                public String getNUMEROCONTRIBUABLE() {
-                    return numerocontribuable;
+                public List<PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS.REPARTITION> getREPARTITION() {
+                    if (repartition == null) {
+                        repartition = new ArrayList<PaymentDocument.CONTENT.PAIEMENT.REPARTITIONS.REPARTITION>();
+                    }
+                    return this.repartition;
                 }
 
                 /**
-                 * Définit la valeur de la propriété numerocontribuable.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setNUMEROCONTRIBUABLE(String value) {
-                    this.numerocontribuable = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété raisonsociale.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getRAISONSOCIALE() {
-                    return raisonsociale;
-                }
-
-                /**
-                 * Définit la valeur de la propriété raisonsociale.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setRAISONSOCIALE(String value) {
-                    this.raisonsociale = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété adresse.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE }
-                 *     
-                 */
-                public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE getADRESSE() {
-                    return adresse;
-                }
-
-                /**
-                 * Définit la valeur de la propriété adresse.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE }
-                 *     
-                 */
-                public void setADRESSE(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE value) {
-                    this.adresse = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété telephonefixe.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEFIXE }
-                 *     
-                 */
-                public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEFIXE getTELEPHONEFIXE() {
-                    return telephonefixe;
-                }
-
-                /**
-                 * Définit la valeur de la propriété telephonefixe.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEFIXE }
-                 *     
-                 */
-                public void setTELEPHONEFIXE(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEFIXE value) {
-                    this.telephonefixe = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété telephonemobile.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEMOBILE }
-                 *     
-                 */
-                public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEMOBILE getTELEPHONEMOBILE() {
-                    return telephonemobile;
-                }
-
-                /**
-                 * Définit la valeur de la propriété telephonemobile.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEMOBILE }
-                 *     
-                 */
-                public void setTELEPHONEMOBILE(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.TELEPHONEMOBILE value) {
-                    this.telephonemobile = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété fax.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.FAX }
-                 *     
-                 */
-                public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.FAX getFAX() {
-                    return fax;
-                }
-
-                /**
-                 * Définit la valeur de la propriété fax.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.FAX }
-                 *     
-                 */
-                public void setFAX(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.FAX value) {
-                    this.fax = value;
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
+                 * <p>
+                 * Classe Java pour anonymous complex type.
+                 *
+                 * <p>
+                 * Le fragment de schéma suivant indique le contenu attendu
+                 * figurant dans cette classe.
+                 *
                  * <pre>
                  * &lt;complexType>
                  *   &lt;complexContent>
                  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                  *       &lt;sequence>
-                 *         &lt;element name="ADRESSE1" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="255"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="ADRESSE2" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="255"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="BP" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="10"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="PAYS_ADRESSE" minOccurs="0">
-                 *           &lt;complexType>
-                 *             &lt;complexContent>
-                 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *                 &lt;sequence>
-                 *                   &lt;element name="CODE_PAYS" minOccurs="0">
-                 *                     &lt;simpleType>
-                 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *                         &lt;maxLength value="3"/>
-                 *                       &lt;/restriction>
-                 *                     &lt;/simpleType>
-                 *                   &lt;/element>
-                 *                   &lt;element name="NOM_PAYS" minOccurs="0">
-                 *                     &lt;simpleType>
-                 *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *                         &lt;maxLength value="35"/>
-                 *                       &lt;/restriction>
-                 *                     &lt;/simpleType>
-                 *                   &lt;/element>
-                 *                 &lt;/sequence>
-                 *               &lt;/restriction>
-                 *             &lt;/complexContent>
-                 *           &lt;/complexType>
-                 *         &lt;/element>
-                 *         &lt;element name="VILLE" minOccurs="0">
+                 *         &lt;element name="CODE_BENIF" minOccurs="0">
                  *           &lt;simpleType>
                  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
                  *               &lt;maxLength value="35"/>
                  *             &lt;/restriction>
                  *           &lt;/simpleType>
                  *         &lt;/element>
-                 *         &lt;element name="EMAIL" minOccurs="0">
+                 *         &lt;element name="TYPE_DOSSIER" minOccurs="0">
                  *           &lt;simpleType>
                  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
                  *               &lt;maxLength value="50"/>
                  *             &lt;/restriction>
                  *           &lt;/simpleType>
                  *         &lt;/element>
-                 *         &lt;element name="SITE_WEB" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="50"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
+                 *         &lt;element name="MONTANT" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
+                 *         &lt;element name="MONTANT_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
                  *       &lt;/sequence>
                  *     &lt;/restriction>
                  *   &lt;/complexContent>
                  * &lt;/complexType>
                  * </pre>
-                 * 
-                 * 
+                 *
+                 *
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
-                    "adresse1",
-                    "adresse2",
-                    "bp",
-                    "paysadresse",
-                    "ville",
-                    "email",
-                    "siteweb"
+                    "codebenif",
+                    "typedossier",
+                    "montant",
+                    "montantstring"
                 })
-                public static class ADRESSE
-                    implements Serializable
-                {
+                public static class REPARTITION {
 
-                    @XmlElement(name = "ADRESSE1")
-                    protected String adresse1;
-                    @XmlElement(name = "ADRESSE2")
-                    protected String adresse2;
-                    @XmlElement(name = "BP")
-                    protected String bp;
-                    @XmlElement(name = "PAYS_ADRESSE")
-                    protected PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE.PAYSADRESSE paysadresse;
-                    @XmlElement(name = "VILLE")
-                    protected String ville;
-                    @XmlElement(name = "EMAIL")
-                    protected String email;
-                    @XmlElement(name = "SITE_WEB")
-                    protected String siteweb;
+                    @XmlElement(name = "CODE_BENIF")
+                    protected String codebenif;
+                    @XmlElement(name = "TYPE_DOSSIER")
+                    protected String typedossier;
+                    @XmlElement(name = "MONTANT")
+                    protected Float montant;
+                    @XmlElement(name = "MONTANT_STRING")
+                    protected String montantstring;
 
                     /**
-                     * Obtient la valeur de la propriété adresse1.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     * Obtient la valeur de la propriété codebenif.
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
-                    public String getADRESSE1() {
-                        return adresse1;
+                    public String getCODEBENIF() {
+                        return codebenif;
                     }
 
                     /**
-                     * Définit la valeur de la propriété adresse1.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     * Définit la valeur de la propriété codebenif.
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
-                    public void setADRESSE1(String value) {
-                        this.adresse1 = value;
+                    public void setCODEBENIF(String value) {
+                        this.codebenif = value;
                     }
 
                     /**
-                     * Obtient la valeur de la propriété adresse2.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     * Obtient la valeur de la propriété typedossier.
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
-                    public String getADRESSE2() {
-                        return adresse2;
+                    public String getTYPEDOSSIER() {
+                        return typedossier;
                     }
 
                     /**
-                     * Définit la valeur de la propriété adresse2.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     * Définit la valeur de la propriété typedossier.
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
-                    public void setADRESSE2(String value) {
-                        this.adresse2 = value;
+                    public void setTYPEDOSSIER(String value) {
+                        this.typedossier = value;
                     }
 
                     /**
-                     * Obtient la valeur de la propriété bp.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
+                     * Obtient la valeur de la propriété montant.
+                     *
+                     * @return possible object is {@link Float }
+                     *
                      */
-                    public String getBP() {
-                        return bp;
+                    public Float getMONTANT() {
+                        return montant;
                     }
 
                     /**
-                     * Définit la valeur de la propriété bp.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
+                     * Définit la valeur de la propriété montant.
+                     *
+                     * @param value allowed object is {@link Float }
+                     *
                      */
-                    public void setBP(String value) {
-                        this.bp = value;
+                    public void setMONTANT(Float value) {
+                        this.montant = value;
                     }
 
                     /**
-                     * Obtient la valeur de la propriété paysadresse.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE.PAYSADRESSE }
-                     *     
+                     * Obtient la valeur de la propriété montantstring.
+                     *
+                     * @return possible object is {@link String }
+                     *
                      */
-                    public PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE.PAYSADRESSE getPAYSADRESSE() {
-                        return paysadresse;
+                    public String getMONTANTSTRING() {
+                        return montantstring;
                     }
 
                     /**
-                     * Définit la valeur de la propriété paysadresse.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link DOCUMENT.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE.PAYSADRESSE }
-                     *     
+                     * Définit la valeur de la propriété montantstring.
+                     *
+                     * @param value allowed object is {@link String }
+                     *
                      */
-                    public void setPAYSADRESSE(PaymentDocument.CONTENT.PAIEMENT.PARTIEVERSANTE.ADRESSE.PAYSADRESSE value) {
-                        this.paysadresse = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété ville.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getVILLE() {
-                        return ville;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété ville.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setVILLE(String value) {
-                        this.ville = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété email.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getEMAIL() {
-                        return email;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété email.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setEMAIL(String value) {
-                        this.email = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété siteweb.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getSITEWEB() {
-                        return siteweb;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété siteweb.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setSITEWEB(String value) {
-                        this.siteweb = value;
-                    }
-
-
-                    /**
-                     * <p>Classe Java pour anonymous complex type.
-                     * 
-                     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                     * 
-                     * <pre>
-                     * &lt;complexType>
-                     *   &lt;complexContent>
-                     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                     *       &lt;sequence>
-                     *         &lt;element name="CODE_PAYS" minOccurs="0">
-                     *           &lt;simpleType>
-                     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                     *               &lt;maxLength value="3"/>
-                     *             &lt;/restriction>
-                     *           &lt;/simpleType>
-                     *         &lt;/element>
-                     *         &lt;element name="NOM_PAYS" minOccurs="0">
-                     *           &lt;simpleType>
-                     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                     *               &lt;maxLength value="35"/>
-                     *             &lt;/restriction>
-                     *           &lt;/simpleType>
-                     *         &lt;/element>
-                     *       &lt;/sequence>
-                     *     &lt;/restriction>
-                     *   &lt;/complexContent>
-                     * &lt;/complexType>
-                     * </pre>
-                     * 
-                     * 
-                     */
-                    @XmlAccessorType(XmlAccessType.FIELD)
-                    @XmlType(name = "", propOrder = {
-                        "codepays",
-                        "nompays"
-                    })
-                    public static class PAYSADRESSE
-                        implements Serializable
-                    {
-
-                        @XmlElement(name = "CODE_PAYS")
-                        protected String codepays;
-                        @XmlElement(name = "NOM_PAYS")
-                        protected String nompays;
-
-                        /**
-                         * Obtient la valeur de la propriété codepays.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getCODEPAYS() {
-                            return codepays;
-                        }
-
-                        /**
-                         * Définit la valeur de la propriété codepays.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setCODEPAYS(String value) {
-                            this.codepays = value;
-                        }
-
-                        /**
-                         * Obtient la valeur de la propriété nompays.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getNOMPAYS() {
-                            return nompays;
-                        }
-
-                        /**
-                         * Définit la valeur de la propriété nompays.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setNOMPAYS(String value) {
-                            this.nompays = value;
-                        }
-
-                    }
-
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence>
-                 *         &lt;element name="INDICATIF_PAYS" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="5"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="NUMERO" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "indicatifpays",
-                    "numero"
-                })
-                public static class FAX
-                    implements Serializable
-                {
-
-                    @XmlElement(name = "INDICATIF_PAYS")
-                    protected String indicatifpays;
-                    @XmlElement(name = "NUMERO")
-                    protected String numero;
-
-                    /**
-                     * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getINDICATIFPAYS() {
-                        return indicatifpays;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setINDICATIFPAYS(String value) {
-                        this.indicatifpays = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getNUMERO() {
-                        return numero;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setNUMERO(String value) {
-                        this.numero = value;
-                    }
-
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence>
-                 *         &lt;element name="INDICATIF_PAYS" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="5"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="NUMERO" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "indicatifpays",
-                    "numero"
-                })
-                public static class TELEPHONEFIXE
-                    implements Serializable
-                {
-
-                    @XmlElement(name = "INDICATIF_PAYS")
-                    protected String indicatifpays;
-                    @XmlElement(name = "NUMERO")
-                    protected String numero;
-
-                    /**
-                     * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getINDICATIFPAYS() {
-                        return indicatifpays;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setINDICATIFPAYS(String value) {
-                        this.indicatifpays = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getNUMERO() {
-                        return numero;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setNUMERO(String value) {
-                        this.numero = value;
-                    }
-
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence>
-                 *         &lt;element name="INDICATIF_PAYS" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="5"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *         &lt;element name="NUMERO" minOccurs="0">
-                 *           &lt;simpleType>
-                 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-                 *               &lt;maxLength value="15"/>
-                 *             &lt;/restriction>
-                 *           &lt;/simpleType>
-                 *         &lt;/element>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "indicatifpays",
-                    "numero"
-                })
-                public static class TELEPHONEMOBILE
-                    implements Serializable
-                {
-
-                    @XmlElement(name = "INDICATIF_PAYS")
-                    protected String indicatifpays;
-                    @XmlElement(name = "NUMERO")
-                    protected String numero;
-
-                    /**
-                     * Obtient la valeur de la propriété indicatifpays.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getINDICATIFPAYS() {
-                        return indicatifpays;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété indicatifpays.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setINDICATIFPAYS(String value) {
-                        this.indicatifpays = value;
-                    }
-
-                    /**
-                     * Obtient la valeur de la propriété numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getNUMERO() {
-                        return numero;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setNUMERO(String value) {
-                        this.numero = value;
+                    public void setMONTANTSTRING(String value) {
+                        this.montantstring = value;
                     }
 
                 }
 
             }
 
-
             /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
+             * <p>
+             * Classe Java pour anonymous complex type.
+             *
+             * <p>
+             * Le fragment de schéma suivant indique le contenu attendu figurant
+             * dans cette classe.
+             *
              * <pre>
              * &lt;complexType>
              *   &lt;complexContent>
@@ -6324,8 +4674,8 @@ public class PaymentDocument
              *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -6335,9 +4685,7 @@ public class PaymentDocument
                 "date",
                 "societe"
             })
-            public static class SIGNATAIRE
-                implements Serializable
-            {
+            public static class SIGNATAIRE {
 
                 @XmlElement(name = "NOM")
                 protected String nom;
@@ -6352,11 +4700,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété nom.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getNOM() {
                     return nom;
@@ -6364,11 +4710,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété nom.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setNOM(String value) {
                     this.nom = value;
@@ -6376,11 +4720,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété qualite.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getQUALITE() {
                     return qualite;
@@ -6388,11 +4730,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété qualite.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setQUALITE(String value) {
                     this.qualite = value;
@@ -6400,11 +4740,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété lieu.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getLIEU() {
                     return lieu;
@@ -6412,11 +4750,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété lieu.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setLIEU(String value) {
                     this.lieu = value;
@@ -6424,11 +4760,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété date.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getDATE() {
                     return date;
@@ -6436,11 +4770,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété date.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setDATE(String value) {
                     this.date = value;
@@ -6448,11 +4780,9 @@ public class PaymentDocument
 
                 /**
                  * Obtient la valeur de la propriété societe.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @return possible object is {@link String }
+                 *
                  */
                 public String getSOCIETE() {
                     return societe;
@@ -6460,11 +4790,9 @@ public class PaymentDocument
 
                 /**
                  * Définit la valeur de la propriété societe.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
+                 *
+                 * @param value allowed object is {@link String }
+                 *
                  */
                 public void setSOCIETE(String value) {
                     this.societe = value;
@@ -6476,12 +4804,14 @@ public class PaymentDocument
 
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
+     * <p>
+     * Classe Java pour anonymous complex type.
+     *
+     * <p>
+     * Le fragment de schéma suivant indique le contenu attendu figurant dans
+     * cette classe.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -6523,27 +4853,23 @@ public class PaymentDocument
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "erreur"
     })
-    public static class ERREURS
-        implements Serializable
-    {
+    public static class ERREURS {
 
         @XmlElement(name = "ERREUR")
         protected PaymentDocument.ERREURS.ERREUR erreur;
 
         /**
          * Obtient la valeur de la propriété erreur.
-         * 
-         * @return
-         *     possible object is
-         *     {@link DOCUMENT.ERREURS.ERREUR }
-         *     
+         *
+         * @return possible object is {@link PaymentDocument.ERREURS.ERREUR }
+         *
          */
         public PaymentDocument.ERREURS.ERREUR getERREUR() {
             return erreur;
@@ -6551,22 +4877,23 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété erreur.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link DOCUMENT.ERREURS.ERREUR }
-         *     
+         *
+         * @param value allowed object is
+         *     {@link PaymentDocument.ERREURS.ERREUR }
+         *
          */
         public void setERREUR(PaymentDocument.ERREURS.ERREUR value) {
             this.erreur = value;
         }
 
-
         /**
-         * <p>Classe Java pour anonymous complex type.
-         * 
-         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-         * 
+         * <p>
+         * Classe Java pour anonymous complex type.
+         *
+         * <p>
+         * Le fragment de schéma suivant indique le contenu attendu figurant
+         * dans cette classe.
+         *
          * <pre>
          * &lt;complexType>
          *   &lt;complexContent>
@@ -6598,8 +4925,8 @@ public class PaymentDocument
          *   &lt;/complexContent>
          * &lt;/complexType>
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -6607,9 +4934,7 @@ public class PaymentDocument
             "libelleerreur",
             "referencedonnee"
         })
-        public static class ERREUR
-            implements Serializable
-        {
+        public static class ERREUR {
 
             @XmlElement(name = "CODE_ERREUR")
             protected String codeerreur;
@@ -6620,11 +4945,9 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété codeerreur.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             *
+             * @return possible object is {@link String }
+             *
              */
             public String getCODEERREUR() {
                 return codeerreur;
@@ -6632,11 +4955,9 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété codeerreur.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *
+             * @param value allowed object is {@link String }
+             *
              */
             public void setCODEERREUR(String value) {
                 this.codeerreur = value;
@@ -6644,11 +4965,9 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété libelleerreur.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             *
+             * @return possible object is {@link String }
+             *
              */
             public String getLIBELLEERREUR() {
                 return libelleerreur;
@@ -6656,11 +4975,9 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété libelleerreur.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *
+             * @param value allowed object is {@link String }
+             *
              */
             public void setLIBELLEERREUR(String value) {
                 this.libelleerreur = value;
@@ -6668,11 +4985,9 @@ public class PaymentDocument
 
             /**
              * Obtient la valeur de la propriété referencedonnee.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             *
+             * @return possible object is {@link String }
+             *
              */
             public String getREFERENCEDONNEE() {
                 return referencedonnee;
@@ -6680,11 +4995,9 @@ public class PaymentDocument
 
             /**
              * Définit la valeur de la propriété referencedonnee.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *
+             * @param value allowed object is {@link String }
+             *
              */
             public void setREFERENCEDONNEE(String value) {
                 this.referencedonnee = value;
@@ -6694,12 +5007,14 @@ public class PaymentDocument
 
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
+     * <p>
+     * Classe Java pour anonymous complex type.
+     *
+     * <p>
+     * Le fragment de schéma suivant indique le contenu attendu figurant dans
+     * cette classe.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -6752,8 +5067,8 @@ public class PaymentDocument
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -6764,9 +5079,7 @@ public class PaymentDocument
         "numeromessageorigine",
         "dateemissionmsgorigine"
     })
-    public static class MESSAGE
-        implements Serializable
-    {
+    public static class MESSAGE {
 
         @XmlElement(name = "TYPE_MESSAGE", required = true)
         protected String typemessage;
@@ -6783,11 +5096,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété typemessage.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getTYPEMESSAGE() {
             return typemessage;
@@ -6795,11 +5106,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété typemessage.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setTYPEMESSAGE(String value) {
             this.typemessage = value;
@@ -6807,11 +5116,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété dateemission.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getDATEEMISSION() {
             return dateemission;
@@ -6819,11 +5126,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété dateemission.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setDATEEMISSION(String value) {
             this.dateemission = value;
@@ -6831,11 +5136,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété etat.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getETAT() {
             return etat;
@@ -6843,11 +5146,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété etat.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setETAT(String value) {
             this.etat = value;
@@ -6855,11 +5156,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété numeromessage.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getNUMEROMESSAGE() {
             return numeromessage;
@@ -6867,11 +5166,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété numeromessage.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setNUMEROMESSAGE(String value) {
             this.numeromessage = value;
@@ -6879,11 +5176,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété numeromessageorigine.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getNUMEROMESSAGEORIGINE() {
             return numeromessageorigine;
@@ -6891,11 +5186,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété numeromessageorigine.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setNUMEROMESSAGEORIGINE(String value) {
             this.numeromessageorigine = value;
@@ -6903,11 +5196,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété dateemissionmsgorigine.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getDATEEMISSIONMSGORIGINE() {
             return dateemissionmsgorigine;
@@ -6915,11 +5206,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété dateemissionmsgorigine.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setDATEEMISSIONMSGORIGINE(String value) {
             this.dateemissionmsgorigine = value;
@@ -6927,12 +5216,14 @@ public class PaymentDocument
 
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
+     * <p>
+     * Classe Java pour anonymous complex type.
+     *
+     * <p>
+     * Le fragment de schéma suivant indique le contenu attendu figurant dans
+     * cette classe.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -6992,8 +5283,8 @@ public class PaymentDocument
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -7005,9 +5296,7 @@ public class PaymentDocument
         "datecreation",
         "si"
     })
-    public static class REFERENCEDOSSIER
-        implements Serializable
-    {
+    public static class REFERENCEDOSSIER {
 
         @XmlElement(name = "NUMERO_DOSSIER", required = true)
         protected String numerodossier;
@@ -7026,11 +5315,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété numerodossier.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getNUMERODOSSIER() {
             return numerodossier;
@@ -7038,11 +5325,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété numerodossier.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setNUMERODOSSIER(String value) {
             this.numerodossier = value;
@@ -7050,11 +5335,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété numerodemande.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getNUMERODEMANDE() {
             return numerodemande;
@@ -7062,11 +5345,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété numerodemande.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setNUMERODEMANDE(String value) {
             this.numerodemande = value;
@@ -7074,11 +5355,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété service.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getSERVICE() {
             return service;
@@ -7086,11 +5365,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété service.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setSERVICE(String value) {
             this.service = value;
@@ -7098,11 +5375,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété referenceguce.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getREFERENCEGUCE() {
             return referenceguce;
@@ -7110,11 +5385,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété referenceguce.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setREFERENCEGUCE(String value) {
             this.referenceguce = value;
@@ -7122,11 +5395,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété referencesiat.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getREFERENCESIAT() {
             return referencesiat;
@@ -7134,11 +5405,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété referencesiat.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setREFERENCESIAT(String value) {
             this.referencesiat = value;
@@ -7146,11 +5415,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété datecreation.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getDATECREATION() {
             return datecreation;
@@ -7158,11 +5425,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété datecreation.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setDATECREATION(String value) {
             this.datecreation = value;
@@ -7170,11 +5435,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété si.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getSI() {
             return si;
@@ -7182,11 +5445,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété si.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setSI(String value) {
             this.si = value;
@@ -7194,12 +5455,14 @@ public class PaymentDocument
 
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
+     * <p>
+     * Classe Java pour anonymous complex type.
+     *
+     * <p>
+     * Le fragment de schéma suivant indique le contenu attendu figurant dans
+     * cette classe.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -7224,17 +5487,15 @@ public class PaymentDocument
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "emetteur",
         "destinataire"
     })
-    public static class ROUTAGE
-        implements Serializable
-    {
+    public static class ROUTAGE {
 
         @XmlElement(name = "EMETTEUR", required = true)
         protected String emetteur;
@@ -7243,11 +5504,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété emetteur.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getEMETTEUR() {
             return emetteur;
@@ -7255,11 +5514,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété emetteur.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setEMETTEUR(String value) {
             this.emetteur = value;
@@ -7267,11 +5524,9 @@ public class PaymentDocument
 
         /**
          * Obtient la valeur de la propriété destinataire.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getDESTINATAIRE() {
             return destinataire;
@@ -7279,11 +5534,9 @@ public class PaymentDocument
 
         /**
          * Définit la valeur de la propriété destinataire.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setDESTINATAIRE(String value) {
             this.destinataire = value;
