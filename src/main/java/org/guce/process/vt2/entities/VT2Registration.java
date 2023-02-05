@@ -36,7 +36,7 @@ import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.CoreSignatory;
 import org.guce.rep.entities.RepProductCategory;
 
-@DiscriminatorValue("VT_MINEPDED")
+@DiscriminatorValue("VT2Registration")
 @SequenceGenerator(
         name = "VT2_SEQ",
         sequenceName = "VT2_SEQ",

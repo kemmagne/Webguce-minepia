@@ -375,11 +375,11 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
     public CoreMessage traiterVT2601(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
         String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  VT2Constant.PROCESSING_CONSULTATION) == null ?
                                 VT2Constant.PROCESSING_VALIDATION : VT2Constant.PROCESSING_MODIFICATION_VALIDATION;
-        String amount = (registration.getPaiement().getFACTURE().getMONTANTTTC() != null && 
+        String amount = (registration.getPaiement().getFACTURE()!= null && registration.getPaiement().getFACTURE().getMONTANTTTC() != null && 
                                 !registration.getPaiement().getFACTURE().getMONTANTTTC().trim().isEmpty()) ? 
                                 registration.getPaiement().getFACTURE().getMONTANTTTC() :
                                 registration.getPaiement().getFACTURE().getMONTANTHT();
-        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
+        String reference = (registration.getPaiement().getFACTURE() != null && registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null) ? 
                                 registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
                                 registration.getRecordId();
         CoreTaxandinvoice invoice = new CoreTaxandinvoice();
@@ -397,7 +397,7 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
     public CoreMessage traiterVT2602(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
         String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  VT2Constant.PROCESSING_CONSULTATION) == null ?
                                 VT2Constant.PROCESSING_VALIDATION : VT2Constant.PROCESSING_MODIFICATION_VALIDATION;
-        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
+        String reference = (registration.getPaiement().getFACTURE() != null && registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null) ? 
                                 registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
                                 registration.getRecordId();
         for(CoreTaxandinvoice invoice : registration.getInvoiceList()) {
