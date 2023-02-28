@@ -121,7 +121,7 @@ public class VT2Registration extends CoreRecord implements Serializable {
     @Column(name = "VT_MINEPDED_TOTAL_FEES_AMOUNT")
     private BigDecimal totalFeesAmount;
     
-    @JoinTable(name = "EXPEDITION_PRODUCT_CATEGORY",
+    @JoinTable(name = "VT_MINEPDED_PRODUCT_CATEGORY",
             joinColumns = {
                 @JoinColumn(name = "RECORD_ID", referencedColumnName = "RECORD_ID")},
             inverseJoinColumns = {
