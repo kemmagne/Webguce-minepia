@@ -17,6 +17,7 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.SOAPMessage;
+import org.apache.commons.lang3.StringUtils;
 import org.guce.core.documents.WebguceDocument;
 import org.guce.core.ejb.facade.interfaces.CoreCADFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreMessageFacadeLocal;
@@ -41,6 +42,7 @@ import org.guce.process.vt2.VT2Constant;
 import org.guce.process.vt2.entities.VT2Registration;
 import org.guce.process.vt2.entities.VT2RegistrationHistory;
 import org.guce.process.vt2.repositories.VT2RegistrationHistoryRepository;
+import org.guce.rep.entities.RepProductCategory;
 import org.guce.web.core.ebxml.EbxmlCreator;
 import org.guce.web.core.mail.ServiceMailSenderLocal;
 import org.guce.web.core.mail.util.Aperak;
@@ -280,6 +282,9 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
                 if(registration == null) {
                     createFromCircuit = true;
                     registration = document.getContenu();
+                    if(registration.getTotalFeesAmount() == null){
+                        registration.setTotalFeesAmount(registration.getFeesAmount());
+                    }
                     registration.setRecordId(document.getReference().getNumeroDossier());
                     registration.setRecordProcess(processFacade.getProcessByServiceName(ebxml.getService()));
                     registration.setRecordCreatedate(GuceCalendarUtil.getCalendar().getTime());
@@ -334,15 +339,15 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
     }
 
     public CoreMessage traiterVT201(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_VALIDATION, false);
     }
 
     public CoreMessage traiterVT202(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CI, VT2Constant.PROCESSING_VALIDATION,VT2Constant.PROCESSING_INVOICE);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CI, true, VT2Constant.PROCESSING_VALIDATION,VT2Constant.PROCESSING_INVOICE);
     }
 
     public CoreMessage traiterVT211(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_VALIDATION, false);
     }
 
     public CoreMessage traiterVT204(OrchestraEbxmlMessage ebxml, VT2Registration registration) throws Exception {
@@ -350,18 +355,18 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CONSULTATION, VT2Constant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CONSULTATION, true, VT2Constant.PROCESSING_VALIDATION);
     }
 
     public CoreMessage traiterVT203(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_MODIFICATION_REJECT, VT2Constant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_MODIFICATION_REJECT, true, VT2Constant.PROCESSING_MODIFICATION_VALIDATION);
     }
 
     public CoreMessage traiterVT209(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_MODIFICATION_VALIDATION, false);
     }
 
     public CoreMessage traiterVT210(OrchestraEbxmlMessage ebxml, VT2Registration registration) throws Exception {
@@ -369,7 +374,7 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CONSULTATION_MODIFICATION,VT2Constant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_CONSULTATION_MODIFICATION, true, VT2Constant.PROCESSING_MODIFICATION_VALIDATION);
     }
 
     public CoreMessage traiterVT2601(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
@@ -391,7 +396,7 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
         invoice.setTaxsenddate(GuceCalendarUtil.getCalendar().getTime());
         invoice.setTaxstate(Boolean.FALSE);
         taxandinvoiceFacade.create(invoice);
-        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_PAYMENT);
+        return createProcessingAndSendAperak(ebxml, registration, VT2Constant.PROCESSING_PAYMENT, true);
     }
 
     public CoreMessage traiterVT2602(OrchestraEbxmlMessage ebxml, VT2Registration registration) {
@@ -413,10 +418,10 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
                 paymentFacade.create(payment);
             }
         }
-        return createProcessingAndSendAperak(ebxml, registration, processingType, VT2Constant.PROCESSING_PAYMENT);
+        return createProcessingAndSendAperak(ebxml, registration, processingType, false, VT2Constant.PROCESSING_PAYMENT);
     }
 
-    public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, VT2Registration registration, String processingType, String... processingTypeEnd) {
+    public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, VT2Registration registration, String processingType, boolean useToPartner, String... processingTypeEnd) {
         List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
                                 processingType,CoreProcessingState.ATTENTE);
         CoreMessage message = messageFacade.find(ebxml.getMessageId());
@@ -436,7 +441,8 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
             }
             serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
         }
-        CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
+        CorePartner processingPartner = useToPartner ? new CorePartner(getToPartner(ebxml)) : new CorePartner(getFromPartner(ebxml));
+        CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE, processingPartner);
         if(registration.getDecision() != null) {
             p.setObservation(registration.getDecision().getObservation());
             p.setSubject(registration.getDecision().getCode());
@@ -457,5 +463,17 @@ public class VT2RegistrationMessageService extends DefaultTraitement implements 
             }
         }
         return to;
+    }
+    
+    public String getFromPartner(OrchestraEbxmlMessage ebxml) {
+        String from = "MINEPDED";
+//        Iterator it = ebxml.getMessageHeader().getFromPartyIds();
+//        while(it.hasNext()) {
+//            String t = ((MessageHeader.PartyId)it.next()).getId();
+//            if(t != null && StringUtils.isNotEmpty(t) && !t.equals("GUCE") && !t.equals("WEBGUCE")) {
+//                from = t;
+//            }
+//        }
+        return from;
     }
 }

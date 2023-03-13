@@ -2,20 +2,15 @@ package org.guce.web.process.vt2.controllers;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import org.apache.commons.collections.CollectionUtils;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreCAD;
 import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
-import org.guce.process.carg.CargConstants;
-import org.guce.process.vt2.entities.PaymentDocument;
 import org.guce.process.vt2.entities.VT2Registration;
-import org.guce.rep.entities.RepProductCategory;
 import org.guce.web.core.util.JsfUtil;
 import org.primefaces.context.RequestContext;
 

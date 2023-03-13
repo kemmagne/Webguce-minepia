@@ -106,6 +106,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
             goToPreviows();
             return false;
         }
+        selectGoodProductCategories();
         return true;
     }
 
@@ -135,6 +136,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
             JsfUtil.addErrorMessage(bundle("GoodListEmpty"));
             return false;
         }
+        restoreSelectedNshProductCategories();
         return true;
     }
 

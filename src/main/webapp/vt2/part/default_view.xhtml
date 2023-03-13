@@ -60,6 +60,26 @@
                     readOnly="true" renderedList="" required="true"
                     requiredList="Volume,Poids" styleClass="pm" value="#{vt2Controller.current.goodList}"/>
                 <p:spacer height="20px"/>
+                <p:outputPanel style="padding:0px 10px;border:solid #DDD 1px;" >
+                    <h3 class="webguce-sub-block-title" >#{vt2.SelectProductCategoriesMessage}</h3>
+                    <h:panelGroup>
+                        <p:selectManyMenu id="productCategories" required="false" converter="repProductCategoryConverter" var="proc"
+                                          requiredMessage="#{vt2.ProductCategories} #{vt2.required}" 
+                                          value="#{vt2Controller.current.productCategoryList}" showCheckbox="true"
+                                          style="width: 100%" filter="true" filterMatchMode="contains" styleClass="manymenu-advanced"
+                                          disabled="true">
+                            <f:selectItems value="#{vt2Controller.getProductCategoryList()}" 
+                                           var="p" itemValue="#{p}" itemLabel="#{p.label}" itemDescription="#{p.description}" itemDisabled="#{vt2Controller.selectedProductCategories.contains(p)}"/>
+                            <!--                                <p:column>
+                                                                <h:outputText value="#{proc.code}" />
+                                                            </p:column>-->
+                            <p:column >
+                                <h:outputText value="#{proc.label}" />
+                            </p:column>
+                        </p:selectManyMenu>
+                        <p:message for="productCategories"/>
+                    </h:panelGroup>
+                </p:outputPanel>
             </p:tab>
             <p:tab id="invoicesBlock"
                 rendered="#{vt2Controller.current.invoiceList.size() > 0}" title="#{vt2.invoices}">

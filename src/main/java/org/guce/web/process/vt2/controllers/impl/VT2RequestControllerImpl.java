@@ -46,7 +46,7 @@ public class VT2RequestControllerImpl extends VT2RequestController {
         current.getTransport().setClearingPlace(exp.getPlaceOfClearing());
         current.getTransport().setTransportMode(exp.getTransportMode());
 
-        current.setOfficeCode("BC-SNP");
+        current.setOfficeCode(exp.getVtMinepded().getOffice());
         return super.loadParentData(parent);
     }
 

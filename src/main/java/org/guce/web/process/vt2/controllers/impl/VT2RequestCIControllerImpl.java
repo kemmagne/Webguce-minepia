@@ -11,6 +11,7 @@ import org.guce.web.process.vt2.controllers.VT2RequestCIController;
 public class VT2RequestCIControllerImpl extends VT2RequestCIController {
     @Override
     public void prepareSend() {
+        selectGoodProductCategories();
         restoreSelectedNshProductCategories();
         super.prepareSend();
     }

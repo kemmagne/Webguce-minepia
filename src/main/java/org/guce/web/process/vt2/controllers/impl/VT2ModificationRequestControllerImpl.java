@@ -13,6 +13,7 @@ public class VT2ModificationRequestControllerImpl extends VT2ModificationRequest
     @Override
     public void prepareSend() {
         if (checkModificationRequestConformity()) {
+            selectGoodProductCategories();
             restoreSelectedNshProductCategories();
             calculateVtMinepdedFees();
             generatePaymentData();

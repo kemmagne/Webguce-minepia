@@ -52,6 +52,7 @@ import org.guce.rep.entities.RepProductCategory;
 )
 @XmlType(
         propOrder = {"officeCode",
+                "importerOccupation",
                 "vtReference",
                 "vtDate",
                 "chargerid",
@@ -63,7 +64,9 @@ import org.guce.rep.entities.RepProductCategory;
                 "paiement",
                 "signatory",
                 "decision",
-                "coreAttachmentList"}
+                "coreAttachmentList",
+                "feesAmount",
+                "productCategoryList"}
 )
 public class VT2Registration extends CoreRecord implements Serializable {
     @Column(
@@ -71,6 +74,9 @@ public class VT2Registration extends CoreRecord implements Serializable {
             length = 35
     )
     private String officeCode;
+    
+    @Column(name = "IMPORTER_OCCUPATION", length = 255)
+    private String importerOccupation;
 
     @Column(
             name = "REFERENCE_VT",
@@ -139,6 +145,15 @@ public class VT2Registration extends CoreRecord implements Serializable {
 
     public void setOfficeCode(String officeCode) {
         this.officeCode = officeCode;
+    }
+    
+    @XmlElement(name = "PROFESSION_IMPORTATEUR")
+    public String getImporterOccupation() {
+        return importerOccupation;
+    }
+
+    public void setImporterOccupation(String importerOccupation) {
+        this.importerOccupation = importerOccupation;
     }
 
     @XmlElement(
@@ -294,7 +309,7 @@ public class VT2Registration extends CoreRecord implements Serializable {
         super.setGoodList(goodList);
     }
 
-    @XmlTransient
+    @XmlElement(name = "MONTANT_FRAIS")
     public BigDecimal getFeesAmount() {
         return feesAmount;
     }
@@ -303,7 +318,10 @@ public class VT2Registration extends CoreRecord implements Serializable {
         this.feesAmount = feesAmount;
     }
 
-    @XmlTransient
+    @XmlElementWrapper(name = "PRODUCT_CATEGORIES")
+    @XmlElements({
+            @XmlElement(name = "PRODUCT_CATEGORY", type = RepProductCategory.class)
+    })
     public List<RepProductCategory> getProductCategoryList() {
         return productCategoryList;
     }

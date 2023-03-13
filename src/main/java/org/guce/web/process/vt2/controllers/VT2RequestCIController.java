@@ -10,6 +10,7 @@ public class VT2RequestCIController extends VT2Controller {
     @PostConstruct
     public void init() {
         checkProcessingAccessRight();
+        selectGoodProductCategories();
         calculateVtMinepdedFees();
     }
 
