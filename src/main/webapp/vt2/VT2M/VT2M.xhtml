@@ -4,9 +4,16 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2">
     <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2"/>
-    <ui:param name="listTilte" value="#{vt2.vt2ValidatedFiles}"/>
+    <ui:param name="listTilte" value="#{(vT2ListController.page eq 'reject') ? vt2.RejectedFiles : vt2.ModifiedsFiles}"/>
     <h:form id="formContenu">
         <h:panelGrid cellspacing="8" columns="6">
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest"
+                rendered="#{!(vT2ListController.page eq 'reject')}" value="#{vt2.RejectedFiles} (#{vT2ListController.rejectNumber()})">
+                <f:param name="formCode" value="VT2M"/>
+                <f:param name="page" value="reject"/>
+            </p:commandButton>
             <p:commandButton
                 action="#{vT2ListController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{vt2.Back}"/>
@@ -30,7 +37,7 @@
                     <f:param name="page" value="view"/>
                     <f:param name="processingid" value="#{file.processing.processingid}"/>
                     <f:param name="type" value="view"/>
-                    <f:param name="formCode" value="VT2"/>
+                    <f:param name="formCode" value="VT2M"/>
                     <p:graphicImage height="20"
                         value="/ImageFolder/detail.jpeg" width="20"/>
                 </p:commandLink>

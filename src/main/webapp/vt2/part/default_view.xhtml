@@ -1,0 +1,113 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ct="http://java.sun.com/jsf/composite/components/ct"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:vt2="http://java.sun.com/jsf/composite/components/vt2" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
+    <f:loadBundle basename="org/guce/web/process/vt2/util/Bundle" var="vt2"/>
+    <p:tooltip for=":formContenu"/>
+    <h:form id="formContenu">
+        <ui:insert name="action"/>
+        <p:messages id="messages"/>
+        <p:tabView effect="slide" id="allcontent" rendered="#{vt2Controller.current != null}">
+            <p:tab title="#{vt2.stakeholder}">
+                <h3 class="webguce-block-title">#{vt2.charger}</h3>
+                <wgc:charger id="charger" readOnly="true"
+                    rendered="true"
+                    renderedList="dateDelivrance,dateExpiration"
+                    required="false" styleClass="webguce-sub-block" value="#{vt2Controller.current.chargerid}"/>
+                <h3 class="webguce-block-title">#{vt2.supplier}</h3>
+                <wgc:charger excludedCountries="CM" fimex="false"
+                    phoneMaxChar="15" phoneMinChar="6" readOnly="true"
+                    referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
+                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    required="true"
+                    requiredList="NumeroContribuable,TelephoneFixe,personToContact"
+                    styleClass="webguce-sub-block" value="#{vt2Controller.current.supplier}"/>
+                <h3 class="webguce-block-title">#{vt2.cad}</h3>
+                <wgc:cad cadSelectionEnable="false" id="cad"
+                    readOnly="true" rendered="true"
+                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    styleClass="webguce-sub-block" value="#{vt2Controller.current.cad}"/>
+            </p:tab>
+            <p:tab title="#{vt2.generalInfo}">
+                <p:outputLabel rendered="#{vt2Controller.current.recordId != null}">
+                    <h3 class="webguce-block-title">#{vt2.reference}</h3>
+                </p:outputLabel>
+                <vt2:reference id="reference" readOnly="true"
+                    rendered="#{vt2Controller.current.recordId != null}"
+                    styleClass="webguce-sub-block" value="#{vt2Controller.current}"/>
+                <h3 class="webguce-block-title">#{vt2.registration}</h3>
+                <vt2:registration id="registration" readOnly="true"
+                    readOnlyList="" rendered="true"
+                    renderedList="#{vt2Controller.current.vtReference != null ? '':'vtDate,vtReference'}"
+                    required="true" styleClass="webguce-sub-block" value="#{vt2Controller.current}"/>
+                <h3 class="webguce-sub-block-title">#{vt2.invoice}</h3>
+                <vt2:invoice id="invoice" readOnly="true"
+                    readOnlyList="" renderedList="" required="true"
+                    requiredList="" styleClass="webguce-sub-block" value="#{vt2Controller.current.invoice}"/>
+                <h3 class="webguce-sub-block-title">#{vt2.transport}</h3>
+                <vt2:transport id="transport" readOnly="true"
+                    readOnlyList="" renderedList="" required="true"
+                    requiredList="" styleClass="webguce-sub-block" value="#{vt2Controller.current.transport}"/>
+            </p:tab>
+            <p:tab title="#{vt2.goods} ">
+                <h3 class="codename blockTitle">#{vt2.goods}</h3>
+                <wgc:goods id="good"
+                    parentClass="#{vt2Controller.current}"
+                    readOnly="true" renderedList="" required="true"
+                    requiredList="Volume,Poids" styleClass="pm" value="#{vt2Controller.current.goodList}"/>
+                <p:spacer height="20px"/>
+                <p:outputPanel style="padding:0px 10px;border:solid #DDD 1px;" >
+                    <h3 class="webguce-sub-block-title" >#{vt2.SelectProductCategoriesMessage}</h3>
+                    <h:panelGroup>
+                        <p:selectManyMenu id="productCategories" required="false" converter="repProductCategoryConverter" var="proc"
+                                          requiredMessage="#{vt2.ProductCategories} #{vt2.required}" 
+                                          value="#{vt2Controller.current.productCategoryList}" showCheckbox="true"
+                                          style="width: 100%" filter="true" filterMatchMode="contains" styleClass="manymenu-advanced"
+                                          disabled="true">
+                            <f:selectItems value="#{vt2Controller.getProductCategoryList()}" 
+                                           var="p" itemValue="#{p}" itemLabel="#{p.label}" itemDescription="#{p.description}" itemDisabled="#{vt2Controller.selectedProductCategories.contains(p)}"/>
+                            <!--                                <p:column>
+                                                                <h:outputText value="#{proc.code}" />
+                                                            </p:column>-->
+                            <p:column >
+                                <h:outputText value="#{proc.label}" />
+                            </p:column>
+                        </p:selectManyMenu>
+                        <p:message for="productCategories"/>
+                    </h:panelGroup>
+                </p:outputPanel>
+            </p:tab>
+            <p:tab id="invoicesBlock"
+                rendered="#{vt2Controller.current.invoiceList.size() > 0}" title="#{vt2.invoices}">
+                <vt2:invoices id="invoices" readonly="true" value="#{vt2Controller.current.invoiceList}"/>
+            </p:tab>
+            <p:tab id="decisionBlock"
+                rendered="#{vt2Controller.processing != null}" title="#{vt2.decision}">
+                <vt2:decision id="decision" readonly="true" value="#{vt2Controller.processing}"/>
+            </p:tab>
+            <p:tab id="attachmentBlock" title="#{vt2.attachments}">
+                <wgc:attachments
+                    avaibleAttachmentType="#{vt2Controller.avaibleAttachmentType}"
+                    id="attachment"
+                    parentClass="#{vt2Controller.current}"
+                    readonly="true" styleClass="pm2" type="view" value="#{vt2Controller.current.coreAttachmentList}"/>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+    <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
+    <script>
+        function myReadonly() {
+            jQuery('.my-readonly').attr("readonly", "readonly");
+        }
+        myReadonly();
+    </script>
+    <style>
+        .blockTitle{
+            border-bottom :solid 1px #DDD;border-top :solid 1px #DDD;margin:10px 0px;padding:5px 0px;
+        }
+    </style>
+</ui:composition>
