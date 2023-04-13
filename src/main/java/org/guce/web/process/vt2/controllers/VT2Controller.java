@@ -27,6 +27,7 @@ import org.guce.web.process.vt2.services.impl.VT2RegistrationMessageServiceImpl;
 import org.guce.web.process.vt2.services.impl.VT2RegistrationServiceImpl;
 
 public abstract class VT2Controller extends WebGuceDefaultController {
+
     protected VT2Registration current;
 
     protected CoreProcessing processing;
@@ -39,7 +40,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
 
     @EJB
     protected CoreRecordFacadeLocal recordFacade;
-    
+
     @EJB
     protected CoreProcessFacadeLocal processFacade;
 
@@ -50,15 +51,15 @@ public abstract class VT2Controller extends WebGuceDefaultController {
     protected boolean fileSent;
 
     protected DefaultLazyDataModel<RepPositionTarifaire> hsCodeList;
-    
+
     protected List<RepProductCategory> productCategoryList;
     protected List<RepProductCategory> selectedProductCategories;
-    
+
     protected CoreProcess cargProcess;
 
     @EJB
     protected RepProductCategoryFacadeLocal repProductCategoryFacadeLocal;
-    
+
     protected BigDecimal vtMinepdedAmountFees;
 
     @PostConstruct
@@ -83,7 +84,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
         try {
             current = service.save(current);
             JsfUtil.addSuccessMessage(bundle("RecordSaved") + " " + current.getRecordId());
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JsfUtil.addErrorMessage(bundle("CannotSaveRecord") + " " + current.getRecordId());
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -122,7 +123,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
             goToPreviows();
             return false;
         }
-        if(!processing.getProcPartner().equals(application.getUserConnecte().getPartnerid())) {
+        if (!processing.getProcPartner().equals(application.getUserConnecte().getPartnerid())) {
             JsfUtil.addErrorMessage(bundle("AccessDenied"));
             goToPreviows();
             return false;
@@ -132,7 +133,11 @@ public abstract class VT2Controller extends WebGuceDefaultController {
     }
 
     protected boolean checkRequestConformity() {
-        if(current.getGoodList().isEmpty()) {
+        if (current.getProductCategoryList() == null || current.getProductCategoryList().isEmpty()) {
+            JsfUtil.addErrorMessage(bundle("NoProductCategoryIsSelected"));
+            return false;
+        }
+        if (current.getGoodList().isEmpty()) {
             JsfUtil.addErrorMessage(bundle("GoodListEmpty"));
             return false;
         }
@@ -158,7 +163,7 @@ public abstract class VT2Controller extends WebGuceDefaultController {
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
-    
+
     public List<RepProductCategory> getProductCategoryList() {
         return productCategoryList;
     }
@@ -174,17 +179,17 @@ public abstract class VT2Controller extends WebGuceDefaultController {
     public void setSelectedProductCategories(List<RepProductCategory> selectedProductCategories) {
         this.selectedProductCategories = selectedProductCategories;
     }
-    
-    protected void restoreSelectedNshProductCategories(){
-        if(selectedProductCategories != null && !selectedProductCategories.isEmpty()){
+
+    protected void restoreSelectedNshProductCategories() {
+        if (selectedProductCategories != null && !selectedProductCategories.isEmpty()) {
             for (RepProductCategory pc : selectedProductCategories) {
-                if(!current.getProductCategoryList().contains(pc)){
+                if (!current.getProductCategoryList().contains(pc)) {
                     current.getProductCategoryList().add(pc);
                 }
             }
         }
     }
-    
+
     protected void selectGoodProductCategories() {
         final List<CoreGood> goodList;
         goodList = current != null && current.getGoodList() != null ? current.getGoodList() : new ArrayList<CoreGood>();
@@ -217,11 +222,11 @@ public abstract class VT2Controller extends WebGuceDefaultController {
         if (current.getProductCategoryList() != null && !current.getProductCategoryList().isEmpty()) {
             vtMinepdedAmountFees = vtMinepdedFeesAmountReference.multiply(new BigDecimal(current.getProductCategoryList().size()));
         }
-        if (current.getTotalFeesAmount()!= null) {
+        if (current.getTotalFeesAmount() != null) {
             vtMinepdedAmountFees = vtMinepdedAmountFees.subtract(current.getTotalFeesAmount());
         }
     }
-    
+
     protected void generatePaymentData() {
         BigDecimal vtMinepdedAmountFeesToSendInPayment = null;
         if (vtMinepdedAmountFees != null && vtMinepdedAmountFees.compareTo(BigDecimal.ZERO) > 0) {
@@ -264,12 +269,12 @@ public abstract class VT2Controller extends WebGuceDefaultController {
             }
         }
     }
-    
+
     protected void prepareSend() {
         if (checkRequestConformity()) {
             calculateVtMinepdedFees();
             generatePaymentData();
         }
     }
-    
+
 }
