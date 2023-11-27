@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:dem="http://java.sun.com/jsf/composite/components/dem"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="demBundle"/>
+        <composite:attribute name="value" required="true" type="java.lang.Object"/>
+        <composite:attribute name="requiredList" type="java.lang.String"/>
+        <composite:attribute name="readOnlyList" type="java.lang.String"/>
+        <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute default="true" name="renderedBoolean" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute default="false" name="returnSame"/>
+        <composite:attribute name="fieldChange"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="demBundle"/>
+        <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} dEMDeclarationBlock">
+            <h:outputLabel for="declaration" rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{demBundle.declarationLabel} <span>#{cc.isRequiredString('declaration',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:inputText
+                    converterMessage="#{demBundle.declaration} #{demBundle.invalid}"
+                    id="declaration" maxlength="35"
+                    readonly="#{cc.isReadOnly('declaration',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('declaration',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{demBundle.declaration} #{demBundle.required}"
+                    size="35" style="width: 140px"
+                    validatorMessage="#{demBundle.declaration} #{demBundle.invalid}" value="#{cc.attrs.value.declaration}"/>
+                <p:message for="declaration"/>
+            </h:panelGroup>
+        </h:panelGrid>
+        <p:outputPanel>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('table.dEMDeclarationBlock tr').each(function (index) {
+                        jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                        jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                    });
+                });
+            </script>
+        </p:outputPanel>
+        <style>
+            table.dEMDeclarationBlock {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .dEMDeclarationBlock label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .dEMDeclarationBlock select{
+                padding:5px;
+            }
+            .dEMDeclarationBlock label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .dEMDeclarationBlock .ui-selectonemenu-label{
+                display:block;
+            }
+            .dEMDeclarationBlock .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .dEMDeclarationBlock.ui-inputtext[readonly="readonly"],
+            .dEMDeclarationBlock .hasDatepicker[readonly="readonly"],
+            .dEMDeclarationBlock .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>

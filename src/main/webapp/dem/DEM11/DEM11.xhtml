@@ -1,0 +1,52 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:dem="http://java.sun.com/jsf/composite/components/dem"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="dem"/>
+    <ui:param name="listTilte" value="#{dem.additionnalInformationFiles}"/>
+    <h:form id="formContenu">
+        <h:panelGrid cellspacing="8" columns="6">
+            <p:commandButton
+                action="#{dEMListController.goToPreviows()}"
+                ajax="false" icon="ui-icon-cancel" immediate="true" value="#{dem.Back}"/>
+        </h:panelGrid>
+        <p:messages autoUpdate="true"/>
+        <dem:filter cleanAction="#{dEMListController.resetsearch()}"
+            renderedList="procStartDate"
+            searchAction="#{dEMListController.search()}"
+            update=":formContenu:table" value="#{dEMListController.filter}"/>
+        <br/>
+        <p:dataTable emptyMessage="#{dem.NoFile}" id="table" lazy="true"
+            paginator="true" rows="10" sortOrder="descending"
+            value="#{dEMListController.models}" var="file">
+            <ui:include src="../part/list.xhtml"/>
+            <p:column style="width: 10%">
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" title="#{dem.edit}">
+                    <f:param name="page" value="form"/>
+                    <f:param name="processingid" value="#{file.processing.processingid}"/>
+                    <f:param name="type" value="form"/>
+                    <f:param name="formCode" value="DEM11"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/choose.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" title="#{dem.History}">
+                    <f:param name="page" value="historic"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="core"/>
+                    <p:graphicImage alt="#{dem.History}" height="20"
+                        value="/ImageFolder/archive.jpeg" width="20"/>
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <style>
+        #formContenu .nossee{
+            background: greenyellow;
+        }
+    </style>
+</ui:composition>

@@ -1,0 +1,493 @@
+<mxfile host="Electron" modified="2023-11-03T08:45:42.426Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="IX4-i252cAsVpJ3Wf9yS" compressed="false" version="21.7.5" type="device">
+  <diagram id="dzslenoz5EgcA-fO8ZGD" name="Page-1">
+    <mxGraphModel dx="2261" dy="2053" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zwHKN8_-vxsZbjxzq792-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=432;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=432;entryPerimeter=0;" parent="1" source="Sb3ObpHVFGHvWsoK8jhT-4" target="Sb3ObpHVFGHvWsoK8jhT-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-100" y="412" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object label="org.guce.process.ai" element="package" placeholders="1" id="Sb3ObpHVFGHvWsoK8jhT-4">
+          <mxCell style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;container=1;fillColor=none;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingLeft=0;fontSize=11;" parent="1" vertex="1">
+            <mxGeometry x="-170" y="-100" width="1240" height="850" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="CoreRecord" element="existingClass" description="" entity="org.guce.core.entities.CoreRecord" xml="" id="Sb3ObpHVFGHvWsoK8jhT-13">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="424.80935247120027" y="57.23874704895253" width="185.32608695652175" height="65.17402597402598" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-13" vertex="1">
+          <mxGeometry y="26" width="185.32608695652175" height="16.5648415701287" as="geometry" />
+        </mxCell>
+        <object label="CoreCharger" element="existingClass" description="" entity="org.guce.core.entities.CoreCharger" xml="" id="Sb3ObpHVFGHvWsoK8jhT-16">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="613.1167750526446" y="57.23733090678297" width="162.345652173913" height="55.1948051948052" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-16" vertex="1">
+          <mxGeometry y="26" width="162.345652173913" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="CorePays" element="existingClass" description="" entity="org.guce.rep.entities.CorePays" xml="" id="Sb3ObpHVFGHvWsoK8jhT-21">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="1040.0017391304348" y="51.86209749154955" width="181.8048913043478" height="65.93571428571428" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-21" vertex="1">
+          <mxGeometry y="26" width="181.8048913043478" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="RepCustomsOffice" element="existingClass" description="" entity="org.guce.rep.entities.RepCustomsOffice" xml="" id="Sb3ObpHVFGHvWsoK8jhT-93">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="780.7458094884181" y="51.866037542612865" width="202.17391304347828" height="87.26298701298701" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-94" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-93" vertex="1">
+          <mxGeometry y="26" width="202.17391304347828" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="RepTransportMode" element="existingClass" description="" entity="org.guce.rep.entities.RepTransportMode" xml="" id="Sb3ObpHVFGHvWsoK8jhT-101">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="982.9191304347826" y="530.0015833103067" width="252.71739130434784" height="68.24414893617022" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-102" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-101" vertex="1">
+          <mxGeometry y="26" width="252.71739130434784" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="AIRegistration" element="class" table_name="AI_MINADER_REGISTRATION" package_name="" xml_element="CONTENT" json_element="" description="" code="AI" has_containers="false" columns="Supplier:supplier.chargername,LoadingPlaceLabel:transport.entryPoint.custOffLibelle,Origin:transport.origin.libellePays" referenceField="aiReference" afterFields="issueDate,aiReference,expirationDate" author="NGC" process_description="Autorisation Importation" attachments_types="FACTUREP:FACTURE PRO FORMAT,FTP:FICHE TECHNIQUE DU PRODUIT,SALE_CONTRACT:Contrat de Vente" charger_xml_name="CLIENT" requestCode="01" responseCICode="11" ciCode="02" validationCode="04" modicationRequestCode="09" modificationCode="10" rejectCode="03" invoice.activity="false" partner.code="MINADER" process_descriptionEn="Autorisation Importation" goods.type="CT" payment.activity="true" id="Sb3ObpHVFGHvWsoK8jhT-5">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;perimeterSpacing=0;swimlaneLine=1;sketch=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="202.69049331103676" y="264.19189338551047" width="233.20346153846154" height="253.94594594594594" as="geometry">
+              <mxRectangle x="65.99555555555555" y="230.0046153846154" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="officeCode" type="string" element="field" label_name="Bureau" column_name="OFFICE_CODE" max_size="35" min_size="" options="BC-SNP:Yaoundé" optionsClass="" nullable="" unique="" xml_element="CODE_BUREAU" sequence="1" label_nameEn="Office" id="H-aZSpLhL-oLSM1OxbNI-8">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-5" vertex="1">
+            <mxGeometry y="26" width="233.20346153846154" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="aiReference" type="string" element="field" label_name="N° Autisation importation" column_name="REFERENCE_AI" max_size="35" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="NUMERO_AI_MINADER" sequence="3" label_nameEn="Importation Number" id="H-aZSpLhL-oLSM1OxbNI-9">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-5" vertex="1">
+            <mxGeometry y="52" width="233.20346153846154" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="issueDate" type="date" element="field" label_name="Date Autorisation Import" column_name="ISSUE_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_AI_MINADER" sequence="2" label_nameEn="AI Date" id="H-aZSpLhL-oLSM1OxbNI-11">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-5" vertex="1">
+            <mxGeometry y="78" width="233.20346153846154" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="expirationDate" type="date" element="field" label_name="date expiration" column_name="DATE_EXPIRATION" max_size="35" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="EXPIRATION_DATE" sequence="4" label_nameEn="expiation date" id="oxEIS5QmnrzkYem4W_gu-1">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-5" vertex="1">
+            <mxGeometry y="104" width="233.20346153846154" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-5" vertex="1">
+          <mxGeometry y="130" width="233.20346153846154" height="45.94594594594595" as="geometry" />
+        </mxCell>
+        <object label="Extends" element="extends" id="Sb3ObpHVFGHvWsoK8jhT-15">
+          <mxCell style="endArrow=block;endSize=16;endFill=0;html=1;sourcePerimeterSpacing=-4;strokeWidth=1;fontSize=11;align=center;snapToPoint=1;fixDash=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="Sb3ObpHVFGHvWsoK8jhT-13" edge="1">
+            <mxGeometry width="160" relative="1" as="geometry">
+              <mxPoint x="211.83333333333334" y="331.296831402574" as="sourcePoint" />
+              <mxPoint x="487.38888888888886" y="331.296831402574" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="supplier" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="FOURNISSEUR" sequence="11" label_name="Fournisseur" label_nameEn="Supplier" id="Sb3ObpHVFGHvWsoK8jhT-31">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="Sb3ObpHVFGHvWsoK8jhT-16" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="325.79088471849866" y="403.7680132718871" as="sourcePoint" />
+              <mxPoint x="724.7184986595173" y="326.85982026771813" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="Sb3ObpHVFGHvWsoK8jhT-32">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-31" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint x="11" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="Sb3ObpHVFGHvWsoK8jhT-33">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-31" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="14" y="23" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="Bill" element="embeddable" table_name="" package_name="" xml_element="" json_element="" description="" id="Sb3ObpHVFGHvWsoK8jhT-43">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fillColor=#14F89D;strokeColor=#006600;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="522.2826086956521" y="474.4914428037716" width="185.32608695652175" height="231.8532739172912" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="billNumber" type="string" element="field" label_name="N°FACTURE" column_name="BILL_NUMBER" max_size="150" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="NUMERO_FACTURE" sequence="4" label_nameEn="Invoice Number" id="Sb3ObpHVFGHvWsoK8jhT-44">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+            <mxGeometry y="26" width="185.32608695652175" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="billDate" type="date" element="field" label_name="Date Facture" column_name="INVOICE_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_FACTURE" sequence="5" label_nameEn="Invoice Date" id="Sb3ObpHVFGHvWsoK8jhT-45">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+            <mxGeometry y="60.666666666666664" width="185.32608695652175" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="billAmount" type="bigdecimal" element="field" label_name="Montant Facture" column_name="INVOICE_AMOUNT" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="MONTANT_FACTURE" sequence="3" label_nameEn="Invoice Amount" id="MMoQDWghkzFwq_rW3yn7-1">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+            <mxGeometry y="86.66666666666666" width="185.32608695652175" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="accountNumber" type="string" element="field" label_name="Numero Compte" column_name="ACOUNT_NUMBER" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="ACCOUNT_NUMBER" sequence="1" label_nameEn="Account Number" id="oxEIS5QmnrzkYem4W_gu-98">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+            <mxGeometry y="121.33333333333331" width="185.32608695652175" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="modePayement" type="string" element="field" label_name="Mode De Payement" column_name="MODE_PAYEMENT" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="PAYEMENT_MODE" sequence="6" label_nameEn="Payement Mode" id="oxEIS5QmnrzkYem4W_gu-109">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+            <mxGeometry y="155.99999999999997" width="185.32608695652175" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="Sb3ObpHVFGHvWsoK8jhT-50" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-43" vertex="1">
+          <mxGeometry y="190.66666666666663" width="185.32608695652175" height="41.18660725062458" as="geometry" />
+        </mxCell>
+        <object label="transportMode" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="MODE_TRANSPORT" sequence="6" label_name="Mode de transport" label_nameEn="Transport Mode" id="Sb3ObpHVFGHvWsoK8jhT-103">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="vLi7R-2AJWSlNqhlG2X7-10" target="Sb3ObpHVFGHvWsoK8jhT-101" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="292.54691689008047" y="769.4023808458729" as="sourcePoint" />
+              <mxPoint x="691.4745308310992" y="769.0819300416898" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="Sb3ObpHVFGHvWsoK8jhT-104">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-103" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint x="2" y="19" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="Sb3ObpHVFGHvWsoK8jhT-105">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-103" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="21" y="1" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="Transport" element="embeddable" table_name="" package_name="" xml_element="" json_element="" description="" id="vLi7R-2AJWSlNqhlG2X7-10">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fillColor=#14F89D;strokeColor=#006600;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="659.9977777777779" y="298.43999999999994" width="225.87518518518516" height="240.5199405839579" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="leavingDate" type="date" element="field" label_name="Date de Départ" column_name="LEAVING_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_DEPART" sequence="9" label_nameEn="Leaving Date" id="MMoQDWghkzFwq_rW3yn7-9">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+            <mxGeometry y="26" width="225.87518518518516" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="arrivalDate" type="date" element="field" label_name="Date d&#39;arrivée" column_name="ARRIVAL_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_ARRIVEE" sequence="10" label_nameEn="Arrival Date" id="MMoQDWghkzFwq_rW3yn7-10">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+            <mxGeometry y="60.666666666666664" width="225.87518518518516" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="soumise" type="Boolean" element="field" label_name="SOUMISE" column_name="SOUMISE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="SOUMISE" sequence="1" label_nameEn="SOUMISE" id="oxEIS5QmnrzkYem4W_gu-6">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+            <mxGeometry y="95.33333333333333" width="225.87518518518516" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="loadingType" type="string" element="field" label_name="Type Chargement" column_name="TYPE_CHARGEMENT" max_size="" min_size="" options="vrac:Vrac,conventionel:Conventionel(General cargo),ot:Open Top,tcfcl:TC.FCL(Complet),tcr:TC.refrigéré,tcl:TC.LCL(Groupage)" optionsClass="" nullable="" unique="" xml_element="TYPE_CHARGEMENT" sequence="7" label_nameEn="Loading Type " id="oxEIS5QmnrzkYem4W_gu-7">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+            <mxGeometry y="130" width="225.87518518518516" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="containerSize" type="string" element="field" label_name="Taille Container" column_name="TAILLE_CONTAINER" max_size="" min_size="" options="none:Aucun,10:10&#39;,20:20&#39;,40:40&#39;" optionsClass="" nullable="" unique="" xml_element="TAILLE_CONTAINER" sequence="8" label_nameEn="Container Size" id="oxEIS5QmnrzkYem4W_gu-8">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+            <mxGeometry y="164.66666666666666" width="225.87518518518516" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="vLi7R-2AJWSlNqhlG2X7-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
+          <mxGeometry y="199.33333333333331" width="225.87518518518516" height="41.186607250624576" as="geometry" />
+        </mxCell>
+        <object label="transport" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="TRANSPORT" sequence="16" label_name="Transport" id="vLi7R-2AJWSlNqhlG2X7-16">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#4D9900;fillColor=#d5e8d4;strokeColor=#82B366;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="vLi7R-2AJWSlNqhlG2X7-10" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="269.5652173913043" y="529.8701298701299" as="sourcePoint" />
+              <mxPoint x="1044.5652173913043" y="178.8379844763761" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-17">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-16" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-18">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-16" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="bill" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="FACTURE" sequence="15" label_name="Facture" label_nameEn="Invoice" id="vLi7R-2AJWSlNqhlG2X7-19">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;fontColor=#4D9900;fillColor=#d5e8d4;strokeColor=#82B366;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="Sb3ObpHVFGHvWsoK8jhT-43" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="230.38559782608718" y="534.9303191489364" as="sourcePoint" />
+              <mxPoint x="700.8695652173913" y="166.1614361702128" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-20">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-19" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-21">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-19" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint y="-5" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="destination" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="PAYS_DESTINATION" sequence="4" label_name="Pays de destination" label_nameEn="Departure Country" id="vLi7R-2AJWSlNqhlG2X7-25">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="vLi7R-2AJWSlNqhlG2X7-10" target="Sb3ObpHVFGHvWsoK8jhT-21" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="886.2947570332481" y="218.93617021276597" as="sourcePoint" />
+              <mxPoint x="1145.6521739130437" y="102.66233766233766" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="1113.7037037037037" y="350" />
+                <mxPoint x="1113.7037037037037" y="118" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="vLi7R-2AJWSlNqhlG2X7-26">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-25" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-27">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-25" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="18" y="35" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="entryPoint" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="PLACE_CHARGER" sequence="5" label_name="Lieux Chargement" label_nameEn="Entry Point" id="vLi7R-2AJWSlNqhlG2X7-33">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="vLi7R-2AJWSlNqhlG2X7-10" target="Sb3ObpHVFGHvWsoK8jhT-93" edge="1">
+            <mxGeometry x="0.1817" y="4" relative="1" as="geometry">
+              <mxPoint x="826.8318414322249" y="218.93617021276597" as="sourcePoint" />
+              <mxPoint x="876.0869565217394" y="522.0356382978725" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="vLi7R-2AJWSlNqhlG2X7-34">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-33" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="vLi7R-2AJWSlNqhlG2X7-35">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="vLi7R-2AJWSlNqhlG2X7-33" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="24" y="33" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="RepCurrency" element="existingClass" description="" entity="org.guce.rep.entities.RepCurrency" xml="" id="MMoQDWghkzFwq_rW3yn7-2">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="560.3877257525083" y="759.0254189267451" width="252.71739130434784" height="68.24414893617022" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="MMoQDWghkzFwq_rW3yn7-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="MMoQDWghkzFwq_rW3yn7-2" vertex="1">
+          <mxGeometry y="26" width="252.71739130434784" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="currency" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="DEVISE_FACTURE" sequence="8" label_nameEn="Invoice Currency" label_name="Devise Facture" id="MMoQDWghkzFwq_rW3yn7-4">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-43" target="MMoQDWghkzFwq_rW3yn7-2" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="292.54691689008047" y="769.4023808458729" as="sourcePoint" />
+              <mxPoint x="691.4745308310992" y="769.0819300416898" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="MMoQDWghkzFwq_rW3yn7-5">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="MMoQDWghkzFwq_rW3yn7-4" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint x="2" y="19" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="MMoQDWghkzFwq_rW3yn7-6">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="MMoQDWghkzFwq_rW3yn7-4" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="21" y="1" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="Agrement" element="embeddable" table_name="" package_name="" xml_element="" json_element="" description="" id="zwHKN8_-vxsZbjxzq792-3">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fillColor=#14F89D;strokeColor=#006600;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="17.37137614678899" y="543.4356756756756" width="185.3203846153846" height="180.55597661999394" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="agrementNumber" type="string" element="field" label_name="Numero_AI" column_name="AI_NUMBER" max_size="150" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="NUMERO_AI" sequence="1" label_nameEn="AI Number" id="zwHKN8_-vxsZbjxzq792-4">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="zwHKN8_-vxsZbjxzq792-3" vertex="1">
+            <mxGeometry y="26" width="185.3203846153846" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="agrementDtCreate" type="date" element="field" label_name="Date Delivrance" column_name="DELIVRANCE_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_Delivrance" sequence="2" label_nameEn="Invoice Date" id="zwHKN8_-vxsZbjxzq792-5">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;fontSize=11;" parent="zwHKN8_-vxsZbjxzq792-3" vertex="1">
+            <mxGeometry y="60.666666666666664" width="185.3203846153846" height="26" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="agrementExpirationDate" type="date" element="field" label_name="Date Expiration" column_name="DATE_EXPIRATION" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_EXPIRATION" sequence="3" label_nameEn="Expiration Date" id="zwHKN8_-vxsZbjxzq792-6">
+          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="zwHKN8_-vxsZbjxzq792-3" vertex="1">
+            <mxGeometry y="86.66666666666666" width="185.3203846153846" height="34.666666666666664" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="zwHKN8_-vxsZbjxzq792-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="zwHKN8_-vxsZbjxzq792-3" vertex="1">
+          <mxGeometry y="121.33333333333331" width="185.3203846153846" height="41.18660725062458" as="geometry" />
+        </mxCell>
+        <object label="agrement" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="AI_MINADER" sequence="15" label_name="Autoristion Import" label_nameEn="autorisation" id="zwHKN8_-vxsZbjxzq792-8">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;fontColor=#4D9900;fillColor=#d5e8d4;strokeColor=#82B366;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="zwHKN8_-vxsZbjxzq792-3" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="206.66666666666666" y="420" as="sourcePoint" />
+              <mxPoint x="59.88087665647299" y="306.5762162162162" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="zwHKN8_-vxsZbjxzq792-9">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="zwHKN8_-vxsZbjxzq792-8" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="zwHKN8_-vxsZbjxzq792-10">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="zwHKN8_-vxsZbjxzq792-8" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint y="-5" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="RepBank" element="existingClass" description="" entity="org.guce.rep.entities.RepBank" xml="" id="oxEIS5QmnrzkYem4W_gu-99">
+          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
+            <mxGeometry x="929.9977257525084" y="625.9954189267452" width="252.71739130434784" height="68.24414893617022" as="geometry">
+              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="oxEIS5QmnrzkYem4W_gu-100" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="oxEIS5QmnrzkYem4W_gu-99" vertex="1">
+          <mxGeometry y="26" width="252.71739130434784" height="15.381638600833794" as="geometry" />
+        </mxCell>
+        <object label="domicilialBank" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="DOMICILIARY_BANK" sequence="2" label_nameEn="Bank Domiciliary" label_name="Domiciliation Bancaire" id="oxEIS5QmnrzkYem4W_gu-101">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;exitX=0.204;exitY=0.11;exitDx=0;exitDy=0;entryX=0.194;entryY=0.027;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-43" target="oxEIS5QmnrzkYem4W_gu-99" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="710" y="584.6800000000001" as="sourcePoint" />
+              <mxPoint x="736" y="671.6800000000001" as="targetPoint" />
+              <mxPoint as="offset" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="oxEIS5QmnrzkYem4W_gu-102">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="oxEIS5QmnrzkYem4W_gu-101" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint x="2" y="19" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="oxEIS5QmnrzkYem4W_gu-103">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="oxEIS5QmnrzkYem4W_gu-101" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="21" y="1" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="origin" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="PAYS_ORIGINE" sequence="2" label_name="Pays d&#39;origine" label_nameEn="Origin Country" id="Sb3ObpHVFGHvWsoK8jhT-27">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;edgeStyle=elbowEdgeStyle;elbow=vertical;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="vLi7R-2AJWSlNqhlG2X7-10" target="Sb3ObpHVFGHvWsoK8jhT-21" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="813.1069511111109" y="257.07272083182465" as="sourcePoint" />
+              <mxPoint x="1072.69" y="80" as="targetPoint" />
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="Sb3ObpHVFGHvWsoK8jhT-28">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-27" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="Sb3ObpHVFGHvWsoK8jhT-29">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="Sb3ObpHVFGHvWsoK8jhT-27" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="-7" y="24" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="vK04hUFE1iWI71NXwjBE-1" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Sb3ObpHVFGHvWsoK8jhT-27">
+          <mxGeometry x="0.4088" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="provenance" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="PAYS_PROVENANCE" sequence="3" label_name="Pays de provenance" label_nameEn="Departure Country" id="oxEIS5QmnrzkYem4W_gu-3">
+          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="vLi7R-2AJWSlNqhlG2X7-10" target="Sb3ObpHVFGHvWsoK8jhT-21" edge="1">
+            <mxGeometry x="-0.0123" relative="1" as="geometry">
+              <mxPoint x="985.9800000000001" y="420" as="sourcePoint" />
+              <mxPoint x="1190" y="120" as="targetPoint" />
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="n" element="card" id="oxEIS5QmnrzkYem4W_gu-4">
+          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="oxEIS5QmnrzkYem4W_gu-3" connectable="0" vertex="1">
+            <mxGeometry x="-1" relative="1" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="1" element="card" id="oxEIS5QmnrzkYem4W_gu-5">
+          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="oxEIS5QmnrzkYem4W_gu-3" connectable="0" vertex="1">
+            <mxGeometry x="1" relative="1" as="geometry">
+              <mxPoint x="18" y="35" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,12 +1,12 @@
-<mxfile host="Electron" modified="2022-08-24T09:25:59.679Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.6.13 Chrome/89.0.4389.128 Electron/12.0.7 Safari/537.36" etag="VF_j7QxX2f6cDFrPQVY_" compressed="false" version="14.6.13" type="device">
+<mxfile host="Electron" modified="2023-11-13T16:52:32.589Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="pfVJ7bJYT_TARfPN24FY" compressed="false" version="21.7.5" type="device">
   <diagram id="dzslenoz5EgcA-fO8ZGD" name="Page-1">
-    <mxGraphModel dx="1024" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="862" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <object label="org.guce.process.vt2" element="package" placeholders="1" id="Sb3ObpHVFGHvWsoK8jhT-4">
           <mxCell style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;container=1;fillColor=none;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingLeft=0;fontSize=11;" parent="1" vertex="1">
-            <mxGeometry x="40" y="240" width="736" height="730" as="geometry" />
+            <mxGeometry x="46" y="240" width="736" height="730" as="geometry" />
           </mxCell>
         </object>
         <object label="CoreRecord" element="existingClass" description="" entity="org.guce.core.entities.CoreRecord" xml="" id="Sb3ObpHVFGHvWsoK8jhT-13">
@@ -21,7 +21,7 @@
         </mxCell>
         <object label="CoreCharger" element="existingClass" description="" entity="org.guce.core.entities.CoreCharger" xml="" id="Sb3ObpHVFGHvWsoK8jhT-16">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="220" y="53.764935064935074" width="96.36" height="47.4025974025974" as="geometry">
+            <mxGeometry x="204" y="30.004935064935072" width="96.36" height="47.4025974025974" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -31,7 +31,7 @@
         </mxCell>
         <object label="CoreCAD" element="existingClass" description="" entity="org.guce.core.entities.CoreCAD" xml="" id="Sb3ObpHVFGHvWsoK8jhT-18">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="36.25" y="635.1917794970988" width="116.9" height="65.28840425531914" as="geometry">
+            <mxGeometry x="87.1" y="620.0017794970987" width="116.9" height="65.28840425531914" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -69,7 +69,7 @@
         <mxCell id="Sb3ObpHVFGHvWsoK8jhT-102" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-101" vertex="1">
           <mxGeometry y="26" width="150" height="13.210113151304316" as="geometry" />
         </mxCell>
-        <object label="VT2Registration" element="class" table_name="VT2_MINEPDED_REGISTRATION" package_name="" xml_element="CONTENT" json_element="" description="" code="VT2" has_containers="false" columns="Supplier:supplier.chargername,loadingPlaceLabel:transport.loadingPlace.custOffLibelle" referenceField="vtReference" afterFields="vtDate,vtReference" author="NGC" process_description="Visa technique MINEPDED" attachments_types="BL:Connaissement,FACTURE:Facture" charger_xml_name="CLIENT" requestCode="01" responseCICode="11" ciCode="02" validationCode="04" modicationRequestCode="09" modificationCode="10" rejectCode="03" invoice.activity="false" partner.code="MINEPDED" process_descriptionEn="Technical Visa MINEPDED" goods.type="CT" payment.activity="true" id="Sb3ObpHVFGHvWsoK8jhT-5">
+        <object label="VT2Registration" element="class" table_name="VT2_MINEPDED_REGISTRATION" package_name="" xml_element="CONTENT" json_element="" description="" code="VT2" has_containers="false" columns="Supplier:supplier.chargername,loadingPlaceLabel:transport.loadingPlace.custOffLibelle,travelNumber:transport.travelNumber" referenceField="vtReference" afterFields="vtDate,vtReference" author="NGC" process_description="Visa technique MINEPDED" attachments_types="BL:Connaissement,FACTURE:Facture" charger_xml_name="CLIENT" requestCode="01" responseCICode="11" ciCode="02" validationCode="04" modicationRequestCode="09" modificationCode="10" rejectCode="03" invoice.activity="false" partner.code="MINEPDED" process_descriptionEn="Technical Visa MINEPDED" goods.type="CT" payment.activity="true" id="Sb3ObpHVFGHvWsoK8jhT-5">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;perimeterSpacing=0;swimlaneLine=1;sketch=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
             <mxGeometry x="25.49" y="407.5001602652667" width="138.42" height="118.22627570140465" as="geometry">
               <mxRectangle x="65.99555555555555" y="230.0046153846154" width="160" height="26" as="alternateBounds" />

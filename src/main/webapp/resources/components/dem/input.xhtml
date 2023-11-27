@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle var="demBundle" basename="org/guce/web/process/dem/util/Bundle" />
+        <composite:attribute name="value" required="true" />
+        <composite:attribute name="compareTo" required="false" />
+        <composite:attribute name="showLabel" required="false" default="true"/>
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="label" required="false"  type="java.lang.String"/>
+        <composite:attribute name="maxLength" required="false" default="255"  type="java.lang.String"/>
+        <composite:attribute name="minLength" required="false" default="0"  type="java.lang.String"/>
+        <composite:attribute name="size" required="false"   type="java.lang.String"/>
+        <composite:attribute name="styleInput" required="false"  type="java.lang.String"/>
+        <composite:attribute name="listener" required="false" expert="false" preferred="false" 
+                             method-signature="void m()" />
+        <composite:attribute name="updateAfterChange" required="false"  type="java.lang.String"/>
+        <composite:attribute name="regexValidation" required="false"  type="java.lang.String"/>
+        <composite:attribute name="immediate" required="false" default="false" type="java.lang.String"/>
+        <composite:attribute name="title" required="false" default="#{cc.attrs.label}" type="java.lang.String"/>
+        <composite:attribute name="type" required="false" default="text"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String" default="md-inputfield"/>
+        <composite:attribute name="requiredMessage" required="false" default="#{demBundle.FieldRequired}"  type="java.lang.String"/>
+        <composite:attribute name="validatorMessage" required="false" default="#{demBundle.InvalidField}"  type="java.lang.String"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="demBundle" basename="org/guce/web/process/dem/util/Bundle" />
+        <h:outputLabel  for="input_id" style="margin-bottom: 5px;display:block;width: 100%;">
+            #{cc.attrs.label}<span>#{cc.attrs.required eq 'true' ? '*' : ''}</span>
+        </h:outputLabel>
+        <h:panelGroup>
+            <p:inputText id="input_id"
+                         style="#{cc.attrs.styleInput};width: 100%;"
+                         immediate="#{cc.attrs.immediate}"
+                         readonly="#{cc.attrs.readOnly}"
+                         required="#{cc.attrs.required}"
+                         requiredMessage="#{cc.attrs.requiredMessage}"
+                         validatorMessage="#{cc.attrs.validatorMessage}"
+                         size="#{cc.attrs.size}"
+                         placeholder="#{cc.attrs.label}"
+                         type="#{cc.attrs.type}"
+                         value="#{cc.attrs.value}" >
+                <f:validateLength maximum="#{cc.attrs.maxLength}" minimum="#{cc.attrs.minLength}" />
+                <f:validateRegex  disabled="#{cc.attrs.regexValidation == null}" pattern="#{cc.attrs.regexValidation}" />
+                <p:ajax  disabled="#{cc.attrs.updateAfterChange == null}" event="change" listener="#{cc.attrs.listener}" update="#{cc.attrs.updateAfterChange}"></p:ajax>
+            </p:inputText>
+            <p:message for="input_id"  />
+            <p:tooltip id="toolTipinput_id" for="input_id" >
+                <h:outputText value="#{cc.attrs.label}" />
+                <br />
+                <h:outputText rendered="#{cc.attrs.value != null}" value="#{cc.attrs.value}" >
+                </h:outputText>
+                <br />
+                <p:outputPanel rendered="#{cc.attrs.compareTo != null and !(cc.attrs.value eq cc.attrs.compareTo)}">
+                    <h:outputText  value="#{demBundle.OldValue} : #{cc.attrs.compareTo}" >
+                    </h:outputText>
+                    <br />
+                    <h:outputText  value="#{demBundle.NewValue} : #{cc.attrs.value}" >
+                    </h:outputText>
+                </p:outputPanel>
+            </p:tooltip>
+        </h:panelGroup>
+    </composite:implementation>
+</html>
+

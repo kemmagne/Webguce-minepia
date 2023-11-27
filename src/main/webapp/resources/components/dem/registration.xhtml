@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:dem="http://java.sun.com/jsf/composite/components/dem"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="demBundle"/>
+        <composite:attribute name="value" required="true" type="java.lang.Object"/>
+        <composite:attribute name="requiredList" type="java.lang.String"/>
+        <composite:attribute name="readOnlyList" type="java.lang.String"/>
+        <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute default="true" name="renderedBoolean" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute default="false" name="returnSame"/>
+        <composite:attribute name="fieldChange"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="demBundle"/>
+        <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} registrationBlock">
+            <h:outputLabel for="demReference" rendered="#{cc.isRendered('demReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{demBundle.demReferenceLabel} <span>#{cc.isRequiredString('demReference',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('demReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:inputText
+                    converterMessage="#{demBundle.demReference} #{demBundle.invalid}"
+                    id="demReference" maxlength="35"
+                    readonly="#{cc.isReadOnly('demReference',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    rendered="#{cc.isRendered('demReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('demReference',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{demBundle.demReference} #{demBundle.required}"
+                    size="35" style="width: 140px"
+                    validatorMessage="#{demBundle.demReference} #{demBundle.invalid}" value="#{cc.attrs.value.demReference}"/>
+                <p:message for="demReference"/>
+            </h:panelGroup>
+            <h:outputLabel for="demDate" rendered="#{cc.isRendered('demDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{demBundle.demDateLabel} <span>#{cc.isRequiredString('demDate',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('demDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:calendar
+                    converterMessage="#{demBundle.demDate} #{demBundle.invalide}"
+                    id="demDate" mask="true" maxlength="17"
+                    pattern="#{demBundle.dateFormat}"
+                    readonly="#{cc.isReadOnly('demDate',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    required="#{cc.isRequired('demDate',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{demBundle.demDate} #{demBundle.required}"
+                    size="17"
+                    validatorMessage="#{demBundle.demDate} #{demBundle.invalide}" value="#{cc.attrs.value.demDate}">
+                    <f:convertDateTime pattern="#{demBundle.dateFormat}"/>
+                </p:calendar>
+                <p:message for="demDate"/>
+            </h:panelGroup>
+        </h:panelGrid>
+        <p:outputPanel>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('table.registrationBlock tr').each(function (index) {
+                        jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                        jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                    });
+                });
+            </script>
+        </p:outputPanel>
+        <style>
+            table.registrationBlock {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .registrationBlock label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .registrationBlock select{
+                padding:5px;
+            }
+            .registrationBlock label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .registrationBlock .ui-selectonemenu-label{
+                display:block;
+            }
+            .registrationBlock .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .registrationBlock.ui-inputtext[readonly="readonly"],
+            .registrationBlock .hasDatepicker[readonly="readonly"],
+            .registrationBlock .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>

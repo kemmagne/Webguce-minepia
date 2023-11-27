@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:dem="http://java.sun.com/jsf/composite/components/dem"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <composite:attribute name="value" required="true" type="java.lang.Object"/>
+        <composite:attribute name="requiredList" type="java.lang.String"/>
+        <composite:attribute name="readOnlyList" type="java.lang.String"/>
+        <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute name="searchAction" required="true"/>
+        <composite:attribute name="cleanAction" required="true"/>
+        <composite:attribute default="true" name="renderedBoolean" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute default="" name="updateAfterChange" type="java.lang.String"/>
+        <composite:attribute default="1" name="registerType" type="java.lang.String"/>
+        <composite:attribute default="true" name="returnSame" type="java.lang.String"/>
+        <composite:attribute default="" name="ignoreRequiredButtonId" type="java.lang.String"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="demBundle"/>
+        <p:fieldset collapsed="true" id="filtres"
+            legend="#{demBundle.Filtre}" styleClass="filtres"
+            toggleSpeed="250" toggleable="true">
+            <h:panelGrid cellpadding="10" columns="4" id="filterBlock" style="width: 100%;">
+                <dem:input id="id" label="#{demBundle.id}"
+                    rendered="#{cc.isRendered('id',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" value="#{cc.attrs.value.otherFilter['id']}"/>
+                <dem:input id="createUser"
+                    label="#{demBundle.createUser}"
+                    rendered="#{cc.isRendered('createUser',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" value="#{cc.attrs.value.otherFilter['createUser.username']}"/>
+                <h:panelGroup>
+                    <p:outputLabel for="active"
+                        style="margin-bottom: 5px;display:block;width: 100%;" value="#{demBundle.Status}"/>
+                    <p:selectOneMenu id="active" value="#{cc.attrs.value.otherFilter['active']}">
+                        <f:selectItem itemLabel="----" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{demBundle.Activer}" itemValue="#{true}"/>
+                        <f:selectItem
+                            itemLabel="#{demBundle.Desactiver}" itemValue="#{false}"/>
+                    </p:selectOneMenu>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:outputLabel for="declaration" rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{demBundle.declaration} <span>#{cc.isRequiredString('declaration',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText
+                            converterMessage="#{demBundle.declaration} #{demBundle.invalid}"
+                            id="declaration" maxlength="35"
+                            readonly="#{cc.isReadOnly('declaration',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                            rendered="#{cc.isRendered('declaration',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                            required="#{cc.isRequired('declaration',cc.attrs.requiredList,cc.attrs.required)}"
+                            requiredMessage="#{demBundle.declaration} #{demBundle.required}"
+                            size="35" style="width: 140px"
+                            validatorMessage="#{demBundle.declaration} #{demBundle.invalid}" value="#{cc.attrs.value.otherFilter['declaration']}"/>
+                        <p:message for="declaration"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <dem:dateRange
+                    end="#{cc.attrs.value.otherFilter['createDateEnd']}"
+                    id="createDate" label="#{demBundle.createDate}"
+                    rendered="#{cc.isRendered('createDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" start="#{cc.attrs.value.otherFilter['createDateStart']}"/>
+                <dem:dateRange
+                    end="#{cc.attrs.value.otherFilter['writeDateEnd']}"
+                    id="writeDate" label="#{demBundle.writeDate}"
+                    rendered="#{cc.isRendered('writeDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" start="#{cc.attrs.value.otherFilter['writeDateStart']}"/>
+            </h:panelGrid>
+            <p style="text-align: right;">
+                <p:commandButton action="#{cc.attrs.searchAction}"
+                    icon="ui-icon-search" id="first"
+                    process="filterBlock" title="#{demBundle.Search}"
+                    update="#{cc.attrs.update}" value="#{demBundle.Search}"/>
+                <p:spacer width="10px"/>
+                <p:commandButton action="#{cc.attrs.searchAction}"
+                    icon="ui-icon-remove" id="second"
+                    process="filterBlock" rendered="false"
+                    title="#{demBundle.Clean}"
+                    update="#{cc.attrs.update}" value="#{demBundle.Clean}"/>
+            </p>
+        </p:fieldset>
+    </composite:implementation>
+</html>

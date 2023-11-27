@@ -1,0 +1,148 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:dem="http://java.sun.com/jsf/composite/components/dem"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
+    <f:loadBundle basename="org/guce/web/process/dem/util/Bundle" var="dem"/>
+    <p:tooltip for=":tab"/>
+    <ui:param name="crudController" value="#{dEMDeclarationController}"/>
+    <h:form id="tab">
+        <p:messages/>
+        <dem:demdeclaration_filter action="#{crudController.loadList()}"
+            cleanAction="#{crudController.loadList()}"
+            rendered="#{crudController.mode eq 'list'}" renderedList=""
+            required="false" update=":tab:dataTable" value="#{crudController.itemFilter}"/>
+        <br/>
+        <p:dataTable id="dataTable" lazy="true" paginator="true"
+            paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}                      {LastPageLink} {RowsPerPageDropdown}"
+            rendered="#{crudController.mode eq 'list'}"
+            rowStyleClass="#{item.active != true ? 'old' : null}"
+            rows="10"
+            rowsPerPageTemplate="5,10,15,#{crudController.dataModel.rowCount}"
+            selection="#{crudController.selecteds}"
+            style="max-width: 100%;margin-top:50px;"
+            value="#{crudController.dataModel}" var="item">
+            <f:facet name="header">  
+                #{dem.DEMDeclarationList} (#{crudController.dataModel.rowCount})
+            </f:facet>
+            <f:facet name="header">
+                <p style="text-align: left;float:left;margin-top:-50px;margin-left: -15px;">
+                    <p:commandButton
+                        action="#{crudController.goToPreviows()}"
+                        ajax="false" immediate="true"
+                        style="height:30px;display: inline-block;margin-right: 4px;" value="#{dem.Retour}"/>
+                </p>
+                <p style="text-align: right;float:right;margin-top:-50px;margin-right: -15px;">
+                    <p:commandButton
+                        action="#{crudController.prepareCreate()}"
+                        icon="ui-icon-document"
+                        style="height:30px;display: inline-block;margin-right: 4px;"
+                        update=":form,:tab" value="#{dem.New}"/>
+                    <p:commandButton icon="ui-icon-trash"
+                        onclick="PF('confirmation').show()"
+                        style="height:30px;display: inline-block;margin-right: 4px;" value="#{dem.Delete}"/>
+                    <p:commandButton
+                        action="#{crudController.enables()}"
+                        icon="ui-icon-folder-open"
+                        style="height:30px;display: inline-block;margin-right: 4px;"
+                        update=":tab" value="#{dem.Activer}"/>
+                    <p:commandButton
+                        action="#{crudController.disables()}"
+                        icon="ui-icon-folder-open"
+                        style="height:30px;display: inline-block;margin-right: 4px;"
+                        update=":tab" value="#{dem.Desactiver}"/>
+                </p>
+            </f:facet>
+            <p:column selectionMode="multiple" style="width:18px"/>
+            <p:column headerText="#{dem.ID}" id="id" sortBy="#{item.id}" style="width:20px">  
+                #{item.id}  
+            </p:column>
+            <p:column headerText="#{dem.createDate}"
+                sortBy="#{item.createDate}" style="width:70px">
+                <h:outputText value="#{item.createDate}">
+                    <f:convertDateTime pattern="#{dem.dateFormat} HH:mm"/>
+                </h:outputText>
+            </p:column>
+            <p:column headerText="#{dem.createUser}" sortBy="#{item.createUser.username}">
+                <h:outputText value="#{item.createUser.username}"/>
+            </p:column>
+            <p:column headerText="#{dem.declaration}" sortBy="#{item.declaration}">
+    #{item.declaration}
+</p:column>
+            <p:column style="width:20px">
+                <p:commandLink
+                    action="#{crudController.preapareEdit(item)}"
+                    process="@this" title="#{dem.Edit}" update=":form,:tab">
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/detail.jpeg" width="20"/>
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+        <p:outputPanel rendered="#{crudController.mode eq 'list'}" style="text-align: right;margin-top: 10px;">
+            <p:commandLink ajax="false" id="pdf" immediate="true">
+                <p:graphicImage height="35"
+                    value="/ImageFolder/pdf.jpeg" width="35"/>
+                <p:fileDownload value="#{crudController.exportPDF()}"/>
+            </p:commandLink>
+            <p:spacer rendered="false" width="20"/>
+            <p:commandLink ajax="false" id="xls" immediate="true" title="#{dem.DownloadExcelFile}">
+                <p:graphicImage height="35"
+                    value="/ImageFolder/excel.png" width="35"/>
+                <p:fileDownload value="#{crudController.exportExcel()}"/>
+            </p:commandLink>
+        </p:outputPanel>
+        <p:confirmDialog header="#{dem.Delete}" id="confirmDialog"
+            message="#{dem.DeleteAlert}" severity="alert" widgetVar="confirmation">
+            <p:commandButton action="#{crudController.removes()}"
+                id="confirm" oncomplete="PF('confirmation').hide()"
+                update=":tab" value="#{dem.Yes}"/>
+            <p:commandButton id="decline"
+                onclick="PF('confirmation').hide()" type="button" value="#{dem.No}"/>
+        </p:confirmDialog>
+    </h:form>
+    <h:form id="form">
+        <p:panel
+            header="#{crudController.current.id == null ? dem.New : dem.Edit} #{dem.DEMDeclaration} #{crudController.current.id == null ? '' : crudController.current.id}"
+            id="itemDialog" rendered="#{crudController.mode eq 'form'}" style="width:90%;margin:auto;padding:5px;">
+            <dem:crud_reference id="crud_reference" readOnly="true"
+                rendered="#{crudController.current.id != null}"
+                styleClass="webguce-sub-block" value="#{crudController.current}"/>
+            <h3 class="webguce-sub-block-title">#{dem.Information}</h3>
+            <dem:dEMDeclaration id="block_id" readOnlyList=""
+                rendered="true" required="true"
+                styleClass="webguce-sub-block" value="#{crudController.current}"/>
+            <h:panelGrid cellspacing="10" columns="2" style="margin-top:10px;padding-top: 10px;border-top:1px #eee solid;">
+                <p:commandButton action="#{crudController.save()}"
+                    id="submit_button" style="width: 80px"
+                    update=":form,:tab" value="#{dem.Valider}"/>
+                <p:commandButton action="#{crudController.loadList()}"
+                    immediate="true" style="width: 80px"
+                    update=":form,:tab" value="#{dem.Annuler}"/>
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+    <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
+    <script>
+        function myReadonly() {
+            jQuery('.my-readonly').attr("readonly", "readonly");
+        }
+        myReadonly();
+    </script>
+    <style>
+        .blockTitle{
+            border-bottom :solid 1px #DDD;border-top :solid 1px #DDD;margin:10px 0px;padding:5px 0px;
+        }
+        .webguce-sub-block .ui-inputtext[readonly="readonly"], 
+        .webguce-sub-block .hasDatepicker[readonly="readonly"], 
+        .webguce-sub-block .ui-inputtextarea[readonly="readonly"] {
+            background: #EEE !important;
+        }
+        .filtres .ui-inputtext, 
+        .filtres  .hasDatepicker, 
+        .filtres  .ui-inputtextarea {
+            width: 100%  !important;
+        }
+    </style>
+</ui:composition>

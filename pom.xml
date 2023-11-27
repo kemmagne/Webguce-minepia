@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.guce.web.process</groupId>
-    <artifactId>webguce-vt2</artifactId>
-    <version>1.0.13</version>
+    <artifactId>webguce-dem</artifactId>
+    <version>1.0.12</version>
     <packaging>jar</packaging>
-    <name>webguce-vt2</name>
+    <name>webguce-dem</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -78,16 +78,18 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>org.guce.web.process</groupId>
             <artifactId>webguce-pred</artifactId>
-            <version>1.5.6-vt2-beta.5</version>
+            <version>1.5.17</version>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>org.guce.web.process</groupId>
             <artifactId>webguce-carg</artifactId>
-            <version>1.5.0-vt2-beta.2</version>
+            <version>1.5.4</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -168,7 +170,7 @@
                 </configuration>
             </plugin>
             
-<!--            <plugin>
+           <plugin>
                 <groupId>org.guce.web</groupId>
                 <artifactId>webguce-project-generator-maven-plugin</artifactId>
                 <version>0.1-SNAPSHOT</version>
@@ -180,10 +182,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <design>src/main/resources/vt2.drawio</design>
+               
+                <!-- <design>src/main/resources/dem.drawio</design> -->
                 </configuration>
-            </plugin>-->
-            <plugin>
+            </plugin>
+            
+<!--            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -206,7 +210,8 @@
                         </transformSchema>
                     </transformSchemas>
                 </configuration>
-            </plugin>
+            </plugin>-->
+            
         </plugins>
     </build>
     

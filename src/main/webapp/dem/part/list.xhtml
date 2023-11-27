@@ -1,0 +1,57 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:facet name="header">
+        <span style="text-align: right;width: 100%;display: block;margin-top: 0px;">
+            <p:commandLink ajax="false" immediate="true" title="#{dem.PrintExcelList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/excel.png" width="30"/>
+                <p:fileDownload value="#{dEMListController.printExcel(listTilte)}"/>
+            </p:commandLink>
+            <p:spacer width="5px"/>
+            <p:commandLink ajax="false" immediate="true" title="#{dem.PrintPdfList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/pdf.jpeg" width="30"/>
+                <p:fileDownload value="#{dEMListController.printPdf(listTilte)}"/>
+            </p:commandLink>
+        </span>
+    </f:facet>
+    <f:facet name="header">
+        #{listTilte}(#{dEMListController.models.rowCount})
+    </f:facet>
+    <f:facet name="footer">
+        #{listTilte}(#{dEMListController.models.rowCount})
+    </f:facet>
+    <p:column headerText="#{dem.recordId}">
+        #{file.file.recordId}
+    </p:column>
+  <!--  <p:column headerText="#{dem.CircuitReference}">
+        #{file.file.recordParent.recordId}
+    </p:column>  -->
+    <p:column headerText="#{dem.CreateDate}" sortBy="#{file.file.recordCreatedate}">
+        <h:outputText value="#{file.file.recordCreatedate}">
+            <f:convertDateTime pattern="#{dem.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{dem.SendDate}" sortBy="#{file.processing.procstartdate}">
+        <h:outputText value="#{file.processing.procstartdate}">
+            <f:convertDateTime pattern="#{dem.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{dem.Charger}">
+       #{file.file.information.socialReson}
+    </p:column>
+  <!--  <p:column headerText="#{dem.datedemande}" sortBy="#{file.file.information.deliveryDate}">
+    #{file.file.information.deliveryDate}
+</p:column>
+    <p:column headerText="#{dem.datedexpiration}" sortBy="#{file.file.information.expirationDate}">
+    #{file.file.information.expirationDate}
+</p:column> -->
+    <p:column headerText="#{dem.NIU}" sortBy="#{file.file.information.niu}">
+    #{file.file.information.niu}
+</p:column>
+    <p:column headerText="#{dem.Activite}" sortBy="#{file.file.information.declaration}">
+    #{file.file.information.declaration}
+</p:column>
+</ui:composition>
