@@ -58,14 +58,6 @@
                     readOnlyList="demDate,demReference" rendered="true"
                     renderedList="#{demController.current.demReference != null ? '':'demDate,demReference'}"
                     required="true" styleClass="webguce-sub-block" value="#{demController.current}"/>
-                <p:outputPanel id="informationBlock">
-                    <h3 class="webguce-sub-block-title">#{dem.information}</h3>
-                    <dem:information id="information" readOnly="false"
-                        readOnlyList=""
-                        rendered="#{demController.compute_information()}"
-                        renderedList="" required="true" requiredList=""
-                        styleClass="webguce-sub-block" value="#{demController.current.information}"/>
-                </p:outputPanel>
             </p:tab>
             <p:tab title="#{dem.goods} ">
                 <h3 class="codename blockTitle">#{dem.goods}</h3>

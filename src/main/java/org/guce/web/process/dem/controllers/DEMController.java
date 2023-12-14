@@ -7,8 +7,6 @@ import javax.ejb.EJB;
 import org.guce.core.ejb.facade.interfaces.CoreRecordFacadeLocal;
 import org.guce.core.entities.CoreProcessing;
 import org.guce.process.dem.entities.DEMRegistration;
-import org.guce.rep.ejb.facade.interfaces.CarteContribuableFacadeLocal;
-import org.guce.rep.entities.CarteContribuable;
 import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
 import org.guce.web.core.util.DefaultLazyDataModel;
@@ -20,9 +18,7 @@ public abstract class DEMController extends WebGuceDefaultController {
     protected DEMRegistration current;
 
     protected CoreProcessing processing;
-    @EJB
-    CarteContribuableFacadeLocal carteContribuableFacadeLocal;
-    
+
     @EJB
     protected DEMRegistrationServiceImpl service;
 
@@ -55,26 +51,16 @@ public abstract class DEMController extends WebGuceDefaultController {
     public String getProcessingType() {
         return "DEM";
     }
-    
-     public void save() {
-        try {
-            
-            current.getChargerid().setChargername(current.getInformation().getSocialReson());
-            System.out.println("====++++++++++" + current.getChargerid().getChargername() + "+++===========");
-           
-            
-            current = service.save(current);
-            
-            System.out.println("========" + current + "========");
 
+    public void save() {
+        try {
+            current = service.save(current);
             JsfUtil.addSuccessMessage(bundle("RecordSaved") + " " + current.getRecordId());
         } catch(Exception ex) {
             JsfUtil.addErrorMessage(bundle("CannotSaveRecord") + " " + current.getRecordId());
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    
-    
 
     protected boolean checkRecordAccessRight() {
         if (recordId == null) {
@@ -118,7 +104,7 @@ public abstract class DEMController extends WebGuceDefaultController {
     }
 
     protected boolean checkRequestConformity() {
-        if(!current.getGoodList().isEmpty()) {
+        if(current.getGoodList().isEmpty()) {
             JsfUtil.addErrorMessage(bundle("GoodListEmpty"));
             return false;
         }
@@ -160,9 +146,5 @@ public abstract class DEMController extends WebGuceDefaultController {
     }
 
     public void pushToParent() {
-    }
-
-    public boolean compute_information() {
-        return true;
     }
 }

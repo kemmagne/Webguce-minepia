@@ -26,9 +26,9 @@
     <p:column headerText="#{dem.recordId}">
         #{file.file.recordId}
     </p:column>
-  <!--  <p:column headerText="#{dem.CircuitReference}">
+    <p:column headerText="#{dem.CircuitReference}">
         #{file.file.recordParent.recordId}
-    </p:column>  -->
+    </p:column>
     <p:column headerText="#{dem.CreateDate}" sortBy="#{file.file.recordCreatedate}">
         <h:outputText value="#{file.file.recordCreatedate}">
             <f:convertDateTime pattern="#{dem.dateFormat} HH:mm"/>
@@ -40,18 +40,9 @@
         </h:outputText>
     </p:column>
     <p:column headerText="#{dem.Charger}">
-       #{file.file.information.socialReson}
+        #{file.file.chargerid.chargername}
     </p:column>
-  <!--  <p:column headerText="#{dem.datedemande}" sortBy="#{file.file.information.deliveryDate}">
-    #{file.file.information.deliveryDate}
-</p:column>
-    <p:column headerText="#{dem.datedexpiration}" sortBy="#{file.file.information.expirationDate}">
-    #{file.file.information.expirationDate}
-</p:column> -->
-    <p:column headerText="#{dem.NIU}" sortBy="#{file.file.information.niu}">
-    #{file.file.information.niu}
-</p:column>
-    <p:column headerText="#{dem.Activite}" sortBy="#{file.file.information.declaration}">
-    #{file.file.information.declaration}
-</p:column>
+  <!--  <p:column headerText="#{dem.typeDeDeclaration}" sortBy="#{file.file.declarations.declaration}">  #{file.file.declarations.declaration}
+</p:column>  -->
+  //
 </ui:composition>

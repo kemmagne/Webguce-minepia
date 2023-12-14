@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
 )
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 @XmlRootElement(
-        name = "DEM_TYPE"
+        name = "DECLARATION"
 )
 @XmlType(
         propOrder = {"declaration"}

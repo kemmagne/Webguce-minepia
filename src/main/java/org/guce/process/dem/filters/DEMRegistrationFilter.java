@@ -3,15 +3,26 @@ package org.guce.process.dem.filters;
 import java.util.Date;
 import java.util.List;
 import org.guce.core.services.SearchFilter;
+import org.guce.process.dem.entities.DEMDeclaration;
 
 public class DEMRegistrationFilter extends SearchFilter {
+    private List<String> officeCode;
+
     private List<String> demReference;
 
     private Date demDateStartFilter;
 
     private Date demDateEndFilter;
 
-    private InformationFilter information;
+    private List<DEMDeclaration> declarations;
+
+    public List<String> getOfficeCode() {
+        return officeCode;
+    }
+
+    public void setOfficeCode(List<String> officeCode) {
+        this.officeCode = officeCode;
+    }
 
     public List<String> getDemReference() {
         return demReference;
@@ -37,11 +48,11 @@ public class DEMRegistrationFilter extends SearchFilter {
         this.demDateEndFilter = demDateEndFilter;
     }
 
-    public InformationFilter getInformation() {
-        return information;
+    public List<DEMDeclaration> getDeclarations() {
+        return declarations;
     }
 
-    public void setInformation(InformationFilter information) {
-        this.information = information;
+    public void setDeclarations(List<DEMDeclaration> declarations) {
+        this.declarations = declarations;
     }
 }

@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,13 +40,14 @@ import org.guce.core.entities.CoreSignatory;
 )
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlRootElement(
-        name = "DEM_CONTENT"
+        name = "CONTENT"
 )
 @XmlType(
-        propOrder = {"demReference",
+        propOrder = {"officeCode",
+                "demReference",
                 "demDate",
+                "declarations",
                 "chargerid",
-                "information",
                 "goodList",
                 "paiement",
                 "signatory",
@@ -54,6 +55,12 @@ import org.guce.core.entities.CoreSignatory;
                 "coreAttachmentList"}
 )
 public class DEMRegistration extends CoreRecord implements Serializable {
+    @Column(
+            name = "OFFICE_CODE",
+            length = 35
+    )
+    private String officeCode;
+
     @Column(
             name = "REFERENCE_DEM",
             length = 35
@@ -75,8 +82,21 @@ public class DEMRegistration extends CoreRecord implements Serializable {
     @Transient
     public PaymentDocument.CONTENT.PAIEMENT paiement;
 
-    @Embedded
-    private Information information;
+    @ManyToMany(
+            targetEntity = DEMDeclaration.class
+    )
+    private List<DEMDeclaration> declarations;
+
+    @XmlElement(
+            name = "CODE_BUREAU"
+    )
+    public String getOfficeCode() {
+        return officeCode;
+    }
+
+    public void setOfficeCode(String officeCode) {
+        this.officeCode = officeCode;
+    }
 
     @XmlElement(
             name = "NUMERO_DEM_MINCOMMERCE"
@@ -101,18 +121,17 @@ public class DEMRegistration extends CoreRecord implements Serializable {
         this.demDate = demDate;
     }
 
-    @XmlElement(
-            name = "FACTURE"
+    @XmlElementWrapper(
+            name = "DECLARATIONS"
     )
-    public Information getInformation() {
-        if(this.information == null) {
-            this.information = new Information();
-        }
-        return information;
+    @XmlElements({
+                    @XmlElement(name = "DECLARATION")})
+    public List<DEMDeclaration> getDeclarations() {
+        return declarations;
     }
 
-    public void setInformation(Information information) {
-        this.information = information;
+    public void setDeclarations(List<DEMDeclaration> declarations) {
+        this.declarations = declarations;
     }
 
     @XmlElement(

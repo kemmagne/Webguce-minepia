@@ -57,7 +57,6 @@ public class DEMRegistrationService implements ICrudService<DEMRegistration> {
             entity.setRecordState(CoreRecord.NO_START);
         }
         if(entity.getChargerid() != null && entity.getChargerid().getChargerid() == null) {
-            
             chargerFacade.create(entity.getChargerid());
         }
         entity.setRecordLastCreateDate(GuceCalendarUtil.getCalendar().getTime());

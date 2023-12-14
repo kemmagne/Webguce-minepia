@@ -91,4 +91,8 @@ public interface DEMConstant {
     /**
      * entity name */
     String REGISTRATION_RECORD_ENTITY = "DEMRegistration";
+    
+    String DEFAULT_HS_CODE = "85369000000";
+    
+    String DEFAULT_UNIT = "KG";
 }

@@ -4,24 +4,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
 import org.guce.process.dem.entities.DEMRegistration;
-import org.guce.rep.ejb.facade.interfaces.CarteContribuableFacadeLocal;
-import org.guce.rep.entities.CarteContribuable;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.dem.controllers.impl.DEMControllerImpl;
 import org.primefaces.context.RequestContext;
 
 public class DEMRequestController extends DEMControllerImpl {
-    
- @EJB
- public CarteContribuableFacadeLocal carteContribuableFacadeLocal;  
- 
- 
     @PostConstruct
     public void init() {
         if ("form".equals(type) && recordId == null) {
@@ -65,9 +57,9 @@ public class DEMRequestController extends DEMControllerImpl {
     }
 
     public void prepareSend() {
-       
+        if(checkRequestConformity()) {
             save();
-     
+        }
     }
 
     protected void prepareCopy() {
@@ -93,10 +85,9 @@ public class DEMRequestController extends DEMControllerImpl {
 
     protected void send() {
         beforeSend();
-      
         serviceMessage.send(serviceMessage.sendRequest(current,userController.getUserConnecte()));
     }
-  //&& checkRequestConformity()
+
     public void validateAndSaveAndSend() {
         if(!fileSent) {
             fileSent = true;
@@ -113,9 +104,7 @@ public class DEMRequestController extends DEMControllerImpl {
     }
 
     public void validateAndSave() {
-                   
             save();
-      
     }
 
     protected boolean loadParentData(CoreRecord parent) {
