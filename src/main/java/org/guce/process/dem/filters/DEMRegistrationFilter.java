@@ -14,6 +14,10 @@ public class DEMRegistrationFilter extends SearchFilter {
 
     private Date demDateEndFilter;
 
+    private Date expDateStartFilter;
+
+    private Date expDateEndFilter;
+
     private List<DEMDeclaration> declarations;
 
     public List<String> getOfficeCode() {
@@ -46,6 +50,22 @@ public class DEMRegistrationFilter extends SearchFilter {
 
     public void setDemDateEndFilter(Date demDateEndFilter) {
         this.demDateEndFilter = demDateEndFilter;
+    }
+
+    public Date getExpDateStartFilter() {
+        return expDateStartFilter;
+    }
+
+    public Date getExpDateEndFilter() {
+        return expDateEndFilter;
+    }
+
+    public void setExpDateStartFilter(Date expDateStartFilter) {
+        this.expDateStartFilter = expDateStartFilter;
+    }
+
+    public void setExpDateEndFilter(Date expDateEndFilter) {
+        this.expDateEndFilter = expDateEndFilter;
     }
 
     public List<DEMDeclaration> getDeclarations() {

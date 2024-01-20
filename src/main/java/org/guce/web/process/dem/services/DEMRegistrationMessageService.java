@@ -302,7 +302,8 @@ public class DEMRegistrationMessageService extends DefaultTraitement implements 
                 }
                 registration.setDecision(document.getContenu().getDecision());
                 registration.setPaiement(document.getContenu().getPaiement());
-                return (CoreMessage) getClass().getMethod(CoreProcessingState.TRAITER + ebxml.getAction().toUpperCase(),OrchestraEbxmlMessage.class,DEMRegistration.class).invoke(this,ebxml,registration);
+                String action = ebxml.getAction().toUpperCase().equals(DEMConstant.PROCESSING_FOR_PAYMENT_REPONSE) ? DEMConstant.PROCESSING_PAYMENT : ebxml.getAction().toUpperCase();
+                return (CoreMessage) getClass().getMethod(CoreProcessingState.TRAITER + action,OrchestraEbxmlMessage.class,DEMRegistration.class).invoke(this,ebxml,registration);            
             }
         }
         return null;
@@ -390,7 +391,7 @@ public class DEMRegistrationMessageService extends DefaultTraitement implements 
     public CoreMessage traiterDEM602(OrchestraEbxmlMessage ebxml, DEMRegistration registration) {
         String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  DEMConstant.PROCESSING_CONSULTATION) == null ?
                                 DEMConstant.PROCESSING_VALIDATION : DEMConstant.PROCESSING_MODIFICATION_VALIDATION;
-        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
+        String reference = (registration.getPaiement().getFACTURE() != null) && (registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null) ? 
                                 registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
                                 registration.getRecordId();
         for(CoreTaxandinvoice invoice : registration.getInvoiceList()) {
@@ -408,22 +409,24 @@ public class DEMRegistrationMessageService extends DefaultTraitement implements 
         }
         return createProcessingAndSendAperak(ebxml, registration, processingType, DEMConstant.PROCESSING_PAYMENT);
     }
-
-    public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, DEMRegistration registration, String processingType, String... processingTypeEnd) {
+    
+    
+       public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, DEMRegistration registration, String processingType, String... processingTypeEnd) {
         List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
                                 processingType,CoreProcessingState.ATTENTE);
         CoreMessage message = messageFacade.find(ebxml.getMessageId());
-        if (listP != null && !listP.isEmpty() && CoreProcessingState.ATTENTE.equalsIgnoreCase(listP.get(0).getProcState())) {
-            return null;
-        }
-        if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
-            CoreProcessing pEnd = null;
-            for (String pTEnd : processingTypeEnd) {
-                if (pEnd == null) {
-                    pEnd = processingFacade.findLastProcessing(registration.getRecordId(),
-                                            pTEnd, CoreProcessingState.ATTENTE);
-                }
-            }
+        
+            if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
+                  CoreProcessing pEnd = null;
+                  for (String pTEnd : processingTypeEnd) {
+                      if (pEnd == null) {
+                          pEnd = processingFacade.findLastProcessing(registration.getRecordId(),
+                                  pTEnd, CoreProcessingState.ATTENTE);
+                      }
+                  }
+        
+        
+        
             if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
                 return null;
             }
@@ -439,6 +442,42 @@ public class DEMRegistrationMessageService extends DefaultTraitement implements 
         messageFacade.edit(message);
         return serviceMessage.sendAperakMessage(p, ebxml);
     }
+
+    
+    
+
+//    public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, DEMRegistration registration, String processingType, String... processingTypeEnd) {
+//        List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
+//                                processingType,CoreProcessingState.ATTENTE);
+//        CoreMessage message = messageFacade.find(ebxml.getMessageId());
+//        if (listP != null && !listP.isEmpty() && CoreProcessingState.ATTENTE.equalsIgnoreCase(listP.get(0).getProcState())) {
+//            if(!ebxml.getAction().toUpperCase().equals(DEMConstant.PROCESSING_PAYMENT)){
+//                            return null;
+//                 }        
+//        }
+//        if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
+//            CoreProcessing pEnd = null;
+//            for (String pTEnd : processingTypeEnd) {
+//                if (pEnd == null) {
+//                    pEnd = processingFacade.findLastProcessing(registration.getRecordId(),
+//                                            pTEnd, CoreProcessingState.ATTENTE);
+//                }
+//            }
+//            if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
+//                return null;
+//            }
+//            serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
+//        }
+//        CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
+//        if(registration.getDecision() != null) {
+//            p.setObservation(registration.getDecision().getObservation());
+//            p.setSubject(registration.getDecision().getCode());
+//        }
+//        processingFacade.create(p);
+//        message.setMessageProcessing(p);
+//        messageFacade.edit(message);
+//        return serviceMessage.sendAperakMessage(p, ebxml);
+//    }
 
     public String getToPartner(OrchestraEbxmlMessage ebxml) {
         String to = "GUCE";

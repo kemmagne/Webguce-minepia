@@ -104,7 +104,9 @@ public class DEMRequestController extends DEMControllerImpl {
     }
 
     public void validateAndSave() {
+       
             save();
+        
     }
 
     protected boolean loadParentData(CoreRecord parent) {

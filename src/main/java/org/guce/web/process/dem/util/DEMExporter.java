@@ -68,7 +68,7 @@ public class DEMExporter implements Serializable {
                             f.getFile().getRecordParent() != null ? f.getFile().getRecordParent().getRecordId() : "",
                             f.getFile().getChargerid().getNumeroContribuable(),
                             f.getFile().getChargerid().getChargername(),
-                          //  ff.getSupplier().getChargername()
+                        //    ff.getSupplier().getChargername()
                         };
     }
 

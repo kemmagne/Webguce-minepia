@@ -46,6 +46,8 @@ import org.guce.core.entities.CoreSignatory;
         propOrder = {"officeCode",
                 "demReference",
                 "demDate",
+                "expDate",
+                "operatorName",
                 "declarations",
                 "chargerid",
                 "goodList",
@@ -72,6 +74,21 @@ public class DEMRegistration extends CoreRecord implements Serializable {
             name = "DEM_DATE"
     )
     private Date demDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(
+            name = "EXP_DATE"
+    )
+    private Date expDate;
+    
+    
+    @Column(
+       name = "OPERATOR_NAME",
+       length = 35
+    )
+    private String operatorName;
+
+    
 
     @Transient
     private CoreDecisionType decision;
@@ -110,7 +127,7 @@ public class DEMRegistration extends CoreRecord implements Serializable {
     }
 
     @XmlElement(
-            name = "DATE_DEM_MINEPDED"
+            name = "DATE_DEM_MINCOMMERCE"
     )
     @XmlJavaTypeAdapter(GuceDateAdapter.class)
     public Date getDemDate() {
@@ -119,6 +136,33 @@ public class DEMRegistration extends CoreRecord implements Serializable {
 
     public void setDemDate(Date demDate) {
         this.demDate = demDate;
+    }
+
+    @XmlElement(
+            name = "EXP_DATE_MIN"
+    )
+    @XmlJavaTypeAdapter(GuceDateAdapter.class)
+    public Date getExpDate() {
+        return expDate;
+    }
+    
+    
+    
+   @XmlElement(
+       name = "OPERATOR_NAME"
+    )
+    public String getOperatorName() {
+        return operatorName;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
+    }
+    
+    
+    
+    public void setExpDate(Date expDate) {
+        this.expDate = expDate;
     }
 
     @XmlElementWrapper(

@@ -54,6 +54,7 @@ public class DEMRegistrationServiceTest {
             c.setOfficeCode(nextString(17));
             c.setDemReference(nextString(17));
             c.setDemDate(GuceCalendarUtil.getCalendar().getTime());
+            c.setExpDate(GuceCalendarUtil.getCalendar().getTime());
             list.add(c);
         }
     }

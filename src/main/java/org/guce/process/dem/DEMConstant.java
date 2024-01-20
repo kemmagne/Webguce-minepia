@@ -2,6 +2,7 @@ package org.guce.process.dem;
 
 public interface DEMConstant {
 
+
    String BILL_MONTANT_TTC = "1500";
 
     String BILL_MONTANT_HT ="1500" ;
@@ -95,4 +96,6 @@ public interface DEMConstant {
     String DEFAULT_HS_CODE = "85369000000";
     
     String DEFAULT_UNIT = "KG";
+    String  PROCESSING_FOR_PAYMENT_REPONSE ="PAY602";
+
 }

@@ -80,6 +80,40 @@
                     rendered="#{cc.isRendered('declarations',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('declarations',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value}"/>
             </h:panelGroup>
+            <h:outputLabel for="expDate" rendered="#{cc.isRendered('expDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{demBundle.expDateLabel} <span>#{cc.isRequiredString('expDate',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup rendered="#{cc.isRendered('expDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <p:calendar
+                    converterMessage="#{demBundle.expDate} #{demBundle.invalide}"
+                    id="expDate" mask="true" maxlength="17"
+                    pattern="#{demBundle.dateFormat}"
+                    readonly="#{cc.isReadOnly('expDate',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    required="#{cc.isRequired('expDate',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{demBundle.expDate} #{demBundle.required}"
+                    size="17"
+                    validatorMessage="#{demBundle.expDate} #{demBundle.invalide}" value="#{cc.attrs.value.expDate}">
+                    <f:convertDateTime pattern="#{demBundle.dateFormat}"/>
+                </p:calendar>
+                <p:message for="expDate"/>
+              </h:panelGroup>
+                
+                <h:outputLabel for="operatorName" rendered="#{cc.isRendered('operatorName',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                      #{demBundle.operatorName} <span>#{cc.isRequiredString('operatorName',cc.attrs.requiredList,cc.attrs.required)}</span>
+               </h:outputLabel>
+                <h:panelGroup rendered="#{cc.isRendered('operatorName',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                    <p:inputText
+                        converterMessage="#{demBundle.operatorName} #{demBundle.invalid}"
+                        id="operatorName" maxlength="35"
+                        readonly="#{cc.isReadOnly('operatorName',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                        rendered="#{cc.isRendered('operatorName',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                        required="#{cc.isRequired('operatorName',cc.attrs.requiredList,cc.attrs.required)}"
+                        requiredMessage="#{demBundle.operatorName} #{demBundle.required}"
+                        size="35" style="width: 140px"
+                        validatorMessage="#{demBundle.operatorName} #{demBundle.invalid}" value="#{cc.attrs.value.operatorName}"/>
+                    <p:message for="operatorName"/>
+                </h:panelGroup>
+
         </h:panelGrid>
         <p:outputPanel>
             <script>

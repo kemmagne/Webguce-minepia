@@ -32,15 +32,9 @@
             </p:commandButton>
         </h:panelGrid>
         <p:messages id="messages"/>
-        <p:tabView effect="slide" id="allcontent" rendered="#{demController.current != null}">
-            <p:tab title="#{dem.stakeholder}">
-                <h3 class="webguce-block-title">#{dem.charger}</h3>
-                <wgc:charger id="charger" readOnly="false"
-                    rendered="true"
-                    renderedList="dateDelivrance,dateExpiration"
-                    required="false" styleClass="webguce-sub-block"
-                    updateAfterChange="" value="#{demController.current.chargerid}"/>
-            </p:tab>
+        
+         <p:tabView effect="slide" id="allcontent" rendered="#{demController.current != null}">
+          
             <p:tab title="#{dem.generalInfo}">
                 <p:outputLabel rendered="#{demController.current.recordId != null}">
                     <h3 class="webguce-block-title">#{dem.reference}</h3>
@@ -48,24 +42,21 @@
                 <dem:reference id="reference" readOnly="true"
                     rendered="#{demController.current.recordId != null}"
                     styleClass="webguce-sub-block" value="#{demController.current}"/>
-                <h3 class="webguce-block-title">#{dem.registration}</h3>
+                
+                <h3 class="webguce-block-title">#{dem.chargers}</h3>
+                    <wgc:charger id="charger" readOnly="false"
+                    rendered="true" renderedBoolean="false" fimex="true"
+                    renderedList="NumeroContribuable,NomContribuable,NumeroRccm,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,dateDelivrance,dateExpiration"
+                    required="false" styleClass="webguce-sub-block"  readOnlyList="NomContribuable"
+                    updateAfterChange="" value="#{demController.current.chargerid}"/>
+                
+                <h3 class="webguce-block-title">#{dem.registrations}</h3>
                 <dem:registration id="registration" readOnly="false"
-                    readOnlyList="demDate,demReference" rendered="true"
+                    readOnlyList="demDate,demReference,expDate,declarations" rendered="true"
                     renderedList="#{demController.current.demReference != null ? '':'demDate,demReference'}"
                     required="true" styleClass="webguce-sub-block" value="#{demController.current}"/>
             </p:tab>
-            <p:tab title="#{dem.goods} ">
-                <h3 class="codename blockTitle">#{dem.goods}</h3>
-                <wgc:goods id="good"
-                    parentClass="#{demController.current}"
-                    readOnly="false" renderedList="" required="true"
-                    requiredList="Volume,Poids" styleClass="pm" value="#{demController.current.goodList}"/>
-                <p:spacer height="20px"/>
-            </p:tab>
-            <p:tab id="decisionBlock"
-                rendered="#{demController.processing != null}" title="#{dem.decision}">
-                <dem:decision id="decision" readonly="true" value="#{demController.processing}"/>
-            </p:tab>
+   
             <p:tab id="attachmentBlock" title="#{dem.attachments}">
                 <wgc:attachments
                     avaibleAttachmentType="#{demController.avaibleAttachmentType}"
@@ -74,6 +65,8 @@
                     readonly="false" styleClass="pm2" type="form" value="#{demController.current.coreAttachmentList}"/>
             </p:tab>
         </p:tabView>
+        
+
     </h:form>
     <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
     <script>
