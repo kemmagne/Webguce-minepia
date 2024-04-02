@@ -33,7 +33,7 @@ public abstract class ATMControllerImpl extends ATMController {
    public void loadProductType(){
     
       if(application.getStringParam("typeAtech")==null){
-         selectedTypeAvisTechnique = (current != null)?current.getTypeAtech().getLabel():null;
+         selectedTypeAvisTechnique = (current != null && current.getTypeAtech() != null)?current.getTypeAtech().getLabel():null;
        }else{
          selectedTypeAvisTechnique = application.getStringParam("typeAtech");
          //select typeAvisT by Label 

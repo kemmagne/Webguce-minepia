@@ -67,7 +67,10 @@ public class ATMListController extends SimpleController {
         } else if(formCode.equalsIgnoreCase(ATMConstant.FORM_MODIFICATION_REQUEST)) {
             filter.setOtherFilter(otherFilter);
             filter.setProcessingType(ATMConstant.PROCESSING_MODIFICATION_REQUEST);
-        } else if(formCode.equalsIgnoreCase(ATMConstant.FORM_MODIFICATION_CONSULTATION)) {
+        }else if(formCode.equalsIgnoreCase(ATMConstant.FORM_RENOUVELLEMENT_REQUEST)) {
+            filter.setOtherFilter(otherFilter);
+            filter.setProcessingType(ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST);
+        }else if(formCode.equalsIgnoreCase(ATMConstant.FORM_MODIFICATION_CONSULTATION)) {
             if(page == null || page.trim().isEmpty() || page.equalsIgnoreCase(formCode)) {
                 filter.setOtherFilter(otherFilter);
                 filter.setProcessingType(ATMConstant.PROCESSING_CONSULTATION_MODIFICATION);
@@ -76,7 +79,16 @@ public class ATMListController extends SimpleController {
             } else {
                 goToPreviows();
             }
-        } else if(formCode.equalsIgnoreCase(ATMConstant.FORM_INVOICE)) {
+        }else if(formCode.equalsIgnoreCase(ATMConstant.FORM_RENOUVELLEMENT_CONSULTATION)) {
+            if(page == null || page.trim().isEmpty() || page.equalsIgnoreCase(formCode)) {
+                filter.setOtherFilter(otherFilter);
+                filter.setProcessingType(ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT);
+            } else if(page.equalsIgnoreCase("reject")) {
+                filter.setProcessingType(ATMConstant.PROCESSING_RENOUVELLEMENT_REJECT);
+            } else {
+                goToPreviows();
+            }
+        }else if(formCode.equalsIgnoreCase(ATMConstant.FORM_INVOICE)) {
             if(page == null || page.trim().isEmpty() || page.equalsIgnoreCase(formCode)) {
                 filter.setOtherFilter(otherFilter);
                 filter.setProcessingType(ATMConstant.PROCESSING_PAYMENT);
