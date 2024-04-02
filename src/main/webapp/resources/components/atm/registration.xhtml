@@ -35,7 +35,7 @@
                     validatorMessage="#{atmBundle.officeCode} #{atmBundle.invalid}" value="#{cc.attrs.value.officeCode}">
                     <f:selectItem
                         itemLabel="#{atmBundle.Select} #{atmBundle.officeCodeLabel}" itemValue="#{null}"/>
-                    <c:forEach var="item" items="${aTMRequestController.officeSelected}" >
+                    <c:forEach var="item" items="${aTMRequestController.getOfficeSelected()}" >
 <!--                      <f:selectItem rendered="false" itemLabel="#{atmBundle['${item.key}']}" itemValue="${item.value}"/>-->
                         <f:selectItem rendered="false" itemLabel="${item.value}" itemValue="${item.value}"/>
 

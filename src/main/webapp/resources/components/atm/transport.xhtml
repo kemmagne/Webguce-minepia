@@ -69,6 +69,7 @@
                     rendered="#{cc.isRendered('origin',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('origin',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.origin}"/>
             </h:panelGroup>
+            
             <h:outputLabel for="leavingDate" rendered="#{cc.isRendered('leavingDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.leavingDateLabel} <span>#{cc.isRequiredString('leavingDate',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>

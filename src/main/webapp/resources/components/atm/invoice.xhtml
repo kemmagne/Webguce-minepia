@@ -53,10 +53,10 @@
                 </p:calendar>
                 <p:message for="invoiceDate"/>
             </h:panelGroup>
-            <h:outputLabel for="invoiceAmount" rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+<!--            <h:outputLabel for="invoiceAmount" rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.invoiceAmountLabel} <span>#{cc.isRequiredString('invoiceAmount',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+            </h:outputLabel>-->
+<!--            <h:panelGroup rendered="#{cc.isRendered('invoiceAmount',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
                 <p:inputText
                     converterMessage="#{atmBundle.invoiceAmount} #{atmBundle.invalid}"
                     id="invoiceAmount" maxlength="35"
@@ -70,8 +70,8 @@
                     <f:convertNumber/>
                 </p:inputText>
                 <p:message for="invoiceAmount"/>
-            </h:panelGroup>
-            <h:outputLabel for="currency" rendered="#{cc.isRendered('currency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+            </h:panelGroup>-->
+<!--            <h:outputLabel for="currency" rendered="#{cc.isRendered('currency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.currencyLabel} <span>#{cc.isRequiredString('currency',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
             <h:panelGroup id="currencyBlock">
@@ -79,7 +79,7 @@
                     readOnly="#{cc.isReadOnly('currency',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
                     rendered="#{cc.isRendered('currency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('currency',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.currency}"/>
-            </h:panelGroup>
+            </h:panelGroup>-->
         </h:panelGrid>
         <p:outputPanel>
             <script>

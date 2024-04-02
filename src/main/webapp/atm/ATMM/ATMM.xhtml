@@ -31,6 +31,17 @@
             value="#{aTMListController.models}" var="file">
             <ui:include src="../part/list.xhtml"/>
             <p:column style="width: 10%">
+<!--                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" title="#{atm.view}">
+                    <f:param name="page" value="view"/>
+                    <f:param name="processingid" value="#{file.processing.processingid}"/>
+                    <f:param name="type" value="view"/>
+                    <f:param name="formCode" value="ATMM"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/detail.jpeg" width="20"/>
+                </p:commandLink>-->
+
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
                     ajax="false" title="#{atm.view}">
@@ -41,6 +52,8 @@
                     <p:graphicImage height="20"
                         value="/ImageFolder/detail.jpeg" width="20"/>
                 </p:commandLink>
+
+
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
                     ajax="false" title="#{atm.History}">

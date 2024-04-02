@@ -79,6 +79,16 @@
                     rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                
+                 <p:outputPanel id="transportBlock">
+                    <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
+                    <atm:transport id="transport" readOnly="false"
+                        readOnlyList=""
+                        rendered="#{atmController.compute_transport()}"
+                        renderedList="blNumber,travelNumber" required="true" requiredList=""
+                        styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
+                </p:outputPanel>
+                
                 <p:outputPanel id="invoiceBlock">
                     <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
                     <atm:invoice id="invoice" readOnly="false"
@@ -87,20 +97,14 @@
                         renderedList="" required="true" requiredList=""
                         styleClass="webguce-sub-block" value="#{atmController.current.invoice}"/>
                 </p:outputPanel>
-                <p:outputPanel id="transportBlock">
-                    <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
-                    <atm:transport id="transport" readOnly="false"
-                        readOnlyList=""
-                        rendered="#{atmController.compute_transport()}"
-                        renderedList="" required="true" requiredList=""
-                        styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
-                </p:outputPanel>
+               
             </p:tab>
             <p:tab title="#{atm.goods} ">
                 <h3 class="codename blockTitle">#{atm.goods}</h3>
-                <wgc:goods id="good"
+                <atm:goods id="good"
                     parentClass="#{atmController.current}"
                     readOnly="false" renderedList="" required="true"
+                    category="#{atmController.getSelectedTypeAvisTechnique()}"
                     requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
                 <p:spacer height="20px"/>
             </p:tab>

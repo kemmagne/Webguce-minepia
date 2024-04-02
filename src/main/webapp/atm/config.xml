@@ -140,85 +140,67 @@
             <Name>Demande de tarif</Name>
         </Attachment>
         <Attachment>
-            <Code>
-AT</Code>
-            <Name> Autorisation de création</Name>
+            <Code>AT</Code>
+            <Name>Autorisation de création</Name>
         </Attachment>
         <Attachment>
-            <Code>
-CCI</Code>
-            <Name> Certificat de conformité</Name>
+            <Code>CCI</Code>
+            <Name>Certificat de conformité</Name>
         </Attachment>
         <Attachment>
-            <Code>
-CMP</Code>
-            <Name> Certificats médicaux du personnel</Name>
+            <Code>CMP</Code>
+            <Name>Certificats médicaux du personnel</Name>
         </Attachment>
         <Attachment>
-            <Code>
-LI</Code>
-            <Name> Licence d’importation</Name>
+            <Code>LI</Code>
+            <Name>Licence d’importation</Name>
         </Attachment>
         <Attachment>
-            <Code>
-TPV</Code>
+            <Code>TPV</Code>
             <Name>Titre de patente valide</Name>
         </Attachment>
         <Attachment>
-            <Code>
-QPA</Code>
+            <Code>QPA</Code>
             <Name>Quittance de paiement des frais afférents</Name>
         </Attachment>
         <Attachment>
-            <Code>
-
-DT</Code>
-            <Name> Demande timbrée</Name>
+            <Code>DT</Code>
+            <Name>Demande timbrée</Name>
         </Attachment>
         <Attachment>
-            <Code>
-PDCE</Code>
+            <Code>PDCE</Code>
             <Name>Photocopie de la décision de création de l’établissement</Name>
         </Attachment>
         <Attachment>
-            <Code>
-PDDE</Code>
+            <Code>PDDE</Code>
             <Name>Photocopie de la décision d’ouverture de l’établissement</Name>
         </Attachment>
         <Attachment>
-            <Code>
-PPEC</Code>
+            <Code>PPEC</Code>
             <Name>Photocopie de la patente de l’exercice en cours</Name>
         </Attachment>
         <Attachment>
-            <Code>
-CRT</Code>
+            <Code>CRT</Code>
             <Name>Copie des reçus de la taxe ISV</Name>
         </Attachment>
         <Attachment>
-            <Code>
-LPI</Code>
+            <Code>LPI</Code>
             <Name>Liste des produits et adresses des fournisseurs</Name>
         </Attachment>
         <Attachment>
-            <Code>
-RAA</Code>
+            <Code>RAA</Code>
             <Name>Rapport d’activités de l’année</Name>
         </Attachment>
         <Attachment>
-            <Code>
-PCCCEC</Code>
+            <Code>PCCCEC</Code>
             <Name>Photocopie certifiée du certificat de conformité</Name>
         </Attachment>
         <Attachment>
-            <Code>
-
-CDPP</Code>
+            <Code>CDPP</Code>
             <Name>Copie de la décision d’ouverture et photocopie de la patente</Name>
         </Attachment>
         <Attachment>
-            <Code>
-LMEI</Code>
+            <Code>LMEI</Code>
             <Name>Liste de matériel et des équipements à importer</Name>
         </Attachment>
 
