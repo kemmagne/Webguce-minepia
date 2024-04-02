@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+    <composite:interface componentType="org.guce.web.process.atm.jsf.components.TypeAvtechComponent">
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        <composite:attribute name="value" required="true"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute name="requiredMessage" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute default="dialogFormIssue" name="appendTo"
+            required="false" type="java.lang.String"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="label" required="false" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute name="domain" type="java.lang.String"/>
+        <composite:attribute default="#{null}" name="options" type="java.util.List"/>
+        <composite:attribute name="changeValueListener" required="false"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        <h:panelGroup>
+            <p:inputText converter="typeAvtechConverter"
+                id="TypeAvtech_ID" maxlength="5"
+                readonly="#{cc.attrs.readOnly}"
+                required="#{cc.attrs.required}"
+                requiredMessage="#{atmBundle.TypeAvtechLabel} #{atmBundle.required}"
+                size="4" value="#{cc.attrs.value}">
+                <p:ajax
+                    disabled="#{cc.attrs.changeValueListener != null}"
+                    event="change" process="@this" update="@this TypeAvtech TypeAvtechMessage #{cc.attrs.updateList}"/>
+                <p:ajax
+                    disabled="#{cc.attrs.changeValueListener == null}"
+                    event="change"
+                    listener="#{cc.attrs.changeValueListener()}"
+                    process="@this" update="@this TypeAvtech TypeAvtechMessage #{cc.attrs.updateList}"/>
+            </p:inputText>
+            <p:spacer width="10px"/>
+            <p:inputText id="TypeAvtech" maxlength="35" readonly="true"
+                size="25" title="#{cc.attrs.value.name}" value="#{cc.attrs.value.name}"/>
+            <p:commandLink
+                oncomplete="PF('customDialog_#{cc.id}').show()"
+                process="@this" rendered="#{!cc.attrs.readOnly}">
+                <p:graphicImage height="20"
+                    value="/ImageFolder/loupeplus.jpeg" width="20"/>
+            </p:commandLink>
+            <p:message for="TypeAvtech_ID" id="TypeAvtechMessage"/>
+            <p:dialog appendTo="#{cc.attrs.appendTo}" dynamic="true"
+                id="customDialog_#{cc.id}" modal="true" widgetVar="customDialog_#{cc.id}">
+                <p:dataTable id="customsTableList" lazy="true"
+                    paginator="true" rowKey="#{cus.id}" rows="5"
+                    rowsPerPageTemplate="5,10,15,20"
+                    value="#{cc.attrs.options != null ? cc.attrs.options : cc.options}" var="cus">
+                    <f:facet name="header">
+                        #{atmBundle.TypeAvtechList}
+                    </f:facet>
+                    <f:facet name="footer">
+                        #{atmBundle.TypeAvtechList}
+                    </f:facet>
+                    <p:column filterBy="#{cus.id}"
+                        headerText="#{atmBundle.ID}" width="100">
+                        #{cus.id}
+                    </p:column>
+                    <p:column filterBy="#{cus.name}"
+                        filterMatchMode="contains" filterMaxLength="200"
+                        filterStyle="width:80%;" headerText="#{atmBundle.Name}">
+                        #{cus.name}
+                    </p:column>
+                    <p:column headerText="#{atm.label}" sortBy="#{cus.label}">
+    #{cus.label}
+</p:column>
+                    <p:column headerText="#{atm.code}" sortBy="#{cus.code}">
+    #{cus.code}
+</p:column>
+                    <p:column width="30">
+                        <p:commandLink
+                            oncomplete="PF('customDialog_#{cc.id}').hide()"
+                            process="@this"
+                            rendered="#{cc.attrs.changeValueListener == null}"
+                            title="select" update=":#{cc.clientId}:TypeAvtech,:#{cc.clientId}:TypeAvtech_ID,#{cc.attrs.updateList}">
+                            <f:setPropertyActionListener
+                                target="#{cc.attrs.value}" value="#{cus}"/>
+                            <p:graphicImage height="15"
+                                value="/ImageFolder/validated.jpg" width="15"/>
+                        </p:commandLink>
+                        <p:commandLink
+                            action="#{cc.changeValueListener()}"
+                            oncomplete="PF('customDialog_#{cc.id}').hide()"
+                            process="@this"
+                            rendered="#{cc.attrs.changeValueListener != null}"
+                            title="select" update=":#{cc.clientId}:TypeAvtech,:#{cc.clientId}:TypeAvtech_ID,#{cc.attrs.updateList}">
+                            <f:setPropertyActionListener
+                                target="#{cc.attrs.value}" value="#{cus}"/>
+                            <p:graphicImage height="15"
+                                value="/ImageFolder/validated.jpg" width="15"/>
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </p:dialog>
+        </h:panelGroup>
+    </composite:implementation>
+</html>

@@ -1,0 +1,16 @@
+<ui:composition template="../part/default_view.xhtml"
+    xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="action">
+        <ui:param name="atmController" value="#{aTMRequestController}"/>
+        <ui:param name="payment" value="#{true}"/>
+        <h:panelGrid cellspacing="5" columns="3">
+            <p:commandButton action="#{atmController.goToPreviows()}"
+                ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.back}">
+                <f:param name="back" value="back"/>
+            </p:commandButton>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

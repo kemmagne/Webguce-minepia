@@ -1,0 +1,54 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:facet name="header">
+        <span style="text-align: right;width: 100%;display: block;margin-top: 0px;">
+            <p:commandLink ajax="false" immediate="true" title="#{atm.PrintExcelList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/excel.png" width="30"/>
+                <p:fileDownload value="#{aTMListController.printExcel(listTilte)}"/>
+            </p:commandLink>
+            <p:spacer width="5px"/>
+            <p:commandLink ajax="false" immediate="true" title="#{atm.PrintPdfList}">
+                <p:graphicImage height="30"
+                    value="/ImageFolder/pdf.jpeg" width="30"/>
+                <p:fileDownload value="#{aTMListController.printPdf(listTilte)}"/>
+            </p:commandLink>
+        </span>
+    </f:facet>
+    <f:facet name="header">
+        #{listTilte}(#{aTMListController.models.rowCount})
+    </f:facet>
+    <f:facet name="footer">
+        #{listTilte}(#{aTMListController.models.rowCount})
+    </f:facet>
+    <p:column headerText="#{atm.recordId}">
+        #{file.file.recordId}
+    </p:column>
+    <p:column headerText="#{atm.CircuitReference}">
+        #{file.file.recordParent.recordId}
+    </p:column>
+    <p:column headerText="#{atm.CreateDate}" sortBy="#{file.file.recordCreatedate}">
+        <h:outputText value="#{file.file.recordCreatedate}">
+            <f:convertDateTime pattern="#{atm.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{atm.SendDate}" sortBy="#{file.processing.procstartdate}">
+        <h:outputText value="#{file.processing.procstartdate}">
+            <f:convertDateTime pattern="#{atm.dateFormat} HH:mm"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="#{atm.Charger}">
+        #{file.file.chargerid.chargername}
+    </p:column>
+    <p:column headerText="#{atm.Supplier}" sortBy="#{file.file.supplier.chargername}">
+    #{file.file.supplier.chargername}
+</p:column>
+    <p:column headerText="#{atm.loadingPlaceLabel}" sortBy="#{file.file.transport.loadingPlace.custOffLibelle}">
+    #{file.file.transport.loadingPlace.custOffLibelle}
+</p:column>
+    <p:column headerText="#{atm.travelNumber}" sortBy="#{file.file.transport.travelNumber}">
+    #{file.file.transport.travelNumber}
+</p:column>
+</ui:composition>

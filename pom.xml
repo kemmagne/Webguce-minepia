@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.guce.web.process</groupId>
-    <artifactId>webguce-dem</artifactId>
+    <artifactId>webguce-atm</artifactId>
     <version>1.0.12</version>
     <packaging>jar</packaging>
-    <name>webguce-dem</name>
+    <name>webguce-atm</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -181,9 +181,8 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-               
-                <!-- <design>src/main/resources/dem.drawio</design> -->
+                <configuration>        
+<!--                  <design>src/main/resources/atm.drawio</design>-->
                 </configuration>
             </plugin>
             

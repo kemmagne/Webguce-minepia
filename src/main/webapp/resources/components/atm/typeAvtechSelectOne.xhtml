@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+    <composite:interface componentType="org.guce.web.process.atm.jsf.components.TypeAvtechComponent">
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        <composite:attribute name="value" required="true"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute name="requiredMessage" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute default="dialogFormIssue" name="appendTo"
+            required="false" type="java.lang.String"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="label" required="false" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute name="domain" type="java.lang.String"/>
+        <composite:attribute default="#{null}" name="options" type="java.util.List"/>
+        <composite:attribute name="changeValueListener" required="false"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        <h:panelGroup>
+            <p:selectOneMenu converter="typeAvtechConverter"
+                converterMessage="#{atmBundle.TypeAvtech} #{atmBundle.invalid}"
+                disabled="#{cc.isReadOnly('TypeAvtech',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                filter="true" id="TypeAvtech"
+                required="#{cc.isRequired('TypeAvtech',cc.attrs.requiredList,cc.attrs.required)}"
+                requiredMessage="#{atmBundle.TypeAvtech} #{atmBundle.required}"
+                validatorMessage="#{atmBundle.TypeAvtech} #{atmBundle.invalid}" value="#{cc.attrs.value}">
+                <p:ajax
+                    disabled="#{cc.attrs.changeValueListener != null}"
+                    event="change" process="@this" update="@this TypeAvtech TypeAvtechMessage #{cc.attrs.updateList}"/>
+                <p:ajax
+                    disabled="#{cc.attrs.changeValueListener == null}"
+                    event="change"
+                    listener="#{cc.attrs.changeValueListener()}"
+                    process="@this" update="@this TypeAvtech TypeAvtechMessage #{cc.attrs.updateList}"/>
+                <f:selectItem
+                    itemLabel="#{atmBundle.Select} #{atmBundle.TypeAvtech}" itemValue="#{null}"/>
+                <f:selectItems itemLabel="#{item.name}"
+                    itemValue="#{item}"
+                    rendered="#{cc.attrs.options != null}"
+                    value="#{cc.attrs.options}" var="item"/>
+                <f:selectItems itemLabel="#{item.name}"
+                    itemValue="#{item}"
+                    rendered="#{cc.attrs.options == null}"
+                    value="#{cc.optionsList}" var="item"/>
+            </p:selectOneMenu>
+            <p:message for="TypeAvtech" id="TypeAvtechMessage"/>
+        </h:panelGroup>
+    </composite:implementation>
+</html>

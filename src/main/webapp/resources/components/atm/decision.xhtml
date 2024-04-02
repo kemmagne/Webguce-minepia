@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle" />
+        <composite:attribute name="value" required="true" />
+        <composite:attribute name="requiredList" type="java.lang.String"  />
+        <composite:attribute name="readOnlyList" type="java.lang.String"  />
+        <composite:attribute name="renderedList" type="java.lang.String"  />
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="renderedBoolean" required="false" default="true"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="addCheque" required="false" type="java.lang.String"/>
+        <composite:attribute name="returnSame" default="false"  />
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle" />
+        <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} decisionBlock" >
+            <h:outputLabel for="code" >
+                #{atmBundle.code} 
+            </h:outputLabel>
+            <h:panelGroup >
+                <p:inputText id="code"  size="5"
+                             readonly="true"
+                             value="#{cc.attrs.value.processingtypeid.processingtypeid}">
+                </p:inputText>
+            </h:panelGroup>
+            <h:outputLabel for="label" >
+                #{atmBundle.label} 
+            </h:outputLabel>
+            <h:panelGroup >
+                <p:inputText id="label" style="width:100%;"
+                             readonly="true"
+                             value="#{atmBundle[cc.attrs.value.processingtypeid.processingtypename]}">
+                </p:inputText>
+            </h:panelGroup>
+            <h:outputLabel for="procstartdate" >
+                #{atmBundle.procstartdate}
+            </h:outputLabel>
+            <h:panelGroup> 
+                <p:calendar style="width: 140px" id="procstartdate"
+                            pattern="#{atmBundle.dateFormat} HH:mm:ss"
+                             readonly="true"
+                             maxlength="35" 
+                             value="#{cc.attrs.value.procstartdate}"  >
+                    <f:convertDateTime pattern="#{atmBundle.dateFormat} HH:mm:ss" />
+                </p:calendar>
+            </h:panelGroup>
+            <h:outputLabel for="observation" >
+                #{atmBundle.observation} 
+            </h:outputLabel>
+            <h:panelGroup >
+                <p:inputTextarea id="observation"  style="width:100%;"
+                             readonly="true"
+                             value="#{cc.attrs.value.observation}">
+                </p:inputTextarea>
+            </h:panelGroup>
+        </h:panelGrid>
+        <p:outputPanel>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('table.decisionBlock tr').each(function (index) {
+                        jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                        jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                    });
+                });
+            </script>
+        </p:outputPanel>
+        <style>
+            table.decisionBlock {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .decisionBlock label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .decisionBlock select{
+                padding:5px;
+            }
+            .decisionBlock label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .decisionBlock .ui-selectonemenu-label{
+                display:block;
+            }
+            .decisionBlock .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .decisionBlock .ui-inputtext[readonly="readonly"],
+            .decisionBlock .hasDatepicker[readonly="readonly"],
+            .decisionBlock .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>
+

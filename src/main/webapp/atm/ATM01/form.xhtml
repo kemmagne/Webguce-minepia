@@ -1,0 +1,147 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:atm="http://java.sun.com/jsf/composite/components/atm"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ct="http://java.sun.com/jsf/composite/components/ct"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
+    <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
+    <p:tooltip for=":formContenu"/>
+    <ui:param name="atmController" value="#{aTMRequestController}"/>
+    <h:form id="formContenu">
+        <p:confirmDialog header="#{atm.Send}"
+            message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
+            <p:messages id="dialogMessages"/>
+            <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
+                <h:outputLabel
+                    rendered="#{atmController.current.paiement.FACTURE.MONTANTTTC != null}" value="#{atm.AmountToPay}"/>
+                <p:inputText readonly="true"
+                    rendered="#{atmController.current.paiement.FACTURE.MONTANTTTC != null}"
+                    style="width:90%;padding:10px;margin:auto;display: block;;font-size:1.1em;" value="#{atmController.current.paiement.FACTURE.MONTANTTTC} FCFA">
+                    <f:validateDoubleRange minimum="0"/>
+                    <f:convertNumber maxFractionDigits="4"/>
+                </p:inputText>
+            </h:panelGrid>
+            <p:commandButton
+                action="#{atmController.validateAndSaveAndSend()}"
+                ajax="false" value="#{atm.Yes}">
+                <f:param name="back" value="back"/>
+            </p:commandButton>
+            <p:commandButton id="decline"
+                onclick="PF('confirmSendDialog').hide()" process="@this"
+                type="button" value="#{atm.No}"/>
+        </p:confirmDialog>
+        <h:panelGrid cellspacing="5" columns="3">
+            <p:commandButton action="#{atmController.validateAndSave()}"
+                ajax="false" value="#{atm.Save}">
+                <f:param name="back" value="back"/>
+            </p:commandButton>
+            <p:commandButton action="#{atmController.prepareSend()}"
+                oncomplete="PF('confirmSendDialog').show()"
+                process="@this"
+                update=":formContenu:dialogMessages, :formContenu:confirmSend" value="#{atm.Send}">
+                <f:param name="back" value="back"/>
+            </p:commandButton>
+            <p:commandButton action="#{atmController.goToPreviows()}"
+                ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.back}">
+                <f:param name="back" value="back"/>
+            </p:commandButton>
+        </h:panelGrid>
+        <p:messages id="messages"/>
+        <p:tabView effect="slide" id="allcontent" rendered="#{atmController.current != null}">
+            <p:tab title="#{atm.stakeholder}">
+                <h3 class="webguce-block-title">#{atm.charger}</h3>
+                <wgc:charger id="charger" readOnly="false"
+                    rendered="true"
+                    renderedList="dateDelivrance,dateExpiration"
+                    required="false" styleClass="webguce-sub-block"
+                    updateAfterChange="" value="#{atmController.current.chargerid}"/>
+                <h3 class="webguce-block-title">#{atm.supplier}</h3>
+                <wgc:charger excludedCountries="CM" fimex="false"
+                    phoneMaxChar="15" phoneMinChar="6" readOnly="false"
+                    referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
+                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    required="true"
+                    requiredList="NumeroContribuable,TelephoneFixe,personToContact"
+                    styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
+            </p:tab>
+            <p:tab title="#{atm.generalInfo}">
+                <p:outputLabel rendered="#{atmController.current.recordId != null}">
+                    <h3 class="webguce-block-title">#{atm.reference}</h3>
+                </p:outputLabel>
+                <atm:reference id="reference" readOnly="true"
+                    rendered="#{atmController.current.recordId != null}"
+                    styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                <h3 class="webguce-block-title">#{atm.registration}</h3>
+                <atm:registration id="registration" readOnly="false"
+                    readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
+                    rendered="true"
+                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
+                    required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                <p:outputPanel id="invoiceBlock">
+                    <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
+                    <atm:invoice id="invoice" readOnly="false"
+                        readOnlyList=""
+                        rendered="#{atmController.compute_invoice()}"
+                        renderedList="" required="true" requiredList=""
+                        styleClass="webguce-sub-block" value="#{atmController.current.invoice}"/>
+                </p:outputPanel>
+                <p:outputPanel id="transportBlock">
+                    <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
+                    <atm:transport id="transport" readOnly="false"
+                        readOnlyList=""
+                        rendered="#{atmController.compute_transport()}"
+                        renderedList="" required="true" requiredList=""
+                        styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
+                </p:outputPanel>
+            </p:tab>
+            <p:tab title="#{atm.goods} ">
+                <h3 class="codename blockTitle">#{atm.goods}</h3>
+                <wgc:goods id="good"
+                    parentClass="#{atmController.current}"
+                    readOnly="false" renderedList="" required="true"
+                    requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
+                <p:spacer height="20px"/>
+            </p:tab>
+            <p:tab id="attachmentBlock" title="#{atm.attachments}">
+                <wgc:attachments
+                    avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
+                    id="attachment"
+                    parentClass="#{atmController.current}"
+                    readonly="false" styleClass="pm2" type="form" value="#{atmController.current.coreAttachmentList}"/>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+    <h:form id="dialogsForm" rendered="false">
+        <p:dialog closable="false" draggable="false"
+            header="#{atm.loadCircuit}" hideEffect="explose"
+            id="loadDialog" modal="true" showEffect="fade"
+            style="height: 240px;background: #EEE;" styleClass="top"
+            visible="#{atmController.current.recordParent == null}" widgetVar="loadDialog">
+            <h:panelGrid cellspacing="8" columns="2" id="gridP">
+                <h:outputLabel for="parentId"
+                    title="#{atm.EnterCircuitNumber}" value="#{atm.CircuitNumber}"/>
+                <p:inputText id="parentId" required="true" size="35" value="#{atmController.parentId}"/>
+                <p:commandButton action="#{atmController.loadRecord()}"
+                    update=":dialogsForm:gridP :dialogsForm:myGrowl" value="#{atm.LoadRecord}"/>
+                <p:commandButton
+                    action="#{atmController.goToPreviows()}"
+                    ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.Back}"/>
+            </h:panelGrid>
+            <p:growl id="myGrowl"/>
+        </p:dialog>
+    </h:form>
+    <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
+    <script>
+        function myReadonly() {
+            jQuery('.my-readonly').attr("readonly", "readonly");
+        }
+        myReadonly();
+    </script>
+    <style>
+        .blockTitle{
+            border-bottom :solid 1px #DDD;border-top :solid 1px #DDD;margin:10px 0px;padding:5px 0px;
+        }
+    </style>
+</ui:composition>

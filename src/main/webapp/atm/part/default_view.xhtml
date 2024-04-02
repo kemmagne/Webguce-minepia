@@ -1,0 +1,97 @@
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:atm="http://java.sun.com/jsf/composite/components/atm"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ct="http://java.sun.com/jsf/composite/components/ct"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
+    <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
+    <p:tooltip for=":formContenu"/>
+    <h:form id="formContenu">
+        <ui:insert name="action"/>
+        <p:messages id="messages"/>
+        <p:tabView effect="slide" id="allcontent" rendered="#{atmController.current != null}">
+            <p:tab title="#{atm.stakeholder}">
+                <h3 class="webguce-block-title">#{atm.charger}</h3>
+                <wgc:charger id="charger" readOnly="true"
+                    rendered="true"
+                    renderedList="dateDelivrance,dateExpiration"
+                    required="false" styleClass="webguce-sub-block"
+                    updateAfterChange="" value="#{atmController.current.chargerid}"/>
+                <h3 class="webguce-block-title">#{atm.supplier}</h3>
+                <wgc:charger excludedCountries="CM" fimex="false"
+                    phoneMaxChar="15" phoneMinChar="6" readOnly="true"
+                    referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
+                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    required="true"
+                    requiredList="NumeroContribuable,TelephoneFixe,personToContact"
+                    styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
+            </p:tab>
+            <p:tab title="#{atm.generalInfo}">
+                <p:outputLabel rendered="#{atmController.current.recordId != null}">
+                    <h3 class="webguce-block-title">#{atm.reference}</h3>
+                </p:outputLabel>
+                <atm:reference id="reference" readOnly="true"
+                    rendered="#{atmController.current.recordId != null}"
+                    styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                <h3 class="webguce-block-title">#{atm.registration}</h3>
+                <atm:registration id="registration" readOnly="true"
+                    readOnlyList="" rendered="true"
+                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
+                    required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                <p:outputPanel id="invoiceBlock">
+                    <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
+                    <atm:invoice id="invoice" readOnly="true"
+                        readOnlyList=""
+                        rendered="#{atmController.compute_invoice()}"
+                        renderedList="" required="true" requiredList=""
+                        styleClass="webguce-sub-block" value="#{atmController.current.invoice}"/>
+                </p:outputPanel>
+                <p:outputPanel id="transportBlock">
+                    <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
+                    <atm:transport id="transport" readOnly="true"
+                        readOnlyList=""
+                        rendered="#{atmController.compute_transport()}"
+                        renderedList="" required="true" requiredList=""
+                        styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
+                </p:outputPanel>
+            </p:tab>
+            <p:tab title="#{atm.goods} ">
+                <h3 class="codename blockTitle">#{atm.goods}</h3>
+                <wgc:goods id="good"
+                    parentClass="#{atmController.current}"
+                    readOnly="true" renderedList="" required="true"
+                    requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
+                <p:spacer height="20px"/>
+            </p:tab>
+            <p:tab id="invoicesBlock"
+                rendered="#{atmController.current.invoiceList.size() > 0}" title="#{atm.invoices}">
+                <atm:invoices id="invoices" readonly="true" value="#{atmController.current.invoiceList}"/>
+            </p:tab>
+            <p:tab id="decisionBlock"
+                rendered="#{atmController.processing != null}" title="#{atm.decision}">
+                <atm:decision id="decision" readonly="true" value="#{atmController.processing}"/>
+            </p:tab>
+            <p:tab id="attachmentBlock" title="#{atm.attachments}">
+                <wgc:attachments
+                    avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
+                    id="attachment"
+                    parentClass="#{atmController.current}"
+                    readonly="true" styleClass="pm2" type="view" value="#{atmController.current.coreAttachmentList}"/>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+    <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
+    <script>
+        function myReadonly() {
+            jQuery('.my-readonly').attr("readonly", "readonly");
+        }
+        myReadonly();
+    </script>
+    <style>
+        .blockTitle{
+            border-bottom :solid 1px #DDD;border-top :solid 1px #DDD;margin:10px 0px;padding:5px 0px;
+        }
+    </style>
+</ui:composition>
