@@ -30,14 +30,26 @@ public interface ATMConstant {
     /**
      * form modification request code */
     String FORM_MODIFICATION_REQUEST = "ATM09";
+    
+    /**
+     * form modification request code */
+    String FORM_RENOUVELLEMENT_REQUEST = "ATM09R";
+    
+    /**
+     * form renouvelement consultation code */
+    String FORM_MODIFICATION_CONSULTATION = "ATMM";
 
     /**
      * form modification consultation code */
-    String FORM_MODIFICATION_CONSULTATION = "ATMM";
+    String FORM_RENOUVELLEMENT_CONSULTATION = "ATMMR";
 
     /**
      * form modification reject code */
     String FORM_MODIFICATION_REJECT = "ATM03";
+    
+    /**
+     * form renouvellement reject code */
+    String FORM_RENOUVELLEMENT_REJECT = "ATM03R";
 
     /**
      * form invoice code */
@@ -66,14 +78,26 @@ public interface ATMConstant {
     /**
      * processing modification request code */
     String PROCESSING_MODIFICATION_REQUEST = "ATM09";
+    
+    /**
+     * processing renouvellement request code */
+    String PROCESSING_RENOUVELLEMENT_REQUEST = "ATM09R";
 
     /**
      * processing modification validation code */
     String PROCESSING_MODIFICATION_VALIDATION = "ATM10";
+    
+    /**
+     * processing renouvellement validation code */
+    String PROCESSING_RENOUVELLEMENT_VALIDATION = "ATM10R";
 
     /**
      * processing modification reject code */
     String PROCESSING_MODIFICATION_REJECT = "ATM03";
+    
+    /**
+     * processing renouvellement reject code */
+    String PROCESSING_RENOUVELLEMENT_REJECT = "ATM03R";
 
     /**
      * processing invoice code */
@@ -90,6 +114,10 @@ public interface ATMConstant {
     /**
      * processing payment code */
     String PROCESSING_CONSULTATION_MODIFICATION = "ATMM";
+    
+    /**
+     * processing payment code */
+    String PROCESSING_CONSULTATION_RENOUVELLEMENT = "ATMMR";
 
     /**
      * entity name */

@@ -65,6 +65,24 @@
             <Processing>ATM09</Processing>
         </Form>
         <Form>
+            <Code>ATM09R</Code>
+            <Name>ATM09R_FORMNAME</Name>
+            <Version>1.0.0</Version>
+            <Description>ATM09R_FORM_DESCRIPTION</Description>
+            <Path>ATM09R</Path>
+            <Type>0</Type>
+            <Processing>ATM09R</Processing>
+        </Form>
+         <Form>
+            <Code>ATMMR</Code>
+            <Name>ATMMR_FORMNAME</Name>
+            <Version>1.0.0</Version>
+            <Description>ATMMR_FORM_DESCRIPTION</Description>
+            <Path>ATMMR</Path>
+            <Type>0</Type>
+            <Processing>ATMMR,ATM03R</Processing>
+        </Form>
+        <Form>
             <Code>ATMM</Code>
             <Name>ATMM_FORMNAME</Name>
             <Version>1.0.0</Version>
@@ -103,6 +121,10 @@
             <Code>ATM03</Code>
             <Name>ATM03PROCESSING</Name>
         </Processing>
+         <Processing>
+            <Code>ATM03R</Code>
+            <Name>ATM03RPROCESSING</Name>
+        </Processing>
         <Processing>
             <Code>ATM04</Code>
             <Name>ATM04PROCESSING</Name>
@@ -110,6 +132,14 @@
         <Processing>
             <Code>ATM09</Code>
             <Name>ATM09PROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>ATM09R</Code>
+            <Name>ATM09RPROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>ATM10R</Code>
+            <Name>ATM10RPROCESSING</Name>
         </Processing>
         <Processing>
             <Code>ATM10</Code>
@@ -130,6 +160,10 @@
         <Processing>
             <Code>ATMM</Code>
             <Name>ATMMPROCESSING</Name>
+        </Processing>
+        <Processing>
+            <Code>ATMMR</Code>
+            <Name>ATMMRPROCESSING</Name>
         </Processing>
    
 
@@ -224,6 +258,10 @@
             <Name>ATM03MESSAGE</Name>
         </Message>
         <Message>
+            <Code>ATM03R</Code>
+            <Name>ATM03RMESSAGE</Name>
+        </Message>
+        <Message>
             <Code>ATM04</Code>
             <Name>ATM04MESSAGE</Name>
         </Message>
@@ -231,9 +269,17 @@
             <Code>ATM09</Code>
             <Name>ATM09MESSAGE</Name>
         </Message>
+         <Message>
+            <Code>ATM09R</Code>
+            <Name>ATM09RMESSAGE</Name>
+        </Message>
         <Message>
             <Code>ATM10</Code>
             <Name>ATM10MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>ATM10R</Code>
+            <Name>ATM10RMESSAGE</Name>
         </Message>
         <Message>
             <Code>ATM601</Code>

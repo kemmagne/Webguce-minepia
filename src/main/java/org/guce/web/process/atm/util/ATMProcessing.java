@@ -23,7 +23,9 @@ public class ATMProcessing extends DefaultTraitement implements ITraitement {
             case ATMConstant.FORM_RESPONSE_CI:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_CI, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             case ATMConstant.FORM_CONSULTATION:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_CONSULTATION, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             case ATMConstant.FORM_MODIFICATION_REQUEST:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_MODIFICATION_REJECT, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
+            case ATMConstant.FORM_RENOUVELLEMENT_REQUEST:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_RENOUVELLEMENT_REJECT, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             case ATMConstant.FORM_MODIFICATION_CONSULTATION:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_CONSULTATION_MODIFICATION, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
+            case ATMConstant.FORM_RENOUVELLEMENT_CONSULTATION:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             case ATMConstant.FORM_MODIFICATION_REJECT:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_MODIFICATION_REJECT, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             case ATMConstant.FORM_INVOICE:return ficheFacade.getRecordByProcessingType(ATMConstant.PROCESSING_PAYMENT, CoreProcessingState.ATTENTE, user.getPartnerid().getPartnerid()).intValue();
             default:break;
