@@ -192,6 +192,24 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setReocordConversationid(null);
         return send(registration, user,ATMConstant.PROCESSING_MODIFICATION_REQUEST,ATMConstant.PROCESSING_MODIFICATION_REQUEST,processing);
     }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public CoreMessage sendRenouvellementRequest(ATMRegistration registration, CoreUser user) throws Exception {
+        ATMRegistration before = service.findBy(registration.getRecordId());
+        CoreProcessing processing = createProcessing(registration, ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST, CoreProcessingState.ATTENTE);
+        processing.setUserLogin(user);
+        processingFacade.create(processing);
+        ATMRegistrationHistory event = new ATMRegistrationHistory();
+        event.setRecordId(registration);
+        event.setProcessingId(processing);
+        event.setBeforeModification(objectToXml(before));
+        event.setAfterModification(objectToXml(registration));
+        historyRepository.create(event);
+        before.setRecordState(CoreRecord.IN_PROCESS);
+        service.save(before);
+        registration.setReocordConversationid(null);
+        return send(registration, user,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,processing);
+    }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public CoreMessage sendRequest(ATMRegistration registration, CoreUser user) {
@@ -355,9 +373,20 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         service.save(registration);
         return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_REJECT, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
     }
+    
+    public CoreMessage traiterATM03R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+        registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
+        registration.setRecordState(CoreRecord.CLOS);
+        service.save(registration);
+        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_REJECT, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
+    }
 
     public CoreMessage traiterATM09(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
         return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
+    }
+    
+    public CoreMessage traiterATM09R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
     }
 
     public CoreMessage traiterATM10(OrchestraEbxmlMessage ebxml, ATMRegistration registration) throws Exception {
@@ -366,6 +395,14 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
         return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_MODIFICATION,ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
+    }
+    
+     public CoreMessage traiterATM10R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) throws Exception {
+        saveAttachments(ebxml, registration);
+        registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
+        registration.setRecordState(CoreRecord.CLOS);
+        service.save(registration);
+        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT,ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
     }
 
     public CoreMessage traiterATM601(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
