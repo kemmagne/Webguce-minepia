@@ -11,7 +11,7 @@ import org.guce.web.process.atm.controllers.impl.ATMControllerImpl;
 
 /**
  *
- * @author LAROCHE
+ * @author NGC
  */
 public class ATMRenouvellementConsultationController extends ATMControllerImpl{
     

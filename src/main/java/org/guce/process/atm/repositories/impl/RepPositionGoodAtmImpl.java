@@ -28,7 +28,7 @@ public class RepPositionGoodAtmImpl extends RepPositionTarifaireFacade implement
         List<String> list = Arrays.asList(
             "0301.10.00","0301.91.00","0301.92.00","0301.93.00","0301.94.00","0301.95.00","0302.11.00",
             "0302.12.00","0302.19.00","0302.21.00","0302.22.00","0302.23.00","0302.29.00","0302.22.00",
-            "0302.23.00","0302.31.00","0302.32.00","0302.33.00","0302.34.00","0302.35.00","0302.36.00"
+            "0302.23.00","0302.31.00","0302.32.00","0302.33.00","0302.34.00"
         );
         
       q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in :list");  
@@ -39,12 +39,18 @@ public class RepPositionGoodAtmImpl extends RepPositionTarifaireFacade implement
 
     @Override
     public List<RepPositionTarifaire> findActiveIngredientsAdditifs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query q;
+        q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in ('0302.33.00','0302.34.00')");
+        q.setParameter("active", true);
+        return q.getResultList(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<RepPositionTarifaire> findActiveMaterialEquipment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Query q;
+        q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in ('0302.35.00','0302.35.00')");
+        q.setParameter("active", true);
+        return q.getResultList(); //To change body of generated methods, choose Tools | Templates.
     }
     
  

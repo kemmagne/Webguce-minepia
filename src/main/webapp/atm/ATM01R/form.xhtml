@@ -10,13 +10,18 @@
     <p:tooltip for=":formContenu"/>
     <ui:param name="atmController" value="#{aTMRenouvellementRequestController}"/>
     <h:form id="formContenu">
-        <p:confirmDialog header="#{atm.Send}"
+        
+         <p:confirmDialog header="#{atm.Send}"
             message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
+             
             <p:messages id="dialogMessages"/>
-            <h:panelGrid columns="1">
-                <p:outputLabel value="#{atm.RenouvellementReason}"/>
-                <p:inputTextarea id="observationInput" value="#{atmController.current.decision.observation}"/>
+                          <h:outputLabel style="width:100%;font-size:1.1em; margin-left:0.3em" value="#{atm.stampFee}:  #{atmController.displayStampfees()}  FCFA"/> 
+
+             <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
+                <h:outputLabel
+                    rendered="#{atmController.current.paiement.FACTURE.MONTANTTTC != null}" value="#{atm.AmountToPay}"/>
             </h:panelGrid>
+            
             <p:commandButton
                 action="#{atmController.validateAndSaveAndSend()}"
                 ajax="false" value="#{atm.Yes}">
@@ -26,6 +31,10 @@
                 onclick="PF('confirmSendDialog').hide()" process="@this"
                 type="button" value="#{atm.No}"/>
         </p:confirmDialog>
+        
+        
+
+        
         <h:panelGrid cellspacing="5" columns="3">
             <p:commandButton oncomplete="PF('confirmSendDialog').show()"
                 process="@this" update=":formContenu:dialogMessages" value="#{atm.Send}">

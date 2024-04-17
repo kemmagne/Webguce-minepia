@@ -28,6 +28,18 @@
             <Type>0</Type>
             <Processing>ATM01</Processing>
         </Form>
+        
+        <Form>
+            <Code>ATM01R</Code>
+            <Name>ATM01R_FORMNAME</Name>
+            <Version>1.0.0</Version>
+            <Description>ATM01R_FORM_DESCRIPTION</Description>
+            <Path>ATM01R</Path>
+            <Type>0</Type>
+            <Processing>ATM01R</Processing>
+        </Form>
+        
+        
         <Form>
             <Code>ATM11</Code>
             <Name>ATM11_FORMNAME</Name>
@@ -64,24 +76,8 @@
             <Type>0</Type>
             <Processing>ATM09</Processing>
         </Form>
-        <Form>
-            <Code>ATM09R</Code>
-            <Name>ATM09R_FORMNAME</Name>
-            <Version>1.0.0</Version>
-            <Description>ATM09R_FORM_DESCRIPTION</Description>
-            <Path>ATM09R</Path>
-            <Type>0</Type>
-            <Processing>ATM09R</Processing>
-        </Form>
-         <Form>
-            <Code>ATMMR</Code>
-            <Name>ATMMR_FORMNAME</Name>
-            <Version>1.0.0</Version>
-            <Description>ATMMR_FORM_DESCRIPTION</Description>
-            <Path>ATMMR</Path>
-            <Type>0</Type>
-            <Processing>ATMMR,ATM03R</Processing>
-        </Form>
+       
+        
         <Form>
             <Code>ATMM</Code>
             <Name>ATMM_FORMNAME</Name>
@@ -109,6 +105,10 @@
             <Code>ATM01</Code>
             <Name>ATM01PROCESSING</Name>
         </Processing>
+         <Processing>
+            <Code>ATM01R</Code>
+            <Name>ATM01RPROCESSING</Name>
+        </Processing>
         <Processing>
             <Code>ATM11</Code>
             <Name>ATM11PROCESSING</Name>
@@ -133,10 +133,7 @@
             <Code>ATM09</Code>
             <Name>ATM09PROCESSING</Name>
         </Processing>
-        <Processing>
-            <Code>ATM09R</Code>
-            <Name>ATM09RPROCESSING</Name>
-        </Processing>
+      
         <Processing>
             <Code>ATM10R</Code>
             <Name>ATM10RPROCESSING</Name>
@@ -237,6 +234,10 @@
             <Code>LMEI</Code>
             <Name>Liste de matériel et des équipements à importer</Name>
         </Attachment>
+        <Attachment>
+            <Code>AUTRE</Code>
+            <Name>Autres</Name>
+        </Attachment>
 
     </Attachments>
     <Messages>
@@ -244,6 +245,10 @@
         <Message>
             <Code>ATM01</Code>
             <Name>ATM01MESSAGE</Name>
+        </Message>
+        <Message>
+            <Code>ATM01R</Code>
+            <Name>ATM01RMESSAGE</Name>
         </Message>
         <Message>
             <Code>ATM11</Code>

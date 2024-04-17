@@ -194,7 +194,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
     }
     
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public CoreMessage sendRenouvellementRequest(ATMRegistration registration, CoreUser user) throws Exception {
+    public CoreMessage sendRenouvellementRequestBackUp(ATMRegistration registration, CoreUser user) throws Exception {
         ATMRegistration before = service.findBy(registration.getRecordId());
         CoreProcessing processing = createProcessing(registration, ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST, CoreProcessingState.ATTENTE);
         processing.setUserLogin(user);
@@ -210,10 +210,15 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setReocordConversationid(null);
         return send(registration, user,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,processing);
     }
-
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    
+     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public CoreMessage sendRequest(ATMRegistration registration, CoreUser user) {
         return send(registration, user,ATMConstant.PROCESSING_REQUEST,ATMConstant.PROCESSING_REQUEST,null);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public CoreMessage sendRenouvellementRequest(ATMRegistration registration, CoreUser user) { 
+        return send(registration, user,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,ATMConstant.PROCESSING_RENOUVELLEMENT_REQUEST,null);
     }
 
     public CoreMessage send(ATMRegistration registration, CoreUser user, String processingType, String messageType, CoreProcessing processing) {
@@ -348,15 +353,19 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
     }
 
     public CoreMessage traiterATM01(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
+    }
+    
+     public CoreMessage traiterATM01R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
     }
 
     public CoreMessage traiterATM02(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CI, ATMConstant.PROCESSING_VALIDATION,ATMConstant.PROCESSING_INVOICE);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_CI, ATMConstant.PROCESSING_VALIDATION,ATMConstant.PROCESSING_INVOICE);
     }
 
     public CoreMessage traiterATM11(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
     }
 
     public CoreMessage traiterATM04(OrchestraEbxmlMessage ebxml, ATMRegistration registration) throws Exception {
@@ -364,29 +373,29 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION, ATMConstant.PROCESSING_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION, ATMConstant.PROCESSING_VALIDATION);
     }
 
     public CoreMessage traiterATM03(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_REJECT, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_REJECT, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
     }
     
     public CoreMessage traiterATM03R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_REJECT, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_REJECT, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
     }
 
     public CoreMessage traiterATM09(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
     }
     
     public CoreMessage traiterATM09R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
     }
 
     public CoreMessage traiterATM10(OrchestraEbxmlMessage ebxml, ATMRegistration registration) throws Exception {
@@ -394,7 +403,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_MODIFICATION,ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_MODIFICATION,ATMConstant.PROCESSING_MODIFICATION_VALIDATION);
     }
     
      public CoreMessage traiterATM10R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) throws Exception {
@@ -402,7 +411,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         registration.setRecordEndDate(GuceCalendarUtil.getCalendar().getTime());
         registration.setRecordState(CoreRecord.CLOS);
         service.save(registration);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT,ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT,ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION);
     }
 
     public CoreMessage traiterATM601(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
@@ -424,13 +433,13 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         invoice.setTaxsenddate(GuceCalendarUtil.getCalendar().getTime());
         invoice.setTaxstate(Boolean.FALSE);
         taxandinvoiceFacade.create(invoice);
-        return createProcessingAndSendAperak(ebxml, registration, ATMConstant.PROCESSING_PAYMENT);
+        return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_PAYMENT);
     }
-
+    
     public CoreMessage traiterATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
         String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  ATMConstant.PROCESSING_CONSULTATION) == null ?
                                 ATMConstant.PROCESSING_VALIDATION : ATMConstant.PROCESSING_MODIFICATION_VALIDATION;
-        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
+        String reference = (registration.getPaiement().getFACTURE() != null)&&(registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null) ? 
                                 registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
                                 registration.getRecordId();
         for(CoreTaxandinvoice invoice : registration.getInvoiceList()) {
@@ -446,16 +455,15 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
                 paymentFacade.create(payment);
             }
         }
-        return createProcessingAndSendAperak(ebxml, registration, processingType, ATMConstant.PROCESSING_PAYMENT);
+        return createProcessingAndSendAperakATM602(ebxml, registration, processingType, ATMConstant.PROCESSING_PAYMENT);
     }
-
-    public CoreMessage createProcessingAndSendAperak(OrchestraEbxmlMessage ebxml, ATMRegistration registration, String processingType, String... processingTypeEnd) {
+    
+    
+    public CoreMessage createProcessingAndSendAperakATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration, String processingType, String... processingTypeEnd) {
         List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
                                 processingType,CoreProcessingState.ATTENTE);
         CoreMessage message = messageFacade.find(ebxml.getMessageId());
-        if (listP != null && !listP.isEmpty() && CoreProcessingState.ATTENTE.equalsIgnoreCase(listP.get(0).getProcState())) {
-            return null;
-        }
+       
         if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
             CoreProcessing pEnd = null;
             for (String pTEnd : processingTypeEnd) {
@@ -479,6 +487,60 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         messageFacade.edit(message);
         return serviceMessage.sendAperakMessage(p, ebxml);
     }
+    
+
+//    public CoreMessage traiterATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+//        String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  ATMConstant.PROCESSING_CONSULTATION) == null ?
+//                                ATMConstant.PROCESSING_VALIDATION : ATMConstant.PROCESSING_MODIFICATION_VALIDATION;
+//        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
+//                                registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
+//                                registration.getRecordId();
+//        for(CoreTaxandinvoice invoice : registration.getInvoiceList()) {
+//            if(invoice.getTaxReferenceNumber().equals(reference) &&
+//                                !invoice.getTaxstate()) {
+//                CorePayment payment = new CorePayment();
+//                payment.setTaxandinvoiceid(invoice);
+//                payment.setPaymentAmount(new BigDecimal(registration.getPaiement().getENCAISSEMENT().getMONTANT()));
+//                payment.setPaymentdate(GuceCalendarUtil.getCalendar().getTime());
+//                payment.setReceiptNumber(registration.getPaiement().getENCAISSEMENT().getNUMERORECU());
+//                payment.setPaymentobservations(registration.getPaiement().getENCAISSEMENT().getOBSERVATIONS());
+//                payment.setPaymentobject(registration.getPaiement().getENCAISSEMENT().getNATURE());
+//                paymentFacade.create(payment);
+//            }
+//        }
+//        return createProcessingAndSendAperakATM602(ebxml, registration, processingType, ATMConstant.PROCESSING_PAYMENT);
+//    }
+
+//    public CoreMessage createProcessingAndSendAperakATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration, String processingType, String... processingTypeEnd) {
+//        List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
+//                                processingType,CoreProcessingState.ATTENTE);
+//        CoreMessage message = messageFacade.find(ebxml.getMessageId());
+//        if (listP != null && !listP.isEmpty() && CoreProcessingState.ATTENTE.equalsIgnoreCase(listP.get(0).getProcState())) {
+//            return null;
+//        }
+//        if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
+//            CoreProcessing pEnd = null;
+//            for (String pTEnd : processingTypeEnd) {
+//                if (pEnd == null) {
+//                    pEnd = processingFacade.findLastProcessing(registration.getRecordId(),
+//                                            pTEnd, CoreProcessingState.ATTENTE);
+//                }
+//            }
+//            if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
+//                return null;
+//            }
+//            serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
+//        }
+//        CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
+//        if(registration.getDecision() != null) {
+//            p.setObservation(registration.getDecision().getObservation());
+//            p.setSubject(registration.getDecision().getCode());
+//        }
+//        processingFacade.create(p);
+//        message.setMessageProcessing(p);
+//        messageFacade.edit(message);
+//        return serviceMessage.sendAperakMessage(p, ebxml);
+//    }
 
     public String getToPartner(OrchestraEbxmlMessage ebxml) {
         String to = "GUCE";

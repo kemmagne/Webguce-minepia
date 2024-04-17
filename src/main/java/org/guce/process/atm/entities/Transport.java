@@ -27,6 +27,7 @@ import org.guce.rep.entities.RepTransportMode;
                 "arrivalDate",
                 "provenance",
                 "origin",
+                "destination",
                 "loadingPlace",
                 "transportMode",
                 "clearingPlace"}
@@ -55,6 +56,15 @@ public class Transport implements Serializable {
             name = "ARRIVAL_DATE"
     )
     private Date arrivalDate;
+    
+    
+    @ManyToOne(
+            targetEntity = CorePays.class
+    )
+    @JoinColumn(
+            name = "DESTINATION_ID"
+    )
+    private CorePays destination;
 
     @ManyToOne(
             targetEntity = CorePays.class
@@ -141,7 +151,18 @@ public class Transport implements Serializable {
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
+    
+    @XmlElement(
+            name = "PAYS_DESTINATION"
+    )
+    public CorePays getDestination() {
+        return destination;
+    }
 
+    public void setDestination(CorePays destination) {
+        this.destination = destination;
+    }
+   
     @XmlElement(
             name = "PAYS_ORIGINE"
     )

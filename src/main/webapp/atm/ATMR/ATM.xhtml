@@ -4,28 +4,23 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
     <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
-    <ui:param name="listTilte" value="#{atm.modificationRequestSent}"/>
+    <ui:param name="listTilte" value="#{atm.atmValidatedFiles}"/>
     <h:form id="formContenu">
         <h:panelGrid cellspacing="8" columns="6">
-            <p:commandButton
-                action="#{userControllerSite.goToNewPageForm()}"
-                ajax="false" icon="ui-icon-document" id="newRequest" value="#{atm.InitRenouvellement}">
-                <f:param name="formCode" value="ATM09R"/>
-                <f:param name="page" value="form"/>
-                <f:param name="type" value="form"/>
-            </p:commandButton>
             <p:commandButton
                 action="#{aTMListController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.Back}"/>
         </h:panelGrid>
         <p:messages autoUpdate="true"/>
         <atm:filter cleanAction="#{aTMListController.resetsearch()}"
-            renderedList="procEndDate,procStartDate"
+            renderedList="procEndDate"
             searchAction="#{aTMListController.search()}"
             update=":formContenu:table" value="#{aTMListController.filter}"/>
         <br/>
         <p:dataTable emptyMessage="#{atm.NoFile}" id="table" lazy="true"
-            paginator="true" rows="10" sortOrder="descending"
+            paginator="true"
+            rowStyleClass="#{file.processing.procState eq 'traiter' ? 'see' : 'nossee'}"
+            rows="10" sortOrder="descending"
             value="#{aTMListController.models}" var="file">
             <ui:include src="../part/list.xhtml"/>
             <p:column style="width: 10%">
@@ -33,9 +28,10 @@
                     action="#{userControllerSite.goToNewPageForm()}"
                     ajax="false" title="#{atm.view}">
                     <f:param name="page" value="view"/>
-                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="processingid" value="#{file.processing.processingid}"/>
                     <f:param name="type" value="view"/>
-                    <f:param name="formCode" value="ATM09R"/>
+                     <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="ATM"/>
                     <p:graphicImage height="20"
                         value="/ImageFolder/detail.jpeg" width="20"/>
                 </p:commandLink>

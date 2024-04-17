@@ -5,21 +5,26 @@
  */
 package org.guce.web.process.atm.controllers;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import org.guce.core.entities.CoreAttachment;
+import org.guce.core.entities.CoreCharger;
+import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
+import org.guce.process.atm.entities.ATMRegistration;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.impl.ATMControllerImpl;
 import org.primefaces.context.RequestContext;
 
 /**
  *
- * @author LAROCHE
+ * @author NGC
  */
 public class ATMRenouvellementRequestController extends ATMControllerImpl{
     
-     @PostConstruct
+  @PostConstruct
     public void init() {
         if ("form".equals(type) && recordId != null && checkRecordAccessRight()) {
             prepareEdit();
@@ -52,22 +57,30 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
     }
 
     public void validateAndSaveAndSend() {
-        if(!fileSent && checkRenouvellementRequestConformity()) {
+        if(!fileSent && checkModificationRequestConformity()) {
             fileSent = false;
             try {
                 beforeSend();
                 serviceMessage.send(serviceMessage.sendRenouvellementRequest(current, userController.getUserConnecte()));
-                JsfUtil.addSuccessMessage(bundle("RenouvelementRequestSend") + " " + current.getRecordId());
+                JsfUtil.addSuccessMessage(bundle("ModificationRequestSend") + " " + current.getRecordId());
                 goToPreviows();
             } catch(Exception ex) {
                 fileSent = true;
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
-                JsfUtil.addErrorMessage(bundle("CannotSendRenouvellementRequestSend") + " " + current.getRecordId());
+                JsfUtil.addErrorMessage(bundle("CannotSendModificationRequestSend") + " " + current.getRecordId());
             }
         }
     }
 
-    protected boolean checkRenouvellementRequestConformity() {
+    protected boolean checkModificationRequestConformity() {
         return checkRequestConformity();
     }
+    
+     public void prepareSend() {
+        if(checkRequestConformity()) {
+            save();
+        }
+    }
+    
+    
 }

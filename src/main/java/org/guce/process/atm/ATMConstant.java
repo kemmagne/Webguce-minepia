@@ -33,7 +33,7 @@ public interface ATMConstant {
     
     /**
      * form modification request code */
-    String FORM_RENOUVELLEMENT_REQUEST = "ATM09R";
+    String FORM_RENOUVELLEMENT_REQUEST = "ATM01R";
     
     /**
      * form renouvelement consultation code */
@@ -81,7 +81,7 @@ public interface ATMConstant {
     
     /**
      * processing renouvellement request code */
-    String PROCESSING_RENOUVELLEMENT_REQUEST = "ATM09R";
+    String PROCESSING_RENOUVELLEMENT_REQUEST = "ATM01R";
 
     /**
      * processing modification validation code */

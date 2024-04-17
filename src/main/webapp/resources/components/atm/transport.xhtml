@@ -60,7 +60,10 @@
                     rendered="#{cc.isRendered('provenance',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('provenance',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.provenance}"/>
             </h:panelGroup>
-            <h:outputLabel for="origin" rendered="#{cc.isRendered('origin',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+            
+            
+            
+      <h:outputLabel for="origin" rendered="#{cc.isRendered('origin',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.originLabel} <span>#{cc.isRequiredString('origin',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
             <h:panelGroup id="originBlock">
@@ -69,6 +72,21 @@
                     rendered="#{cc.isRendered('origin',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('origin',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.origin}"/>
             </h:panelGroup>
+            
+            
+            <h:outputLabel for="destination" rendered="#{cc.isRendered('destination',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{atmBundle.destinationLabel} <span>#{cc.isRequiredString('destination',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            <h:panelGroup id="destinationBlock">
+                <r:country id="destination"
+                    country="CM"
+                    disabled="true"
+                    readOnly="true"
+                    rendered="#{cc.isRendered('destination',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"  />
+            </h:panelGroup>    
+
+            
+            
             
             <h:outputLabel for="leavingDate" rendered="#{cc.isRendered('leavingDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.leavingDateLabel} <span>#{cc.isRequiredString('leavingDate',cc.attrs.requiredList,cc.attrs.required)}</span>

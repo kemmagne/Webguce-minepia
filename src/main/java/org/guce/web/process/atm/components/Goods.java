@@ -367,6 +367,9 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
                 case "ATM02":
                     //Pesticide
                     return  getRepGoodAtm().findActiveIngredientsAdditifs();
+                 case "ATM03":
+                    //Pesticide
+                    return  getRepGoodAtm().findActiveMaterialEquipment();
                 default:
                     //Appareil Traitement
                     return  getRepGoodAtm().findActiveMaterialEquipment();
