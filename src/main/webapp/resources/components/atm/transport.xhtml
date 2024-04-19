@@ -21,36 +21,7 @@
     <composite:implementation>
         <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
         <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} transportBlock">
-            <h:outputLabel for="blNumber" rendered="#{cc.isRendered('blNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.blNumberLabel} <span>#{cc.isRequiredString('blNumber',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('blNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-                <p:inputText
-                    converterMessage="#{atmBundle.blNumber} #{atmBundle.invalid}"
-                    id="blNumber" maxlength="35"
-                    readonly="#{cc.isReadOnly('blNumber',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    rendered="#{cc.isRendered('blNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
-                    required="#{cc.isRequired('blNumber',cc.attrs.requiredList,cc.attrs.required)}"
-                    requiredMessage="#{atmBundle.blNumber} #{atmBundle.required}"
-                    size="35" style="width: 140px"
-                    validatorMessage="#{atmBundle.blNumber} #{atmBundle.invalid}" value="#{cc.attrs.value.blNumber}"/>
-                <p:message for="blNumber"/>
-            </h:panelGroup>
-            <h:outputLabel for="travelNumber" rendered="#{cc.isRendered('travelNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.travelNumberLabel} <span>#{cc.isRequiredString('travelNumber',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('travelNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-                <p:inputText
-                    converterMessage="#{atmBundle.travelNumber} #{atmBundle.invalid}"
-                    id="travelNumber" maxlength="35"
-                    readonly="#{cc.isReadOnly('travelNumber',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    rendered="#{cc.isRendered('travelNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
-                    required="#{cc.isRequired('travelNumber',cc.attrs.requiredList,cc.attrs.required)}"
-                    requiredMessage="#{atmBundle.travelNumber} #{atmBundle.required}"
-                    size="35" style="width: 140px"
-                    validatorMessage="#{atmBundle.travelNumber} #{atmBundle.invalid}" value="#{cc.attrs.value.travelNumber}"/>
-                <p:message for="travelNumber"/>
-            </h:panelGroup>
+           
             <h:outputLabel for="provenance" rendered="#{cc.isRendered('provenance',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.provenanceLabel} <span>#{cc.isRequiredString('provenance',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
@@ -60,9 +31,7 @@
                     rendered="#{cc.isRendered('provenance',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('provenance',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.provenance}"/>
             </h:panelGroup>
-            
-            
-            
+             
       <h:outputLabel for="origin" rendered="#{cc.isRendered('origin',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.originLabel} <span>#{cc.isRequiredString('origin',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
@@ -82,7 +51,8 @@
                     country="CM"
                     disabled="true"
                     readOnly="true"
-                    rendered="#{cc.isRendered('destination',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"  />
+                    rendered="#{cc.isRendered('destination',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('destination',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.destination}"/>
             </h:panelGroup>    
 
             

@@ -1,6 +1,7 @@
 package org.guce.web.process.atm.controllers;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;

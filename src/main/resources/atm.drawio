@@ -1,17 +1,17 @@
-<mxfile host="Electron" modified="2024-02-28T08:48:01.904Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="LytZ4yA9-ln5C7QLTmzP" compressed="false" version="21.7.5" type="device" pages="2">
+<mxfile host="Electron" modified="2024-04-18T04:53:07.794Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="1FmxveiiKuevlVccq2bz" compressed="false" version="21.7.5" type="device" pages="2">
   <diagram id="dzslenoz5EgcA-fO8ZGD" name="Page-1">
-    <mxGraphModel dx="1931" dy="1677" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2058" dy="723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <object label="org.guce.process.atm" element="package" placeholders="1" id="Sb3ObpHVFGHvWsoK8jhT-4">
           <mxCell style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;container=1;fillColor=none;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingLeft=0;fontSize=11;" parent="1" vertex="1">
-            <mxGeometry y="-130" width="790" height="1393.04" as="geometry" />
+            <mxGeometry x="-100" y="90" width="790" height="1393.04" as="geometry" />
           </mxCell>
         </object>
         <object label="CoreRecord" element="existingClass" description="" entity="org.guce.core.entities.CoreRecord" xml="" id="Sb3ObpHVFGHvWsoK8jhT-13">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="261.9021739130435" y="48.00352117087732" width="118.07065217391305" height="91.62665900148065" as="geometry">
+            <mxGeometry x="120.00217391304349" y="220.00352117087732" width="118.07065217391305" height="91.62665900148065" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -21,7 +21,7 @@
         </mxCell>
         <object label="CoreCharger" element="existingClass" description="" entity="org.guce.core.entities.CoreCharger" xml="" id="Sb3ObpHVFGHvWsoK8jhT-16">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="289.8097826086957" y="273.8559463962666" width="103.42989130434783" height="77.59710281290705" as="geometry">
+            <mxGeometry x="269.9997826086957" y="311.62594639626656" width="103.42989130434783" height="77.59710281290705" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -31,7 +31,7 @@
         </mxCell>
         <object label="CorePays" element="existingClass" description="" entity="org.guce.rep.entities.CorePays" xml="" id="Sb3ObpHVFGHvWsoK8jhT-21">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="669.7826086956522" y="72.91172596662304" width="115.8273097826087" height="92.69749902029875" as="geometry">
+            <mxGeometry x="592.5926086956522" y="230.00172596662304" width="115.8273097826087" height="92.69749902029875" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -41,7 +41,7 @@
         </mxCell>
         <object label="RepCustomsOffice" element="existingClass" description="" entity="org.guce.rep.entities.RepCustomsOffice" xml="" id="Sb3ObpHVFGHvWsoK8jhT-93">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="498.0434782608695" y="72.91762227065587" width="128.80434782608697" height="122.68101954720603" as="geometry">
+            <mxGeometry x="449.0034782608695" y="165.60762227065587" width="128.80434782608697" height="122.68101954720603" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -51,7 +51,7 @@
         </mxCell>
         <object label="RepTransportMode" element="existingClass" description="" entity="org.guce.rep.entities.RepTransportMode" xml="" id="Sb3ObpHVFGHvWsoK8jhT-101">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="547.4184782608696" y="1050.7265195685743" width="161.00543478260872" height="95.94287402028453" as="geometry">
+            <mxGeometry x="509.9984782608696" y="869.9965195685743" width="161.00543478260872" height="95.94287402028453" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -61,7 +61,7 @@
         </mxCell>
         <object label="ATMRegistration" element="class" table_name="ATM_MINEPIA_REGISTRATION" package_name="" xml_element="CONTENT" json_element="" description="" code="ATM" has_containers="false" columns="Supplier:supplier.chargername,loadingPlaceLabel:transport.loadingPlace.custOffLibelle,travelNumber:transport.travelNumber" referenceField="atmReference" afterFields="atmReference,atmIssueDate,atmExpiryDate" author="NGC" process_description="Avis technique MINEPIA" attachments_types="DTarif:Demande de tarif,&#xa;AT: Autorisation de création,&#xa;CCI: Certificat de conformité,&#xa;CMP: Certificats médicaux du personnel,&#xa;LI: Licence d’importation,&#xa;TPV:Titre de patente valide,&#xa;QPA:Quittance de paiement des frais afférents,&#xa;&#xa;DT: Demande timbrée,&#xa;PDCE:Photocopie de la décision de création de l’établissement,&#xa;PDDE:Photocopie de la décision d’ouverture de l’établissement,&#xa;PPEC:Photocopie de la patente de l’exercice en cours,&#xa;CRT:Copie des reçus de la taxe ISV,&#xa;LPI:Liste des produits et adresses des fournisseurs,&#xa;RAA:Rapport d’activités de l’année,&#xa;PCCCEC:Photocopie certifiée du certificat de conformité,&#xa;&#xa;CDPP:Copie de la décision d’ouverture et photocopie de la patente,&#xa;LMEI:Liste de matériel et des équipements à importer,&#xa;" charger_xml_name="CLIENT" requestCode="01" responseCICode="11" ciCode="02" validationCode="04" modicationRequestCode="09" modificationCode="10" rejectCode="03" invoice.activity="false" partner.code="MINEPIA" process_descriptionEn="Technical Visa MINEPIA" goods.type="CT" payment.activity="true" id="Sb3ObpHVFGHvWsoK8jhT-5">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;perimeterSpacing=0;swimlaneLine=1;sketch=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry y="363.8" width="161.01" height="371.70386545640713" as="geometry">
+            <mxGeometry y="363.8" width="161.01" height="345.70386545640713" as="geometry">
               <mxRectangle x="65.99555555555555" y="230.0046153846154" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -170,7 +170,7 @@
         </object>
         <object label="Invoice" element="embeddable" table_name="" package_name="" xml_element="" json_element="" description="" id="Sb3ObpHVFGHvWsoK8jhT-43">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fillColor=#14F89D;strokeColor=#006600;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="310" y="700" width="118.07" height="179.23663394399176" as="geometry">
+            <mxGeometry x="311.28" y="690.76" width="118.07" height="179.23663394399176" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -242,33 +242,33 @@
         </object>
         <object label="Transport" element="embeddable" table_name="" package_name="" xml_element="" json_element="" description="" id="vLi7R-2AJWSlNqhlG2X7-10">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fillColor=#14F89D;strokeColor=#006600;fontSize=11;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="461.5489130434783" y="376.50539474426955" width="148.125" height="332.99446695164914" as="geometry">
+            <mxGeometry x="324.16" y="410" width="148.12" height="253.49" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
         </object>
         <object label="blNumber" type="string" element="field" label_name="N°BL/LTA" column_name="BL_NUMBER" max_size="150" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="NUMERO_BL" sequence="1" label_nameEn="BL/LT Number" id="MMoQDWghkzFwq_rW3yn7-7">
           <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
-            <mxGeometry y="26" width="148.125" height="34.666666666666664" as="geometry" />
+            <mxGeometry y="26" width="148.12" height="34.666666666666664" as="geometry" />
           </mxCell>
         </object>
         <object label="travelNumber" type="string" element="field" label_name="N°Voyage" column_name="TRAVEL_NUMBER" max_size="150" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="NUMERO_VOYAGE" sequence="2" label_nameEn="Travel Number" id="MMoQDWghkzFwq_rW3yn7-8">
           <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
-            <mxGeometry y="60.666666666666664" width="148.125" height="34.666666666666664" as="geometry" />
+            <mxGeometry y="60.666666666666664" width="148.12" height="34.666666666666664" as="geometry" />
           </mxCell>
         </object>
         <object label="leavingDate" type="date" element="field" label_name="Date de Départ" column_name="LEAVING_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_DEPART" sequence="5" label_nameEn="Leaving Date" id="MMoQDWghkzFwq_rW3yn7-9">
           <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
-            <mxGeometry y="95.33333333333333" width="148.125" height="34.666666666666664" as="geometry" />
+            <mxGeometry y="95.33333333333333" width="148.12" height="34.666666666666664" as="geometry" />
           </mxCell>
         </object>
         <object label="arrivalDate" type="date" element="field" label_name="Date d&#39;arrivée" column_name="ARRIVAL_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" xml_element="DATE_ARRIVEE" sequence="6" label_nameEn="Arrival Date" id="MMoQDWghkzFwq_rW3yn7-10">
           <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;allowArrows=0;resizable=0;connectable=0;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
-            <mxGeometry y="130" width="148.125" height="34.666666666666664" as="geometry" />
+            <mxGeometry y="130" width="148.12" height="34.666666666666664" as="geometry" />
           </mxCell>
         </object>
         <mxCell id="vLi7R-2AJWSlNqhlG2X7-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontSize=11;" parent="vLi7R-2AJWSlNqhlG2X7-10" vertex="1">
-          <mxGeometry y="164.66666666666666" width="148.125" height="57.90330061065845" as="geometry" />
+          <mxGeometry y="164.66666666666666" width="148.12" height="57.90330061065845" as="geometry" />
         </mxCell>
         <object label="transport" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="TRANSPORT" sequence="16" label_name="Transport" id="vLi7R-2AJWSlNqhlG2X7-16">
           <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#4D9900;fillColor=#d5e8d4;strokeColor=#82B366;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="vLi7R-2AJWSlNqhlG2X7-10" edge="1">
@@ -367,7 +367,7 @@
         </object>
         <object label="RepCurrency" element="existingClass" description="" entity="org.guce.rep.entities.RepCurrency" xml="" id="MMoQDWghkzFwq_rW3yn7-2">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f0a30a;strokeColor=#BD7000;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=11;fontColor=#000000;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="311.2771739130435" y="1067.0963193400642" width="161.00543478260872" height="95.94287402028453" as="geometry">
+            <mxGeometry x="314.4971739130435" y="919.9963193400641" width="161.00543478260872" height="95.94287402028453" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -399,33 +399,9 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object label="avisTech" join_table="" join_column="" inverse_join_column="" mapped_by="" unique="" cascade="" inverse_name="" element="relation" fetch_type="" orphan_removal="" xml_element="TECHNICALAVIS" sequence="7" label_nameEn="Clearing Agent" label_name="Transitaire" id="nygzhKH6YsQknDErP1wV-6">
-          <mxCell style="endArrow=classic;shadow=0;strokeWidth=1;rounded=0;endFill=1;elbow=vertical;endSize=10;startSize=10;sourcePerimeterSpacing=0;startArrow=oval;startFill=1;align=center;snapToPoint=1;targetPerimeterSpacing=0;fontSize=11;spacingRight=0;spacingBottom=2;spacing=0;fixDash=1;entryX=0.367;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="Sb3ObpHVFGHvWsoK8jhT-4" source="Sb3ObpHVFGHvWsoK8jhT-5" target="l07mK40XBEYtszgVqSau-70" edge="1">
-            <mxGeometry x="-0.0123" relative="1" as="geometry">
-              <mxPoint x="99" y="460" as="sourcePoint" />
-              <mxPoint x="69" y="980" as="targetPoint" />
-              <mxPoint as="offset" />
-              <Array as="points" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object label="n" element="card" id="nygzhKH6YsQknDErP1wV-7">
-          <mxCell style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="nygzhKH6YsQknDErP1wV-6" connectable="0" vertex="1">
-            <mxGeometry x="-1" relative="1" as="geometry">
-              <mxPoint y="21" as="offset" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object label="1" element="card" id="nygzhKH6YsQknDErP1wV-8">
-          <mxCell style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=11;fontStyle=1;spacing=4;" parent="nygzhKH6YsQknDErP1wV-6" connectable="0" vertex="1">
-            <mxGeometry x="1" relative="1" as="geometry">
-              <mxPoint x="15" as="offset" />
-            </mxGeometry>
-          </mxCell>
-        </object>
         <object label="TypeAvtech" element="class" table_name="" package_name="" xml_element="TYPEAVIS" json_element="" description="Gestion des types avis technique" code="TYPEAVIS" columns="label:label,code:code" tilte="" titleEn="Type technical avis" process_description="Gestion des types avis technique" process_descriptioneN="" searchs="label:label" name_field="label" title="Type Avis technique" exportables="label:label,code:code" list_title="Liste des domaines" id="l07mK40XBEYtszgVqSau-67">
           <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f8cecc;strokeColor=#b85450;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=14;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="168.47" y="837.27" width="121.34" height="102.73" as="geometry">
+            <mxGeometry x="160" y="780" width="121.34" height="102.73" as="geometry">
               <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
             </mxGeometry>
           </mxCell>
@@ -443,46 +419,6 @@
         <mxCell id="l07mK40XBEYtszgVqSau-69" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="l07mK40XBEYtszgVqSau-67" vertex="1">
           <mxGeometry y="78" width="121.34" height="8.32876712328767" as="geometry" />
         </mxCell>
-        <object label="AvisTech" element="class" table_name="AVISTECH" package_name="" xml_element="AVISTECH" json_element="" description="Liste des avis Techniques&#xa;Gestion des modèles et des types " code="AVISTECH" columns="registerNumber:registerNumber,immatriculation:immatriculation,name:name,deliveryDate:deliveryDate,expiryDate:expiryDate,status:status" titleEn="Type of technical avis" process_description="Gestion des types avis technique&#xa;Gestion des modèles et des types " process_descriptioneN="Expeditions list" searchs="registerNumber:registerNumber" name_field="registerNumber" title="Liste des Avis technique" exportables="registerNumber:registerNumber,immatriculation:immatriculation,name:name,status:status" id="l07mK40XBEYtszgVqSau-70">
-          <mxCell style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;fillColor=#f8cecc;strokeColor=#b85450;container=1;snapToPoint=1;fixDash=1;dropTarget=1;expand=1;treeMoving=1;fontSize=14;" parent="Sb3ObpHVFGHvWsoK8jhT-4" vertex="1">
-            <mxGeometry x="10.000000000000028" y="837.27" width="121.34" height="230" as="geometry">
-              <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <mxCell id="l07mK40XBEYtszgVqSau-78" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-          <mxGeometry y="26" width="121.34" height="5.917808219178083" as="geometry" />
-        </mxCell>
-        <object label="registerNumber" type="string" element="field" label_name="N Enregistre" max_size="35" min_size="" options="" optionsClass="" nullable="" unique="true" sequence="1" label_nameEn="Registration Number" id="l07mK40XBEYtszgVqSau-34">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="31.917808219178085" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
-        <object label="immatriculation" type="string" element="field" label_name="Numero d&#39;immatriculation" column_name="" max_size="35" min_size="" options="" optionsClass="" nullable="" unique="false" sequence="2" label_nameEn="Immatriculation number" id="l07mK40XBEYtszgVqSau-35">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="57.917808219178085" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
-        <object label="technicalName" type="string" element="field" label_name="Raison social" column_name="TechName" max_size="100" min_size="" options="" optionsClass="" nullable="" unique="" sequence="3" label_nameEn="Social Number" id="l07mK40XBEYtszgVqSau-36">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="83.91780821917808" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
-        <object label="deliveryDate" type="string" element="field" label_name="Date de delivrance" column_name="DELIVERY_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" sequence="4" label_nameEn="delivery Date" required="true" id="l07mK40XBEYtszgVqSau-37">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="109.91780821917808" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
-        <object label="expiryDate" type="date" element="field" label_name="Date expiration" column_name="EXPIRATION_DATE" max_size="" min_size="" options="" optionsClass="" nullable="" unique="" sequence="5" label_nameEn="Date expiration" id="l07mK40XBEYtszgVqSau-38">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="135.91780821917808" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
-        <object label="status" type="string" element="field" label_name="Status" column_name="" max_size="100" min_size="" options="act:Active,int:Inactif" optionsClass="" nullable="" unique="" sequence="6" label_nameEn="STATE" id="l07mK40XBEYtszgVqSau-39">
-          <mxCell style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;connectable=0;allowArrows=0;autosize=0;resizable=0;shadow=0;sketch=0;fontSize=11;" parent="l07mK40XBEYtszgVqSau-70" vertex="1">
-            <mxGeometry y="161.91780821917808" width="121.34" height="26" as="geometry" />
-          </mxCell>
-        </object>
       </root>
     </mxGraphModel>
   </diagram>

@@ -87,9 +87,10 @@
             </p:tab>
             <p:tab title="#{atm.goods} ">
                 <h3 class="codename blockTitle">#{atm.goods}</h3>
-                <wgc:goods id="good"
+                <atm:goods id="good"
                     parentClass="#{atmController.current}"
                     readOnly="false" renderedList="" required="true"
+                    category="#{atmController.getSelectedTypeAvisTechnique()}"
                     requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
                 <p:spacer height="20px"/>
             </p:tab>
