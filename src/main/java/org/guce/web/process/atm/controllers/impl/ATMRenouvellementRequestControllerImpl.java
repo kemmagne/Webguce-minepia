@@ -6,11 +6,14 @@
 package org.guce.web.process.atm.controllers.impl;
 
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 import org.guce.process.atm.ATMConstant;
 import org.guce.process.atm.entities.PaymentDocument;
+import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.ATMRenouvellementRequestController;
 
 /**
@@ -76,4 +79,28 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
            prepareSend();
            super.validateAndSaveAndSend();
     }
+    
+//    
+//     @Override
+//     public void validateAndSaveAndSend() {
+//        if(!fileSent && checkRequestConformity()) {
+//            fileSent = true;
+//            try {
+//                current.setIsrenewing(String.valueOf(Boolean.TRUE));
+//               this.send();
+//                JsfUtil.addSuccessMessage(bundle("RequestSend") + " " + current.getRecordId());
+//                goToPreviows();
+//            } catch(Exception ex) {
+//                fileSent = false;
+//                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
+//                JsfUtil.addErrorMessage(bundle("CannotSendRecord") + " " + current.getRecordId());
+//            }
+//        }
+//    }
+     
+     protected void send() {
+        beforeSend();
+        serviceMessage.send(serviceMessage.sendRequest(current,userController.getUserConnecte()));
+    }
+
 }
