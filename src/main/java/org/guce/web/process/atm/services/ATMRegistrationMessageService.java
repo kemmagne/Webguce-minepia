@@ -50,7 +50,6 @@ import org.guce.web.process.atm.services.impl.ATMRegistrationMessageServiceImpl;
 import org.guce.web.process.atm.services.impl.ATMRegistrationServiceImpl;
 
 public class ATMRegistrationMessageService extends DefaultTraitement implements Serializable {
-    
     @EJB
     protected ServiceMailSenderLocal serviceMail;
 
@@ -330,7 +329,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
                 registration.setDecision(document.getContenu().getDecision());
                 registration.setPaiement(document.getContenu().getPaiement());
                 String action = ebxml.getAction();
-                if(document.getMessage().getTypeMessage().toUpperCase().equals("RENEW") && action.equals(ATMConstant.PROCESSING_VALIDATION)){
+                if(document.getMessage().getTypeMessage().toUpperCase().equals(ATMConstant.RENEW) && action.equals(ATMConstant.PROCESSING_VALIDATION)){
                     action =  ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION;
                 } 
                 return (CoreMessage) getClass().getMethod(CoreProcessingState.TRAITER + action.toUpperCase(),OrchestraEbxmlMessage.class,ATMRegistration.class).invoke(this,ebxml,registration);
@@ -483,6 +482,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
             if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
                 return null;
             }
+            
             serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
         }
         CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
@@ -493,6 +493,11 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         processingFacade.create(p);
         message.setMessageProcessing(p);
         messageFacade.edit(message);
+        
+        if(ebxml.getAction().equals(ATMConstant.PROCESSING_VALIDATION) &&  Boolean.valueOf(registration.isIsrenewing())){
+              CoreProcessing coreProcessing =  createProcessing(registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT, CoreProcessingState.ATTENTE);
+              processingFacade.create(coreProcessing);
+            }
         return serviceMessage.sendAperakMessage(p, ebxml);
     }
     
