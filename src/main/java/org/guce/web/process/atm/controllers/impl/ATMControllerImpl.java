@@ -33,7 +33,7 @@ public abstract class ATMControllerImpl extends ATMController {
    private Logger LOGGER = Logger.getLogger(ATMControllerImpl.class.getName());
 
    
-   public void loadProductType(){
+   protected void loadProductType(){
   
        
         selectedTypeAvisTechnique = Objects.nonNull(current)  &&  Objects.nonNull(current.getTypeAtech() ) && !current.getTypeAtech().getCode().isEmpty() ? current.getTypeAtech().getCode() : application.getStringParam("typeAtech");
@@ -70,27 +70,87 @@ public abstract class ATMControllerImpl extends ATMController {
       
       
       
-private Map<String ,  Boolean>  checkValidityOfAttachment(List<CoreAttachment> attachements){
-        int atm01 = 0;
-        int  atm02     = 0;
-        int  atm03     = 0;
+protected Map<String ,  Boolean>  checkValidityOfAttachment(List<CoreAttachment> attachements){
+   
+    int dTarifcount = 0;
+    int cciCount = 0;
+    int atCount = 0; 
+    int cmpCount = 0;
+    int liCount = 0; 
+    int tpvCount = 0;
+    int qpqCount = 0;  
+    int dtCount = 0;
+    int pdceCount = 0; 
+    int pddeCount = 0;
+    int ppecCount = 0; 
+    int crtCount = 0; 
+    int lpiCoumt = 0;
+    int raaCount = 0;
+    int pCCCECCount = 0;
+    int cDPPCount = 0;
+    int lMEICount = 0;
 
          Map<String, Boolean> result = new HashMap<>();
         if(attachements != null && !attachements.isEmpty()){
             for(CoreAttachment c:attachements){
-                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.ATM01.name())){
-                   atm01++;
+                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.DTarif.name())){
+                   dTarifcount++;
                 }
-                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.ATM02.name())){
-                    atm02++;
+                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.CCI.name())){
+                    cciCount++;
                 }
-                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.ATM03.name())){
-                    atm03++;
+                if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.AT.name())){
+                    atCount++;
+                }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.CMP.name())){
+                       cmpCount++;
+                }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.LI.name())){
+                    liCount++;
+                   }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.TPV.name())){
+                    tpvCount++;
+                } if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.QPA.name())){
+                    qpqCount++;
+                }    if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.DT.name())){
+                    dtCount++;
+                }  if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.PDCE.name())){
+                    pdceCount++;
+                }  if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.PDDE.name())){
+                    pddeCount++;
+                } if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.PPEC.name())){
+                    ppecCount++;
+                } if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.CRT.name())){
+                    crtCount++;
+                }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.LPI.name())){
+                    lpiCoumt++;
+                }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.RAA.name())){
+                    raaCount++;
+                }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.PCCCEC.name())){
+                    pCCCECCount++;
+                 }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.CDPP.name())){
+                   cDPPCount++;
+                 }if(c.getPjType().getAttachementtypeid().equals(TypeAttachement.LMEI.name())){
+                    lMEICount++;
                 }
+                
             }
-                 result.put(TypeAttachement.ATM01.name(), atm01>0);
-                 result.put(TypeAttachement.ATM02.name(), atm02>0);
-                 result.put(TypeAttachement.ATM03.name(), atm03>0);
+                 result.put(TypeAttachement.DTarif.name(), dTarifcount>0);
+                 result.put(TypeAttachement.CCI.name(), cciCount>0);
+                 result.put(TypeAttachement.AT.name(), atCount >0);
+                 result.put(TypeAttachement.CMP.name(), cmpCount>0);
+                 result.put(TypeAttachement.LI.name(), liCount>0);
+                 result.put(TypeAttachement.TPV.name(), tpvCount>0);
+                 result.put(TypeAttachement.QPA.name(), qpqCount>0);
+                 result.put(TypeAttachement.DT.name(), dtCount>0);
+                 result.put(TypeAttachement.PDCE.name(), pdceCount>0);
+                 result.put(TypeAttachement.PDDE.name(), pddeCount>0);
+                 result.put(TypeAttachement.PPEC.name(), ppecCount>0);
+                 result.put(TypeAttachement.CRT.name(), crtCount>0);
+                 
+                 result.put(TypeAttachement.LPI.name(), lpiCoumt>0);
+                 result.put(TypeAttachement.RAA.name(), raaCount>0);
+                 result.put(TypeAttachement.PCCCEC.name(), pCCCECCount>0);
+                 result.put(TypeAttachement.CDPP.name(), cDPPCount>0);
+                 result.put(TypeAttachement.LMEI.name(), lMEICount>0);
+                 
                 return result;
         }else{
                 return  null;
@@ -102,7 +162,7 @@ private Map<String ,  Boolean>  checkValidityOfAttachment(List<CoreAttachment> a
       
       
       
-    public HashMap<String, String> generateOffice(String avisTechCode){
+     protected HashMap<String, String> generateOffice(String avisTechCode){
      this.officeSelected = new HashMap<String, String>();
      selectedTypeAvisTechnique = this.selectedTypeAvisTechnique;
      if(avisTechCode != null){
@@ -144,4 +204,8 @@ private Map<String ,  Boolean>  checkValidityOfAttachment(List<CoreAttachment> a
         this.selectedTypeAvisTechnique = selectedTypeAvisTechnique;
     }
   
+    
+    
+    
+    
 }

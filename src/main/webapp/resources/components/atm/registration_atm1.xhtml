@@ -22,7 +22,7 @@
     <composite:implementation>
         <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
         <h:panelGrid columns="4" id="cblock" styleClass="#{cc.attrs.styleClass} registrationBlock">
-          <h:outputLabel for="officeCode" rendered="#{cc.isRendered('officeCode',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+            <h:outputLabel for="officeCode" rendered="#{cc.isRendered('officeCode',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.officeCodeLabel} <span>#{cc.isRequiredString('officeCode',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
             <h:panelGroup rendered="#{cc.isRendered('officeCode',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
@@ -35,8 +35,11 @@
                     validatorMessage="#{atmBundle.officeCode} #{atmBundle.invalid}" value="#{cc.attrs.value.officeCode}">
                     <f:selectItem
                         itemLabel="#{atmBundle.Select} #{atmBundle.officeCodeLabel}" itemValue="#{null}"/>
-                    <f:selectItem itemLabel="#{atmBundle['DPAIH']}" itemValue="DPAIH"/>
-                    <f:selectItem itemLabel="#{atmBundle['DPAAIE']}" itemValue="DPAAIE"/>
+                    <c:forEach var="item" items="${aTMRequestController.getOfficeSelected()}" >
+<!--                      <f:selectItem rendered="false" itemLabel="#{atmBundle['${item.key}']}" itemValue="${item.value}"/>-->
+                        <f:selectItem rendered="false" itemLabel="${item.value}" itemValue="${item.value}"/>
+
+                    </c:forEach>
                 </p:selectOneMenu>
                 <p:message for="officeCode"/>
             </h:panelGroup>

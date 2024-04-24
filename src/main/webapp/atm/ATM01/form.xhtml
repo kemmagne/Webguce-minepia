@@ -12,7 +12,7 @@
     <h:form id="formContenu">
         <p:confirmDialog header="#{atm.Send}"
             message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
-            <p:messages id="dialogMessages"/>
+<!--            <p:messages id="dialogMessages"/>  -->
             <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
                 <h:outputLabel
                     rendered="#{atmController.current.paiement.FACTURE.MONTANTTTC != null}" value="#{atm.AmountToPay}"/>
@@ -38,9 +38,9 @@
                 <f:param name="back" value="back"/>
             </p:commandButton>
             <p:commandButton action="#{atmController.prepareSend()}"
-                oncomplete="PF('confirmSendDialog').show()"
+                
                 process="@this"
-                update=":formContenu:dialogMessages, :formContenu:confirmSend" value="#{atm.Send}">
+                update=":formContenu:confirmSend, :formContenu:messages" value="#{atm.Send}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
             <p:commandButton action="#{atmController.goToPreviows()}"
@@ -63,7 +63,7 @@
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
                     renderedList="dateDelivrance,dateExpiration"
                     required="true"
-                    requiredList="TelephoneFixe,personToContact"
+                    requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
             </p:tab>
             <p:tab title="#{atm.generalInfo}">
@@ -74,7 +74,7 @@
                     rendered="#{atmController.current.recordId != null}"
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <h3 class="webguce-block-title">#{atm.registration}</h3>
-                <atm:registration id="registration" readOnly="false"
+                <atm:registration_atm1 id="registration" readOnly="false"
                     readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
                     rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"

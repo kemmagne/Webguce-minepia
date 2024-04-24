@@ -10,9 +10,26 @@ package org.guce.process.atm;
  * @author NGC
  */
 public enum TypeAttachement {
+      
     
-    ATM01,
-    ATM02,
-    ATM03,
-    OTHER
+    DTarif,
+    CCI,
+    AT, 
+    CMP,
+    LI, 
+    TPV,
+    QPA,
+    DT, 
+    PDCE,
+    PDDE,
+    PPEC, 
+    CRT, 
+    LPI,
+    RAA,
+    PCCCEC,
+    CDPP,
+    LMEI,
+//    DT,
+//    CRT,
+//    RAA,
 }

@@ -61,13 +61,12 @@
                 <atm:reference id="reference" readOnly="true"
                     rendered="#{atmController.current.recordId != null}"
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
-                <h3 class="webguce-block-title">#{atm.registration}</h3>
+                    <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration id="registration" readOnly="false"
                     readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
-                    rendered="false"
+                    rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
-                    requiredList="officeCode"
-                    required="false" styleClass="webguce-sub-block" value="#{atmController.current}"/>
+                    required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <p:outputPanel id="invoiceBlock">
                     <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
                     <atm:invoice id="invoice" readOnly="false"
