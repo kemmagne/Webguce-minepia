@@ -87,6 +87,16 @@
             <Type>0</Type>
             <Processing>ATMM,ATM03</Processing>
         </Form>
+        
+        <Form>
+            <Code>ATMMR</Code>
+            <Name>ATMMR_FORMNAME</Name>
+            <Version>1.0.0</Version>
+            <Description>ATMMR_FORM_DESCRIPTION</Description>
+            <Path>ATMMR</Path>
+            <Type>0</Type>
+            <Processing>ATMMR,ATM03R</Processing>
+        </Form>
      
         <Form>
             <Code>AVISTECH</Code>

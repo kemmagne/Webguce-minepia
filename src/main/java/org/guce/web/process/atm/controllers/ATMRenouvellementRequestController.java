@@ -56,21 +56,41 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
         context.update("dialogsForm");
     }
 
-    public void validateAndSaveAndSend() {
-        if(!fileSent && checkModificationRequestConformity()) {
-            fileSent = false;
+//    public void validateAndSaveAndSend() {
+//        if(!fileSent && checkModificationRequestConformity()) {
+//            fileSent = false;
+//            try {
+//                current.setIsrenewing(String.valueOf(true));
+//                beforeSend();
+//                serviceMessage.send(serviceMessage.sent(current, userController.getUserConnecte()));
+//                JsfUtil.addSuccessMessage(bundle("ModificationRequestSend") + " " + current.getRecordId());
+//                goToPreviows();
+//            } catch(Exception ex) {
+//                fileSent = true;
+//                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
+//                JsfUtil.addErrorMessage(bundle("CannotSendModificationRequestSend") + " " + current.getRecordId());
+//            }
+//        }
+//    }
+    
+    
+    // @Override
+     public void validateAndSaveAndSend() {
+        if(!fileSent && checkRequestConformity()) {
+            fileSent = true;
             try {
-                beforeSend();
-                serviceMessage.send(serviceMessage.sendRenouvellementRequest(current, userController.getUserConnecte()));
-                JsfUtil.addSuccessMessage(bundle("ModificationRequestSend") + " " + current.getRecordId());
+                current.setIsrenewing(String.valueOf(Boolean.TRUE));
+               this.send();
+                JsfUtil.addSuccessMessage(bundle("RequestSend") + " " + current.getRecordId());
                 goToPreviows();
             } catch(Exception ex) {
-                fileSent = true;
+                fileSent = false;
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
-                JsfUtil.addErrorMessage(bundle("CannotSendModificationRequestSend") + " " + current.getRecordId());
+                JsfUtil.addErrorMessage(bundle("CannotSendRecord") + " " + current.getRecordId());
             }
         }
     }
+    
 
     protected boolean checkModificationRequestConformity() {
         return checkRequestConformity();
@@ -83,4 +103,8 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
     }
     
     
+     protected void send() {
+        beforeSend();
+        serviceMessage.send(serviceMessage.sendRequest(current,userController.getUserConnecte()));
+    }
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -237,7 +238,9 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
                                 registration.getCoreAttachmentList(), registration.getReocordConversationid(),
                                 user.getPartnerid().getPartnerid(),
                                 getTo(registration), docs.getClass(), registration.getClass());
-        message.setMessageProcessing(processing);
+        if(Objects.nonNull(message)){
+                    message.setMessageProcessing(processing);
+        }
         if(registration.getRecordSendate() == null) {
             registration.setRecordSendate(GuceCalendarUtil.getCalendar().getTime());
             registration.setRecordState(CoreRecord.IN_PROCESS);
@@ -325,7 +328,11 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
                 }
                 registration.setDecision(document.getContenu().getDecision());
                 registration.setPaiement(document.getContenu().getPaiement());
-                return (CoreMessage) getClass().getMethod(CoreProcessingState.TRAITER + ebxml.getAction().toUpperCase(),OrchestraEbxmlMessage.class,ATMRegistration.class).invoke(this,ebxml,registration);
+                String action = ebxml.getAction();
+                if(document.getMessage().getTypeMessage().toUpperCase().equals(ATMConstant.RENEW) && action.equals(ATMConstant.PROCESSING_VALIDATION)){
+                    action =  ATMConstant.PROCESSING_RENOUVELLEMENT_VALIDATION;
+                } 
+                return (CoreMessage) getClass().getMethod(CoreProcessingState.TRAITER + action.toUpperCase(),OrchestraEbxmlMessage.class,ATMRegistration.class).invoke(this,ebxml,registration);
             }
         }
         return null;
@@ -475,6 +482,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
             if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
                 return null;
             }
+            
             serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
         }
         CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
@@ -485,6 +493,11 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         processingFacade.create(p);
         message.setMessageProcessing(p);
         messageFacade.edit(message);
+        
+        if(ebxml.getAction().equals(ATMConstant.PROCESSING_VALIDATION) &&  Boolean.valueOf(registration.isIsrenewing())){
+              CoreProcessing coreProcessing =  createProcessing(registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT, CoreProcessingState.ATTENTE);
+              processingFacade.create(coreProcessing);
+            }
         return serviceMessage.sendAperakMessage(p, ebxml);
     }
     

@@ -10,7 +10,7 @@ public interface ATMConstant {
 
   String BILL_BENEFICIAIRE = "MINEPIA" ;
     
-    
+   String RENEW= "RENEW";
     /**
      * process code */
     String PROCESS_CODE = "ATM";

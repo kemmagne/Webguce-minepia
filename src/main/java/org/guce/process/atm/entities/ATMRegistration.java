@@ -59,6 +59,7 @@ import org.guce.core.entities.CoreSignatory;
                 "paiement",
                 "signatory",
                 "decision",
+                "isrenewing",
                 "coreAttachmentList"}
 )
 public class ATMRegistration extends CoreRecord implements Serializable {
@@ -95,6 +96,13 @@ public class ATMRegistration extends CoreRecord implements Serializable {
     @Transient
     public PaymentDocument.CONTENT.PAIEMENT paiement;
 
+    @Column(
+            name = "IS_RENEW"
+    )
+    private String isrenewing =  String.valueOf(Boolean.FALSE);
+
+    
+    
     @ManyToOne(
             targetEntity = TypeAvtech.class
     )
@@ -307,6 +315,22 @@ public class ATMRegistration extends CoreRecord implements Serializable {
         return super.getGoodList();
     }
 
+    @XmlElement(
+            name = "IS_RENEW"
+    )
+    public String isIsrenewing() {
+        return isrenewing;
+    }
+
+    public void setIsrenewing(String isrenewing) {
+        this.isrenewing = isrenewing;
+    }
+
+   
+
+    
+    
+    
     @Override
     public void setGoodList(List<CoreGood> goodList) {
         super.setGoodList(goodList);
