@@ -39,12 +39,13 @@
                     rendered="true"
                     renderedList="dateDelivrance,dateExpiration"
                     required="false" styleClass="webguce-sub-block"
+                    readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
                     updateAfterChange="" value="#{atmController.current.chargerid}"/>
                 <h3 class="webguce-block-title">#{atm.supplier}</h3>
                 <wgc:charger excludedCountries="CM" fimex="false"
                     phoneMaxChar="15" phoneMinChar="6" readOnly="false"
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
-                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    renderedList="dateDelivrance,dateExpiration"
                     required="true"
                     requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
@@ -58,7 +59,7 @@
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration id="registration" readOnly="false"
-                    readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
+                    readOnlyList="atmReference,atmIssueDate,officeCode,atmExpiryDate"
                     rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
@@ -81,9 +82,11 @@
             </p:tab>
             <p:tab title="#{atm.goods} ">
                 <h3 class="codename blockTitle">#{atm.goods}</h3>
-                <wgc:goods id="good"
+                 <atm:goods_disable id="good"
                     parentClass="#{atmController.current}"
-                    readOnly="false" renderedList="" required="true"
+                    renderedList="" required="true" readOnly="false"
+                    readOnlyList="goodCode,positionTarif,ValeurFobInCurrency,Description"
+                    category="#{atmController.getSelectedTypeAvisTechnique()}"
                     requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
                 <p:spacer height="20px"/>
             </p:tab>
@@ -96,7 +99,7 @@
                     avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
                     id="attachment"
                     parentClass="#{atmController.current}"
-                    readonly="false" styleClass="pm2" type="form" value="#{atmController.current.coreAttachmentList}"/>
+                    readonly="true" styleClass="pm2" type="view" value="#{atmController.current.coreAttachmentList}"/>
             </p:tab>
         </p:tabView>
     </h:form>

@@ -40,63 +40,7 @@
                 </p:selectOneMenu>
                 <p:message for="officeCode"/>
             </h:panelGroup>
-            <h:outputLabel for="atmReference" rendered="#{cc.isRendered('atmReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.atmReferenceLabel} <span>#{cc.isRequiredString('atmReference',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('atmReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-                <p:inputText
-                    converterMessage="#{atmBundle.atmReference} #{atmBundle.invalid}"
-                    id="atmReference" maxlength="35"
-                    readonly="#{cc.isReadOnly('atmReference',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    rendered="#{cc.isRendered('atmReference',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
-                    required="#{cc.isRequired('atmReference',cc.attrs.requiredList,cc.attrs.required)}"
-                    requiredMessage="#{atmBundle.atmReference} #{atmBundle.required}"
-                    size="35" style="width: 140px"
-                    validatorMessage="#{atmBundle.atmReference} #{atmBundle.invalid}" value="#{cc.attrs.value.atmReference}"/>
-                <p:message for="atmReference"/>
-            </h:panelGroup>
-            
-             <h:outputLabel for="atmExpiryDate" rendered="#{cc.isRendered('atmExpiryDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.atmExpiryDateLabel} <span>#{cc.isRequiredString('atmExpiryDate',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('atmExpiryDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-                <p:calendar
-                    converterMessage="#{atmBundle.atmExpiryDate} #{atmBundle.invalide}"
-                    id="atmExpiryDate" mask="true" maxlength="17"
-                    pattern="#{atmBundle.dateFormat}"
-                    readonly="#{cc.isReadOnly('atmExpiryDate',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    required="#{cc.isRequired('atmExpiryDate',cc.attrs.requiredList,cc.attrs.required)}"
-                    requiredMessage="#{atmBundle.atmExpiryDate} #{atmBundle.required}"
-                    size="17"
-                    validatorMessage="#{atmBundle.atmExpiryDate} #{atmBundle.invalide}" value="#{cc.attrs.value.atmExpiryDate}">
-                    <f:convertDateTime pattern="#{atmBundle.dateFormat}"/>
-                </p:calendar>
-                <p:message for="atmExpiryDate"/>
-            </h:panelGroup>
-      
-            
-            
-            
-            
-<!--        <h:outputLabel for="avisTech" rendered="false" rendered="#{cc.isRendered('avisTech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.avisTechLabel} <span>#{cc.isRequiredString('avisTech',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup id="avisTechBlock" rendered="false">
-                <atm:avisTechSelectOne id="avisTech"
-                    readOnly="#{cc.isReadOnly('avisTech',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    rendered="#{cc.isRendered('avisTech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
-                    required="#{cc.isRequired('avisTech',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.avisTech}"/>
-            </h:panelGroup>
-            <h:outputLabel for="typeAtech" rendered="false" rendered="#{cc.isRendered('typeAtech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.typeAtechLabel} <span>#{cc.isRequiredString('typeAtech',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup  rendered="false" id="typeAtechBlock">
-                <atm:typeAvtechSelectOne id="typeAtech"
-                    readOnly="#{cc.isReadOnly('typeAtech',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    rendered="#{cc.isRendered('typeAtech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
-                    required="#{cc.isRequired('typeAtech',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.typeAtech}"/>
-            </h:panelGroup>-->
-        </h:panelGrid>
+         </h:panelGrid>
         <p:outputPanel>
             <script>
                 jQuery(document).ready(function () {

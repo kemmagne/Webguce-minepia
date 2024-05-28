@@ -10,6 +10,7 @@
         <composite:attribute name="requiredList" type="java.lang.String"/>
         <composite:attribute name="readOnlyList" type="java.lang.String"/>
         <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute name="dischargePlace" default="CM" type="java.lang.String" />
         <composite:attribute name="updateList" type="java.lang.String"/>
         <composite:attribute default="false" name="required" required="false"/>
         <composite:attribute default="true" name="renderedBoolean" required="false"/>
@@ -116,6 +117,7 @@
             <h:panelGroup id="clearingPlaceBlock">
                 <r:customOffice id="clearingPlace"
                     readOnly="#{cc.isReadOnly('clearingPlace',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    country="#{cc.attrs.dischargePlace}"
                     rendered="#{cc.isRendered('clearingPlace',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
                     required="#{cc.isRequired('clearingPlace',cc.attrs.requiredList,cc.attrs.required)}" value="#{cc.attrs.value.clearingPlace}"/>
             </h:panelGroup>

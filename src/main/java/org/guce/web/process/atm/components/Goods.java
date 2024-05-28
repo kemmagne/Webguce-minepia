@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.guce.web.process.atm.components;
 
 import java.io.ByteArrayInputStream;
@@ -57,11 +58,13 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
+ 
 
 /**
  *
  * @author NGC
  */
+
 @FacesComponent("org.guce.web.process.atm.components.Goods")
 public class Goods extends WebguceDefaultComponent implements NamingContainer {
 
@@ -362,22 +365,24 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
             // si on a categoriser le type de marchandise
             switch (category) {
                 case "ATM01":
-                    //Engrais
+                   
                     return  getRepGoodAtm().findActiveProduitsHalieutiques();
                 case "ATM02":
-                    //Pesticide
+                   
                     return  getRepGoodAtm().findActiveIngredientsAdditifs();
+                    
                  case "ATM03":
-                    //Pesticide
+                    
                     return  getRepGoodAtm().findActiveMaterialEquipment();
+                    
                 default:
-                    //Appareil Traitement
-                    return  getRepGoodAtm().findActiveMaterialEquipment();
+                    
+                    return  getRepGoodAtm().findActiveProduitsHalieutiques();
             }
         }else{
             //si non on retourne tous les marchandises disponible
         // return getRepService().positionList();
-        return (List<RepPositionTarifaire>) new RepPositionTarifaire();
+        return  getRepGoodAtm().findActiveProduitsHalieutiques();
         } 
     }
     

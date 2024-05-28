@@ -19,11 +19,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.SOAPMessage;
 import org.guce.core.documents.WebguceDocument;
+import org.guce.core.ejb.facade.interfaces.CoreChargerFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreMessageFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CorePaymentFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreProcessFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreProcessingFacadeLocal;
 import org.guce.core.ejb.facade.interfaces.CoreTaxandinvoiceFacadeLocal;
+import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreDecisionType;
 import org.guce.core.entities.CoreMessage;
 import org.guce.core.entities.CoreMessageType;
@@ -46,6 +48,7 @@ import org.guce.web.core.mail.ServiceMailSenderLocal;
 import org.guce.web.core.mail.util.Aperak;
 import org.guce.web.core.mail.util.AperakCreator;
 import org.guce.web.core.transformation.DefaultTraitement;
+import org.guce.web.process.atm.controllers.impl.ATMControllerImpl;
 import org.guce.web.process.atm.services.impl.ATMRegistrationMessageServiceImpl;
 import org.guce.web.process.atm.services.impl.ATMRegistrationServiceImpl;
 
@@ -78,6 +81,11 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
 
     @EJB
     protected CorePaymentFacadeLocal paymentFacade;
+    
+    @EJB
+    protected CoreChargerFacadeLocal chargerFacade;
+    
+    private Logger LOGGER = Logger.getLogger(ATMControllerImpl.class.getName());
 
     public WebguceDocument<ATMRegistration> createMessage(ATMRegistration registration, CoreMessage message) {
         WebguceDocument<ATMRegistration> doc = new WebguceDocument<ATMRegistration>();
@@ -170,8 +178,10 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public CoreMessage sendCIResponse(ATMRegistration registration, CoreUser user, CoreProcessing processing) {
         updateProcessing(processing, user,CoreProcessingState.TRAITER);
+        //// chargerFacade.edit((CoreCharger) registration.getGoodList());
+        chargerFacade.edit(registration.getSupplier()); 
         service.save(registration);
-        registration.setDecision(new CoreDecisionType(processing.getSubject(), "Comlements d'informations"));
+        registration.setDecision(new CoreDecisionType(processing.getSubject(), "Complements d'informations"));
         registration.getDecision().setObservation(processing.getObservation());
         return send(registration, user,ATMConstant.PROCESSING_RESPONSE_CI,ATMConstant.PROCESSING_RESPONSE_CI,null);
     }
@@ -246,6 +256,9 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
             registration.setRecordState(CoreRecord.IN_PROCESS);
             service.save(registration);
         }
+//        else if(processingType.equals(ATMConstant.PROCESSING_RESPONSE_CI)){
+//             service.save(registration);
+//        }
         messageFacade.create(message);
         return messageFacade.find(message.getId());
     }
@@ -364,6 +377,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
     }
     
      public CoreMessage traiterATM01R(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+         service.save(registration);
         return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
     }
 
@@ -372,6 +386,7 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
     }
 
     public CoreMessage traiterATM11(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
+        service.save(registration);
         return createProcessingAndSendAperakATM602(ebxml, registration, ATMConstant.PROCESSING_VALIDATION);
     }
 
@@ -494,66 +509,31 @@ public class ATMRegistrationMessageService extends DefaultTraitement implements 
         message.setMessageProcessing(p);
         messageFacade.edit(message);
         
-        if(ebxml.getAction().equals(ATMConstant.PROCESSING_VALIDATION) &&  Boolean.valueOf(registration.isIsrenewing())){
+        
+        Object obj = registration.isIsrenewing();
+       
+       if(obj instanceof String){
+         LOGGER.log(Level.INFO, "obj is a String");
+       }else if(obj instanceof Boolean){
+         LOGGER.log(Level.INFO, "obj is a boolean");
+       } else {
+          LOGGER.log(Level.INFO, "something went run");
+       }
+
+        LOGGER.log( Level.INFO, "ATMRegistrationMessageService value of  Is Reniewing" + registration.isIsrenewing());
+        
+       if(ebxml.getAction().equals(ATMConstant.PROCESSING_VALIDATION) &&  Boolean.valueOf(registration.isIsrenewing())){
               CoreProcessing coreProcessing =  createProcessing(registration, ATMConstant.PROCESSING_CONSULTATION_RENOUVELLEMENT, CoreProcessingState.ATTENTE);
               processingFacade.create(coreProcessing);
+               LOGGER.log( Level.INFO, "ATMRegistrationMessageService value of  Is Reniewing" + registration.isIsrenewing());
+            }else if (ebxml.getAction().equals(ATMConstant.PROCESSING_CI) &&  Boolean.valueOf(registration.isIsrenewing())){
+              CoreProcessing coreProcessing =  createProcessing(registration, ATMConstant.PROCESSING_RENOUVELLEMENT_RESPONSE_CI, CoreProcessingState.ATTENTE);
+              processingFacade.create(coreProcessing);
             }
+        
         return serviceMessage.sendAperakMessage(p, ebxml);
     }
     
-
-//    public CoreMessage traiterATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration) {
-//        String processingType = processingFacade.findLastProcessing(registration.getRecordId(),  ATMConstant.PROCESSING_CONSULTATION) == null ?
-//                                ATMConstant.PROCESSING_VALIDATION : ATMConstant.PROCESSING_MODIFICATION_VALIDATION;
-//        String reference = registration.getPaiement().getFACTURE().getREFERENCEFACTURE() != null ? 
-//                                registration.getPaiement().getFACTURE().getREFERENCEFACTURE() :
-//                                registration.getRecordId();
-//        for(CoreTaxandinvoice invoice : registration.getInvoiceList()) {
-//            if(invoice.getTaxReferenceNumber().equals(reference) &&
-//                                !invoice.getTaxstate()) {
-//                CorePayment payment = new CorePayment();
-//                payment.setTaxandinvoiceid(invoice);
-//                payment.setPaymentAmount(new BigDecimal(registration.getPaiement().getENCAISSEMENT().getMONTANT()));
-//                payment.setPaymentdate(GuceCalendarUtil.getCalendar().getTime());
-//                payment.setReceiptNumber(registration.getPaiement().getENCAISSEMENT().getNUMERORECU());
-//                payment.setPaymentobservations(registration.getPaiement().getENCAISSEMENT().getOBSERVATIONS());
-//                payment.setPaymentobject(registration.getPaiement().getENCAISSEMENT().getNATURE());
-//                paymentFacade.create(payment);
-//            }
-//        }
-//        return createProcessingAndSendAperakATM602(ebxml, registration, processingType, ATMConstant.PROCESSING_PAYMENT);
-//    }
-
-//    public CoreMessage createProcessingAndSendAperakATM602(OrchestraEbxmlMessage ebxml, ATMRegistration registration, String processingType, String... processingTypeEnd) {
-//        List<CoreProcessing> listP = processingFacade.findLastProcessingList(registration.getRecordId(),
-//                                processingType,CoreProcessingState.ATTENTE);
-//        CoreMessage message = messageFacade.find(ebxml.getMessageId());
-//        if (listP != null && !listP.isEmpty() && CoreProcessingState.ATTENTE.equalsIgnoreCase(listP.get(0).getProcState())) {
-//            return null;
-//        }
-//        if(processingTypeEnd != null  && processingTypeEnd.length > 0) {
-//            CoreProcessing pEnd = null;
-//            for (String pTEnd : processingTypeEnd) {
-//                if (pEnd == null) {
-//                    pEnd = processingFacade.findLastProcessing(registration.getRecordId(),
-//                                            pTEnd, CoreProcessingState.ATTENTE);
-//                }
-//            }
-//            if(pEnd == null || !CoreProcessingState.ATTENTE.equalsIgnoreCase(pEnd.getProcState())) {
-//                return null;
-//            }
-//            serviceMessage.updateProcessing(pEnd, null, CoreProcessingState.TRAITER);
-//        }
-//        CoreProcessing p = serviceMessage.createProcessing(registration, processingType, CoreProcessingState.ATTENTE,new CorePartner(getToPartner(ebxml)));
-//        if(registration.getDecision() != null) {
-//            p.setObservation(registration.getDecision().getObservation());
-//            p.setSubject(registration.getDecision().getCode());
-//        }
-//        processingFacade.create(p);
-//        message.setMessageProcessing(p);
-//        messageFacade.edit(message);
-//        return serviceMessage.sendAperakMessage(p, ebxml);
-//    }
 
     public String getToPartner(OrchestraEbxmlMessage ebxml) {
         String to = "GUCE";

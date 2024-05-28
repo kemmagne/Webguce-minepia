@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Process xsi:noNamespaceSchemaLocation="process.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Code>atm</Code>
-    <Name>ATM_PROCESS_NAME</Name>
+    <Name>AVIS TECHNIQUE MINEPIA</Name>
     <Version>${project.version}</Version>
-    <Description>ATM_PROCESS_NAME
+    <Description>AVIS TECHNIQUE MINEPIA
     </Description>
     <ProcessingClass>ATMProcessingImpl</ProcessingClass>
     <ServiceName>atm</ServiceName>
@@ -49,6 +49,18 @@
             <Type>0</Type>
             <Processing>ATM02</Processing>
         </Form>
+        
+        
+        <Form>
+            <Code>ATM11R</Code>
+            <Name>ATM11R_FORMNAME</Name>
+            <Version>1.0.0</Version>
+            <Description>ATM11R_FORM_DESCRIPTION</Description>
+            <Path>ATM11R</Path>
+            <Type>0</Type>
+            <Processing>ATM02</Processing>
+        </Form>
+        
         <Form>
             <Code>ATM601</Code>
             <Name>ATM601_FORMNAME</Name>
@@ -123,6 +135,12 @@
             <Code>ATM11</Code>
             <Name>ATM11PROCESSING</Name>
         </Processing>
+        
+        <Processing>
+            <Code>ATM11R</Code>
+            <Name>ATM11RPROCESSING</Name>
+        </Processing>
+        
         <Processing>
             <Code>ATM02</Code>
             <Name>ATM02PROCESSING</Name>
@@ -205,10 +223,6 @@
             <Name>Quittance de paiement des frais afférents</Name>
         </Attachment>
         <Attachment>
-            <Code>DT</Code>
-            <Name>Demande timbrée</Name>
-        </Attachment>
-        <Attachment>
             <Code>PDCE</Code>
             <Name>Photocopie de la décision de création de l’établissement</Name>
         </Attachment>
@@ -246,9 +260,56 @@
         </Attachment>
         <Attachment>
             <Code>AUTRE</Code>
-            <Name>Autres</Name>
+            <Name>Autre</Name>
         </Attachment>
-
+        
+        
+        <Attachment>
+            <Code>COPIE</Code>
+            <Name>Copie certifiée conforme de l’ancien avis technique</Name>
+        </Attachment>
+        
+        <Attachment>
+            <Code>RAPPORT</Code>
+            <Name>Rapport d’activité de l’exercice écoulée</Name>
+        </Attachment>
+        
+        <Attachment>
+            <Code>CONFORMITE</Code>
+            <Name>Certificat de conformité des installations</Name>
+        </Attachment>
+        
+        
+        <Attachment>
+            <Code>ORIGINE</Code>
+            <Name>Certificat d’origine des produits importés</Name>
+        </Attachment>
+        
+        <Attachment>
+            <Code>DECLARATION</Code>
+            <Name>Copie de déclaration des douanes ; Laissez-passer et Certificat sanitaire des produits importés</Name>
+        </Attachment>
+        
+        <Attachment>
+            <Code>PREVISION</Code>
+            <Name>Liste prévisionnelle des produits à importer</Name>
+        </Attachment>
+        
+         <Attachment>
+            <Code>CERTIFICAT</Code>
+            <Name>Copies des certificats médicaux du personnel</Name>
+        </Attachment>
+        
+        <Attachment>
+            <Code>PATEN</Code>
+            <Name>Patente en cours de validité</Name>
+        </Attachment>
+        
+         <Attachment>
+            <Code>QUIT</Code>
+            <Name>Quittance de paiement des frais afférents</Name>
+        </Attachment>
+        
     </Attachments>
     <Messages>
         
@@ -264,6 +325,13 @@
             <Code>ATM11</Code>
             <Name>ATM11MESSAGE</Name>
         </Message>
+        
+        <Message>
+            <Code>ATM11R</Code>
+            <Name>ATM11RMESSAGE</Name>
+        </Message>
+        
+        
         <Message>
             <Code>ATM02</Code>
             <Name>ATM02MESSAGE</Name>

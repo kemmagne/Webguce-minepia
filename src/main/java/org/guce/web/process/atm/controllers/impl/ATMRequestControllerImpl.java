@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.apache.commons.lang.StringUtils;
 import org.guce.core.ejb.facade.interfaces.CorePaysFacadeLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
@@ -137,7 +138,7 @@ public class ATMRequestControllerImpl extends ATMRequestController {
                     
                     for(String requiredAttachment:requiredAttachmentsLabel){
                         String prefix = "";
-                       JsfUtil.addErrorMessage(bundle("RequiredAttachmentsMessage"));
+                       //JsfUtil.addErrorMessage(bundle("RequiredAttachmentsMessage"));
                         JsfUtil.addErrorMessage(prefix.concat(" ").concat(requiredAttachment.toLowerCase().concat(" ").concat(bundle("RequiredAttachmentsMessage"))));
                     }
                                     
@@ -196,110 +197,17 @@ public class ATMRequestControllerImpl extends ATMRequestController {
         }
     }
      
-     
-//    public boolean checkAttachmentConformity(){
-//    
-//        Map<String , Boolean> fileMap = checkValidityOfAttachment(current.getCoreAttachmentList());
-//       if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){
-//         JsfUtil.addErrorMessage(bundle("EmptySeedFileToatal"));
-//
-//         return false;  
-//          }else if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.INGREDIENT_ADDITIFS)){
-//                JsfUtil.addErrorMessage(bundle("EmptySeedFileToata2"));
-//                return false;
-//          }else if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.MATERIEL_EQUIPEMENT)){
-//                JsfUtil.addErrorMessage(bundle("EmptySeedFileToata3"));  
-//                return false;
-//          }else{
-//               checkRequestConformityofAttachment();
-//              
-//              return true;
-//              
-//              
-//              
-//                  
-//              
-//              
-//              
-////              if(selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){
-////              
-////                if(!fileMap.get(TypeAttachement.DTarif.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CCI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.AT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CMP.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.TPV.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat6"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.QPA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }  
-////              }
-////              
-////               if(selectedTypeAvisTechnique.equals(ATMConstant.INGREDIENT_ADDITIFS)){
-////              
-////                if(!fileMap.get(TypeAttachement.DT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PDCE.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PDDE.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PPEC.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CRT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LPI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat6"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.RAA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }
-////                 if(!fileMap.get(TypeAttachement.PCCCEC.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }
-////              }
-////               
-////               if(selectedTypeAvisTechnique.equals(ATMConstant.MATERIEL_EQUIPEMENT)){
-////              
-////                if(!fileMap.get(TypeAttachement.CDPP.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LMEI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.DT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CRT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.RAA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-//// 
-////              }          
-//    
-//    
-//              
-//              
-//          }
-//    
-//    }
+
+         
+     public String displayStampfees(){
+      String stampFees = StringUtils.EMPTY;
+ 
+      if(current != null){
+         stampFees = getSpecificProcessParam(current.getRecordProcess(), ATMConstant.BILL_MONTANT_HT, "1500");
+       //   stampFees = DEMConstant.BILL_MONTANT_HT;
+      }
+      return stampFees;
+    }
  
     
     @Override
@@ -338,6 +246,8 @@ public class ATMRequestControllerImpl extends ATMRequestController {
     public void setRequiredAttachments(List<String[]> requiredAttachments) {
         this.requiredAttachments = requiredAttachments;
     }
+    
+    
  
     
 }

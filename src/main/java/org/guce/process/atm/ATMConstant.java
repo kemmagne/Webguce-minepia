@@ -22,6 +22,11 @@ public interface ATMConstant {
     /**
      * form response additionnal request code */
     String FORM_RESPONSE_CI = "ATM11";
+    
+    
+      /**
+     * form response additionnal renouvellement request code */
+    String FORM_RENOUVELLEMENT_RESPONSE_CI = "ATM11R";
 
     /**
      * form response code */
@@ -70,6 +75,12 @@ public interface ATMConstant {
     /**
      * processing response additionnal request code */
     String PROCESSING_RESPONSE_CI = "ATM11";
+    
+    /**
+     * processing response additionnal request code for renouvellement 
+     */
+    
+    String PROCESSING_RENOUVELLEMENT_RESPONSE_CI = "ATM11R";
 
     /**
      * processing validation code */

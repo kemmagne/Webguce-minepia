@@ -8,17 +8,12 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:wgc="http://java.sun.com/jsf/composite/components/">
     <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
     <p:tooltip for=":formContenu"/>
-    <ui:param name="atmController" value="#{aTMModificationRequestController}"/>
+    <ui:param name="atmController" value="#{aTMRenouvellementRequestCIController}"/>
     <h:form id="formContenu">
         <p:confirmDialog header="#{atm.Send}"
             message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
             <p:messages id="dialogMessages"/>
-            <h:panelGrid columns="1">
-                <p:outputLabel value="#{atm.ModicationReason}"/>
-                <p:inputTextarea id="observationInput" value="#{atmController.current.decision.observation}"/>
-            </h:panelGrid>
-            <p:commandButton
-                action="#{atmController.validateAndSaveAndSend()}"
+            <p:commandButton action="#{atmController.send()}"
                 ajax="false" value="#{atm.Yes}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
@@ -52,7 +47,6 @@
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
                     renderedList="dateDelivrance,dateExpiration"
                     required="true"
-                    readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
                     requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
             </p:tab>
@@ -63,11 +57,11 @@
                 <atm:reference id="reference" readOnly="true"
                     rendered="#{atmController.current.recordId != null}"
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
-                    <h3 class="webguce-block-title">#{atm.registration}</h3>
+                <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration id="registration" readOnly="false"
                     readOnlyList="atmReference,atmIssueDate,atmExpiryDate,officeCode"
                     rendered="true"
-                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate,officeCode'}"
+                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <p:outputPanel id="invoiceBlock">
                     <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
@@ -80,22 +74,31 @@
                 <p:outputPanel id="transportBlock">
                     <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
                     <atm:transport id="transport" readOnly="false"
-                        readOnlyList="provenance,origin,loadingPlace,clearingPlace"
+                        readOnlyList=""
                         rendered="#{atmController.compute_transport()}"
                         renderedList="" required="true" requiredList=""
                         styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
                 </p:outputPanel>
             </p:tab>
-            <p:tab title="#{atm.goods} ">
+            
+               <p:tab title="#{atm.goods} ">
                 <h3 class="codename blockTitle">#{atm.goods}</h3>
-                <atm:goods_disable id="good"
+                <wgc:goods id="good"
                     parentClass="#{atmController.current}"
-                    renderedList="" required="true" readOnly="false"
-                    readOnlyList="goodCode,positionTarif,ValeurFobInCurrency,Description"
-                    category="#{atmController.getSelectedTypeAvisTechnique()}"
+                    readOnly="false" renderedList="" required="true"
                     requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
                 <p:spacer height="20px"/>
             </p:tab>
+            
+            
+<!--            <p:tab title="#{atm.goods} ">
+                <h3 class="codename blockTitle">#{atm.goods}</h3>
+                <wgc:goods id="good"
+                    parentClass="#{atmController.current}"
+                    readOnly="false" renderedList="" required="true"
+                    requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
+                <p:spacer height="20px"/>
+            </p:tab>-->
             <p:tab id="decisionBlock"
                 rendered="#{atmController.processing != null}" title="#{atm.decision}">
                 <atm:decision id="decision" readonly="true" value="#{atmController.processing}"/>
@@ -105,28 +108,9 @@
                     avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
                     id="attachment"
                     parentClass="#{atmController.current}"
-                    readonly="true" styleClass="pm2" type="view" value="#{atmController.current.coreAttachmentList}"/>
+                    readonly="false" styleClass="pm2" type="form" value="#{atmController.current.coreAttachmentList}"/>
             </p:tab>
         </p:tabView>
-    </h:form>
-    <h:form id="dialogsForm">
-        <p:dialog closable="false" draggable="false"
-            header="#{atm.loadRecord}" hideEffect="explose"
-            id="loadDialog" modal="true" showEffect="fade"
-            style="height: 240px;background: #EEE;" styleClass="top"
-            visible="#{atmController.current == null}" widgetVar="loadDialog">
-            <h:panelGrid cellspacing="8" columns="2" id="gridP">
-                <h:outputLabel for="recordId"
-                    title="#{atm.EnterRecordFile}" value="#{atm.recordId}"/>
-                <p:inputText id="recordId" required="true" size="35" value="#{atmController.recordId}"/>
-                <p:commandButton action="#{atmController.loadRecord()}"
-                    update=":dialogsForm:gridP :dialogsForm:myGrowl" value="#{atm.ModificationRequest}"/>
-                <p:commandButton
-                    action="#{atmController.goToPreviows()}"
-                    ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.Back}"/>
-            </h:panelGrid>
-            <p:growl id="myGrowl"/>
-        </p:dialog>
     </h:form>
     <p:ajaxStatus id="myajaxStatus" oncomplete="myReadonly()"/>
     <script>

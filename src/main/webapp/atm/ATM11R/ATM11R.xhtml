@@ -4,23 +4,16 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
     <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
-    <ui:param name="listTilte" value="#{atm.renouvellementRequestSent}"/>
+    <ui:param name="listTilte" value="#{atm.additionnalInformationFiles}"/>
     <h:form id="formContenu">
         <h:panelGrid cellspacing="8" columns="6">
-            <p:commandButton
-                action="#{userControllerSite.goToNewPageForm()}"
-                ajax="false" icon="ui-icon-document" id="newRequest" value="#{atm.InitRenouvellement}">
-                <f:param name="formCode" value="ATM01R"/>
-                <f:param name="page" value="form"/>
-                <f:param name="type" value="form"/>
-            </p:commandButton>
             <p:commandButton
                 action="#{aTMListController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.Back}"/>
         </h:panelGrid>
         <p:messages autoUpdate="true"/>
         <atm:filter cleanAction="#{aTMListController.resetsearch()}"
-            renderedList="procEndDate,procStartDate"
+            renderedList="procStartDate"
             searchAction="#{aTMListController.search()}"
             update=":formContenu:table" value="#{aTMListController.filter}"/>
         <br/>
@@ -31,19 +24,21 @@
             <p:column style="width: 10%">
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
-                    ajax="false" title="#{atm.view}">
-                    <f:param name="page" value="view"/>
+                    ajax="false" title="#{atm.edit}">
+                    <f:param name="page" value="form"/>
+                    <f:param name="processingid" value="#{file.processing.processingid}"/>
+                    <f:param name="type" value="form"/>
                     <f:param name="recordId" value="#{file.file.recordId}"/>
-                    <f:param name="type" value="view"/>
-                    <f:param name="formCode" value="ATM01R"/>
+                    <f:param name="formCode" value="ATM11R"/>
                     <p:graphicImage height="20"
-                        value="/ImageFolder/detail.jpeg" width="20"/>
+                        value="/ImageFolder/choose.jpeg" width="20"/>
                 </p:commandLink>
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
                     ajax="false" title="#{atm.History}">
                     <f:param name="page" value="historic"/>
                     <f:param name="recordId" value="#{file.file.recordId}"/>
+                    
                     <f:param name="formCode" value="core"/>
                     <p:graphicImage alt="#{atm.History}" height="20"
                         value="/ImageFolder/archive.jpeg" width="20"/>
