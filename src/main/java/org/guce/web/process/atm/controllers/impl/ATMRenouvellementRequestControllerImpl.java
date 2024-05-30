@@ -22,6 +22,7 @@ import org.guce.process.atm.ATMConstant;
 import org.guce.process.atm.entities.PaymentDocument;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.ATMRenouvellementRequestController;
+import static org.guce.web.process.atm.util.ATMAddArticleToAttachment.addArticleToAttachment;
 import org.primefaces.context.RequestContext;
 
 
@@ -132,7 +133,7 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
             if(this.requiredAttachmentCodes.contains(avaibleAttachmentType.getAttachementtypeid())) {
                 this.requiredAttachments.add(new String[]{
                     avaibleAttachmentType.getAttachementtypeid(),
-                    avaibleAttachmentType.getAttachementtypename(),
+                    addArticleToAttachment(avaibleAttachmentType.getAttachementtypename()),
                 });
             }
         }
