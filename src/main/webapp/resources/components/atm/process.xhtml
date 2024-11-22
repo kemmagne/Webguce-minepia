@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:atm="http://java.sun.com/jsf/composite/components/atm"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements">
+    <composite:interface componentType="org.guce.web.process.atm.jsf.components.processComponent">
+       <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle" />
+        <composite:attribute name="value" required="true" type="org.guce.core.entities.CoreProcess"/>
+        <composite:attribute name="requiredList" type="java.lang.String"/>
+        <composite:attribute name="readOnlyList" type="java.lang.String"/>
+        <composite:attribute name="renderedList" type="java.lang.String"/>
+        <composite:attribute name="updateList" type="java.lang.String"/>
+        <composite:attribute default="false" name="required" required="false"/>
+        <composite:attribute default="true" name="renderedBoolean" required="false"/>
+        <composite:attribute default="false" name="readOnly" required="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute default="false" name="returnSame"/>
+        <composite:attribute name="fieldChange"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        
+        <h:form id="pFormDialog">
+             <h:panelGrid columns="4" id="procedureblock" styleClass="#{cc.attrs.styleClass} procedureBlock">
+            
+            <h:outputLabel rendered="#{cc.isRendered('ProcessName',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{atmBundle.ProcessName} <span>#{cc.isRequiredString('ProcessName',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+            
+             <h:panelGrid  columns="3" rendered="#{cc.isRendered('ProcessName',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  style="width:200px" id="ProcessName"
+                                      requiredMessage="#{atmBundle.RequiredMessage}" maxlength="50"
+                                      value="#{cc.attrs.value.processName}"
+                                      disabled="#{cc.isReadOnly('ProcessName',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      readonly="#{cc.isReadOnly('ProcessName',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('ProcessName',cc.attrs.requiredList,cc.attrs.required)}"
+                                      >
+                            
+                        </p:inputText>
+                        <p:commandLink rendered="#{!cc.isReadOnly('ProcessName',cc.attrs.readOnlyList,cc.attrs.readOnly)}" oncomplete="PF('ProcessDialog_#{cc.id}').show()" process="@this"   >
+                            <p:graphicImage value="/ImageFolder/loupeplus.jpeg" width="20" height="20" />
+                        </p:commandLink>
+                       
+                        <p:message for="ProcessName" />
+            </h:panelGrid>
+            
+            <h:outputLabel value="#{atmBundle.Alias}" rendered="#{cc.isRendered('Alias',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+             <h:panelGroup rendered="#{cc.isRendered('Alias',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText id="alias" readonly="true"
+                                     value="${cc.attrs.value.processAlias}"
+                                     disabled="true"
+                                     required="#{cc.isRequired('Alias',cc.attrs.requiredList,cc.attrs.required)}"
+                                         />
+                         
+                        <p:message for="alias" />
+            </h:panelGroup>
+           
+        </h:panelGrid>
+            
+        </h:form>
+       
+        
+     <p:dialog widgetVar="ProcessDialog_#{cc.id}" id="ProcessDialog" modal="true" draggable="false" resizable="false"
+                  closable="true" position="center">
+            <p:dataTable value="#{cc.listProcess}"  var="pos" rows="5"
+                         paginator="true" filterDelay="500"
+                         caseSensitiveSort="false"
+                         rowsPerPageTemplate="5,10,15"
+                         >
+                <f:facet name="header">
+                    Liste Des Procedures
+                </f:facet>
+                <f:facet name="footer">
+                    Liste Des Procedures
+                </f:facet>
+                <p:column headerText="#{atmBundle.ProcessName}" filterBy="#{pos.processName}" width="400" filterStyle="width:60%;">
+                    #{pos.processName}
+                </p:column>
+                <p:column headerText="#{atmBundle.Alias}" filterBy="#{pos.processAlias}"
+                          filterMatchMode="contains" filterMaxLength="200"
+                          filterStyle="width:40%;">
+                    #{pos.processAlias}
+                </p:column>
+                <p:column width="30">
+                    <p:commandLink title="select"  process="@this" oncomplete="PF('ProcessDialog_#{cc.id}').hide()"
+                                   update=":#{cc.clientId}:pFormDialog:ProcessName :#{cc.clientId}:pFormDialog:alias" action="#{cc.updateProccess(pos)}">
+                        <p:graphicImage value="/ImageFolder/validated.jpg" width="15" height="15" />
+                        <f:setPropertyActionListener value="#{pos}" target="#{cc.attrs.value}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+       
+        <style>
+            table.produitMinaderBlock {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .produitMinaderBlock label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .produitMinaderBlock select{
+                padding:5px;
+            }
+            .produitMinaderBlock label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .produitMinaderBlock .ui-selectonemenu-label{
+                display:block;
+            }
+            .produitMinaderBlock .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .produitMinaderBlock.ui-inputtext[readonly="readonly"],
+            .produitMinaderBlock .hasDatepicker[readonly="readonly"],
+            .produitMinaderBlock .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>
+

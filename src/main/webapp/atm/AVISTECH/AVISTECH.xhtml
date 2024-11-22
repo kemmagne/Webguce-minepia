@@ -68,24 +68,20 @@
             <p:column headerText="#{atm.createUser}" sortBy="#{item.createUser.username}">
                 <h:outputText value="#{item.createUser.username}"/>
             </p:column>
-            <p:column headerText="#{atm.registerNumber}" sortBy="#{item.registerNumber}">
-    #{item.registerNumber}
-</p:column>
-            <p:column headerText="#{atm.immatriculation}" sortBy="#{item.immatriculation}">
-    #{item.immatriculation}
-</p:column>
-            <p:column headerText="#{atm.name}" sortBy="#{item.name}">
-    #{item.name}
-</p:column>
-            <p:column headerText="#{atm.deliveryDate}" sortBy="#{item.deliveryDate}">
-    #{item.deliveryDate}
-</p:column>
-            <p:column headerText="#{atm.expiryDate}" sortBy="#{item.expiryDate}">
-    #{item.expiryDate}
-</p:column>
-            <p:column headerText="#{atm.status}" sortBy="#{item.status}">
-    #{item.status}
-</p:column>
+
+            
+             <p:column headerText="#{atm.code_tarif}" sortBy="#{item.produit.code}">
+                    #{item.produit.code}  #{item.produit.libelle}
+            </p:column>
+            
+            <p:column headerText="#{atm.product_type}" sortBy="#{item.typeProduct.label}">
+                     #{item.typeProduct.label}
+            </p:column>
+            
+            <p:column headerText="#{atm.product_type}" sortBy="#{item.typeProduct.code}">
+                     #{item.typeProduct.code}
+            </p:column>
+            
             <p:column style="width:20px">
                 <p:commandLink
                     action="#{crudController.preapareEdit(item)}"

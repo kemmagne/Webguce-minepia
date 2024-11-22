@@ -6,6 +6,7 @@
 package org.guce.process.atm.repositories;
 
 import java.util.List;
+import org.guce.process.atm.entities.AvisTech;
 import org.guce.rep.entities.RepPositionTarifaire;
 
 /**
@@ -13,7 +14,7 @@ import org.guce.rep.entities.RepPositionTarifaire;
  * @author NGC
  */
 public interface RepPositionGoodAtmRepository {
-    public List<RepPositionTarifaire> findActiveProduitsHalieutiques();
-    public List<RepPositionTarifaire> findActiveIngredientsAdditifs();
-    public List<RepPositionTarifaire> findActiveMaterialEquipment();
+    public List<AvisTech> findActiveProduitsHalieutiques(String code);
+    public List<AvisTech> findActiveIngredientsAdditifs(String code);
+    public List<AvisTech> findActiveMaterialEquipment(String code);
 }

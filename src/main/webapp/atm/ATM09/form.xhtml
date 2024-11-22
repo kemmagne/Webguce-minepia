@@ -13,10 +13,10 @@
         <p:confirmDialog header="#{atm.Send}"
             message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
             <p:messages id="dialogMessages"/>
-            <h:panelGrid columns="1">
+<!--            <h:panelGrid columns="1">
                 <p:outputLabel value="#{atm.ModicationReason}"/>
                 <p:inputTextarea id="observationInput" value="#{atmController.current.decision.observation}"/>
-            </h:panelGrid>
+            </h:panelGrid>-->
             <p:commandButton
                 action="#{atmController.validateAndSaveAndSend()}"
                 ajax="false" value="#{atm.Yes}">
@@ -37,6 +37,13 @@
             </p:commandButton>
         </h:panelGrid>
         <p:messages id="messages"/>
+        
+        <atm:observation id="observation"
+                                 renderedList=""
+                                rendered="#{atmController.current != null}"
+                                 value="#{atmController.current.decision}" readOnly="false" />    
+        
+        
         <p:tabView effect="slide" id="allcontent" rendered="#{atmController.current != null}">
             <p:tab title="#{atm.stakeholder}">
                 <h3 class="webguce-block-title">#{atm.charger}</h3>
@@ -44,13 +51,15 @@
                     rendered="true"
                     renderedList="dateDelivrance,dateExpiration"
                     required="false" styleClass="webguce-sub-block"
+                    readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
                     updateAfterChange="" value="#{atmController.current.chargerid}"/>
                 <h3 class="webguce-block-title">#{atm.supplier}</h3>
                 <wgc:charger excludedCountries="CM" fimex="false"
                     phoneMaxChar="15" phoneMinChar="6" readOnly="false"
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
-                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    renderedList="dateDelivrance,dateExpiration"
                     required="true"
+                    readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
                     requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
             </p:tab>
@@ -63,9 +72,9 @@
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
                     <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration id="registration" readOnly="false"
-                    readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
+                    readOnlyList="atmReference,atmIssueDate,atmExpiryDate,officeCode"
                     rendered="true"
-                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
+                    renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate,officeCode'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <p:outputPanel id="invoiceBlock">
                     <h3 class="webguce-sub-block-title">#{atm.invoice}</h3>
@@ -78,7 +87,7 @@
                 <p:outputPanel id="transportBlock">
                     <h3 class="webguce-sub-block-title">#{atm.transport}</h3>
                     <atm:transport id="transport" readOnly="false"
-                        readOnlyList=""
+                        readOnlyList="provenance,origin,loadingPlace,clearingPlace"
                         rendered="#{atmController.compute_transport()}"
                         renderedList="" required="true" requiredList=""
                         styleClass="webguce-sub-block" value="#{atmController.current.transport}"/>
@@ -86,9 +95,10 @@
             </p:tab>
             <p:tab title="#{atm.goods} ">
                 <h3 class="codename blockTitle">#{atm.goods}</h3>
-                <atm:goods id="good"
+                <atm:goods_disable id="good"
                     parentClass="#{atmController.current}"
-                    readOnly="false" renderedList="" required="true"
+                    renderedList="" required="true" readOnly="false"
+                    readOnlyList="goodCode,positionTarif,ValeurFobInCurrency,Description"
                     category="#{atmController.getSelectedTypeAvisTechnique()}"
                     requiredList="Volume,Poids" styleClass="pm" value="#{atmController.current.goodList}"/>
                 <p:spacer height="20px"/>
@@ -98,11 +108,11 @@
                 <atm:decision id="decision" readonly="true" value="#{atmController.processing}"/>
             </p:tab>
             <p:tab id="attachmentBlock" title="#{atm.attachments}">
-                <wgc:attachments
+                <atm:attachments
                     avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
                     id="attachment"
                     parentClass="#{atmController.current}"
-                    readonly="false" styleClass="pm2" type="form" value="#{atmController.current.coreAttachmentList}"/>
+                    readonly="true" styleClass="pm2" type="view" value="#{atmController.current.coreAttachmentList}"/>
             </p:tab>
         </p:tabView>
     </h:form>

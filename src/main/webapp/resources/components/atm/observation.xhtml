@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:r="http://java.sun.com/jsf/composite/components/rep/elements"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.component.Default">
+        <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle" />
+        <composite:attribute name="value" required="true" type="java.lang.Object" />
+        <composite:attribute name="requiredList" type="java.lang.String" />
+        <composite:attribute name="readOnlyList" type="java.lang.String" />
+        <composite:attribute name="renderedList" type="java.lang.String" />
+        <composite:attribute name="updateList" type="java.lang.String" />
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="renderedBoolean" required="false" default="true"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="returnSame" default="false" />
+        <composite:attribute name="invoiceAmountChange" />
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle" />
+        <h:panelGrid columns="1" id="oblock" styleClass="#{cc.attrs.styleClass} observationBlock" >
+       
+            <h:outputLabel for="atmObservation" rendered="#{cc.isRendered('atmObservation',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+    #{atmBundle.ModicationReason} <span>#{cc.isRequiredString('atmObservation',cc.attrs.requiredList,cc.attrs.required)}</span>
+            </h:outputLabel>
+           <p:inputTextarea id="atmObservation"
+                    readonly="#{cc.isReadOnly('atmObservation',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                    rendered="#{cc.isRendered('atmObservation',cc.attrs.renderedList,cc.attrs.renderedBoolean)}"
+                    required="#{cc.isRequired('atmObservation',cc.attrs.requiredList,cc.attrs.required)}"
+                    requiredMessage="#{atmBundle.observation} #{atmBundle.required}"
+                   style="width:100%"
+                    validatorMessage="#{atmBundle.observation}"
+                    value="#{cc.attrs.value.observation}"/>
+                <p:message for="atmObservation"/>
+        </h:panelGrid>
+
+        <p:outputPanel>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('table.observationBlock tr').each(function (index) {
+                        jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                        jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                    });
+                });
+            </script>
+        </p:outputPanel>
+        <style>
+            table.#{cc.attrs.styleClass} {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .#{cc.attrs.styleClass} label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .#{cc.attrs.styleClass} select{
+                padding:5px;
+            }
+            .#{cc.attrs.styleClass} label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .#{cc.attrs.styleClass} .ui-selectonemenu-label{
+                display:block;
+            }
+            .#{cc.attrs.styleClass} .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .#{cc.attrs.styleClass} .ui-inputtext[readonly="readonly"],
+            .#{cc.attrs.styleClass} .hasDatedemcker[readonly="readonly"],
+            .#{cc.attrs.styleClass} .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+    </composite:implementation>
+</html>

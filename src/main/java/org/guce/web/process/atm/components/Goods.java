@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.guce.web.process.atm.components;
 
 import java.io.ByteArrayInputStream;
@@ -51,17 +52,20 @@ import org.guce.rep.services.repServiceLocal;
 import org.guce.web.component.WebguceDefaultComponent;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.core.util.StringSimplifier;
+import org.guce.web.process.atm.controllers.CodeTarifaireMapper;
 import org.guce.web.process.atm.services.impl.PositionTarifaireGoodAtmServiceImpl;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
+ 
 
 /**
  *
  * @author NGC
  */
+
 @FacesComponent("org.guce.web.process.atm.components.Goods")
 public class Goods extends WebguceDefaultComponent implements NamingContainer {
 
@@ -332,6 +336,7 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
     public void handleFileUpload(FileUploadEvent event) {
         file = event.getFile();
     }
+   
 
     @Override
     public String getFamily() {
@@ -356,28 +361,32 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
     @Override
     public List<RepPositionTarifaire> getPositionList() {
         String category = (String) getAttributes().get("category");
-        if(Objects.nonNull(category)){
+        if(category != null){
           LOGGER.log(Level.INFO, "Goods -- Category choosen " + category);
   
             // si on a categoriser le type de marchandise
             switch (category) {
                 case "ATM01":
-                    //Engrais
+                   
                     return  getRepGoodAtm().findActiveProduitsHalieutiques();
                 case "ATM02":
-                    //Pesticide
+                   
                     return  getRepGoodAtm().findActiveIngredientsAdditifs();
+                    
                  case "ATM03":
-                    //Pesticide
-                    return  getRepGoodAtm().findActiveMaterialEquipment();
+
+                     
+                    return  getRepGoodAtm().getMateriealEtEquipement();
+                             
+                 //   return  getRepGoodAtm().findActiveMaterialEquipment();
                 default:
-                    //Appareil Traitement
-                    return  getRepGoodAtm().findActiveMaterialEquipment();
+                    
+                    return  getRepGoodAtm().findActiveProduitsHalieutiques();
             }
         }else{
             //si non on retourne tous les marchandises disponible
         // return getRepService().positionList();
-        return (List<RepPositionTarifaire>) new RepPositionTarifaire();
+        return  getRepGoodAtm().findActiveProduitsHalieutiques();
         } 
     }
     
@@ -485,300 +494,3 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
     }
 
 }
-
-
-//import java.io.ByteArrayInputStream;
-//import java.io.InputStream;
-//import java.math.BigDecimal;
-//import java.math.RoundingMode;
-//import java.text.DecimalFormat;
-//import java.text.NumberFormat;
-//import java.util.Collection;
-//import java.util.Collections;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Objects;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//import javax.ejb.EJB;
-//import javax.el.ELContext;
-//import javax.el.MethodExpression;
-//import javax.faces.bean.ManagedProperty;
-//import javax.faces.component.FacesComponent;
-//import javax.faces.component.NamingContainer;
-//import javax.faces.context.FacesContext;
-//import javax.inject.Inject;
-//import javax.naming.InitialContext;
-//import javax.naming.NamingException;
-//import org.apache.commons.lang.StringUtils;
-//import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellValue;
-//import org.apache.poi.ss.usermodel.FormulaEvaluator;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//import org.guce.core.ejb.facade.interfaces.CoreCADFacadeLocal;
-//import org.guce.core.entities.CoreCAD;
-//import org.guce.core.entities.CoreGood;
-//import org.guce.core.entities.CoreRecord;
-//import org.guce.core.entities.util.LookupUtil;
-//import org.guce.core.services.ApplicationService;
-//
-//import org.guce.rep.ejb.facade.interfaces.RepAmmFacadeLocal;
-//import org.guce.rep.ejb.facade.interfaces.RepPositionTarifaireFacadeLocal;
-//import org.guce.rep.ejb.facade.interfaces.RepUnitsFacadeLocal;
-//import org.guce.rep.entities.RepAmm;
-//import org.guce.rep.entities.RepPositionTarifaire;
-//import org.guce.rep.entities.RepUnit;
-//import org.guce.rep.services.repServiceLocal;
-//import org.guce.web.component.WebguceDefaultComponent;
-//import org.guce.web.core.util.JsfUtil;
-//import static org.guce.web.core.util.JsfUtil.lookup;
-//import org.guce.web.core.util.StringSimplifier;
-//import org.guce.web.process.atm.controllers.impl.ATMControllerImpl;
-//import org.guce.web.process.atm.services.impl.ATMRegistrationMessageServiceImpl;
-//import org.guce.web.process.atm.services.impl.PositionTarifaireGoodAtmServiceImpl;
-//import org.primefaces.context.RequestContext;
-//import org.primefaces.event.FileUploadEvent;
-//import org.primefaces.model.DefaultStreamedContent;
-//import org.primefaces.model.StreamedContent;
-//import org.primefaces.model.UploadedFile;
-///**
-// *
-// * @author NGC
-// */
-//@FacesComponent("org.guce.web.process.atm.components.Goods")
-//public class Goods extends WebguceDefaultComponent implements NamingContainer{
-//    
-//    public static NumberFormat format = new DecimalFormat("#");
-//
-//    private CoreGood produit;
-//
-//    private repServiceLocal repService;
-//
-//    private final RepPositionTarifaireFacadeLocal pFacade;
-//
-//    private final RepUnitsFacadeLocal unitFace;
-//    
-//
-//
-//    private CoreCADFacadeLocal cadFacadeLocal;
-//
-//    private List<CoreCAD> cadList;
-//
-//    private final StreamedContent file2;
-//
-//    private int type;
-//
-//    private final RepAmmFacadeLocal ammService;
-//    
-//    private Logger LOGGER = Logger.getLogger(Goods.class.getName());
-//
-//    public int getType() {
-//        return type;
-//    }
-//
-//    public void setType(int type) {
-//        this.type = type;
-//    }
-//    
-//     public StreamedContent getFile2() {
-//        return file2;
-//    }
-//     
-//      private UploadedFile file;
-//
-//    public UploadedFile getFile() {
-//        return file;
-//    }
-//
-//    public void setFile(UploadedFile file) {
-//        this.file = file;
-//    } 
-//     
-//     
-//      public Object lookup(String service) {
-//        try {
-//            InitialContext c = new InitialContext();
-//            return c.lookup("java:global/" + ApplicationService.getContext() + "/webguce/" 
-//                                        + service + "!org.guce.web.process.atm.services.impl." + service);
-//        } catch (NamingException ex) {
-//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
-//        }
-//        return null;
-//    }
-//    
-//     public PositionTarifaireGoodAtmServiceImpl getRepGoodAtm(){
-//        return (PositionTarifaireGoodAtmServiceImpl)lookup("PositionTarifaireGoodAtmServiceImpl");
-//    }
-//
-//    @Override
-//    public repServiceLocal getRepService() {
-//        if (repService == null) {
-//            repService = (repServiceLocal) LookupUtil.lookup("repService", "rep.services");
-//        }
-//        return repService;
-//    }
-//
-//        public Goods() {
-//        produit = new CoreGood();
-//        produit.setWeight(BigDecimal.ZERO);
-//        pFacade = (RepPositionTarifaireFacadeLocal) LookupUtil.RepLookup("RepPositionTarifaireFacade");
-//        unitFace = (RepUnitsFacadeLocal) LookupUtil.RepLookup("RepUnitsFacade");
-//        ammService = (RepAmmFacadeLocal) LookupUtil.RepLookup("RepAmmFacade");
-//        InputStream stream = getClass().getResourceAsStream("templates.xls");
-//        file2 = new DefaultStreamedContent(stream, "application/octet-stream", "templates.xls");
-//    }
-//        
-//      @Override
-//    public List<RepPositionTarifaire> getPositionList() {
-//        String category = (String) getAttributes().get("category");
-//        if(Objects.nonNull(category)){
-//          LOGGER.log(Level.INFO, "Goods -- Category choosen " + category);
-//  
-//            // si on a categoriser le type de marchandise
-//            switch (category) {
-//                case "ATM01":
-//                    //Engrais
-//                    return  getRepGoodAtm().findActiveProduitsHalieutiques();
-//                case "ATM02":
-//                    //Pesticide
-//                    return  getRepGoodAtm().findActiveIngredientsAdditifs();
-//                default:
-//                    //Appareil Traitement
-//                    return  getRepGoodAtm().findActiveMaterialEquipment();
-//            }
-//        }else{
-//            //si non on retourne tous les marchandises disponible
-//        // return getRepService().positionList();
-//        return (List<RepPositionTarifaire>) new RepPositionTarifaire();
-//        } 
-//    } 
-//    
-//    public void addProduct() {
-//        if ((produit != null && produit.gethSCode() != null) && (!StringUtils.isBlank(produit.gethSCode().getCode()))) {
-//            RequestContext.getCurrentInstance().execute("PF('pDialog_" + getId() + "').hide()");
-//        } else {
-//            if (isRequired("CodeTarif",
-//                    getAttributes().get("requiredList") != null ? (String) getAttributes().get("requiredList") : "",
-//                    getAttributes().get("required") != null ? Boolean.valueOf((String) getAttributes().get("required")) : false)) {
-//                JsfUtil.addErrorMessage("Position obligatoire");
-//                RequestContext.getCurrentInstance().update("goodform:growl");
-//                return;
-//            } else {
-//                produit.sethSCode(null);
-//                RequestContext.getCurrentInstance().execute("PF('pDialog_" + getId() + "').hide()");
-//                RequestContext.getCurrentInstance().update(getClientId() + ":GoodList");
-//            }
-//        }
-//        if(produit.getQuantite() == 0)   {
-//                JsfUtil.addErrorMessage("La quantité doit être superieure à 0"); return;
-//            }
-//        List l = (List) getAttributes().get("value");
-//        produit.setDescription(StringSimplifier.getInstance().stripDiacritics(produit.getDescription()));
-//        if (produit.gethSCode() != null) {
-//            produit.gethSCode().setLibelle(StringSimplifier.getInstance().stripDiacritics(produit.gethSCode().getLibelle()));
-//        }
-//        if (!l.contains(produit)) {
-//            l.add(produit);
-//        }
-//        for (int i = 1; i <= l.size(); i++) {
-//            ((CoreGood) l.get(i - 1)).setLineNumber(i);
-//        }
-//        invokeGoodChangeProvidedMethod();
-//    }
-//
-//    @Override
-//    public List<CoreCAD> getCadList() {
-//        if (cadList == null) {
-//            cadList = getCadFacadeLocal().findAll();
-//        }
-//        return cadList;
-//    }
-//
-//    @Override
-//    public CoreCADFacadeLocal getCadFacadeLocal() {
-//        if (cadFacadeLocal == null) {
-//            cadFacadeLocal = (CoreCADFacadeLocal) LookupUtil.CoreLookup("CoreCADFacade");
-//        }
-//        return cadFacadeLocal;
-//    }
-//    
-//    private void invokeGoodChangeProvidedMethod() {
-//        try {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            ELContext elContext = context.getELContext();
-//            if (this.getAttributes().containsKey("goodChangeListener") && this.getAttributes().get("goodChangeListener") != null && org.apache.commons.lang3.StringUtils.isNotEmpty(this.getAttributes().get("goodChangeListener").toString())) {
-//                MethodExpression me = (MethodExpression) this.getAttributes().get("goodChangeListener");
-//                if (me != null) {
-//                    me.invoke(elContext, null);
-//                }
-//                if (this.getAttributes().containsKey("updateList") && this.getAttributes().get("updateList") != null && org.apache.commons.lang3.StringUtils.isNotEmpty(this.getAttributes().get("updateList").toString())) {
-//                    String updateListId = this.getAttributes().get("updateList").toString();
-//                    RequestContext.getCurrentInstance().update(updateListId);
-//                }
-//            }
-//        } catch (Exception ex) {
-//            Logger.getLogger(getClass().getName()).log(Level.WARNING, "", ex);
-//        }
-//    }
-//    
-//     @Override
-//    public Object saveState(FacesContext context) {
-//        Map m = new HashMap();
-//        m.put("object", super.saveState(context));
-//        m.put("produit", produit);
-//       
-//        m.put("file", file);
-//        return m;
-//    }
-//
-//    @Override
-//    public void restoreState(FacesContext context, Object state) {
-//        Map m = (Map) state;
-//        produit = (CoreGood) m.get("produit");
-//        if (produit == null) {
-//            produit = new CoreGood();
-//        }
-//        if (m.get("file") != null) {
-//            file = (UploadedFile) m.get("file");
-//        }
-//        super.restoreState(context, m.get("object"));
-//    }
-//
-//      private String getStringValue(Cell cell, FormulaEvaluator ev) {
-//        String rs = "";
-////        System.out.println("StringValue type = " + cell.getCellType());
-//        switch (cell.getCellType()) {
-//            case Cell.CELL_TYPE_BLANK:
-//                rs = "";
-//                break;
-//            case Cell.CELL_TYPE_BOOLEAN:
-//                rs = String.valueOf(cell.getBooleanCellValue());
-//                break;
-//            case Cell.CELL_TYPE_ERROR:
-//                rs = "";
-//                break;
-//            case Cell.CELL_TYPE_FORMULA:
-//                break;
-//            case Cell.CELL_TYPE_NUMERIC:
-//                rs = format.format(cell.getNumericCellValue());
-//                break;
-//            case Cell.CELL_TYPE_STRING:
-//                rs = cell.getStringCellValue();
-//                break;
-//            default:
-//                rs = "";
-//                break;
-//        }
-//        return rs;
-//    }
-//    
-//    private String getStringValueNoSpace(Cell cell, FormulaEvaluator ev) {
-//        return getStringValue(cell, ev).trim().replaceAll("\\s", "");
-//    }
-//    
-//}

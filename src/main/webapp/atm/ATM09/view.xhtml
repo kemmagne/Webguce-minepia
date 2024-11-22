@@ -9,6 +9,14 @@
             <p:commandButton action="#{atmController.printDocument()}"
                 process="@this"
                 rendered="#{atmController.current.atmReference != null}" value="#{atm.downloadAttachment}"/>
+            
+               <p:commandButton ajax="false" icon="ui-icon-print"
+                immediate="true"
+                disabled="#{atmController.disabledDownloadFileButton(atmController.current)}"
+                rendered="#{atmController.current.atmReference != null}" value="#{atm.downloadAttachment}">
+                <p:fileDownload value="#{atmController.printDocument()}"/>
+            </p:commandButton>
+            
             <p:commandButton action="#{atmController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.back}">
                 <f:param name="back" value="back"/>

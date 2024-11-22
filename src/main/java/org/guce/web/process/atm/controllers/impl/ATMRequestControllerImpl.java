@@ -1,28 +1,54 @@
 package org.guce.web.process.atm.controllers.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.guce.core.ejb.facade.interfaces.CorePaysFacadeLocal;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
+import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.util.LookupUtil;
 import org.guce.process.atm.ATMConstant;
 import org.guce.process.atm.TypeAttachement;
+import org.guce.process.atm.entities.ATMRegistration;
 import org.guce.process.atm.entities.PaymentDocument;
+import org.guce.process.atm.reports.AtmInvoiceVo;
+import org.guce.process.atm.reports.QRCodeGenerator;
 import org.guce.rep.entities.CorePays;
 import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.ATMRequestController;
 import org.primefaces.context.RequestContext;
+import org.guce.web.process.atm.util.ATMAddArticleToAttachment;
+import static org.guce.web.process.atm.util.ATMAddArticleToAttachment.addArticleToAttachment;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean(
         name = "aTMRequestController"
@@ -137,7 +163,7 @@ public class ATMRequestControllerImpl extends ATMRequestController {
                     
                     for(String requiredAttachment:requiredAttachmentsLabel){
                         String prefix = "";
-                       JsfUtil.addErrorMessage(bundle("RequiredAttachmentsMessage"));
+                       //JsfUtil.addErrorMessage(bundle("RequiredAttachmentsMessage"));
                         JsfUtil.addErrorMessage(prefix.concat(" ").concat(requiredAttachment.toLowerCase().concat(" ").concat(bundle("RequiredAttachmentsMessage"))));
                     }
                                     
@@ -196,110 +222,17 @@ public class ATMRequestControllerImpl extends ATMRequestController {
         }
     }
      
-     
-//    public boolean checkAttachmentConformity(){
-//    
-//        Map<String , Boolean> fileMap = checkValidityOfAttachment(current.getCoreAttachmentList());
-//       if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){
-//         JsfUtil.addErrorMessage(bundle("EmptySeedFileToatal"));
-//
-//         return false;  
-//          }else if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.INGREDIENT_ADDITIFS)){
-//                JsfUtil.addErrorMessage(bundle("EmptySeedFileToata2"));
-//                return false;
-//          }else if(fileMap == null && selectedTypeAvisTechnique.equals(ATMConstant.MATERIEL_EQUIPEMENT)){
-//                JsfUtil.addErrorMessage(bundle("EmptySeedFileToata3"));  
-//                return false;
-//          }else{
-//               checkRequestConformityofAttachment();
-//              
-//              return true;
-//              
-//              
-//              
-//                  
-//              
-//              
-//              
-////              if(selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){
-////              
-////                if(!fileMap.get(TypeAttachement.DTarif.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CCI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.AT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CMP.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.TPV.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat6"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.QPA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }  
-////              }
-////              
-////               if(selectedTypeAvisTechnique.equals(ATMConstant.INGREDIENT_ADDITIFS)){
-////              
-////                if(!fileMap.get(TypeAttachement.DT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PDCE.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PDDE.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.PPEC.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CRT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LPI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat6"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.RAA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }
-////                 if(!fileMap.get(TypeAttachement.PCCCEC.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat7"));return;
-////                 }
-////              }
-////               
-////               if(selectedTypeAvisTechnique.equals(ATMConstant.MATERIEL_EQUIPEMENT)){
-////              
-////                if(!fileMap.get(TypeAttachement.CDPP.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat1"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.LMEI.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat2"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.DT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat3"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.CRT.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat4"));return;
-////                 }
-////                if(!fileMap.get(TypeAttachement.RAA.name())) {
-////                  JsfUtil.addErrorMessage(bundle("EmptyProformat5"));return;
-////                 }
-//// 
-////              }          
-//    
-//    
-//              
-//              
-//          }
-//    
-//    }
+
+         
+     public String displayStampfees(){
+      String stampFees = StringUtils.EMPTY;
+ 
+      if(current != null){
+         stampFees = getSpecificProcessParam(current.getRecordProcess(), ATMConstant.BILL_MONTANT_HT, "1500");
+       //   stampFees = DEMConstant.BILL_MONTANT_HT;
+      }
+      return stampFees;
+    }
  
     
     @Override
@@ -339,5 +272,57 @@ public class ATMRequestControllerImpl extends ATMRequestController {
         this.requiredAttachments = requiredAttachments;
     }
  
+    
+    public StreamedContent printInvoice() throws JRException, IOException, Exception {
+        byte[] bytes = null;
+        if (bytes == null) {
+            Locale locale = new Locale("FR");
+            ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext();
+            String pathReport = extContext.getRealPath("user/proccess/atm/print/ATM_INVOICE.jasper");
+            Map params = new HashMap();
+            ResourceBundle reportBundle = ResourceBundle.getBundle("org/guce/web/process/atm/util/Bundle", locale);
+            params.put(JRParameter.REPORT_RESOURCE_BUNDLE, reportBundle);
+            params.put(JRParameter.REPORT_LOCALE, locale);
+            /*
+            set content object to print 
+            */
+            AtmInvoiceVo printObject    = new AtmInvoiceVo(current ,  StringUtils.EMPTY );   //current.getTypeProduit().getLabel().toLowerCase(locale)
+            String invoiceDescription = bundle("description_invoice").replace("PRODUIT", current.getRecordId()).replace("DOSSIER", current.getRecordId()).replace("INVOICEDATE", current.getRecordId());
+            printObject.setDescription(invoiceDescription);                          
+            String qrCodeContent =  current.getRecordId().concat(", ").concat(printObject.getDatePaiement().concat(", ").concat(printObject.getPrice().toString()));
+            /**
+             * generer le qr code
+             */
+            putQrCode(qrCodeContent, printObject);
+            List<AtmInvoiceVo> origine = new ArrayList<>();
+            origine.add(printObject);
+            JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(origine);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(pathReport, params, beanCollectionDataSource);
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+            outputStream.close();
+            bytes = outputStream.toByteArray();
+        }
+        DefaultStreamedContent sc = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "application/pdf", "ATM_INVOICE");
+        return sc;
+    }
+ 
+     
+       private void putQrCode(String qrCodeContent , AtmInvoiceVo demInvoiceVo) {
+        try {
+            int qrCodeImageSize = 512;
+            InputStream qrCodeStream = new ByteArrayInputStream(new QRCodeGenerator().generateQR(qrCodeContent, qrCodeImageSize));
+            byte[] qrCodeBytes = IOUtils.toByteArray(qrCodeStream);
+            java.io.File qrCodeTempFile = Files.createTempFile(current.getRecordId().concat("qr_code"), ".png").toFile();
+            FileUtils.writeByteArrayToFile(qrCodeTempFile, qrCodeBytes);
+            demInvoiceVo.setQrCode(qrCodeTempFile.getPath());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+     
+       public boolean isFileSolded(){
+           return  current.getInvoiceList() != null  && ! current.getInvoiceList().isEmpty() &&!current.getInvoiceList().get(0).getCorePaymentCollection().isEmpty();
+       }   
     
 }

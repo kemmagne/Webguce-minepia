@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import org.guce.core.ejb.facade.interfaces.CoreRecordFacadeLocal;
 import org.guce.core.entities.CoreProcessing;
+import org.guce.core.entities.CoreRecord;
 import org.guce.process.atm.entities.ATMRegistration;
 import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.web.core.user.controller.WebGuceDefaultController;
@@ -115,6 +116,13 @@ public abstract class ATMController extends WebGuceDefaultController {
         return processing;
     }
 
+    
+     public boolean  disabledDownloadFileButton(ATMRegistration atmRegistration){
+             atmRegistration.setRecordState(CoreRecord.CLOS);
+              return !(atmRegistration != null &&  (atmRegistration.getRecordChildrens() == null  || atmRegistration.getRecordChildrens().isEmpty()));
+              
+     }
+    
     public DefaultLazyDataModel<RepPositionTarifaire> getHsCodeList() {
         if (hsCodeList == null) {
             hsCodeList = new DefaultLazyDataModel<>(service.searchNshByProcess(getProcess()));

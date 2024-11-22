@@ -1,131 +1,100 @@
 package org.guce.process.atm.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import org.guce.rep.entities.RepPositionTarifaire;
 
 @Entity
 @Table(
-        name = "AVISTECH"
+        name = "AVIS_TECH"
 )
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 @XmlRootElement(
-        name = "AVISTECH"
+        name = "AVIS_TECH"
 )
 @XmlType(
-        propOrder = {}
+        propOrder = {
+                "produit",
+                "typeProduct"
+        }
 )
 public class AvisTech extends AbstractEntity implements Serializable {
-    @Column(
-            name = "REGISTERNUMBER",
-            unique = true,
-            length = 35
-    )
-    private String registerNumber;
-
-    @Column(
-            name = "IMMATRICULATION",
-            length = 35
-    )
-    private String immatriculation;
-
-    @Column(
-            name = "TechName",
-            length = 100
-    )
-    private String technicalName;
-
-    @Column(
-            name = "DELIVERY_DATE"
-    )
-    private String deliveryDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(
-            name = "EXPIRATION_DATE"
-    )
-    private Date expiryDate;
-
-    @Column(
-            name = "STATUS",
-            length = 100
-    )
-    private String status;
+//    @Column(
+//            name = "Label",
+//            length = 155
+//    )
+//    private String intitule;
 
     @OneToMany(
             mappedBy = "itemId"
     )
     private List<AvisTechHistory> historyList;
 
-    @XmlTransient
-    public String getRegisterNumber() {
-        return registerNumber;
+    @ManyToOne(
+            targetEntity = TypeAvtech.class
+    )
+    @JoinColumn(
+            name = "TYPEPRODUCT_ID"
+    )
+    private TypeAvtech typeProduct;
+
+    @ManyToOne(
+            targetEntity = RepPositionTarifaire.class
+    )
+    @JoinColumn(
+            name = "PRODUIT_ID"
+    )
+    private RepPositionTarifaire produit;
+
+//    @XmlElement(
+//            name = "Intitule"
+//    )
+//    public String getIntitule() {
+//        return intitule;
+//    }
+//
+//    public void setIntitule(String intitule) {
+//        this.intitule = intitule;
+//    }
+
+    @XmlElement(
+            name = "TYPEAVIS"
+    )
+    public TypeAvtech getTypeProduct() {
+        return typeProduct;
     }
 
-    public void setRegisterNumber(String registerNumber) {
-        this.registerNumber = registerNumber;
+    public void setTypeProduct(TypeAvtech typeProduct) {
+        this.typeProduct = typeProduct;
     }
 
-    @XmlTransient
-    public String getImmatriculation() {
-        return immatriculation;
+    @XmlElement(
+            name = "PRODUIT"
+    )
+    public RepPositionTarifaire getProduit() {
+        return produit;
     }
 
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
+    public void setProduit(RepPositionTarifaire produit) {
+        this.produit = produit;
     }
 
-    @XmlTransient
-    public String getTechnicalName() {
-        return technicalName;
-    }
-
-    public void setTechnicalName(String technicalName) {
-        this.technicalName = technicalName;
-    }
-
-    @XmlTransient
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    @XmlTransient
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    @XmlTransient
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @XmlTransient
-    public String getName() {
-        return this.getRegisterNumber();
-    }
+//    @XmlTransient
+//    public String getName() {
+//        return this.getIntitule();
+//    }
 
     @XmlTransient
     public List<AvisTechHistory> getHistoryList() {

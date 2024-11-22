@@ -62,12 +62,13 @@ public class AvisTechController extends CrudDefaultListController<AvisTech, Avis
             for (final AvisTech cpf : files) {
                 final String[] line = new String[nbCols];
                 colNum = 0;
-                line[colNum++] = cpf.getRegisterNumber();
-                line[colNum++] = cpf.getImmatriculation();
-                line[colNum++] = cpf.getName();
-                line[colNum++] = cpf.getStatus();
+  //              line[colNum++] = cpf.getIntitule();
+//                line[colNum++] = cpf.getRegisterNumber();
+//                line[colNum++] = cpf.getImmatriculation();
+//                line[colNum++] = cpf.getName();
+//                line[colNum++] = cpf.getStatus();
                 data.add(line);
-            }
+           }
             exporter.setData(data);
             final String filename = "EXPORT_AvisTech.pdf";
             final byte[] bytes = exporter.getByteArray();
@@ -97,15 +98,15 @@ public class AvisTechController extends CrudDefaultListController<AvisTech, Avis
             final int nbCols = cols.length;
             final List<String[]> data = new ArrayList<>();
             int colNum;
-            for (final AvisTech cpf : files) {
-                final String[] line = new String[nbCols];
-                colNum = 0;
-                line[colNum++] = cpf.getRegisterNumber();
-                line[colNum++] = cpf.getImmatriculation();
-                line[colNum++] = cpf.getName();
-                line[colNum++] = cpf.getStatus();
-                data.add(line);
-            }
+//            for (final AvisTech cpf : files) {
+//                final String[] line = new String[nbCols];
+//                colNum = 0;
+//                line[colNum++] = cpf.getRegisterNumber();
+//                line[colNum++] = cpf.getImmatriculation();
+//                line[colNum++] = cpf.getName();
+//                line[colNum++] = cpf.getStatus();
+//                data.add(line);
+//            }
             exporter.setData(data);
             final String filename = "EXPORT_AvisTech.xlsx";
             final byte[] bytes = exporter.getByteArray();

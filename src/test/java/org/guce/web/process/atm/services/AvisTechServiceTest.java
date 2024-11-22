@@ -57,12 +57,12 @@ public class AvisTechServiceTest {
             AvisTech c = new AvisTech();
             c.setId(1 + "");
             c.setActive(true);
-            c.setRegisterNumber(nextString(17));
-            c.setImmatriculation(nextString(17));
-            c.setTechnicalName(nextString(17));
-            c.setDeliveryDate(nextString(17));
-            c.setExpiryDate(GuceCalendarUtil.getCalendar().getTime());
-            c.setStatus(nextString(17));
+//            c.setRegisterNumber(nextString(17));
+//            c.setImmatriculation(nextString(17));
+//            c.setTechnicalName(nextString(17));
+//            c.setDeliveryDate(nextString(17));
+ //           c.setExpiryDate(GuceCalendarUtil.getCalendar().getTime());
+//            c.setStatus(nextString(17));
             list.add(c);
         }
     }

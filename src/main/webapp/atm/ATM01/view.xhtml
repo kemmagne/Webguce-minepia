@@ -6,15 +6,24 @@
     <ui:define name="action">
         <ui:param name="atmController" value="#{aTMRequestController}"/>
         <h:panelGrid cellspacing="5" columns="3">
-            <p:commandButton ajax="false" icon="ui-icon-print"
+               <p:commandButton ajax="false" icon="ui-icon-print"
                 immediate="true"
+                disabled="#{atmController.disabledDownloadFileButton(atmController.current)}"
                 rendered="#{atmController.current.atmReference != null}" value="#{atm.downloadAttachment}">
                 <p:fileDownload value="#{atmController.printDocument()}"/>
             </p:commandButton>
+            
+             <p:commandButton ajax="false" icon="ui-icon-print"
+                immediate="true"
+                rendered="#{atmController.current.invoiceList.size() > 0  and atmController.fileSolded}" value="#{atm.downloadInvoice}">
+                <p:fileDownload value="#{atmController.printInvoice()}"/>
+            </p:commandButton>
+            
             <p:commandButton action="#{atmController.goToPreviows()}"
                 ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.back}">
                 <f:param name="back" value="back"/>
             </p:commandButton>
+
         </h:panelGrid>
     </ui:define>
 </ui:composition>

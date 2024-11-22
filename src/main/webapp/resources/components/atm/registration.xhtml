@@ -55,24 +55,8 @@
                     validatorMessage="#{atmBundle.atmReference} #{atmBundle.invalid}" value="#{cc.attrs.value.atmReference}"/>
                 <p:message for="atmReference"/>
             </h:panelGroup>
-            <h:outputLabel for="atmIssueDate" rendered="#{cc.isRendered('atmIssueDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-    #{atmBundle.atmIssueDateLabel} <span>#{cc.isRequiredString('atmIssueDate',cc.attrs.requiredList,cc.attrs.required)}</span>
-            </h:outputLabel>
-            <h:panelGroup rendered="#{cc.isRendered('atmIssueDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
-                <p:calendar
-                    converterMessage="#{atmBundle.atmIssueDate} #{atmBundle.invalide}"
-                    id="atmIssueDate" mask="true" maxlength="17"
-                    pattern="#{atmBundle.dateFormat}"
-                    readonly="#{cc.isReadOnly('atmIssueDate',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
-                    required="#{cc.isRequired('atmIssueDate',cc.attrs.requiredList,cc.attrs.required)}"
-                    requiredMessage="#{atmBundle.atmIssueDate} #{atmBundle.required}"
-                    size="17"
-                    validatorMessage="#{atmBundle.atmIssueDate} #{atmBundle.invalide}" value="#{cc.attrs.value.atmIssueDate}">
-                    <f:convertDateTime pattern="#{atmBundle.dateFormat}"/>
-                </p:calendar>
-                <p:message for="atmIssueDate"/>
-            </h:panelGroup>
-            <h:outputLabel for="atmExpiryDate" rendered="#{cc.isRendered('atmExpiryDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+            
+             <h:outputLabel for="atmExpiryDate" rendered="#{cc.isRendered('atmExpiryDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.atmExpiryDateLabel} <span>#{cc.isRequiredString('atmExpiryDate',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
             <h:panelGroup rendered="#{cc.isRendered('atmExpiryDate',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
@@ -89,7 +73,12 @@
                 </p:calendar>
                 <p:message for="atmExpiryDate"/>
             </h:panelGroup>
-<!--            <h:outputLabel for="avisTech" rendered="false" rendered="#{cc.isRendered('avisTech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+      
+            
+            
+            
+            
+<!--        <h:outputLabel for="avisTech" rendered="false" rendered="#{cc.isRendered('avisTech',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
     #{atmBundle.avisTechLabel} <span>#{cc.isRequiredString('avisTech',cc.attrs.requiredList,cc.attrs.required)}</span>
             </h:outputLabel>
             <h:panelGroup id="avisTechBlock" rendered="false">

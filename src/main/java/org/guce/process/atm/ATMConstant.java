@@ -2,14 +2,13 @@ package org.guce.process.atm;
 
 public interface ATMConstant {
     
-    
-    
+   //String BILL_MONTANT_TTC = "atm.config.stampfee";
+   
    String BILL_MONTANT_TTC = "1500";
+   
+   String BILL_MONTANT_HT ="1500" ;
+   String BILL_BENEFICIAIRE = "MINEPIA" ;
 
-    String BILL_MONTANT_HT ="1500" ;
-
-  String BILL_BENEFICIAIRE = "MINEPIA" ;
-    
    String RENEW= "RENEW";
     /**
      * process code */
@@ -22,6 +21,11 @@ public interface ATMConstant {
     /**
      * form response additionnal request code */
     String FORM_RESPONSE_CI = "ATM11";
+    
+    
+      /**
+     * form response additionnal renouvellement request code */
+    String FORM_RENOUVELLEMENT_RESPONSE_CI = "ATM11R";
 
     /**
      * form response code */
@@ -70,6 +74,12 @@ public interface ATMConstant {
     /**
      * processing response additionnal request code */
     String PROCESSING_RESPONSE_CI = "ATM11";
+    
+    /**
+     * processing response additionnal request code for renouvellement 
+     */
+    
+    String PROCESSING_RENOUVELLEMENT_RESPONSE_CI = "ATM11R";
 
     /**
      * processing validation code */
@@ -128,4 +138,13 @@ public interface ATMConstant {
     String INGREDIENT_ADDITIFS = "ATM02";
     
     String MATERIEL_EQUIPEMENT = "ATM03";
+    
+    
+     String OFFICE_CODES = "atm.config.bureau";
+
+    
+    public static String MINEPIA = "MINEPIA";
+
+  static final String[] UNITS = {"", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze", "douze", "treize","quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf"};
+       static final String[] TENS = {"", "", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante-dix", "quatre-vingt", "quatre-vingt-dix"};
 }

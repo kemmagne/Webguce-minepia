@@ -31,6 +31,8 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
         } else if ("view".equals(type) && checkRecordAccessRight()) {
             prepareView();
         }
+        
+        
     }
 
     public void loadRecord() {
@@ -45,34 +47,36 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
             current = null;
             return;
         }
+//        if(current.getIsStorage().equalsIgnoreCase(String.valueOf(Boolean.FALSE)) && !current.getOfficeCode().equalsIgnoreCase("DPAIH")
+//                ){
+//            JsfUtil.addErrorMessage(bundle("InvalidAccess"));
+//            current = null;
+//            return;
+//        }
+           if(current.getIsStorage().equalsIgnoreCase(String.valueOf(Boolean.FALSE))){
+            JsfUtil.addErrorMessage(bundle("InvalidAccess"));
+            current = null;
+            return;
+        }
+
+        
         if(current.getRecordState().equals(CoreRecord.IN_PROCESS)) {
             JsfUtil.addErrorMessage(bundle("fileInProcessing"));
             current = null;
             return;
         }
+     
+        current.setCoreAttachmentList(new ArrayList<CoreAttachment>());
+        current.setAtmExpiryDate(null);
+        current.setAtmExpiryDate(null);
+        current.setRecordId(null);
         prepareEdit();
         context.execute("PF('loadDialog').hide()");
         context.update("formContenu");
         context.update("dialogsForm");
     }
 
-//    public void validateAndSaveAndSend() {
-//        if(!fileSent && checkModificationRequestConformity()) {
-//            fileSent = false;
-//            try {
-//                current.setIsrenewing(String.valueOf(true));
-//                beforeSend();
-//                serviceMessage.send(serviceMessage.sent(current, userController.getUserConnecte()));
-//                JsfUtil.addSuccessMessage(bundle("ModificationRequestSend") + " " + current.getRecordId());
-//                goToPreviows();
-//            } catch(Exception ex) {
-//                fileSent = true;
-//                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
-//                JsfUtil.addErrorMessage(bundle("CannotSendModificationRequestSend") + " " + current.getRecordId());
-//            }
-//        }
-//    }
-    
+
     
     // @Override
      public void validateAndSaveAndSend() {
@@ -80,6 +84,7 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
             fileSent = true;
             try {
                 current.setIsrenewing(String.valueOf(Boolean.TRUE));
+                current.setIsStorage(String.valueOf(Boolean.TRUE));  
                this.send();
                 JsfUtil.addSuccessMessage(bundle("RequestSend") + " " + current.getRecordId());
                 goToPreviows();
@@ -98,7 +103,14 @@ public class ATMRenouvellementRequestController extends ATMControllerImpl{
     
      public void prepareSend() {
         if(checkRequestConformity()) {
-            save();
+          
+        try {
+            current = service.save(current);
+           
+        } catch(Exception ex) {
+            JsfUtil.addErrorMessage(bundle("CannotSaveRecord") + " " + current.getRecordId());
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            }
         }
     }
     

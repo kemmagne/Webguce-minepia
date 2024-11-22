@@ -23,7 +23,7 @@
                 <wgc:charger excludedCountries="CM" fimex="false"
                     phoneMaxChar="15" phoneMinChar="6" readOnly="true"
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
-                    renderedList="dateDelivrance,dateExpiration,NumeroContribuable"
+                    renderedList="dateDelivrance,dateExpiration"
                     required="true"
                     requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>
@@ -37,7 +37,7 @@
                     styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration id="registration" readOnly="true"
-                    readOnlyList="" rendered="true"
+                    readOnlyList="officeCode" rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 <p:outputPanel id="invoiceBlock">
@@ -74,7 +74,8 @@
                 <atm:decision id="decision" readonly="true" value="#{atmController.processing}"/>
             </p:tab>
             <p:tab id="attachmentBlock" title="#{atm.attachments}">
-                <wgc:attachments
+                <atm:attachments
+                    disableDownload="#{atmController.disabledDownloadFileButton(atmController.current)}"
                     avaibleAttachmentType="#{atmController.avaibleAttachmentType}"
                     id="attachment"
                     parentClass="#{atmController.current}"

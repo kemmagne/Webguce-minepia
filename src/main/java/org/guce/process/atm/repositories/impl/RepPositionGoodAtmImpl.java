@@ -9,7 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import org.guce.process.atm.entities.AvisTech;
 import org.guce.rep.ejb.facade.impl.RepPositionTarifaireFacade;
 import org.guce.rep.entities.RepPositionTarifaire;
 import org.guce.process.atm.repositories.RepPositionGoodAtmRepository;
@@ -23,35 +26,37 @@ public class RepPositionGoodAtmImpl extends RepPositionTarifaireFacade implement
 
     Query q;
     
-    @Override
-    public List<RepPositionTarifaire> findActiveProduitsHalieutiques() {
-        List<String> list = Arrays.asList(
-            "0301.10.00","0301.91.00","0301.92.00","0301.93.00","0301.94.00","0301.95.00","0302.11.00",
-            "0302.12.00","0302.19.00","0302.21.00","0302.22.00","0302.23.00","0302.29.00","0302.22.00",
-            "0302.23.00","0302.31.00","0302.32.00","0302.33.00","0302.34.00"
-        );
-        
-      q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in :list");  
-      q.setParameter("active", true);
-      q.setParameter("list",list);
-      return q.getResultList();   
-    }
-
-    @Override
-    public List<RepPositionTarifaire> findActiveIngredientsAdditifs() {
-        Query q;
-        q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in ('0302.33.00','0302.34.00')");
-        q.setParameter("active", true);
-        return q.getResultList(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<RepPositionTarifaire> findActiveMaterialEquipment() {
-         Query q;
-        q = getEntityManager().createQuery("Select p from RepPositionTarifaire p where p.active = :active and p.code in ('0302.35.00','0302.35.00')");
-        q.setParameter("active", true);
-        return q.getResultList(); //To change body of generated methods, choose Tools | Templates.
-    }
+      @Override
+      public List<AvisTech> findActiveProduitsHalieutiques(String code){
+         String qb = "Select distinct t from AvisTech t where t.active = true and t.typeProduct.code='"+code+"'";
+        try{
+         TypedQuery<AvisTech> query = getEntityManager().createQuery(qb, AvisTech.class);
+        return query.getResultList();
+        }catch(NoResultException e){
+          return null;
+        }   
+    } 
     
+    @Override
+      public List<AvisTech> findActiveIngredientsAdditifs(String code){
+         String qb = "Select distinct t from AvisTech t where t.active = true and t.typeProduct.code='"+code+"'";
+        try{
+         TypedQuery<AvisTech> query = getEntityManager().createQuery(qb, AvisTech.class);
+        return query.getResultList();
+        }catch(NoResultException e){
+          return null;
+        }   
+    } 
+    
+     @Override
+      public List<AvisTech> findActiveMaterialEquipment(String code){
+         String qb = "Select distinct t from AvisTech t where t.active = true and t.typeProduct.code='"+code+"'";
+        try{
+         TypedQuery<AvisTech> query = getEntityManager().createQuery(qb, AvisTech.class);
+        return query.getResultList();
+        }catch(NoResultException e){
+          return null;
+        }   
+    } 
  
 }

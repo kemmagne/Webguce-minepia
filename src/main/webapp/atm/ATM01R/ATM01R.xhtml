@@ -4,7 +4,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
     <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
-    <ui:param name="listTilte" value="#{atm.modificationRequestSent}"/>
+    <ui:param name="listTilte" value="#{atm.renouvellementRequestSent}"/>
     <h:form id="formContenu">
         <h:panelGrid cellspacing="8" columns="6">
             <p:commandButton
@@ -57,3 +57,110 @@
         }
     </style>
 </ui:composition>
+
+
+<!--
+<ui:composition xmlns:="http://www.w3.org/1999/xhtml"
+    xmlns:atm="http://java.sun.com/jsf/composite/components/atm"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atm"/>
+    <ui:param name="listTilte" value="#{(aTMListController.page eq 'sent') ? atm.sendRequest : atm.renouvellementRequestSent}"/>
+    <h:form id="formContenu">
+        <h:panelGrid cellspacing="8" columns="6">
+ 
+           
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="newRequest" value="#{atm.InitRenouvellement}">
+                <f:param name="formCode" value="ATM01R"/>
+                <f:param name="page" value="form"/>
+                <f:param name="type" value="form"/>
+            </p:commandButton>
+           
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest"
+                rendered="#{!(aTMListController.page eq 'sent')}" value="#{atm.sentRequest}">
+                <f:param name="formCode" value="ATM01R"/>
+                <f:param name="page" value="sent"/>
+            </p:commandButton>
+            <p:commandButton
+                action="#{userControllerSite.goToNewPageForm()}"
+                ajax="false" icon="ui-icon-document" id="sentRequest2"
+                rendered="#{(aTMListController.page eq 'sent')}" value="#{atm.SaveFiles}">
+                <f:param name="formCode" value="ATM01R"/>
+                <f:param name="page" value="ATM01R"/>
+            </p:commandButton>
+            <p:commandButton
+                action="#{aTMListController.goToPreviows()}"
+                ajax="false" icon="ui-icon-cancel" immediate="true" value="#{atm.Back}"/>
+        </h:panelGrid>
+        <p:messages autoUpdate="true"/>
+        <atm:filter cleanAction="#{aTMListController.resetsearch()}"
+            renderedList="procEndDate,procStartDate"
+            searchAction="#{aTMListController.search()}"
+            update=":formContenu:table" value="#{aTMListController.filter}"/>
+        <br/>
+        <p:dataTable emptyMessage="#{atm.NoFile}" id="table" lazy="true"
+            paginator="true" rows="10" sortOrder="descending"
+            value="#{aTMListController.models}" var="file">
+            <ui:include src="../part/list.xhtml"/>
+            <p:column style="width: 10%">
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false"
+                    rendered="#{file.processing.procstartdate == null}" title="#{atm.edit}">
+                    <f:param name="page" value="form"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="type" value="form"/>
+                    <f:param name="formCode" value="ATM01R"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/choose.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false"
+                    rendered="#{file.processing.procstartdate != null}" title="#{atm.view}">
+                    <f:param name="page" value="view"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="type" value="view"/>
+                    <f:param name="formCode" value="ATM01R"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/detail.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" rendered="false" title="#{atm.Copy}">
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="ATM01R"/>
+                    <f:param name="page" value="form"/>
+                    <f:param name="type" value="copy"/>
+                    <p:graphicImage height="20"
+                        value="/ImageFolder/execute.jpeg" width="20"/>
+                </p:commandLink>
+                <p:commandLink
+                    action="#{userControllerSite.goToNewPageForm()}"
+                    ajax="false" title="#{atm.History}">
+                    <f:param name="page" value="historic"/>
+                    <f:param name="recordId" value="#{file.file.recordId}"/>
+                    <f:param name="formCode" value="core"/>
+                    <p:graphicImage alt="#{atm.History}" height="20"
+                        value="/ImageFolder/archive.jpeg" width="20"/>
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <style>
+        #formContenu .nossee{
+            background: greenyellow;
+        }
+        
+        .splitButtonSize{
+            width: 50px;
+            color: red;
+        }
+    </style>
+</ui:composition>-->

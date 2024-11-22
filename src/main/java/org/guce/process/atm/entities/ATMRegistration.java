@@ -1,6 +1,7 @@
 package org.guce.process.atm.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -29,6 +30,7 @@ import org.guce.core.entities.CoreDecisionType;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
 import org.guce.core.entities.CoreSignatory;
+import org.guce.core.services.GuceCalendarUtil;
 
 @DiscriminatorValue("ATMRegistration")
 @SequenceGenerator(
@@ -60,6 +62,7 @@ import org.guce.core.entities.CoreSignatory;
                 "signatory",
                 "decision",
                 "isrenewing",
+                "isStorage",
                 "coreAttachmentList"}
 )
 public class ATMRegistration extends CoreRecord implements Serializable {
@@ -101,6 +104,11 @@ public class ATMRegistration extends CoreRecord implements Serializable {
     )
     private String isrenewing =  String.valueOf(Boolean.FALSE);
 
+    
+     @Column(
+            name = "TYPEAVIS"
+    )
+    private String isStorage =  String.valueOf(Boolean.FALSE);
     
     
     @ManyToOne(
@@ -321,18 +329,68 @@ public class ATMRegistration extends CoreRecord implements Serializable {
     public String isIsrenewing() {
         return isrenewing;
     }
-
-    public void setIsrenewing(String isrenewing) {
+    
+     public void setIsrenewing(String isrenewing) {
         this.isrenewing = isrenewing;
     }
 
-   
-
-    
-    
-    
     @Override
     public void setGoodList(List<CoreGood> goodList) {
         super.setGoodList(goodList);
     }
+
+    
+     @XmlElement(
+            name = "IS_STORAGE"
+    )
+    public String getIsStorage() {
+        return isStorage;
+    }
+
+    public void setIsStorage(String isStorage) {
+        this.isStorage = isStorage;
+    }
+
+    public ATMRegistration() {
+    }
+    
+    public ATMRegistration(ATMRegistration atmRegistration,int count,String initRecordId){
+        String recordId = initRecordId;
+        int nextCount = count+1;
+        List<CoreGood> goods = new ArrayList<>();
+        goods.add(atmRegistration.getGoodList().get(0));
+        this.officeCode = atmRegistration.getOfficeCode();
+        this.atmReference = atmRegistration.getAtmReference();
+        this.transport = atmRegistration.getTransport();
+        this.invoice = atmRegistration.getInvoice();
+        //this.bill = aI2MRegistration.getBill();
+        //this.agrement = aI2MRegistration.getAgrement();
+        
+        this.atmExpiryDate = atmRegistration.getAtmExpiryDate();
+        this.setAvisTech(atmRegistration.getAvisTech());
+        this.setTypeAtech(atmRegistration.getTypeAtech());
+        this.setChargerid(atmRegistration.getChargerid());
+        this.setSupplier(atmRegistration.getSupplier());
+        this.setIsStorage(String.valueOf(Boolean.FALSE));
+        this.setGoodList(goods);
+        if(nextCount<10){
+         this.setRecordId(recordId.concat("M0"+nextCount));
+         this.setAtmReference(recordId.concat("M0"+nextCount));
+        }else{
+         this.setRecordId(recordId.concat("M"+nextCount));
+         this.setAtmReference(recordId.concat("M"+nextCount));
+        }
+        this.setRecordCreatedate(GuceCalendarUtil.getCalendar().getTime());
+        this.setOrtherPartnerAcces(atmRegistration.getOrtherPartnerAcces());
+        this.setRecordUserlogin(atmRegistration.getRecordUserlogin());
+        this.setRecordProcess(atmRegistration.getRecordProcess());
+        this.setSignatory(atmRegistration.getSignatory());
+        this.setDecision(atmRegistration.getDecision());
+        this.setInvoiceList(atmRegistration.getInvoiceList());
+        this.setRecordParent(atmRegistration); 
+    }
+
+  
+    
+    
 }

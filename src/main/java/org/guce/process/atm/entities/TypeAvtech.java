@@ -74,4 +74,15 @@ public class TypeAvtech extends AbstractEntity implements Serializable {
     public void setHistoryList(List<TypeAvtechHistory> historyList) {
         this.historyList = historyList;
     }
+
+    public TypeAvtech(String code) {
+        this.code = code;
+    }
+
+    public TypeAvtech() {
+    }
+
+        
+    
+    
 }

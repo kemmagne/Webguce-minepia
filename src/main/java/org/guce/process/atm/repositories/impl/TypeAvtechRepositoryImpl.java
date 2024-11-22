@@ -31,4 +31,16 @@ public class TypeAvtechRepositoryImpl extends TypeAvtechRepository {
           return null;
         }   
     } 
+    
+     public TypeAvtech findTypeAvTechBySingleCode(String code){
+        
+         String qb = "Select distinct t from TypeAvtech t where t.deleted=false and t.active = true and t.code='"+code+"'";
+ 
+        try{
+            TypedQuery<TypeAvtech> query = getEntityManager().createQuery(qb, TypeAvtech.class);
+        return query.getSingleResult();
+        }catch(NoResultException e){
+          return null;
+        }   
+    } 
 }

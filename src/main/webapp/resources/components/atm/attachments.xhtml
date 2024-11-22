@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.process.atm.jsf.components.Attachment">
+        <f:loadBundle var="i" basename="org/guce/web/component/Bundle" />
+        <f:loadBundle var="atmBundle" basename="org/guce/web/process/atm/util/Bundle"/>
+        <composite:attribute name="value" required="false"  />
+        <composite:attribute name="avaibleAttachmentType" required="false"  />
+        <composite:attribute name="requiredList" type="java.lang.String"  />
+        <composite:attribute name="readOnlyList" type="java.lang.String"  />
+        <composite:attribute name="renderedList" type="java.lang.String"  />
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="renderedBoolean" required="false" default="true"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="disableDownload" required="false" default="false"/>
+        <composite:attribute name="parentClass" required="false"/>
+        <composite:attribute name="type" type="java.lang.String" default="form"  />
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="i" basename="org/guce/web/component/Bundle" />
+        <f:loadBundle basename="org/guce/web/process/atm/util/Bundle" var="atmBundle"/>
+        <p:outputPanel id="pjConent">
+            <p:fragment rendered="#{cc.gedEnable and !cc.gedAvailable}">
+                <p:outputPanel id="piecejointetab0" styleClass="#{cc.attrs.styleClass}">
+                    <h3 style="font-size: 16px; font-weight: bold">
+                        #{i.MessageAttachmentsUnavailable}
+                    </h3>
+                </p:outputPanel>
+                <p:commandButton value="#{i.Refresh}" process="@this" update=":#{cc.clientId}:pjConent"/>
+            </p:fragment>
+        
+            <p:fragment rendered="#{(cc.gedEnable and cc.gedAvailable) or !cc.gedEnable}">
+                <p:outputPanel id="piecejointetab" styleClass="#{cc.attrs.styleClass}" rendered="#{cc.attrs.type eq 'form'}">
+                   
+                    <h:panelGrid id="tab_att" columns="5" cellspacing="5" style="width:100%;">
+                        
+                        <h:outputLabel value="#{i.PieceJointeType}" />
+                        <p:selectOneMenu value="#{cc.attachment.piece.pjType}" id="attachmentType" converter="coreAttachmenttypeConverter" style="min-width: 150px">
+                            <f:selectItems value="#{cc.attrs.avaibleAttachmentType}" var="types" itemValue="#{types}" itemLabel="#{types.attachementtypename}" />
+                        </p:selectOneMenu>
+                        <h:panelGroup>
+                            <p:fileUpload auto="true"
+                                          cancelLabel="#{principal.Cancel}"
+                                          label="#{principal.Choose}"
+                                          fileUploadListener="#{cc.handleFileUpload}"
+                                          update="pieceLabel,messageFile,@this"
+                                          process="attachmentType,@this"
+                                          id="file"
+                                          multiple="false"
+                                          value="#{cc.attachment.piece}"
+                                          required="true"
+                                          mode="advanced"
+                                          invalidFileMessage="#{i.InvalidAttachment}"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|xlsm?x?)$/"
+                                          />
+                            <p:message for="file"  id="messageFile"/>
+                        </h:panelGroup>
+                        <h:outputLabel  id="pieceLabel" value="#{cc.attachment.name}" style="width:150px;display: block;" />
+                        <p:commandButton value="#{i.Ajouter}" action="#{cc.saveProduit}" process=":#{cc.clientId}" update=":#{cc.clientId}:piecejointetab :#{cc.clientId}:at"  >
+                        </p:commandButton>
+                    </h:panelGrid>
+               
+                </p:outputPanel>
+               
+                <p:dataTable var="at" value="#{cc.attrs.value}" id="at" rows="30" paginatorAlwaysVisible="false" paginator="true" liveScroll="true" >
+                    <f:facet name="header">
+                        #{i.AttachmentsList} (#{cc.attrs.value.size()})
+                    </f:facet>
+                    <p:column headerText="N°" style="width:15px;">
+                        <h:outputLabel   value="#{cc.attrs.value.indexOf(at)+1}" />
+                    </p:column>
+                    <p:column headerText="#{i.Type}">
+                        <h:outputLabel   value="#{at.pjType.attachementtypename}" />
+                    </p:column>
+                    <p:column headerText="#{i.Name}">
+                        <h:outputLabel   value="#{cc.hasExtension(at.pjIdentifiant) ? at.pjIdentifiant : (cc.hasExtension(at.pjLibelle) ? at.pjLibelle : at.pjIdentifiant)}" />
+                    </p:column>
+                    <p:column style="width:120px;">
+                        <p:commandLink rendered="#{cc.isModifiedFile(at)}" id="downloadLink" value="#{i.Telecharger}"
+                                       disabled="#{cc.attrs.disableDownload}"
+                                       immediate="true" ajax="false" >
+                            <p:fileDownload value="#{cc.file(at)}" />
+                        </p:commandLink>
+                        |
+                        <p:commandLink rendered="#{cc.attrs.type eq 'form'}" id="deleteLink" 
+                                       value="#{i.Supprimer}" action="#{cc.removeAtt(at)}" process="@this"
+                                       update=":#{cc.clientId}:piecejointetab :#{cc.clientId}:at">
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </p:fragment>
+        </p:outputPanel>
+        <style>
+            .#{cc.attrs.styleClass}{
+                height: 80px;
+                padding:10px;
+                overflow: auto;
+            }
+            .#{cc.attrs.styleClass} .ui-widget-header {
+                background:none;
+                border: none;
+                margin-top: 10px;
+            }
+            .#{cc.attrs.styleClass} .ui-fileupload-content {
+                height:0px;
+                padding:0;
+                border: none;
+            }
+        </style>
+    </composite:implementation>
+</html>

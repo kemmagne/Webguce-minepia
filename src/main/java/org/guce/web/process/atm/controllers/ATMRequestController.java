@@ -9,6 +9,7 @@ import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreCharger;
 import org.guce.core.entities.CoreGood;
 import org.guce.core.entities.CoreRecord;
+import org.guce.process.atm.ATMConstant;
 import org.guce.process.atm.entities.ATMRegistration;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.impl.ATMControllerImpl;
@@ -94,6 +95,17 @@ public class ATMRequestController extends ATMControllerImpl {
     public void validateAndSaveAndSend() {
         if(!fileSent && checkRequestConformity()) {
             fileSent = true;
+            
+             if(selectedTypeAvisTechnique != null && selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){  
+             current.setIsStorage(String.valueOf(Boolean.TRUE));  
+          }
+          current.getTransport().getDestination().setCodePays("CM.");
+         
+//          if(selectedTypeAvisTechnique!=null){
+//          current.setTypeAtech(typeAvtechServiceImpl.findTypeAvTechBySingleCode(selectedTypeAvisTechnique));}
+          //current.setTypeAtech();
+           Logger.getLogger("This is the new country code"+ current.getTransport().getDestination().getCodePays());
+            
             try {
                 send();
                 JsfUtil.addSuccessMessage(bundle("RequestSend") + " " + current.getRecordId());

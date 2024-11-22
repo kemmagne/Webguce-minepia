@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface componentType="org.guce.web.process.atm.components.Goods">
+        <f:loadBundle var="i" basename="org/guce/web/component/Bundle" />
+        <composite:attribute name="value" required="false"  />
+        <composite:attribute name="requiredList" type="java.lang.String"  />
+        <composite:attribute name="readOnlyList" type="java.lang.String"  />
+        <composite:attribute name="renderedList" type="java.lang.String"  />
+        <composite:attribute name="required" required="false" default="false"/>
+        <composite:attribute name="renderedBoolean" required="false" default="true"/>
+        <composite:attribute name="readOnly" required="false" default="false"/>
+        <composite:attribute name="displayAmm" required="false" default="false"/>
+        <composite:attribute name="edit" required="false" default="false"/>
+        <composite:attribute name="updateList" type="java.lang.String" default=""  />
+        <composite:attribute name="hsList"  />
+        <composite:attribute name="styleClass" required="false" type="java.lang.String"/>
+        <composite:attribute name="parentClass" required="false"/>
+        <composite:attribute name="goodChangeListener" required="false" method-signature="void f()" />
+    </composite:interface>
+    <composite:implementation>
+        <f:loadBundle var="i" basename="org/guce/web/component/Bundle" />
+
+        <p:commandButton  process="@this" rendered="#{!cc.attrs.readOnly}"
+                          value="#{i.Ajouter}" action="#{cc.newProduct()}"
+                          oncomplete="PF('pDialog_#{cc.id}').show()" update=":#{cc.clientId}:gFormDialog:goodselements"  />
+        <p:commandButton  process="@this" rendered="#{!cc.attrs.readOnly}"
+                          value="#{i.Importer}"
+                          oncomplete="PF('updloadDialog_#{cc.id}').show()"   />
+        <p:commandButton  rendered="#{!cc.attrs.readOnly}" update=":#{cc.clientId}:deleteConfirmDialog"
+                          value="#{i.Supprimer}" process="GoodList"
+                          oncomplete="PF('deleteConfirmDialog_#{cc.id}').show()"   />
+        <p:commandLink value="Telecharger le template de fichier Excel" immediate="true" ajax="false">
+            <p:fileDownload value="#{cc.getFile2()}" />
+        </p:commandLink>
+        <p:spacer height="20px" />
+        <p:dataTable id="GoodList" var="pro" value="#{cc.attrs.value}"
+                     emptyMessage="#{i.Empty}"
+                     rowKey="#{pro.lineNumber}"
+                     style="margin-bottom:0"
+                     selection="#{cc.selectedList}"
+                     sortField="#{pro.lineNumber}"
+                     sortBy="#{pro.lineNumber}"
+                     paginatorAlwaysVisible="false" paginator="true"
+                     rowsPerPageTemplate="10,15,20,50,#{cc.attrs.value.size()}" rows="10">
+            <f:facet name="header">
+                #{i.ListeMarchandises} (#{cc.attrs.value.size()})
+            </f:facet>
+            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+            <p:column width="20" headerText="N°" filterBy="#{pro.lineNumber}"
+                      filterStyle="width:18px;" sortBy="#{pro.lineNumber}"
+                      rendered="#{cc.isRendered('LineNumber',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                #{pro.lineNumber}
+            </p:column>
+            <p:column width="80"  headerText="#{i.CodeTarif}"  filterBy="#{pro.hSCode.code}"
+                      filterStyle="width:70px;"
+                      rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                #{pro.hSCode.code}
+            </p:column>
+            <p:column  headerText="#{i.Designation}" rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <h:outputText title="#{pro.hSCode.libelle}"
+                              style="height: 40px;overflow: hidden;padding:5px;display:block" value="#{pro.hSCode.libelle}">
+
+                </h:outputText>
+            </p:column>
+            <p:column width="60" headerText="#{i.Quantite}" rendered="#{cc.isRendered('Quantite',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                #{pro.quantiteBigDecimal} #{pro.unit}
+            </p:column>
+            <p:column width="60" headerText="#{i.Poids}(Kg)" rendered="#{cc.isRendered('Poids',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                #{pro.weight}
+            </p:column>
+            <p:column width="70" headerText="#{i.valeurFobInCurrency}" rendered="#{cc.isRendered('ValeurFobInCurrency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                #{pro.fobValueInCurrency}
+            </p:column>
+            <p:column headerText="#{i.Description}" style="height: 30px;" filterBy="#{pro.description}"
+                      rendered="#{cc.isRendered('Description',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                <h:outputText title="#{pro.description}"
+                              style="height: 40px;overflow: hidden;padding:5px;display:block" value="#{pro.description}">
+                </h:outputText>
+            </p:column>
+            <p:column width="60" headerText="AMM" rendered="#{cc.attrs.displayAmm}">
+                #{pro.ammCode}
+            </p:column>
+            <composite:renderFacet name="list" />
+            <p:column width="40" >
+                <p:commandLink title="#{i.Edit}" process="@this" update=":#{cc.clientId}:GoodList :#{cc.clientId}:gFormDialog:goodselements"  oncomplete="PF('pDialog_#{cc.id}').show()"  >
+                    <f:setPropertyActionListener value="#{pro}" target="#{cc.produit}"  />
+                    <p:graphicImage value="/ImageFolder/write2.jpeg" width="15" height="15" />
+                </p:commandLink>
+                <p:commandLink rendered="#{!cc.attrs.readOnly  or cc.attrs.edit eq 'true'}" title="#{i.Supprimer}" action="#{cc.suppProduit}" process="@this" update=":#{cc.clientId}:GoodList"  >
+                    <f:setPropertyActionListener value="#{pro}" target="#{cc.produit}"  />
+                    <p:graphicImage value="/ImageFolder/Close.png" width="15" height="15" />
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+
+        <p:dialog id="pDialog" modal="true" widgetVar="pDialog_#{cc.id}" showHeader="true"
+                  closable="false" appendTo="@(#contents)"
+                  draggable="false"  header="#{i.Marchandise}" dynamic="true">
+            <h:form id="gFormDialog">
+                <p:growl id="goodsmessages" />
+                <h:panelGrid id="goodselements" styleClass="#{cc.attrs.styleClass} goodBlock" columns="4">
+                    <h:outputLabel rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.CodeTarif} <span>#{cc.isRequiredString('CodeTarif',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGrid  columns="3" rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  style="width:140px" id="CodeTarif"
+                                      requiredMessage="#{i.RequiredMessage}" maxlength="11"
+                                      value="#{cc.produit.hSCode}"
+                                      readonly="#{cc.isReadOnly('CodeTarif',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('CodeTarif',cc.attrs.requiredList,cc.attrs.required)}"
+                                      converter="repPositionTarifaireConverter">
+                            <p:ajax event="change" update="CodeTarif,positionTarif" />
+                        </p:inputText>
+<!--                        <p:commandLink rendered="#{!cc.attrs.readOnly}" oncomplete="PF('PositionDialog_#{cc.id}').show()" process="@this"   >
+                            <p:graphicImage value="/ImageFolder/loupeplus.jpeg" width="20" height="20" />
+                        </p:commandLink> -->
+                        <p:message for="CodeTarif" />
+                    </h:panelGrid>
+
+                    <h:outputLabel value="#{i.Designation}" rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" />
+                    <h:panelGroup rendered="#{cc.isRendered('CodeTarif',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputTextarea id="positionTarif" readonly="true"
+                                         value="${cc.produit.hSCode.libelle}"
+                                         required="#{cc.isRequired('CodeTarif',cc.attrs.requiredList,cc.attrs.required)}"
+                                         />
+                        <p:message for="positionTarif" />
+                    </h:panelGroup>
+                    <h:outputLabel rendered="#{cc.isRendered('Quantite',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.Quantite} <span>#{cc.isRequiredString('Quantite',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('Quantite',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  readonly="#{cc.isReadOnly('Quantite',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('Quantite',cc.attrs.requiredList,cc.attrs.required)}"
+                                      size="8" id="Quantite" requiredMessage="#{i.RequiredMessage}"
+                                      converterMessage="#{i.RequiredMessage}"
+                                      value="#{cc.produit.quantiteBigDecimal}">
+                        </p:inputText>
+                        <p:message for="Quantite" />
+                    </h:panelGroup>
+                    <h:outputLabel for="unite" rendered="#{cc.isRendered('Unite',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.Unite} <span>#{cc.isRequiredString('Unite',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('Unite',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  readonly="#{cc.isReadOnly('Unite',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      converter="repUnitStringConverter"
+                                      converterMessage="#{i.Unite} #{i.invalide}"
+                                      required="#{cc.isRequired('Unite',cc.attrs.requiredList,cc.attrs.required)}"
+                                      id="unite"
+                                      requiredMessage="#{i.RequiredMessage}" maxlength="3" size="5"
+                                      value="#{cc.produit.unit}">
+                            <f:validateLength maximum="3" />
+                        </p:inputText>
+                        <p:commandLink rendered="#{!cc.attrs.readOnly}" oncomplete="PF('unitDialog_#{cc.id}').show()" process="@this"   >
+                            <p:graphicImage value="/ImageFolder/loupeplus.jpeg" width="20" height="20" />
+                        </p:commandLink>
+                        <p:message for="unite" />
+                    </h:panelGroup>
+                    <h:outputLabel rendered="#{cc.isRendered('Poids',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.Poids} (Kg)<span>#{cc.isRequiredString('Poids',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('Poids',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  readonly="#{cc.isReadOnly('Poids',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('Poids',cc.attrs.requiredList,cc.attrs.required)}"
+                                      size="8" id="Poids" requiredMessage="#{i.RequiredMessage}"
+                                      value="#{cc.produit.weight}">
+                            <f:validateDoubleRange minimum="0" />
+                        </p:inputText>
+                        <p:message for="Poids" />
+                    </h:panelGroup>
+                    <h:outputLabel rendered="#{cc.isRendered('Volume',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.Volume}(m3)<span>#{cc.isRequiredString('Volume',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('Volume',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  readonly="#{cc.isReadOnly('Volume',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('Volume',cc.attrs.requiredList,cc.attrs.required)}"
+                                      size="8" id="Volume" requiredMessage="#{i.RequiredMessage}"
+                                      value="#{cc.produit.volume}" />
+                        <p:message for="Volume" />
+                    </h:panelGroup>
+                    <h:outputLabel rendered="#{cc.isRendered('ValeurFobInCurrency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        #{i.valeurFobInCurrency} <span>#{cc.isRequiredString('ValeurFobInCurrency',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('ValeurFobInCurrency',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputText  readonly="#{cc.isReadOnly('ValeurFobInCurrency',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                      required="#{cc.isRequired('ValeurFobInCurrency',cc.attrs.requiredList,cc.attrs.required)}"
+                                      id="ValeurFobInCurrency" requiredMessage="#{i.RequiredMessage}"
+                                      value="#{cc.produit.fobValueInCurrency}">
+                            <f:validateDoubleRange minimum="0" />
+                        </p:inputText>
+                        <p:message for="ValeurFobInCurrency" />
+                    </h:panelGroup>
+                    <h:outputLabel  rendered="#{cc.isRendered('Description',cc.attrs.renderedList,cc.attrs.renderedBoolean)}" >
+                        #{i.Description}<span>#{cc.isRequiredString('Description',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.isRendered('Description',cc.attrs.renderedList,cc.attrs.renderedBoolean)}">
+                        <p:inputTextarea  readonly="#{cc.isReadOnly('Description',cc.attrs.readOnlyList,cc.attrs.readOnly)}"
+                                          required="#{cc.isRequired('Description',cc.attrs.requiredList,cc.attrs.required)}"
+                                          maxlength="1500"  id="Description" requiredMessage="#{i.RequiredMessage}"
+                                          validatorMessage="#{i.Description} #{i.invalide} max (1500 char)"
+                                          value="#{cc.produit.description}" >
+                            <f:validateLength maximum="1500" />
+                        </p:inputTextarea>
+                        <p:message for="Description" />
+                    </h:panelGroup>
+                    <h:outputLabel  rendered="#{cc.attrs.displayAmm}" >
+                        AMM<span>#{cc.isRequiredString('Amm',cc.attrs.requiredList,cc.attrs.required)}</span>
+                    </h:outputLabel>
+                    <h:panelGroup rendered="#{cc.attrs.displayAmm}">
+                        <p:inputText  readonly="true"
+                                      required="#{cc.isRequired('Amm',cc.attrs.requiredList,cc.attrs.required)}"
+                                      id="Amm" requiredMessage="#{i.RequiredMessage}"
+                                      value="#{cc.produit.ammCode}">
+                            <f:validateDoubleRange minimum="0" />
+                        </p:inputText>
+                        <p:commandLink rendered="#{!cc.attrs.readOnly}" oncomplete="PF('ammDialog_#{cc.id}').show()" process="@this"   >
+                            <p:graphicImage value="/ImageFolder/loupeplus.jpeg" width="20" height="20" />
+                        </p:commandLink>
+                        <p:message for="Amm" />
+                    </h:panelGroup>
+                </h:panelGrid>
+                <p:commandButton rendered="#{!cc.attrs.readOnly or cc.attrs.edit eq 'true'}"
+                                 value="#{i.validate}" process=":#{cc.clientId}"
+                                 update="#{cc.clientId}:gFormDialog:goodselements #{cc.clientId}:GoodList #{cc.clientId}:gFormDialog:goodsmessages"
+                                 action="#{cc.addProduct()}"   />
+                <p:spacer width="20px" />
+                <p:commandButton  value="#{i.close}" immediate="true" onclick="PF('pDialog_#{cc.id}').hide()"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog widgetVar="updloadDialog_#{cc.id}" id="UploadDialog" modal="true"
+                  header="Importer fichier" draggable="false" resizable="false"
+                  closable="true" position="center">
+            <h:panelGrid>
+                <p:messages id="uploadmessage" />
+                <p:fileUpload auto="true"
+                              cancelLabel="#{principal.Cancel}"
+                              label="#{principal.Choose}"
+                              fileUploadListener="#{cc.handleFileUpload}"
+                              update="pieceLabel,@this"
+                              process="@this"
+                              id="file"
+                              multiple="false"
+                              value="#{cc.piece}"
+                              mode="advanced"
+                              invalidFileMessage="#{i.InvalidAttachment}"
+                              invalidSizeMessage="#{i.InvalidSizeAttachment}"
+                              sizeLimit="1048576"
+                              allowTypes="/(\.|\/)(txt|xlsx?)$/"
+                              />
+                <h:outputLabel  id="pieceLabel"  style="width:150px;display: block;" />
+                <p:commandButton process="@this,file"  value="#{i.Ok}" action="#{cc.upload()}" update="uploadmessage" />
+            </h:panelGrid>
+        </p:dialog>
+        <p:dialog widgetVar="PositionDialog_#{cc.id}" id="PositionDialog" modal="true" draggable="false" resizable="false"
+                  closable="true" position="center">
+            <p:dataTable value="#{cc.attrs.hsList != null ? cc.attrs.hsList : cc.positionList}"  var="pos" rows="5"
+                         paginator="true" filterDelay="500"
+                         caseSensitiveSort="false"
+                         rowsPerPageTemplate="5,10,15"
+                         >
+                <f:facet name="header">
+                    Position Tarifaire
+                </f:facet>
+                <f:facet name="footer">
+                    Position Tarifaire
+                </f:facet>
+                <p:column headerText="#{i.Code}" filterBy="#{pos.code}" width="100">
+                    #{pos.code}
+                </p:column>
+                <p:column headerText="#{i.Libelle}" filterBy="#{pos.libelle}"
+                          filterMatchMode="contains" filterMaxLength="200"
+                          filterStyle="width:80%;">
+                    #{pos.libelle}
+                </p:column>
+                <p:column width="30">
+                    <p:commandLink title="select"  process="@this" oncomplete="PF('PositionDialog_#{cc.id}').hide()"
+                                   update=":#{cc.clientId}:gFormDialog:CodeTarif :#{cc.clientId}:gFormDialog:positionTarif">
+                        <p:graphicImage value="/ImageFolder/validated.jpg" width="15" height="15" />
+                        <f:setPropertyActionListener value="#{pos}" target="#{cc.produit.hSCode}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+        <p:dialog header="Confirmation" closable="false" modal="true" resizable="true"
+                  dynamic="true"
+                  widgetVar="deleteConfirmDialog_#{cc.id}" id="deleteConfirmDialog">
+            <h:panelGrid id="confirmblock">
+                <h:outputText value="Voulez vraiment supprimer ces #{cc.selectedList.size()} elements" />
+                <h:panelGroup>
+                    <p:commandButton id="yes" value="#{i.Yes}" process="@this" action="#{cc.deleteGood()}" oncomplete="PF('deleteConfirmDialog_#{cc.id}').hide()" />
+                    <p:commandButton id="non" value="#{i.No}" immediate="true" onclick="PF('deleteConfirmDialog_#{cc.id}').hide()" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </p:dialog>
+        <p:dialog widgetVar="unitDialog_#{cc.id}" id="unitDialog" modal="true" draggable="false"
+                  resizable="false" width="80%"
+                  closable="true" position="center">
+            <p:dataTable value="#{cc.uniteList}" var="pos" rows="5" paginator="true" filterDelay="800" rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Unite
+                </f:facet>
+                <f:facet name="footer">
+                    Unite
+                </f:facet>
+                <p:column headerText="#{i.Code}" filterBy="#{pos.code}" width="100">
+                    #{pos.code}
+                </p:column>
+                <p:column headerText="#{i.Libelle}" filterBy="#{pos.libelle}"
+                          filterMatchMode="contains" filterMaxLength="200"
+                          filterStyle="width:80%;">
+                    #{pos.libelle}
+                </p:column>
+                <p:column width="30">
+                    <p:commandLink title="select"  process="@this" oncomplete="PF('unitDialog_#{cc.id}').hide()"
+                                   update=":#{cc.clientId}:gFormDialog:unite">
+                        <p:graphicImage value="/ImageFolder/validated.jpg" width="15" height="15" />
+                        <f:setPropertyActionListener value="#{pos.code}" target="#{cc.produit.unit}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+
+        <p:dialog widgetVar="ammDialog_#{cc.id}" id="ammDialog" modal="true" draggable="true"
+                  resizable="false" width="80%"
+                  closable="true" position="center">
+            <p:dataTable value="#{cc.ammList}" var="amm" rows="5" id="ammListTable"
+                         paginator="true" filterDelay="800" rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    AMM
+                </f:facet>
+                <f:facet name="footer">
+                    AMM
+                </f:facet>
+                <p:column headerText="#{i.Code}" filterBy="#{amm.code}" width="100">
+                    #{amm.code}
+                </p:column>
+                <p:column headerText="#{i.Libelle}" filterBy="#{pos.productDescription}"
+                          filterMatchMode="contains" filterMaxLength="200"
+                          filterStyle="width:80%;">
+                    #{amm.productDescription}
+                </p:column>
+                <p:column headerText="DCI" filterBy="#{pos.internationalName}"
+                          filterMatchMode="contains" filterMaxLength="200"
+                          filterStyle="width:80%;">
+                    #{amm.internationalName}
+                </p:column>
+                <p:column headerText="#{i.laboratoryHolder}">
+                    #{amm.laboratoryHolder}
+                </p:column>
+                <p:column width="30">
+                    <p:commandLink title="select"  process="@this" oncomplete="PF('ammDialog_#{cc.id}').hide()" update=":#{cc.clientId}:gFormDialog:Amm">
+                        <p:graphicImage value="/ImageFolder/validated.jpg" width="15" height="15" />
+                        <f:setPropertyActionListener value="#{amm.code}" target="#{cc.produit.ammCode}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+
+        <style>
+            table.#{cc.attrs.styleClass} {
+                font-size: 0.9em;
+                width:100%;
+
+            }
+            .#{cc.attrs.styleClass} label{
+                font-weight: 900;
+                display:block;
+                text-align:right;
+                padding-right:10px;
+            }
+            .#{cc.attrs.styleClass} select{
+                padding:5px;
+            }
+            .#{cc.attrs.styleClass} label span{
+                color:red;
+                font-size: 1.3em;
+
+            }
+            .#{cc.attrs.styleClass} .ui-selectonemenu-label{
+                display:block;
+            }
+            .#{cc.attrs.styleClass} .ui-fieldset-legend{
+                background: rgb(0, 51, 102);
+                color:#fff;
+            }
+            .#{cc.attrs.styleClass} .ui-inputtext[readonly="readonly"],
+            .#{cc.attrs.styleClass} .hasDatepicker[readonly="readonly"],
+            .#{cc.attrs.styleClass} .ui-inputtextarea[readonly="readonly"]{
+                background:#EEE;
+            }
+            .borderB{
+                padding-bottom:10px;
+            }
+
+            .tdlabel{
+                width:15%;
+            }
+            .tdinput{
+                width:35%;
+            }
+        </style>
+        <script>
+            jQuery(document).ready(function () {
+                jQuery('table.goodBlock tr').each(function (index) {
+                    jQuery(this).children("td:eq(0),td:eq(2)").addClass("tdlabel");
+                    jQuery(this).children("td:eq(1),td:eq(3)").addClass("tdinput");
+                });
+            });
+        </script>
+    </composite:implementation>
+</html>
+
