@@ -88,7 +88,6 @@
                 <h3 class="webguce-block-title">#{atm.registration}</h3>
                 <atm:registration_atm1 id="registration" readOnly="false"
                     readOnlyList="atmReference,atmIssueDate,atmExpiryDate"
-                    rendered="true"
                     renderedList="#{atmController.current.atmReference != null ? '':'atmReference,atmIssueDate,atmExpiryDate'}"
                     required="true" styleClass="webguce-sub-block" value="#{atmController.current}"/>
                 

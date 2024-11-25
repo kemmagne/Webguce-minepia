@@ -56,17 +56,6 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
     protected List<String[]> requiredAttachments = new ArrayList<String[]>();
     
     
-    @PostConstruct
-    public void initAttachment(){
-      checkRenouvellementRequestConformity();
-    }
-    
-    
-    private Logger LOGGER = Logger.getLogger(ATMControllerImpl.class.getName());
-    protected List<CoreAttachmenttype> attachmentRenouvellementtypes;    
-    
-    protected List<String[]> requiredAttachments = new ArrayList<String[]>();
-    
      @Override
     public HashMap<String, String> getOfficeSelected() {
        return super.generateOffice(formCode);
@@ -205,19 +194,7 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
   }
    
    
-       
-   public void checkValidAttachmentType(){
-      if(current != null){
-      this.attachmentRenouvellementtypes = new ArrayList<>();
-       List<CoreAttachmenttype> attachment = this.getAvaibleAttachmentType();
-          for(CoreAttachmenttype coreAttachmenttype : attachment){
-              if(Arrays.asList("AUTRE","PATEN","QUIT","DEMANDE","COPIE","RAPPORT","CONFORMITE","ORIGINE","DECLARATION","PREVISION","CERTIFICAT").contains(coreAttachmenttype.getAttachementtypeid().trim())){
-                 this.attachmentRenouvellementtypes.add(coreAttachmenttype);
-            
-          }
-      }
-   }
-  }
+    
     @Override
     public void prepareSend() {
         
@@ -241,7 +218,7 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
            super.validateAndSaveAndSend();
         } 
     }
-    
+    } 
 
      
 //     protected void send() {
