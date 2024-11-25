@@ -101,8 +101,8 @@ public class ATMRequestController extends ATMControllerImpl {
           }
           current.getTransport().getDestination().setCodePays("CM.");
          
-//          if(selectedTypeAvisTechnique!=null){
-//          current.setTypeAtech(typeAvtechServiceImpl.findTypeAvTechBySingleCode(selectedTypeAvisTechnique));}
+          if(selectedTypeAvisTechnique!=null){
+          current.setTypeAtech(typeAvtechServiceImpl.findTypeAvTechBySingleCode(selectedTypeAvisTechnique));}
           //current.setTypeAtech();
            Logger.getLogger("This is the new country code"+ current.getTransport().getDestination().getCodePays());
             
@@ -118,8 +118,15 @@ public class ATMRequestController extends ATMControllerImpl {
         }
     }
 
-    public void validateAndSave() {
+
+        public void validateAndSave() {
         if(checkRequestConformity()) {
+            if(selectedTypeAvisTechnique != null && selectedTypeAvisTechnique.equals(ATMConstant.TRAITEMENT_STOKAGE)){
+                current.setIsStorage(String.valueOf(Boolean.TRUE));  
+         }
+            if(selectedTypeAvisTechnique!=null){
+              current.setTypeAtech(typeAvtechServiceImpl.findTypeAvTechBySingleCode(selectedTypeAvisTechnique));}
+            
             save();
         }
     }

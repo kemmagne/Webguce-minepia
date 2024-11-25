@@ -26,4 +26,6 @@ public class TypeAvtechServiceImpl extends TypeAvtechService {
     public TypeAvtech findTypeAvTechBySingleCode(String code){
         return typeAvtechRepositoryImpl.findTypeAvTechBySingleCode(code);
     }
+    
+
 }

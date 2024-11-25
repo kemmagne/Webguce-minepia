@@ -201,21 +201,21 @@ public class ATMRequestControllerImpl extends ATMRequestController {
             if(this.requiredAttachmentCodes.contains(avaibleAttachmentType.getAttachementtypeid())) {
                 this.requiredAttachments.add(new String[]{
                     avaibleAttachmentType.getAttachementtypeid(),
-                    avaibleAttachmentType.getAttachementtypename(),
+                    addArticleToAttachment(avaibleAttachmentType.getAttachementtypename()),
                 });
             }
           }else if(current != null && selectedTypeAvisTechnique.equals(ATMConstant.INGREDIENT_ADDITIFS)){
             if(this.requiredAttachmentAtm02Codes.contains(avaibleAttachmentType.getAttachementtypeid())) {
                 this.requiredAttachments.add(new String[]{
                     avaibleAttachmentType.getAttachementtypeid(),
-                    avaibleAttachmentType.getAttachementtypename(),
+                    addArticleToAttachment(avaibleAttachmentType.getAttachementtypename()),
                 });
             }
           }else if(current != null && selectedTypeAvisTechnique.equals(ATMConstant.MATERIEL_EQUIPEMENT)){
             if(this.requiredAttachmentAtm03Codes.contains(avaibleAttachmentType.getAttachementtypeid())) {
                 this.requiredAttachments.add(new String[]{
                     avaibleAttachmentType.getAttachementtypeid(),
-                    avaibleAttachmentType.getAttachementtypename(),
+                    addArticleToAttachment(avaibleAttachmentType.getAttachementtypename()),
                 });
             }
           }

@@ -15,7 +15,7 @@
                                 <f:param value="form" name="type"/>
                                 <f:param value="ATM01" name="typeAtech"/>
                 <c:forEach items="#{aTMListController.typeTypeAvtechList}" var="menuItem">
-                        <p:menuitem value="#{menuItem.label}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
+                        <p:menuitem  style="width: 210px;"  value="#{menuItem.label}" action="#{userControllerSite.goToNewPageForm()}" ajax="false" >
                             <f:param value="ATM01" name="formCode"/>
                             <f:param value="form" name="page"/>
                             <f:param value="form" name="type"/>
@@ -78,7 +78,7 @@
                 </p:commandLink>
                 <p:commandLink
                     action="#{userControllerSite.goToNewPageForm()}"
-                    ajax="false" rendered="false" title="#{atm.Copy}">
+                    ajax="false" rendered="true" title="#{atm.Copy}">
                     <f:param name="recordId" value="#{file.file.recordId}"/>
                     <f:param name="formCode" value="ATM01"/>
                     <f:param name="page" value="form"/>
@@ -101,6 +101,11 @@
     <style>
         #formContenu .nossee{
             background: greenyellow;
+        }
+        
+        .splitButtonSize{
+            width: 50px;
+            color: red;
         }
     </style>
 </ui:composition>
