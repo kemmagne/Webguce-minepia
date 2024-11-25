@@ -271,6 +271,8 @@ public class ATMRequestControllerImpl extends ATMRequestController {
     public void setRequiredAttachments(List<String[]> requiredAttachments) {
         this.requiredAttachments = requiredAttachments;
     }
+    
+    
  
     
     public StreamedContent printInvoice() throws JRException, IOException, Exception {

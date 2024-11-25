@@ -371,7 +371,9 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
                     return  getRepGoodAtm().findActiveProduitsHalieutiques();
                 case "ATM02":
                    
+                   
                     return  getRepGoodAtm().findActiveIngredientsAdditifs();
+                    
                     
                  case "ATM03":
 
@@ -382,10 +384,13 @@ public class Goods extends WebguceDefaultComponent implements NamingContainer {
                 default:
                     
                     return  getRepGoodAtm().findActiveProduitsHalieutiques();
+                    
+                    return  getRepGoodAtm().findActiveProduitsHalieutiques();
             }
         }else{
             //si non on retourne tous les marchandises disponible
         // return getRepService().positionList();
+        return  getRepGoodAtm().findActiveProduitsHalieutiques();
         return  getRepGoodAtm().findActiveProduitsHalieutiques();
         } 
     }

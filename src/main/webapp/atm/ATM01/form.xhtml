@@ -14,6 +14,8 @@
             message="#{atm.ConfirmeSend}" widgetVar="confirmSendDialog">
             
             <h:outputLabel style="width:100%;font-size:1.1em; margin-left:0.3em" value="#{atm.stampFee}:  #{aTMRequestController.displayStampfees()}  FCFA"/> 
+            
+            <h:outputLabel style="width:100%;font-size:1.1em; margin-left:0.3em" value="#{atm.stampFee}:  #{aTMRequestController.displayStampfees()}  FCFA"/> 
 <!--            <p:messages id="dialogMessages"/>  -->
             <h:panelGrid columns="1" id="confirmSend" style="width:100%;font-size:1.1em;">
                 <h:outputLabel
@@ -61,13 +63,17 @@
                     requiredList="NumeroContribuable,NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine, libellePays, fax, dateDelivrance,dateExpiration,country" 
                     readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
                     styleClass="webguce-sub-block"
+                    required="false" 
+                    requiredList="NumeroContribuable,NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine, libellePays, fax, dateDelivrance,dateExpiration,country" 
+                    readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP,Ville,origine,fax, dateDelivrance,dateExpiration, libellePays"
+                    styleClass="webguce-sub-block"
                     updateAfterChange="" value="#{atmController.current.chargerid}"/>
                 <h3 class="webguce-block-title">#{atm.supplier}</h3>
                 <wgc:charger excludedCountries="CM" fimex="false"
                     phoneMaxChar="15" phoneMinChar="6" readOnly="false"
                     referenceRegexValidation="([a-zA-Z0-9_/]{3,16})?"
                     renderedList="dateDelivrance,dateExpiration"
-                    required="true"
+                    required="true"                
                     readOnlyList="NomContribuable,Email,ITelephoneFixe,ITelephoneMobile,Address1,BP, Ville, fax, dateDelivrance,dateExpiration"
                     requiredList="NumeroContribuable,TelephoneFixe,personToContact"
                     styleClass="webguce-sub-block" value="#{atmController.current.supplier}"/>

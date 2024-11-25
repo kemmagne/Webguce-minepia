@@ -45,6 +45,7 @@ public abstract class ATMControllerImpl extends ATMController {
 
        
  
+ 
       if(selectedTypeAvisTechnique!=null){this.initAttachement(selectedTypeAvisTechnique);}  
     
    }  
@@ -62,7 +63,7 @@ public abstract class ATMControllerImpl extends ATMController {
             } else if (productTypeCode.equals(ATMConstant.MATERIEL_EQUIPEMENT) && Arrays.asList("CDPP", "LMEI", "DT", "CRT", "RAA", "AUTRE").contains(coreAttachmenttype.getAttachementtypeid().trim())){    
                     this.attachmenttypes.add(coreAttachmenttype);
                 }
-        }
+            }
         }
   }
       

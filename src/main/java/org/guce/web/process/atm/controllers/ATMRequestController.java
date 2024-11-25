@@ -37,6 +37,7 @@ public class ATMRequestController extends ATMControllerImpl {
         current.setChargerid(new CoreCharger());
         current.setRecordProcess(getProcess());
         current.setSupplier(new CoreCharger());
+        
     }
 
     public void loadRecord() {

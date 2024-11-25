@@ -7,6 +7,8 @@ package org.guce.web.process.atm.controllers.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,10 +20,16 @@ import org.apache.commons.lang.StringUtils;
 import org.guce.core.entities.CoreAttachment;
 import org.guce.core.entities.CoreAttachmenttype;
 import org.guce.core.entities.CoreGood;
+import org.guce.core.entities.CoreAttachment;
+import org.guce.core.entities.CoreAttachmenttype;
+import org.guce.core.entities.CoreGood;
 import org.guce.process.atm.ATMConstant;
 import org.guce.process.atm.entities.PaymentDocument;
 import org.guce.web.core.util.JsfUtil;
 import org.guce.web.process.atm.controllers.ATMRenouvellementRequestController;
+import static org.guce.web.process.atm.util.ATMAddArticleToAttachment.addArticleToAttachment;
+import org.primefaces.context.RequestContext;
+
 import static org.guce.web.process.atm.util.ATMAddArticleToAttachment.addArticleToAttachment;
 import org.primefaces.context.RequestContext;
 
@@ -35,6 +43,18 @@ import org.primefaces.context.RequestContext;
 )
 @ViewScoped
 public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementRequestController {
+    
+    @PostConstruct
+    public void initAttachment(){
+      checkRenouvellementRequestConformity();
+    }
+    
+    
+    private Logger LOGGER = Logger.getLogger(ATMControllerImpl.class.getName());
+    protected List<CoreAttachmenttype> attachmentRenouvellementtypes;    
+    
+    protected List<String[]> requiredAttachments = new ArrayList<String[]>();
+    
     
     @PostConstruct
     public void initAttachment(){
@@ -183,10 +203,29 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
       }
    }
   }
+   
+   
+       
+   public void checkValidAttachmentType(){
+      if(current != null){
+      this.attachmentRenouvellementtypes = new ArrayList<>();
+       List<CoreAttachmenttype> attachment = this.getAvaibleAttachmentType();
+          for(CoreAttachmenttype coreAttachmenttype : attachment){
+              if(Arrays.asList("AUTRE","PATEN","QUIT","DEMANDE","COPIE","RAPPORT","CONFORMITE","ORIGINE","DECLARATION","PREVISION","CERTIFICAT").contains(coreAttachmenttype.getAttachementtypeid().trim())){
+                 this.attachmentRenouvellementtypes.add(coreAttachmenttype);
+            
+          }
+      }
+   }
+  }
     @Override
     public void prepareSend() {
         
+        
         generatePaymentData();
+        super.prepareSend(); 
+        RequestContext.getCurrentInstance().execute("PF('confirmSendDialog').show();");
+
         super.prepareSend(); 
         RequestContext.getCurrentInstance().execute("PF('confirmSendDialog').show();");
 
@@ -196,6 +235,7 @@ public class ATMRenouvellementRequestControllerImpl extends ATMRenouvellementReq
     public void validateAndSaveAndSend(){
              current.setRecordId(null);
              current.setRecordSendate(null);
+        if(checkRenouvellementRequestConformity()){
         if(checkRenouvellementRequestConformity()){
            prepareSend();
            super.validateAndSaveAndSend();
